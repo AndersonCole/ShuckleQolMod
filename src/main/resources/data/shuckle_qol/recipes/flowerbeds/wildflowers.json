@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:dandelion" },
+    { "item": "minecraft:dandelion" },
+    { "item": "minecraft:azure_bluet" },
+    { "item": "minecraft:oxeye_daisy" }
+  ],
+  "result": {
+    "item": "shuckle_qol:wildflowers",
+    "count": 4
+  }
+}

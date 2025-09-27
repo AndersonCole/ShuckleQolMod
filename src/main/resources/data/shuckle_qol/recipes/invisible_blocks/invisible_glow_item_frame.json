@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "shuckle_qol:invisible_item_frame" },
+    { "item": "minecraft:glow_ink_sac" }
+  ],
+  "result": {
+    "item": "shuckle_qol:invisible_glow_item_frame",
+    "count": 1
+  }
+}

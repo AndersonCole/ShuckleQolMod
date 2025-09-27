@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "ISI",
+    "III"
+  ],
+  "key": {
+    "I": { "item": "shuckle_qol:black_ice_crystal" },
+    "S": { "item": "minecraft:nether_star" }
+  },
+  "result": {
+    "item": "shuckle_qol:dark_star",
+    "count": 1
+  }
+}

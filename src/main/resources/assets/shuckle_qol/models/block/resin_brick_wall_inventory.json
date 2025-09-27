@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "shuckle_qol:block/resin_bricks"
+  }
+}

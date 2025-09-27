@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "shuckle_qol:resin_bricks"
+  },
+  "result": "shuckle_qol:chiseled_resin_bricks",
+  "count": 1
+}

@@ -1,0 +1,11 @@
+{
+  "type": "fossil:culture_vat",
+  "input": {
+    "item": "shuckle_qol:familiar_shell_fossil"
+  },
+  "fuel": {
+    "item": "fossil:bio_goo"
+  },
+  "result": "shuckle_qol:familiar_shell",
+  "duration": 6000
+}

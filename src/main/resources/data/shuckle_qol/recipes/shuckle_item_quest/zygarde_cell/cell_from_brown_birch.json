@@ -1,0 +1,20 @@
+{
+  "type": "fossil:analyzer",
+  "input": {
+    "item": "byg:brown_birch_sapling"
+  },
+  "outputs": [
+    {
+      "item": "minecraft:stick",
+      "weight": 66.0
+    },
+    {
+      "item": "byg:brown_birch_leaves",
+      "weight": 31.0
+    },
+    {
+      "item": "shuckle_qol:zygarde_cell",
+      "weight": 3.0
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "shuckle_qol:pale_oak_log",
+    "shuckle_qol:pale_oak_wood",
+    "shuckle_qol:stripped_pale_oak_log",
+    "shuckle_qol:stripped_pale_oak_wood"
+  ]
+}

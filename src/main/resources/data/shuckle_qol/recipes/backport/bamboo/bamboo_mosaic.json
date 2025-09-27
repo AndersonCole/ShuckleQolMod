@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B",
+    "B"
+  ],
+  "key": {
+    "B": { "item": "shuckle_qol:bamboo_slab" }
+  },
+  "result": {
+    "item": "shuckle_qol:bamboo_mosaic",
+    "count": 1
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " T ",
+    "TTT",
+    " B "
+  ],
+  "key": {
+    "T": { "item": "fossil:tar_drop" },
+    "B": { "item": "minecraft:bucket" }
+  },
+  "result": {
+    "item": "fossil:tar_bucket",
+    "count": 1
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PP"
+  ],
+  "key": {
+    "P": { "item": "shuckle_qol:bamboo_planks" }
+  },
+  "result": {
+    "item": "shuckle_qol:bamboo_pressure_plate",
+    "count": 1
+  }
+}

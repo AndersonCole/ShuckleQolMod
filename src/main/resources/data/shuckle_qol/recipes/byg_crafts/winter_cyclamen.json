@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "byg:winter_succulent" },
+    { "item": "minecraft:cyan_dye" }
+  ],
+  "result": {
+    "item": "byg:winter_cyclamen",
+    "count": 1
+  }
+}

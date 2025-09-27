@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DBD",
+    "BDB",
+    "DBD"
+  ],
+  "key": {
+    "B": { "item": "minecraft:bone_block" },
+    "D": { "item": "minecraft:deepslate" }
+  },
+  "result": {
+    "item": "shuckle_qol:reinforced_deepslate",
+    "count": 8
+  }
+}

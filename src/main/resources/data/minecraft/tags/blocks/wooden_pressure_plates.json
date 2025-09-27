@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "shuckle_qol:mangrove_pressure_plate",
+    "shuckle_qol:cherry_pressure_plate",
+    "shuckle_qol:bamboo_pressure_plate",
+    "shuckle_qol:pale_oak_pressure_plate"
+  ]
+}

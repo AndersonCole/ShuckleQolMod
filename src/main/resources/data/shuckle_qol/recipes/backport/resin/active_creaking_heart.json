@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RPR",
+    "RBR",
+    "RPR"
+  ],
+  "key": {
+    "R": { "item": "shuckle_qol:resin_clump" },
+    "P": { "item": "shuckle_qol:pale_oak_log" },
+    "B": { "item": "shuckle_qol:resin_block" }
+  },
+  "result": {
+    "item": "shuckle_qol:active_creaking_heart",
+    "count": 1
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "shuckle_qol:corrupted_star"
+  },
+  "result": "shuckle_qol:pure_star",
+  "experience": 500,
+  "cookingtime": 100000
+}

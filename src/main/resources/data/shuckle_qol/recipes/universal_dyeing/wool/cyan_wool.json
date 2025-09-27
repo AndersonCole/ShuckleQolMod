@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "WDW",
+    "WWW"
+  ],
+  "key": {
+    "W": { "tag":  "shuckle_qol:universal_dyeing/dyeable_wool" },
+    "D": { "item": "minecraft:cyan_dye" }
+  },
+  "result": {
+    "item": "minecraft:cyan_wool",
+    "count": 8
+  }
+}

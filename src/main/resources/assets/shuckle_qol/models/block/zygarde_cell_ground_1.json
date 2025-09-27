@@ -1,0 +1,6 @@
+{
+  "parent": "shuckle_qol:block/flat_flowerbed_1",
+  "textures": {
+    "flowerbed": "shuckle_qol:block/zygarde_cell_ground"
+  }
+}

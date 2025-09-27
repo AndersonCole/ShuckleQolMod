@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "shuckle_qol:block/mud_bricks",
+    "top": "shuckle_qol:block/mud_bricks",
+    "side": "shuckle_qol:block/mud_bricks"
+  }
+}

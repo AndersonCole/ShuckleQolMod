@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BBB"
+  ],
+  "key": {
+    "B": { "item": "byg:black_cut_sandstone" }
+  },
+  "result": {
+    "item": "shuckle_qol:black_cut_sandstone_wall",
+    "count": 6
+  }
+}

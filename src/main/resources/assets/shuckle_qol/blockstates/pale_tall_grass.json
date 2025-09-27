@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "shuckle_qol:block/pale_tall_grass_bottom"
+    },
+    "half=upper": {
+      "model": "shuckle_qol:block/pale_tall_grass_top"
+    }
+  }
+}

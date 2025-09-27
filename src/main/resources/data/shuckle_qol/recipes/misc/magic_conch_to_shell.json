@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "fossil:magic_conch" }
+  ],
+  "result": {
+    "item": "minecraft:nautilus_shell",
+    "count": 1
+  }
+}

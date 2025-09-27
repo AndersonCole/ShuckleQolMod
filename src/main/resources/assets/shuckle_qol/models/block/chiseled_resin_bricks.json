@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "shuckle_qol:block/chiseled_resin_bricks"
+  }
+}

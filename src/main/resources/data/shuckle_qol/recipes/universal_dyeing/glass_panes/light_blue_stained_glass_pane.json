@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "GDG",
+    "GGG"
+  ],
+  "key": {
+    "G": { "tag":  "shuckle_qol:universal_dyeing/dyeable_glass_panes" },
+    "D": { "item": "minecraft:light_blue_dye" }
+  },
+  "result": {
+    "item": "minecraft:light_blue_stained_glass_pane",
+    "count": 8
+  }
+}

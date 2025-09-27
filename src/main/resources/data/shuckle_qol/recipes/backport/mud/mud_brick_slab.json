@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB"
+  ],
+  "key": {
+    "B": { "item": "shuckle_qol:mud_bricks" }
+  },
+  "result": {
+    "item": "shuckle_qol:mud_brick_slab",
+    "count": 6
+  }
+}

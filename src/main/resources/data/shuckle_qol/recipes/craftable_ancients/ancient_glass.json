@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GFG",
+    "FRF",
+    "GFG"
+  ],
+  "key": {
+    "F": { "item": "fossil:reinforced_glass" },
+    "R": { "item":  "fossil:relic_scrap" },
+    "G": { "item":  "minecraft:raw_gold" }
+  },
+  "result": {
+    "item": "fossil:ancient_glass",
+    "count": 8
+  }
+}

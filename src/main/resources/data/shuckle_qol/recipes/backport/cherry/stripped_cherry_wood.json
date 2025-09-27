@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "LL",
+    "LL"
+  ],
+  "key": {
+    "L": { "item": "shuckle_qol:stripped_cherry_log" }
+  },
+  "result": {
+    "item": "shuckle_qol:stripped_cherry_wood",
+    "count": 3
+  }
+}

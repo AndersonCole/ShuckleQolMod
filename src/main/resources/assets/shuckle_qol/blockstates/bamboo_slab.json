@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "shuckle_qol:block/bamboo_slab"
+    },
+    "type=double": {
+      "model": "shuckle_qol:block/bamboo_planks"
+    },
+    "type=top": {
+      "model": "shuckle_qol:block/bamboo_slab_top"
+    }
+  }
+}

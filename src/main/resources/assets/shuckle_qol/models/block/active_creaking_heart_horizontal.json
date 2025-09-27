@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "shuckle_qol:block/active_creaking_heart_top",
+    "side": "shuckle_qol:block/active_creaking_heart"
+  }
+}

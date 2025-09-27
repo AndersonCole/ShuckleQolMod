@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB"
+  ],
+  "key": {
+    "B": { "item": "fossil:ancient_stones" }
+  },
+  "result": {
+    "item": "shuckle_qol:ancient_stone_slab",
+    "count": 6
+  }
+}

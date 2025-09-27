@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " D ",
+    "DTD",
+    " D "
+  ],
+  "key": {
+    "T": { "item": "fossil:tar_drop" },
+    "D": { "tag": "shuckle_qol:backport_misc/convertable_dirt" }
+  },
+  "result": {
+    "item": "fossil:tarred_dirt",
+    "count": 4
+  }
+}

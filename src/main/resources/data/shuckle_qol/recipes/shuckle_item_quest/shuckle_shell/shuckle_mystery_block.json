@@ -1,0 +1,11 @@
+{
+  "type": "fossil:culture_vat",
+  "input": {
+    "item": "shuckle_qol:shuckle_dna_swole"
+  },
+  "fuel": {
+    "item": "fossil:bio_goo"
+  },
+  "result": "shuckle_qol:shuckle_mystery_block",
+  "duration": 6000
+}

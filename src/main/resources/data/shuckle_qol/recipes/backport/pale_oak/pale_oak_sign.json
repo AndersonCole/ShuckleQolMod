@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "PPP",
+    " S "
+  ],
+  "key": {
+    "P": { "item": "shuckle_qol:pale_oak_planks" },
+    "S": { "item": "minecraft:stick" }
+  },
+  "result": {
+    "item": "shuckle_qol:pale_oak_sign",
+    "count": 3
+  }
+}

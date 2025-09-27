@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP",
+    "PPP",
+    " S "
+  ],
+  "key": {
+    "P": { "item": "byg:ebony_planks" },
+    "S": { "item": "minecraft:stick" }
+  },
+  "result": {
+    "item": "shuckle_qol:ebony_sign",
+    "count": 3
+  }
+}

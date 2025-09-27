@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "shuckle_qol:block/mangrove_propagule"
+  }
+}

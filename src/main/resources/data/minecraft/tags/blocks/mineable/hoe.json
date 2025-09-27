@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "shuckle_qol:sculk",
+    "shuckle_qol:sculk_vein",
+    "shuckle_qol:sculk_catalyst",
+    "shuckle_qol:mangrove_leaves",
+    "shuckle_qol:cherry_leaves",
+    "shuckle_qol:pale_oak_leaves",
+    "shuckle_qol:pale_moss_block",
+    "shuckle_qol:pale_moss_carpet"
+  ]
+}

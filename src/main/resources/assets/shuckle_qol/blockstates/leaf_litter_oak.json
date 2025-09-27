@@ -1,0 +1,96 @@
+{
+  "variants": {
+    "flower_amount=1,facing=north": [
+      {
+        "model": "shuckle_qol:block/leaf_litter_oak_1"
+      }
+    ],
+    "flower_amount=1,facing=east": [
+      {
+        "model": "shuckle_qol:block/leaf_litter_oak_1",
+        "y": 90
+      }
+    ],
+    "flower_amount=1,facing=south": [
+      {
+        "model": "shuckle_qol:block/leaf_litter_oak_1",
+        "y": 180
+      }
+    ],
+    "flower_amount=1,facing=west": [
+      {
+        "model": "shuckle_qol:block/leaf_litter_oak_1",
+        "y": 270
+      }
+    ],
+    "flower_amount=2,facing=north": [
+      {
+        "model": "shuckle_qol:block/leaf_litter_oak_2"
+      }
+    ],
+    "flower_amount=2,facing=east": [
+      {
+        "model": "shuckle_qol:block/leaf_litter_oak_2",
+        "y": 90
+      }
+    ],
+    "flower_amount=2,facing=south": [
+      {
+        "model": "shuckle_qol:block/leaf_litter_oak_2",
+        "y": 180
+      }
+    ],
+    "flower_amount=2,facing=west": [
+      {
+        "model": "shuckle_qol:block/leaf_litter_oak_2",
+        "y": 270
+      }
+    ],
+    "flower_amount=3,facing=north": [
+      {
+        "model": "shuckle_qol:block/leaf_litter_oak_3"
+      }
+    ],
+    "flower_amount=3,facing=east": [
+      {
+        "model": "shuckle_qol:block/leaf_litter_oak_3",
+        "y": 90
+      }
+    ],
+    "flower_amount=3,facing=south": [
+      {
+        "model": "shuckle_qol:block/leaf_litter_oak_3",
+        "y": 180
+      }
+    ],
+    "flower_amount=3,facing=west": [
+      {
+        "model": "shuckle_qol:block/leaf_litter_oak_3",
+        "y": 270
+      }
+    ],
+    "flower_amount=4,facing=north": [
+      {
+        "model": "shuckle_qol:block/leaf_litter_oak_4"
+      }
+    ],
+    "flower_amount=4,facing=east": [
+      {
+        "model": "shuckle_qol:block/leaf_litter_oak_4",
+        "y": 90
+      }
+    ],
+    "flower_amount=4,facing=south": [
+      {
+        "model": "shuckle_qol:block/leaf_litter_oak_4",
+        "y": 180
+      }
+    ],
+    "flower_amount=4,facing=west": [
+      {
+        "model": "shuckle_qol:block/leaf_litter_oak_4",
+        "y": 270
+      }
+    ]
+  }
+}

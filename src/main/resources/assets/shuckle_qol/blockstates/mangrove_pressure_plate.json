@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "shuckle_qol:block/mangrove_pressure_plate"
+    },
+    "powered=true": {
+      "model": "shuckle_qol:block/mangrove_pressure_plate_down"
+    }
+  }
+}

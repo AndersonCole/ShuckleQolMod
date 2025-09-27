@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SMG",
+    "MCP",
+    "GPS"
+  ],
+  "key": {
+    "M": { "item": "minecraft:moss_carpet" },
+    "P": { "item": "shuckle_qol:pale_moss_carpet" },
+    "C": { "tag": "minecraft:carpets" },
+    "S": { "item": "minecraft:fermented_spider_eye" },
+    "G": { "item": "minecraft:golden_carrot" }
+  },
+  "result": {
+    "item": "shuckle_qol:invisible_carpet",
+    "count": 16
+  }
+}

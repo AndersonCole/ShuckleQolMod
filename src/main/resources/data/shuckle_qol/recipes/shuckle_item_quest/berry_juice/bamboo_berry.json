@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BLB",
+    "LSL",
+    "BLB"
+  ],
+  "key": {
+    "B": { "item": "minecraft:bamboo" },
+    "S": { "item": "minecraft:jungle_sapling" },
+    "L": { "item": "minecraft:jungle_leaves" }
+  },
+  "result": {
+    "item": "shuckle_qol:bamboo_berry",
+    "count": 4
+  }
+}

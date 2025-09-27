@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "CDC",
+    "CCC"
+  ],
+  "key": {
+    "C": { "tag":  "shuckle_qol:universal_dyeing/dyeable_carpets" },
+    "D": { "item": "minecraft:green_dye" }
+  },
+  "result": {
+    "item": "minecraft:green_carpet",
+    "count": 8
+  }
+}

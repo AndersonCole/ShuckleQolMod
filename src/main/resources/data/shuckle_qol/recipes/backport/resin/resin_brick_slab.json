@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RRR"
+  ],
+  "key": {
+    "R": { "item": "shuckle_qol:resin_bricks" }
+  },
+  "result": {
+    "item": "shuckle_qol:resin_brick_slab",
+    "count": 6
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PPP"
+  ],
+  "key": {
+    "P": { "item": "shuckle_qol:cherry_planks" }
+  },
+  "result": {
+    "item": "shuckle_qol:cherry_slab",
+    "count": 6
+  }
+}

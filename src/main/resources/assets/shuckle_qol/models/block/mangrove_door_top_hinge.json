@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_rh",
+  "textures": {
+    "top": "shuckle_qol:block/mangrove_door_top",
+    "bottom": "shuckle_qol:block/mangrove_door_bottom"
+  }
+}

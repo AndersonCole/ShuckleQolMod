@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TTT",
+    "TDT",
+    "TTT"
+  ],
+  "key": {
+    "T": { "tag":  "shuckle_qol:universal_dyeing/dyeable_terracotta" },
+    "D": { "item": "minecraft:brown_dye" }
+  },
+  "result": {
+    "item": "minecraft:brown_terracotta",
+    "count": 8
+  }
+}

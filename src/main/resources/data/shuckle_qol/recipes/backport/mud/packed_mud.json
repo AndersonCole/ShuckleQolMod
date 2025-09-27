@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "shuckle_qol:mud" },
+    { "item": "minecraft:wheat" }
+  ],
+  "result": {
+    "item": "shuckle_qol:packed_mud",
+    "count": 1
+  }
+}

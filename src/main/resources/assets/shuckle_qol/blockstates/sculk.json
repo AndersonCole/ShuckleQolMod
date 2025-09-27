@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "shuckle_qol:block/sculk"
+      },
+      {
+        "model": "shuckle_qol:block/sculk_mirrored"
+      },
+      {
+        "model": "shuckle_qol:block/sculk",
+        "y": 180
+      },
+      {
+        "model": "shuckle_qol:block/sculk_mirrored",
+        "y": 180
+      }
+    ]
+  }
+}

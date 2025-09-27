@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SPS",
+    "SPS"
+  ],
+  "key": {
+    "P": { "item": "shuckle_qol:pale_oak_planks" },
+    "S": { "item": "minecraft:stick" }
+  },
+  "result": {
+    "item": "shuckle_qol:pale_oak_fence_gate",
+    "count": 1
+  }
+}

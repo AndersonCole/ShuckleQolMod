@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "IDI",
+    "III"
+  ],
+  "key": {
+    "I": { "item": "minecraft:packed_ice" },
+    "D": { "item": "minecraft:black_dye" }
+  },
+  "result": {
+    "item": "byg:packed_black_ice",
+    "count": 8
+  }
+}

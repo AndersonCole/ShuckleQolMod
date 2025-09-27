@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "shuckle_qol:block/black_sandstone_slab"
+    },
+    "type=double": {
+      "model": "byg:block/black_sandstone"
+    },
+    "type=top": {
+      "model": "shuckle_qol:block/black_sandstone_slab_top"
+    }
+  }
+}

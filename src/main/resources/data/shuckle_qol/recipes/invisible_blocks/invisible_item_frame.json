@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FSG",
+    "SLS",
+    "GSF"
+  ],
+  "key": {
+    "L": { "item": "minecraft:leather" },
+    "S": { "item": "minecraft:stick" },
+    "F": { "item": "minecraft:fermented_spider_eye" },
+    "G": { "item": "minecraft:golden_carrot" }
+  },
+  "result": {
+    "item": "shuckle_qol:invisible_item_frame",
+    "count": 2
+  }
+}

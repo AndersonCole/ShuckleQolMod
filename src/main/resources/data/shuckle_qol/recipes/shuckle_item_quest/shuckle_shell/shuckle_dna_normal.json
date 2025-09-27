@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BPB",
+    "PSP",
+    "BPB"
+  ],
+  "key": {
+    "S": { "item": "shuckle_qol:shuckle_dna_weak" },
+    "P": { "item": "shuckle_qol:pure_star" },
+    "B": { "item": "shuckle_qol:berry_juice" }
+  },
+  "result": {
+    "item": "shuckle_qol:shuckle_dna_normal",
+    "count": 1
+  }
+}

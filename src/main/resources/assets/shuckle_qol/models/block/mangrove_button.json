@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button",
+  "textures": {
+    "texture": "shuckle_qol:block/mangrove_planks"
+  }
+}

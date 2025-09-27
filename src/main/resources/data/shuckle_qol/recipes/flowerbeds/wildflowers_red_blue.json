@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:poppy" },
+    { "item": "minecraft:poppy" },
+    { "item": "minecraft:cornflower" },
+    { "item": "minecraft:cornflower" }
+  ],
+  "result": {
+    "item": "shuckle_qol:wildflowers_red_blue",
+    "count": 4
+  }
+}

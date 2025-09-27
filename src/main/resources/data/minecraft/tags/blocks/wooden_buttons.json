@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "shuckle_qol:mangrove_button",
+    "shuckle_qol:cherry_button",
+    "shuckle_qol:bamboo_button",
+    "shuckle_qol:pale_oak_button"
+  ]
+}

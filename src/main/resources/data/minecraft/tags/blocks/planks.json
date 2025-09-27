@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "shuckle_qol:mangrove_planks",
+    "shuckle_qol:cherry_planks",
+    "shuckle_qol:bamboo_planks",
+    "shuckle_qol:bamboo_mosaic",
+    "shuckle_qol:pale_oak_planks"
+  ]
+}

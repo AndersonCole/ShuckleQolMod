@@ -1,0 +1,16 @@
+{
+  "type": "fossil:analyzer",
+  "input": {
+    "item": "shuckle_qol:familiar_shell"
+  },
+  "outputs": [
+    {
+      "item": "shuckle_qol:shuckle_dna_weak",
+      "weight": 95.0
+    },
+    {
+      "item": "fossil:nautilus_dna",
+      "weight": 5.0
+    }
+  ]
+}

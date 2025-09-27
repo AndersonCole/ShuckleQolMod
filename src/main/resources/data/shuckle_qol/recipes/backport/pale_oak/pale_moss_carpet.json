@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PP"
+  ],
+  "key": {
+    "P": { "item": "shuckle_qol:pale_moss_block" }
+  },
+  "result": {
+    "item": "shuckle_qol:pale_moss_carpet",
+    "count": 3
+  }
+}

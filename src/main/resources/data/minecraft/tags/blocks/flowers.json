@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#shuckle_qol:backport_misc/wildflowers",
+    "shuckle_qol:mangrove_propagule",
+    "shuckle_qol:cherry_leaves",
+    "shuckle_qol:pink_petals"
+  ]
+}

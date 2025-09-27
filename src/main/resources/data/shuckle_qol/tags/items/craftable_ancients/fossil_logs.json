@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "fossil:calamites_log",
+    "fossil:stripped_calamites_log",
+    "fossil:cordaites_log",
+    "fossil:stripped_cordaites_log",
+    "fossil:palm_log",
+    "fossil:stripped_palm_log",
+    "fossil:sigillaria_log",
+    "fossil:stripped_sigillaria_log",
+    "fossil:tempskya_log",
+    "fossil:stripped_tempskya_log"
+  ]
+}

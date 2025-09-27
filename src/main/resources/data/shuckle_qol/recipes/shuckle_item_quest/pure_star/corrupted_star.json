@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CVC",
+    "VSV",
+    "CVC"
+  ],
+  "key": {
+    "C": { "item": "shuckle_qol:sculk_catalyst" },
+    "V": { "item": "shuckle_qol:sculk_vein" },
+    "S": { "item": "shuckle_qol:dark_star" }
+  },
+  "result": {
+    "item": "shuckle_qol:corrupted_star",
+    "count": 1
+  }
+}
