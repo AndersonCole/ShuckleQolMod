@@ -1,19 +1,17 @@
 package ca.shuckle.block.entity;
 
 import ca.shuckle.mixin.SignTypeAccessor;
+import net.minecraft.block.SignBlock;
+import net.minecraft.block.WoodType;
 import net.minecraft.util.SignType;
 
 public class ModSignTypes {
-    public static final SignType MANGROVE =
-            SignTypeAccessor.registerNew(SignTypeAccessor.newSignType("mangrove"));
-    public static final SignType BAMBOO =
+    public static final WoodType BAMBOO =
             SignTypeAccessor.registerNew(SignTypeAccessor.newSignType("bamboo"));
-    public static final SignType CHERRY =
-            SignTypeAccessor.registerNew(SignTypeAccessor.newSignType("cherry"));
-    public static final SignType PALE_OAK =
+    public static final WoodType PALE_OAK =
             SignTypeAccessor.registerNew(SignTypeAccessor.newSignType("pale_oak"));
-    public static final SignType EBONY =
+    public static final WoodType EBONY =
             SignTypeAccessor.registerNew(SignTypeAccessor.newSignType("ebony"));
-    public static final SignType INVIS =
+    public static final WoodType INVIS =
             SignTypeAccessor.registerNew(SignTypeAccessor.newSignType("invisible"));
 }

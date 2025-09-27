@@ -1,5 +1,6 @@
 package ca.shuckle.entity.client;
 
+
 import ca.shuckle.ShuckleQOL;
 import ca.shuckle.entity.ModEntities;
 import net.fabricmc.api.EnvType;
@@ -30,8 +31,8 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3f;
 
 @Environment(value=EnvType.CLIENT)
 public class InvisibleItemFrameRenderer<T extends ItemFrameEntity>
@@ -66,8 +67,8 @@ public class InvisibleItemFrameRenderer<T extends ItemFrameEntity>
         matrixStack.translate(-vec3d.getX(), -vec3d.getY(), -vec3d.getZ());
         double d = 0.46875;
         matrixStack.translate((double)direction.getOffsetX() * 0.46875, (double)direction.getOffsetY() * 0.46875, (double)direction.getOffsetZ() * 0.46875);
-        matrixStack.multiply(Vec3f.POSITIVE_X.getDegreesQuaternion(((Entity)itemFrameEntity).getPitch()));
-        matrixStack.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(180.0f - ((Entity)itemFrameEntity).getYaw()));
+        matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(((Entity)itemFrameEntity).getPitch()));
+        matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(180.0f - ((Entity)itemFrameEntity).getYaw()));
         boolean bl = ((Entity)itemFrameEntity).isInvisible();
         ItemStack itemStack = ((ItemFrameEntity)itemFrameEntity).getHeldItemStack();
 
@@ -92,9 +93,9 @@ public class InvisibleItemFrameRenderer<T extends ItemFrameEntity>
                 matrixStack.translate(0.0, 0.0, 0.4375);
             }
             int j = bl2 ? ((ItemFrameEntity)itemFrameEntity).getRotation() % 4 * 2 : ((ItemFrameEntity)itemFrameEntity).getRotation();
-            matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion((float)j * 360.0f / 8.0f));
+            matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees((float)j * 360.0f / 8.0f));
             if (bl2) {
-                matrixStack.multiply(Vec3f.POSITIVE_Z.getDegreesQuaternion(180.0f));
+                matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(180.0f));
                 float h = 0.0078125f;
                 matrixStack.scale(0.0078125f, 0.0078125f, 0.0078125f);
                 matrixStack.translate(-64.0, -64.0, 0.0);

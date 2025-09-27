@@ -1,11 +1,8 @@
 package ca.shuckle.block;
 
-import ca.shuckle.ShuckleQOL;
 import ca.shuckle.block.custom.*;
 import ca.shuckle.block.entity.ModSignTypes;
 import ca.shuckle.item.ModItemGroup;
-import ca.shuckle.world.feature.tree.CherrySaplingGenerator;
-import ca.shuckle.world.feature.tree.MangrovePropaguleGenerator;
 import ca.shuckle.world.feature.tree.PaleOakSaplingGenerator;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -41,15 +38,6 @@ public class ModBackportBlocks {
     public static final Block SCULK_CATALYST = registerBlock("sculk_catalyst",
             new Block(FabricBlockSettings.of(Material.SCULK)
                     .strength(3f, 3f).luminance(6).sounds(BlockSoundGroup.SCULK_SENSOR)), ModItemGroup.SHUCKLE_BACKPORT);
-
-
-    public static final Block MANGROVE_PROPAGULE = registerBlock("mangrove_propagule",
-            new SaplingBlock(new MangrovePropaguleGenerator(),
-                    FabricBlockSettings.copy(Blocks.OAK_SAPLING)), ModItemGroup.SHUCKLE_BACKPORT);
-
-    public static final Block POTTED_MANGROVE_PROPAGULE = registerBlockWithoutBlockItem("potted_mangrove_propagule",
-            new FlowerPotBlock(ModBackportBlocks.MANGROVE_PROPAGULE,
-                    FabricBlockSettings.copy(Blocks.POTTED_OAK_SAPLING)), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block MANGROVE_LEAVES = registerBlock("mangrove_leaves",
             new LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES).nonOpaque()), ModItemGroup.SHUCKLE_BACKPORT);
@@ -89,18 +77,11 @@ public class ModBackportBlocks {
             new FenceGateBlock(FabricBlockSettings.copy(Blocks.OAK_FENCE_GATE)), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block MANGROVE_BUTTON = registerBlock("mangrove_button",
-            new WoodenButtonBlock(FabricBlockSettings.copy(Blocks.OAK_BUTTON).noCollision()), ModItemGroup.SHUCKLE_BACKPORT);
+            new ButtonBlock(FabricBlockSettings.copy(Blocks.OAK_BUTTON).noCollision()), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block MANGROVE_PRESSURE_PLATE = registerBlock("mangrove_pressure_plate",
             new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING,
                     FabricBlockSettings.copy(Blocks.OAK_PRESSURE_PLATE).nonOpaque()), ModItemGroup.SHUCKLE_BACKPORT);
-
-    public static final Block MANGROVE_SIGN = registerBlockWithoutBlockItem("mangrove_sign",
-            new SignBlock(FabricBlockSettings.copy(Blocks.OAK_SIGN), ModSignTypes.MANGROVE), ModItemGroup.SHUCKLE_BACKPORT);
-
-    public static final Block MANGROVE_WALL_SIGN = registerBlockWithoutBlockItem("mangrove_wall_sign",
-            new WallSignBlock(FabricBlockSettings.copy(Blocks.OAK_WALL_SIGN)
-                    .dropsLike(MANGROVE_SIGN), ModSignTypes.MANGROVE), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block MUD = registerBlock("mud",
             new NonFullBlock(FabricBlockSettings.of(Material.SOIL, MapColor.TERRACOTTA_CYAN).sounds(BlockSoundGroup.ROOTED_DIRT).strength(0.5f, 0.5f)), ModItemGroup.SHUCKLE_BACKPORT);
@@ -192,14 +173,6 @@ public class ModBackportBlocks {
             new StairsBlock(ModBackportBlocks.BAMBOO_MOSAIC.getDefaultState(),
                     FabricBlockSettings.copy(Blocks.OAK_STAIRS).sounds(BlockSoundGroup.BAMBOO)), ModItemGroup.SHUCKLE_BACKPORT);
 
-    public static final Block CHERRY_SAPLING = registerBlock("cherry_sapling",
-            new SaplingBlock(new CherrySaplingGenerator(),
-                    FabricBlockSettings.copy(Blocks.OAK_SAPLING)), ModItemGroup.SHUCKLE_BACKPORT);
-
-    public static final Block POTTED_CHERRY_SAPLING = registerBlockWithoutBlockItem("potted_cherry_sapling",
-            new FlowerPotBlock(ModBackportBlocks.CHERRY_SAPLING,
-                    FabricBlockSettings.copy(Blocks.POTTED_OAK_SAPLING)), ModItemGroup.SHUCKLE_BACKPORT);
-
     public static final Block CHERRY_LEAVES = registerBlock("cherry_leaves",
             new LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES).nonOpaque()), ModItemGroup.SHUCKLE_BACKPORT);
 
@@ -243,13 +216,6 @@ public class ModBackportBlocks {
     public static final Block CHERRY_PRESSURE_PLATE = registerBlock("cherry_pressure_plate",
             new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING,
                     FabricBlockSettings.copy(Blocks.OAK_PRESSURE_PLATE).nonOpaque()), ModItemGroup.SHUCKLE_BACKPORT);
-
-    public static final Block CHERRY_SIGN = registerBlockWithoutBlockItem("cherry_sign",
-            new SignBlock(FabricBlockSettings.copy(Blocks.OAK_SIGN), ModSignTypes.CHERRY), ModItemGroup.SHUCKLE_BACKPORT);
-
-    public static final Block CHERRY_WALL_SIGN = registerBlockWithoutBlockItem("cherry_wall_sign",
-            new WallSignBlock(FabricBlockSettings.copy(Blocks.OAK_WALL_SIGN)
-                    .dropsLike(CHERRY_SIGN), ModSignTypes.CHERRY), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block PALE_OAK_SAPLING = registerBlock("pale_oak_sapling",
             new SaplingBlock(new PaleOakSaplingGenerator(),
@@ -323,7 +289,7 @@ public class ModBackportBlocks {
     public static final Block PALE_TALL_GRASS = registerBlock("pale_tall_grass",
             new TallPlantBlock(FabricBlockSettings.copy(Blocks.TALL_GRASS)), ModItemGroup.SHUCKLE_BACKPORT);
     public static final Block RESIN_CLUMP = registerBlock("resin_clump",
-            new AbstractLichenBlock(FabricBlockSettings.of(Material.STONE, MapColor.ORANGE)
+            new MultifaceGrowthBlock(FabricBlockSettings.of(Material.STONE, MapColor.ORANGE)
                     .noCollision().nonOpaque()), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block RESIN_BLOCK = registerBlock("resin_block",

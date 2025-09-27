@@ -38,7 +38,7 @@ public class TopBottomPillarBlock
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        Direction facing = ctx.getPlayerFacing().getOpposite();
+        Direction facing = ctx.getPlayerLookDirection().getOpposite();
         if (ctx.getSide().getAxis().isVertical()) {
             facing = ctx.getSide();
         }

@@ -2,144 +2,87 @@ package ca.shuckle.world.feature;
 
 import ca.shuckle.ShuckleQOL;
 import ca.shuckle.block.ModBackportBlocks;
-import ca.shuckle.block.ModBlocks;
-import com.google.common.collect.ImmutableList;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.tag.BlockTags;
+import net.minecraft.registry.Registerable;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.VerticalSurfaceType;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
-import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.ThreeLayersFeatureSize;
-import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
-import net.minecraft.world.gen.foliage.*;
+import net.minecraft.world.gen.foliage.DarkOakFoliagePlacer;
 import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
-import net.minecraft.world.gen.treedecorator.CocoaBeansTreeDecorator;
-import net.minecraft.world.gen.treedecorator.LeavesVineTreeDecorator;
-import net.minecraft.world.gen.treedecorator.TrunkVineTreeDecorator;
-import net.minecraft.world.gen.trunk.*;
+import net.minecraft.world.gen.trunk.DarkOakTrunkPlacer;
 
 import java.util.List;
 import java.util.OptionalInt;
 
 public class ModConfiguredFeatures {
+    public static RegistryKey<ConfiguredFeature<?,?>> PALE_OAK_TREE_KEY = registerKey("pale_oak_tree");
+    public static RegistryKey<ConfiguredFeature<?,?>> PALE_OAK_TREE_SPAWN_KEY = registerKey("pale_oak_tree_spawn");
 
-    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> MANGROVE_TREE =
-            ConfiguredFeatures.register("mangrove_tree", Feature.TREE, new TreeFeatureConfig.Builder(
-                    BlockStateProvider.of(ModBackportBlocks.MANGROVE_LOG),
-                    new ForkingTrunkPlacer(6, 3, 2),
-                    BlockStateProvider.of(ModBackportBlocks.MANGROVE_LEAVES),
-                    new JungleFoliagePlacer(ConstantIntProvider.create(1), ConstantIntProvider.create(0), 3),
-                    new ThreeLayersFeatureSize(1, 2, 1, 2, 2, OptionalInt.empty()))
-                    .decorators(ImmutableList.of(LeavesVineTreeDecorator.INSTANCE)).ignoreVines().build());
+    public static RegistryKey<ConfiguredFeature<?,?>> PALE_MOSS_KEY = registerKey("pale_moss");
+    public static RegistryKey<ConfiguredFeature<?,?>> PALE_MOSS_VEGETATION_KEY = registerKey("pale_moss_vegetation");
+    public static RegistryKey<ConfiguredFeature<?,?>> PALE_MOSS_PATCH_KEY = registerKey("pale_moss_patch");
+    public static RegistryKey<ConfiguredFeature<?,?>> PALE_MOSS_BONEMEAL_KEY = registerKey("pale_moss_bonemeal");
 
-    public static final RegistryEntry<PlacedFeature> MANGROVE_CHECKED =
-            PlacedFeatures.register("mangrove_checked", MANGROVE_TREE,
-                    PlacedFeatures.wouldSurvive(ModBackportBlocks.MANGROVE_PROPAGULE));
+    public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context){
+        var placedFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.PLACED_FEATURE);
+        var configuredFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
-    public static final RegistryEntry<ConfiguredFeature<RandomFeatureConfig, ?>> MANGROVE_SPAWN =
-            ConfiguredFeatures.register("mangrove_spawn", Feature.RANDOM_SELECTOR,
-                    new RandomFeatureConfig(List.of(new RandomFeatureEntry(MANGROVE_CHECKED, 0.5f)),
-                            MANGROVE_CHECKED));
+        register(context, PALE_OAK_TREE_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
+                BlockStateProvider.of(ModBackportBlocks.PALE_OAK_LOG),
+                new DarkOakTrunkPlacer(6, 2, 1),
+                BlockStateProvider.of(ModBackportBlocks.PALE_OAK_LEAVES),
+                new DarkOakFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0)),
+                new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty())).ignoreVines().build());
 
-    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> LARGE_MANGROVE_TREE =
-            ConfiguredFeatures.register("large_mangrove_tree", Feature.TREE, new TreeFeatureConfig.Builder(
-                    BlockStateProvider.of(ModBackportBlocks.MANGROVE_LOG),
-                    new MegaJungleTrunkPlacer(10, 2, 12),
-                    BlockStateProvider.of(ModBackportBlocks.MANGROVE_LEAVES),
-                    new JungleFoliagePlacer(ConstantIntProvider.create(1), ConstantIntProvider.create(0), 3),
-                    new TwoLayersFeatureSize(1, 1, 2, OptionalInt.empty()))
-                    .decorators(ImmutableList.of(LeavesVineTreeDecorator.INSTANCE)).ignoreVines().build());
+        register(context, PALE_OAK_TREE_SPAWN_KEY, Feature.RANDOM_SELECTOR,
+                new RandomFeatureConfig(List.of(new RandomFeatureEntry(placedFeatureRegistryEntryLookup.getOrThrow(ModPlacedFeatures.PALE_OAK_TREE_PLACED_KEY),
+                        0.5f)), placedFeatureRegistryEntryLookup.getOrThrow(ModPlacedFeatures.PALE_OAK_TREE_PLACED_KEY)));
 
-    public static final RegistryEntry<PlacedFeature> LARGE_MANGROVE_CHECKED =
-            PlacedFeatures.register("large_mangrove_checked", LARGE_MANGROVE_TREE,
-                    PlacedFeatures.wouldSurvive(ModBackportBlocks.MANGROVE_PROPAGULE));
+        register(context, PALE_MOSS_KEY, Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(
+                        DataPool.<BlockState>builder()
+                                .add(ModBackportBlocks.PALE_MOSS_CARPET.getDefaultState(), 25)
+                                .add(ModBackportBlocks.PALE_GRASS.getDefaultState(), 50)
+                                .add(ModBackportBlocks.PALE_TALL_GRASS.getDefaultState(), 10))));
 
-    public static final RegistryEntry<ConfiguredFeature<RandomFeatureConfig, ?>> LARGE_MANGROVE_SPAWN =
-            ConfiguredFeatures.register("large_mangrove_spawn", Feature.RANDOM_SELECTOR,
-                    new RandomFeatureConfig(List.of(new RandomFeatureEntry(LARGE_MANGROVE_CHECKED, 0.5f)),
-                            LARGE_MANGROVE_CHECKED));
+        register(context, PALE_MOSS_VEGETATION_KEY, Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(
+                        DataPool.<BlockState>builder()
+                                .add(ModBackportBlocks.PALE_MOSS_CARPET.getDefaultState(), 25)
+                                .add(ModBackportBlocks.PALE_GRASS.getDefaultState(), 50)
+                                .add(ModBackportBlocks.PALE_TALL_GRASS.getDefaultState(), 10))));
 
-    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> CHERRY_TREE =
-            ConfiguredFeatures.register("cherry_tree", Feature.TREE, new TreeFeatureConfig.Builder(
-                    BlockStateProvider.of(ModBackportBlocks.CHERRY_LOG),
-                    new ForkingTrunkPlacer(6, 3, 2),
-                    BlockStateProvider.of(ModBackportBlocks.CHERRY_LEAVES),
-                    new JungleFoliagePlacer(ConstantIntProvider.create(1), ConstantIntProvider.create(0), 3),
-                    new ThreeLayersFeatureSize(1, 2, 1, 2, 2, OptionalInt.empty())).ignoreVines().build());
-
-    public static final RegistryEntry<PlacedFeature> CHERRY_CHECKED =
-            PlacedFeatures.register("cherry_checked", CHERRY_TREE,
-                    PlacedFeatures.wouldSurvive(ModBackportBlocks.CHERRY_SAPLING));
-
-    public static final RegistryEntry<ConfiguredFeature<RandomFeatureConfig, ?>> CHERRY_SPAWN =
-            ConfiguredFeatures.register("cherry_spawn", Feature.RANDOM_SELECTOR,
-                    new RandomFeatureConfig(List.of(new RandomFeatureEntry(CHERRY_CHECKED, 0.5f)),
-                            CHERRY_CHECKED));
-
-    public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> PALE_OAK_TREE =
-            ConfiguredFeatures.register("pale_oak_tree", Feature.TREE, new TreeFeatureConfig.Builder(
-                    BlockStateProvider.of(ModBackportBlocks.PALE_OAK_LOG),
-                    new DarkOakTrunkPlacer(6, 2, 1),
-                    BlockStateProvider.of(ModBackportBlocks.PALE_OAK_LEAVES),
-                    new DarkOakFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0)),
-                    new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty())).ignoreVines().build());
-
-    public static final RegistryEntry<PlacedFeature> PALE_OAK_CHECKED =
-            PlacedFeatures.register("pale_oak_checked", PALE_OAK_TREE,
-                    PlacedFeatures.wouldSurvive(ModBackportBlocks.PALE_OAK_SAPLING));
-
-    public static final RegistryEntry<ConfiguredFeature<RandomFeatureConfig, ?>> PALE_OAK_SPAWN =
-            ConfiguredFeatures.register("pale_oak_spawn", Feature.RANDOM_SELECTOR,
-                    new RandomFeatureConfig(List.of(new RandomFeatureEntry(PALE_OAK_CHECKED, 0.5f)),
-                            PALE_OAK_CHECKED));
-
-    public static final RegistryEntry<ConfiguredFeature<SimpleBlockFeatureConfig, ?>> PALE_MOSS_VEGETATION =
-            ConfiguredFeatures.register("pale_moss_vegetation", Feature.SIMPLE_BLOCK,
-                    new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(
-                            DataPool.<BlockState>builder()
-                                    .add(ModBackportBlocks.PALE_MOSS_CARPET.getDefaultState(), 25)
-                                    .add(ModBackportBlocks.PALE_GRASS.getDefaultState(), 50)
-                                    .add(ModBackportBlocks.PALE_TALL_GRASS.getDefaultState(), 10))));
-
-    public static final RegistryEntry<ConfiguredFeature<VegetationPatchFeatureConfig, ?>> PALE_MOSS_PATCH =
-            ConfiguredFeatures.register("pale_moss_patch", Feature.VEGETATION_PATCH,
-                    new VegetationPatchFeatureConfig(BlockTags.MOSS_REPLACEABLE,
-                            BlockStateProvider.of(ModBackportBlocks.PALE_MOSS_BLOCK),
-                            PlacedFeatures.createEntry(PALE_MOSS_VEGETATION,
+        register(context, PALE_MOSS_PATCH_KEY, Feature.VEGETATION_PATCH,
+                new VegetationPatchFeatureConfig(BlockTags.MOSS_REPLACEABLE,
+                        BlockStateProvider.of(ModBackportBlocks.PALE_MOSS_BLOCK),
+                        PlacedFeatures.createEntry(configuredFeatureRegistryEntryLookup.getOrThrow(PALE_MOSS_VEGETATION_KEY),
                                 new PlacementModifier[0]), VerticalSurfaceType.FLOOR,
                         ConstantIntProvider.create(1), 0.0f, 5, 0.8f,
                         UniformIntProvider.create(4, 7), 0.3f));
 
-    public static final RegistryEntry<ConfiguredFeature<VegetationPatchFeatureConfig, ?>> PALE_MOSS_PATCH_BONEMEAL =
-            ConfiguredFeatures.register("pale_moss_patch_bonemeal",
-                    Feature.VEGETATION_PATCH, new VegetationPatchFeatureConfig(BlockTags.MOSS_REPLACEABLE,
-                            BlockStateProvider.of(ModBackportBlocks.PALE_MOSS_BLOCK), PlacedFeatures.createEntry(PALE_MOSS_VEGETATION,
-                            new PlacementModifier[0]), VerticalSurfaceType.FLOOR,
-                            ConstantIntProvider.create(1), 0.0f, 5, 0.6f,
-                            UniformIntProvider.create(1, 2), 0.75f));
+        register(context, PALE_MOSS_BONEMEAL_KEY, Feature.VEGETATION_PATCH, new VegetationPatchFeatureConfig(BlockTags.MOSS_REPLACEABLE,
+                BlockStateProvider.of(ModBackportBlocks.PALE_MOSS_BLOCK),
+                PlacedFeatures.createEntry(configuredFeatureRegistryEntryLookup.getOrThrow(PALE_MOSS_VEGETATION_KEY),
+                new PlacementModifier[0]), VerticalSurfaceType.FLOOR,
+                ConstantIntProvider.create(1), 0.0f, 5, 0.6f,
+                UniformIntProvider.create(1, 2), 0.75f));
+    }
 
-    public static final RegistryEntry<ConfiguredFeature<SimpleBlockFeatureConfig, ?>> SCULK_VEGETATION =
-            ConfiguredFeatures.register("sculk_vegetation", Feature.SIMPLE_BLOCK,
-                    new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(
-                            DataPool.<BlockState>builder()
-                                    .add(ModBackportBlocks.SCULK_VEIN.getStateManager().getStates().get(63), 25)
-                                    .add(ModBackportBlocks.SCULK_CATALYST.getDefaultState(), 2)
-                                    .add(Blocks.SCULK_SENSOR.getDefaultState(), 2))));
+    public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name){
+        return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, new Identifier(ShuckleQOL.MOD_ID, name));
+    }
 
-    public static final RegistryEntry<ConfiguredFeature<VegetationPatchFeatureConfig, ?>> SCULK_PATCH_BONEMEAL =
-            ConfiguredFeatures.register("sculk_patch_bonemeal",
-                    Feature.VEGETATION_PATCH, new VegetationPatchFeatureConfig(BlockTags.MOSS_REPLACEABLE,
-                            BlockStateProvider.of(ModBackportBlocks.SCULK), PlacedFeatures.createEntry(SCULK_VEGETATION,
-                            new PlacementModifier[0]), VerticalSurfaceType.FLOOR,
-                            ConstantIntProvider.create(1), 1.0f, 5, 0.4f,
-                            UniformIntProvider.create(3, 4), 0.75f));
-
-    public static void registerConfiguredFeatures() {ShuckleQOL.LOGGER.info("Registering ModConfiguredFeatures for " + ShuckleQOL.MOD_ID);}
+    private static <FC extends FeatureConfig, F extends Feature<FC>> void register(Registerable<ConfiguredFeature<?, ?>> context,
+                                                                                   RegistryKey<ConfiguredFeature<?, ?>> key, F feature, FC configuration) {
+        context.register(key, new ConfiguredFeature<>(feature, configuration));
+    }
 }

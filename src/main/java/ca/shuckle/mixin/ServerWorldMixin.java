@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.poi.PointOfInterestStorage;
 import net.minecraft.world.poi.PointOfInterestType;
+import net.minecraft.world.poi.PointOfInterestTypes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -29,9 +30,16 @@ public abstract class ServerWorldMixin {
     public abstract ServerWorld toServerWorld();
 
     @Inject(method = "getLightningRodPos", at=@At("HEAD"), cancellable = true)
-    private void getLightningRodPos(BlockPos pos2, CallbackInfoReturnable<Optional<BlockPos>> info) {
-        Optional<BlockPos> optional = this.getPointOfInterestStorage()
-                .getNearestPosition(poiType ->
+    private Optional<BlockPos> getLightningRodPos(BlockPos pos2, CallbackInfoReturnable<Optional<BlockPos>> info) {
+        Optional<BlockPos> optional = this.getPointOfInterestStorage().getNearestPosition((poiType) -> {
+            return poiType.matchesKey(PointOfInterestTypes.LIGHTNING_ROD) || poiType.matchesKey(ModPointsOfInterest.INVIS_LIGHTNING_ROD));
+        }, (posx) -> {
+            return posx.getY() == this.getTopY(Heightmap.Type.WORLD_SURFACE, posx.getX(), posx.getZ()) - 1;
+        }, pos, 128, PointOfInterestStorage.OccupationStatus.ANY);
+        return optional.map((posx) -> {
+            return posx.up(1);
+        });
+
                         poiType == PointOfInterestType.LIGHTNING_ROD || poiType == ModPointsOfInterest.INVIS_LIGHTNING_ROD,
                         pos -> pos.getY() == this.toServerWorld().getTopY(Heightmap.Type.WORLD_SURFACE, pos.getX(), pos.getZ()) - 1,
                         pos2, 128, PointOfInterestStorage.OccupationStatus.ANY);

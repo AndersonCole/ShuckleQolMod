@@ -1,23 +1,21 @@
 package ca.shuckle.block;
 
 import ca.shuckle.ShuckleQOL;
-import ca.shuckle.block.custom.*;
+import ca.shuckle.block.custom.FlatFlowerbedBlock;
+import ca.shuckle.block.custom.ShuckleBlock;
 import ca.shuckle.block.entity.ModSignTypes;
 import ca.shuckle.item.ModItemGroup;
-import ca.shuckle.world.feature.tree.CherrySaplingGenerator;
-import ca.shuckle.world.feature.tree.MangrovePropaguleGenerator;
-import ca.shuckle.world.feature.tree.PaleOakSaplingGenerator;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
-import net.minecraft.entity.decoration.GlowItemFrameEntity;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.SignType;
-import net.minecraft.util.registry.Registry;
 
 public class ModBlocks {
     public static final Block CONDENSED_BLACK_ICE = registerBlock("condensed_black_ice",
@@ -126,17 +124,19 @@ public class ModBlocks {
 
 
     public static Block registerBlockWithoutBlockItem(String name, Block block, ItemGroup group){
-        return Registry.register(Registry.BLOCK, new Identifier(ShuckleQOL.MOD_ID, name), block);
+        return Registry.register(Registries.BLOCK, new Identifier(ShuckleQOL.MOD_ID, name), block);
     }
 
     public static Block registerBlock(String name, Block block, ItemGroup group){
         registerBlockItem(name, block, group);
-        return Registry.register(Registry.BLOCK, new Identifier(ShuckleQOL.MOD_ID, name), block);
+        return Registry.register(Registries.BLOCK, new Identifier(ShuckleQOL.MOD_ID, name), block);
     }
 
     public static Item registerBlockItem(String name, Block block, ItemGroup group){
-        return Registry.register(Registry.ITEM, new Identifier(ShuckleQOL.MOD_ID, name),
-                new BlockItem(block, new FabricItemSettings().group(group)));
+        Item item = Registry.register(Registries.ITEM, new Identifier(ShuckleQOL.MOD_ID, name),
+                new BlockItem(block, new FabricItemSettings()));
+        ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.add(item));
+        return item;
     }
 
     public static void registerModBlocks() {

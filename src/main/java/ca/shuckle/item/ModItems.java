@@ -9,10 +9,10 @@ import ca.shuckle.item.custom.BerryJuiceItem;
 import ca.shuckle.item.custom.GlintItem;
 import ca.shuckle.item.custom.InvisItemFrameItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemFrameItem;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.SignItem;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.item.*;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
@@ -43,16 +43,16 @@ public class ModItems {
             new SignItem(new FabricItemSettings().group(ModItemGroup.SHUCKLE).maxCount(16),
                     ModBlocks.INVIS_SIGN, ModBlocks.INVIS_WALL_SIGN));
 
-    public static final Item INVIS_ITEM_FRAME = registerItem("invisible_item_frame",
+    public static final Item INVIS_ITEM_FRAME = registerItemInGroup("invisible_item_frame",
             new InvisItemFrameItem(ModEntities.INVIS_ITEM_FRAME,
-                    new FabricItemSettings().group(ModItemGroup.SHUCKLE)));
+                    new FabricItemSettings()), ModItemGroup.SHUCKLE);
 
-    public static final Item INVIS_GLOW_ITEM_FRAME = registerItem("invisible_glow_item_frame",
+    public static final Item INVIS_GLOW_ITEM_FRAME = registerItemInGroup("invisible_glow_item_frame",
             new InvisItemFrameItem(ModEntities.INVIS_GLOW_ITEM_FRAME,
-                    new FabricItemSettings().group(ModItemGroup.SHUCKLE)));
+                    new FabricItemSettings()), ModItemGroup.SHUCKLE);
 
-    public static final Item RESIN_BRICK = registerItem("resin_brick",
-            new Item(new FabricItemSettings().group(ModItemGroup.SHUCKLE_BACKPORT)));
+    public static final Item RESIN_BRICK = registerItemInGroup("resin_brick",
+            new Item(new FabricItemSettings()), ModItemGroup.SHUCKLE_BACKPORT);;
 
     public static final Item BLACK_ICE_SHARD = registerItem("black_ice_shard",
             new Item(new FabricItemSettings()));
@@ -87,20 +87,20 @@ public class ModItems {
     public static final Item SWOLE_SHUCKLE_DNA = registerItem("shuckle_dna_swole",
             new GlintItem(new FabricItemSettings().rarity(Rarity.EPIC)));
 
-    public static final Item MANGROVE_BERRY = registerItem("mangrove_berry",
-            new Item(new FabricItemSettings().food(ModFoodComponents.MANGROVE_BERRY).group(ModItemGroup.SHUCKLE)));
+    public static final Item MANGROVE_BERRY = registerItemInGroup("mangrove_berry",
+            new Item(new FabricItemSettings().food(ModFoodComponents.MANGROVE_BERRY)), ModItemGroup.SHUCKLE);
 
-    public static final Item CHERRY_BERRY = registerItem("cherry_berry",
-            new Item(new FabricItemSettings().food(ModFoodComponents.CHERRY_BERRY).group(ModItemGroup.SHUCKLE)));
+    public static final Item CHERRY_BERRY = registerItemInGroup("cherry_berry",
+            new Item(new FabricItemSettings().food(ModFoodComponents.CHERRY_BERRY)), ModItemGroup.SHUCKLE);
 
-    public static final Item BAMBOO_BERRY = registerItem("bamboo_berry",
-            new Item(new FabricItemSettings().food(ModFoodComponents.BAMBOO_BERRY).group(ModItemGroup.SHUCKLE)));
+    public static final Item BAMBOO_BERRY = registerItemInGroup("bamboo_berry",
+            new Item(new FabricItemSettings().food(ModFoodComponents.BAMBOO_BERRY)), ModItemGroup.SHUCKLE);
 
-    public static final Item PALE_BERRY = registerItem("pale_berry",
-            new Item(new FabricItemSettings().food(ModFoodComponents.PALE_BERRY).group(ModItemGroup.SHUCKLE)));
+    public static final Item PALE_BERRY = registerItemInGroup("pale_berry",
+            new Item(new FabricItemSettings().food(ModFoodComponents.PALE_BERRY)), ModItemGroup.SHUCKLE);
 
-    public static final Item BERRY_JUICE = registerItem("berry_juice",
-            new BerryJuiceItem(new FabricItemSettings().rarity(Rarity.RARE).food(ModFoodComponents.BERRY_JUICE).group(ModItemGroup.SHUCKLE)));
+    public static final Item BERRY_JUICE = registerItemInGroup("berry_juice",
+            new BerryJuiceItem(new FabricItemSettings().rarity(Rarity.RARE).food(ModFoodComponents.BERRY_JUICE)), ModItemGroup.SHUCKLE);
 
     public static final Item ZYGARDE_CELL = registerItem("zygarde_cell",
             new Item(new FabricItemSettings()));
@@ -115,7 +115,14 @@ public class ModItems {
             new Item(new FabricItemSettings().rarity(Rarity.EPIC)));
 
     private static Item registerItem(String name, Item item){
-        return Registry.register(Registry.ITEM, new Identifier(ShuckleQOL.MOD_ID, name), item);
+        return Registry.register(Registries.ITEM, new Identifier(ShuckleQOL.MOD_ID, name), item);
     }
+
+    private static Item registerItemInGroup(String name, Item item, ItemGroup group){
+        Item newItem = Registry.register(Registries.ITEM, new Identifier(ShuckleQOL.MOD_ID, name), item);
+        ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.add(item));
+        return newItem;
+    }
+
     public static void registerModItems() {ShuckleQOL.LOGGER.info("Registering ModBlocks for " + ShuckleQOL.MOD_ID);}
 }
