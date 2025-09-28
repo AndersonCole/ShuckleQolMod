@@ -4,24 +4,18 @@ import ca.shuckle.block.ModBackportBlocks;
 import ca.shuckle.block.ModBlocks;
 import ca.shuckle.entity.ModEntities;
 import ca.shuckle.entity.client.InvisibleItemFrameRenderer;
+import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.entity.ItemFrameEntityRenderer;
-import net.minecraft.client.texture.SpriteAtlasTexture;
+import net.minecraft.client.render.TexturedRenderLayers;
+import net.minecraft.client.util.SpriteIdentifier;
 import net.minecraft.util.Identifier;
 
 public class ShuckleQOLClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.MANGROVE_PROPAGULE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.POTTED_MANGROVE_PROPAGULE, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.MANGROVE_LEAVES, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.MANGROVE_ROOTS, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.MANGROVE_TRAPDOOR, RenderLayer.getCutout());
-
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.CHERRY_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.POTTED_CHERRY_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.CHERRY_LEAVES, RenderLayer.getCutout());
@@ -45,7 +39,6 @@ public class ShuckleQOLClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.LEAF_LITTER, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LEAF_LITTER_OAK, RenderLayer.getCutout());
 
-        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.SCULK_VEIN, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.RESIN_CLUMP, RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.INVIS_LIGHTNING_ROD, RenderLayer.getCutout());
@@ -57,5 +50,16 @@ public class ShuckleQOLClient implements ClientModInitializer {
 
         EntityRendererRegistry.register(ModEntities.INVIS_ITEM_FRAME, InvisibleItemFrameRenderer::new);
         EntityRendererRegistry.register(ModEntities.INVIS_GLOW_ITEM_FRAME, InvisibleItemFrameRenderer::new);
+
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
+                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/cherry")));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
+                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/bamboo")));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
+                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/pale_oak")));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
+                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/ebony")));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
+                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/invisible")));
     }
 }

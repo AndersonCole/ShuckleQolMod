@@ -20,6 +20,6 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
-        addDrop(ModBackportBlocks.BAMBOO_PLANKS);
+        //addDrop(ModBackportBlocks.BAMBOO_PLANKS);
     }
 }

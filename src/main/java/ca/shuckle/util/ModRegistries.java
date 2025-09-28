@@ -27,23 +27,6 @@ public class ModRegistries {
     private static void registerFuels() {
         FuelRegistry registry = FuelRegistry.INSTANCE;
 
-        registry.add(ModBackportBlocks.MANGROVE_PROPAGULE, getSmeltTime(0.5));
-        registry.add(ModBackportBlocks.MANGROVE_LOG, getSmeltTime(1.5));
-        registry.add(ModBackportBlocks.MANGROVE_WOOD, getSmeltTime(1.5));
-        registry.add(ModBackportBlocks.STRIPPED_MANGROVE_LOG, getSmeltTime(1.5));
-        registry.add(ModBackportBlocks.STRIPPED_MANGROVE_WOOD, getSmeltTime(1.5));
-        registry.add(ModBackportBlocks.MANGROVE_PLANKS, getSmeltTime(1.5));
-        registry.add(ModBackportBlocks.MANGROVE_SLAB, getSmeltTime(0.75));
-        registry.add(ModBackportBlocks.MANGROVE_STAIRS, getSmeltTime(1.5));
-        registry.add(ModBackportBlocks.MANGROVE_DOOR, getSmeltTime(1));
-        registry.add(ModBackportBlocks.MANGROVE_TRAPDOOR, getSmeltTime(1.5));
-        registry.add(ModBackportBlocks.MANGROVE_FENCE, getSmeltTime(1.5));
-        registry.add(ModBackportBlocks.MANGROVE_FENCE_GATE, getSmeltTime(1.5));
-        registry.add(ModBackportBlocks.MANGROVE_BUTTON, getSmeltTime(0.5));
-        registry.add(ModBackportBlocks.MANGROVE_PRESSURE_PLATE, getSmeltTime(1.5));
-        registry.add(ModBackportBlocks.MANGROVE_ROOTS, getSmeltTime(1.5));
-
-        registry.add(ModBackportBlocks.CHERRY_SAPLING, getSmeltTime(0.5));
         registry.add(ModBackportBlocks.CHERRY_LOG, getSmeltTime(1.5));
         registry.add(ModBackportBlocks.CHERRY_WOOD, getSmeltTime(1.5));
         registry.add(ModBackportBlocks.STRIPPED_CHERRY_LOG, getSmeltTime(1.5));
@@ -93,9 +76,6 @@ public class ModRegistries {
     }
 
     private static void registerStrippables(){
-        StrippableBlockRegistry.register(ModBackportBlocks.MANGROVE_LOG, ModBackportBlocks.STRIPPED_MANGROVE_LOG);
-        StrippableBlockRegistry.register(ModBackportBlocks.MANGROVE_WOOD, ModBackportBlocks.STRIPPED_MANGROVE_WOOD);
-
         StrippableBlockRegistry.register(ModBackportBlocks.CHERRY_LOG, ModBackportBlocks.STRIPPED_CHERRY_LOG);
         StrippableBlockRegistry.register(ModBackportBlocks.CHERRY_WOOD, ModBackportBlocks.STRIPPED_CHERRY_WOOD);
 
@@ -108,11 +88,6 @@ public class ModRegistries {
     private static void registerCompostables(){
         CompostingChanceRegistry registry = CompostingChanceRegistry.INSTANCE;
 
-        registry.add(ModBackportBlocks.MANGROVE_PROPAGULE, 0.3f);
-        registry.add(ModBackportBlocks.MANGROVE_LEAVES, 0.3f);
-        registry.add(ModBackportBlocks.MANGROVE_ROOTS, 0.3f);
-
-        registry.add(ModBackportBlocks.CHERRY_SAPLING, 0.3f);
         registry.add(ModBackportBlocks.CHERRY_LEAVES, 0.3f);
 
         registry.add(ModBackportBlocks.PALE_OAK_SAPLING, 0.3f);
@@ -133,18 +108,6 @@ public class ModRegistries {
 
     private static void registerFlammableBlock() {
         FlammableBlockRegistry instance = FlammableBlockRegistry.getDefaultInstance();
-
-        instance.add(ModBackportBlocks.MANGROVE_LEAVES, 30, 60);
-        instance.add(ModBackportBlocks.MANGROVE_LOG, 5, 5);
-        instance.add(ModBackportBlocks.MANGROVE_WOOD, 5, 5);
-        instance.add(ModBackportBlocks.STRIPPED_MANGROVE_LOG, 5, 5);
-        instance.add(ModBackportBlocks.STRIPPED_MANGROVE_WOOD, 5, 5);
-        instance.add(ModBackportBlocks.MANGROVE_PLANKS, 5, 20);
-        instance.add(ModBackportBlocks.MANGROVE_SLAB, 5, 20);
-        instance.add(ModBackportBlocks.MANGROVE_STAIRS, 5, 20);
-        instance.add(ModBackportBlocks.MANGROVE_FENCE, 5, 20);
-        instance.add(ModBackportBlocks.MANGROVE_FENCE_GATE, 5, 20);
-        instance.add(ModBackportBlocks.MANGROVE_ROOTS, 30, 60);
 
         instance.add(ModBackportBlocks.CHERRY_LEAVES, 30, 60);
         instance.add(ModBackportBlocks.CHERRY_LOG, 5, 5);

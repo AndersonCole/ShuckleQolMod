@@ -16,6 +16,7 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.render.model.BakedModelManager;
 import net.minecraft.client.render.model.json.ModelTransformation;
+import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.texture.SpriteAtlasTexture;
 import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
@@ -37,10 +38,10 @@ import net.minecraft.util.math.Vec3d;
 @Environment(value=EnvType.CLIENT)
 public class InvisibleItemFrameRenderer<T extends ItemFrameEntity>
         extends EntityRenderer<T> {
-    private static final ModelIdentifier NORMAL_FRAME = new ModelIdentifier("item_frame", "map=false");
-    private static final ModelIdentifier MAP_FRAME = new ModelIdentifier("item_frame", "map=true");
-    private static final ModelIdentifier GLOW_FRAME = new ModelIdentifier("glow_item_frame", "map=false");
-    private static final ModelIdentifier MAP_GLOW_FRAME = new ModelIdentifier("glow_item_frame", "map=true");
+    private static final ModelIdentifier NORMAL_FRAME = new ModelIdentifier(new Identifier("item_frame"), "map=false");
+    private static final ModelIdentifier MAP_FRAME = new ModelIdentifier(new Identifier("item_frame"), "map=true");
+    private static final ModelIdentifier GLOW_FRAME = new ModelIdentifier(new Identifier("item_frame"), "map=false");
+    private static final ModelIdentifier MAP_GLOW_FRAME = new ModelIdentifier(new Identifier("item_frame"), "map=true");
 
     private final MinecraftClient client = MinecraftClient.getInstance();
     private final ItemRenderer itemRenderer;
@@ -109,7 +110,7 @@ public class InvisibleItemFrameRenderer<T extends ItemFrameEntity>
             } else {
                 int l = this.getLight(itemFrameEntity, LightmapTextureManager.MAX_LIGHT_COORDINATE, i);
                 matrixStack.scale(0.5f, 0.5f, 0.5f);
-                this.itemRenderer.renderItem(itemStack, ModelTransformation.Mode.FIXED, l, OverlayTexture.DEFAULT_UV, matrixStack, vertexConsumerProvider, ((Entity)itemFrameEntity).getId());
+                this.itemRenderer.renderItem(itemStack, ModelTransformationMode.NONE, l, OverlayTexture.DEFAULT_UV, matrixStack, vertexConsumerProvider, null, ((Entity)itemFrameEntity).getId());
             }
         }
         matrixStack.pop();

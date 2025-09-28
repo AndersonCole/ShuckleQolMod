@@ -1,12 +1,10 @@
 package ca.shuckle;
 
 import ca.shuckle.block.ModBlocks;
-import ca.shuckle.enchantment.ModEnchantments;
 import ca.shuckle.item.ModItemGroup;
 import ca.shuckle.item.ModItems;
 import ca.shuckle.util.ModPointsOfInterest;
 import ca.shuckle.util.ModRegistries;
-import ca.shuckle.world.feature.ModConfiguredFeatures;
 import ca.shuckle.world.gen.ModWorldGen;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
@@ -20,7 +18,6 @@ public class ShuckleQOL implements ModInitializer {
 	public void onInitialize() {
 		//Middle Clicking and CRTL+H'ing on functions/properties
 		//is a very good to see and copy vanilla source code
-
 		ModItemGroup.registerItemGroup();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();

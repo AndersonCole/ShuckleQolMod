@@ -3,8 +3,9 @@ package ca.shuckle.block;
 import ca.shuckle.ShuckleQOL;
 import ca.shuckle.block.custom.FlatFlowerbedBlock;
 import ca.shuckle.block.custom.ShuckleBlock;
-import ca.shuckle.block.entity.ModSignTypes;
 import ca.shuckle.item.ModItemGroup;
+import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -66,11 +67,13 @@ public class ModBlocks {
             new WallBlock(FabricBlockSettings.copy(Blocks.SMOOTH_SANDSTONE)), ModItemGroup.SHUCKLE);
 
     public static final Block EBONY_SIGN = registerBlockWithoutBlockItem("ebony_sign",
-            new SignBlock(FabricBlockSettings.copy(Blocks.OAK_SIGN), ModSignTypes.EBONY), ModItemGroup.SHUCKLE);
+            new TerraformSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/ebony"),
+                    FabricBlockSettings.copy(Blocks.OAK_SIGN)), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block EBONY_WALL_SIGN = registerBlockWithoutBlockItem("ebony_wall_sign",
-            new WallSignBlock(FabricBlockSettings.copy(Blocks.OAK_WALL_SIGN)
-                    .dropsLike(EBONY_SIGN), ModSignTypes.EBONY), ModItemGroup.SHUCKLE);
+            new TerraformWallSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/ebony"),
+                    FabricBlockSettings.copy(Blocks.OAK_WALL_SIGN)
+                            .dropsLike(EBONY_SIGN)), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block WILDFLOWERS_RED_BLUE = registerBlock("wildflowers_red_blue",
             new FlowerbedBlock(FabricBlockSettings.of(Material.PLANT, MapColor.DARK_GREEN)
@@ -93,17 +96,19 @@ public class ModBlocks {
                     .nonOpaque().noCollision()), ModItemGroup.SHUCKLE);
 
     public static final Block INVIS_SIGN = registerBlockWithoutBlockItem("invisible_sign",
-            new SignBlock(FabricBlockSettings.of(Material.WOOD, MapColor.CLEAR)
-                    .noCollision()
-                    .strength(1.0f)
-                    .sounds(BlockSoundGroup.WOOD), ModSignTypes.INVIS), ModItemGroup.SHUCKLE);
+            new TerraformSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/invisible"),
+                    FabricBlockSettings.of(Material.WOOD, MapColor.CLEAR)
+                            .noCollision()
+                            .strength(1.0f)
+                            .sounds(BlockSoundGroup.WOOD)), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block INVIS_WALL_SIGN = registerBlockWithoutBlockItem("invisible_wall_sign",
-            new WallSignBlock(FabricBlockSettings.of(Material.WOOD, MapColor.CLEAR)
-                    .noCollision()
-                    .strength(1.0f)
-                    .sounds(BlockSoundGroup.WOOD)
-                    .dropsLike(INVIS_SIGN), ModSignTypes.INVIS), ModItemGroup.SHUCKLE);
+            new TerraformWallSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/invisible"),
+                    FabricBlockSettings.of(Material.WOOD, MapColor.CLEAR)
+                            .noCollision()
+                            .strength(1.0f)
+                            .sounds(BlockSoundGroup.WOOD)
+                            .dropsLike(INVIS_SIGN)), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block SHUCKLE_MYSTERY_BLOCK = registerBlock("shuckle_mystery_block",
             new Block(FabricBlockSettings.of(Material.SCULK, MapColor.BLACK)

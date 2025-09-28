@@ -21,7 +21,7 @@ public class ModWorldGenerator extends FabricDynamicRegistryProvider {
 
     @Override
     public String getName() {
-        //idk what this does
+        //idk what this does, but its needed!
         return ShuckleQOL.MOD_ID;
     }
 }

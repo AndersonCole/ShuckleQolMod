@@ -28,10 +28,10 @@ public class ModPlacedFeatures {
         register(context, PALE_OAK_TREE_CHECKED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.PALE_OAK_TREE_KEY),
                 List.of(PlacedFeatures.wouldSurvive(ModBackportBlocks.PALE_OAK_SAPLING)));
         register(context, PALE_OAK_TREE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.PALE_OAK_TREE_KEY),
-                PlacedFeatures.createCountExtraModifier(0, 0.2f, 1));
+                PlacedFeatures.createCountExtraModifier(1, 0.2f, 1));
 
         register(context, PALE_MOSS_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.PALE_MOSS_PATCH_KEY),
-                PlacedFeatures.createCountExtraModifier(0, 0.05f, 2));
+                PlacedFeatures.createCountExtraModifier(1, 0.05f, 2));
     }
 
     public static RegistryKey<PlacedFeature> registerKey(String name){

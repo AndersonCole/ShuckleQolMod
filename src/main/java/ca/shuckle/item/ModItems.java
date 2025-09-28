@@ -4,7 +4,6 @@ import ca.shuckle.ShuckleQOL;
 import ca.shuckle.block.ModBackportBlocks;
 import ca.shuckle.block.ModBlocks;
 import ca.shuckle.entity.ModEntities;
-import ca.shuckle.entity.custom.InvisItemFrameEntity;
 import ca.shuckle.item.custom.BerryJuiceItem;
 import ca.shuckle.item.custom.GlintItem;
 import ca.shuckle.item.custom.InvisItemFrameItem;
@@ -15,32 +14,27 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
-import net.minecraft.util.registry.Registry;
 
 public class ModItems {
 
-    public static final Item MANGROVE_SIGN = registerItem("mangrove_sign",
-            new SignItem(new FabricItemSettings().group(ModItemGroup.SHUCKLE_BACKPORT).maxCount(16),
-                    ModBackportBlocks.MANGROVE_SIGN, ModBackportBlocks.MANGROVE_WALL_SIGN));
-
     public static final Item CHERRY_SIGN = registerItem("cherry_sign",
-            new SignItem(new FabricItemSettings().group(ModItemGroup.SHUCKLE_BACKPORT).maxCount(16),
+            new SignItem(new FabricItemSettings().maxCount(16),
                     ModBackportBlocks.CHERRY_SIGN, ModBackportBlocks.CHERRY_WALL_SIGN));
 
     public static final Item BAMBOO_SIGN = registerItem("bamboo_sign",
-            new SignItem(new FabricItemSettings().group(ModItemGroup.SHUCKLE_BACKPORT).maxCount(16),
+            new SignItem(new FabricItemSettings().maxCount(16),
                     ModBackportBlocks.BAMBOO_SIGN, ModBackportBlocks.BAMBOO_WALL_SIGN));
 
     public static final Item PALE_OAK_SIGN = registerItem("pale_oak_sign",
-            new SignItem(new FabricItemSettings().group(ModItemGroup.SHUCKLE_BACKPORT).maxCount(16),
+            new SignItem(new FabricItemSettings().maxCount(16),
                     ModBackportBlocks.PALE_OAK_SIGN, ModBackportBlocks.PALE_OAK_WALL_SIGN));
 
     public static final Item EBONY_SIGN = registerItem("ebony_sign",
-            new SignItem(new FabricItemSettings().group(ModItemGroup.SHUCKLE).maxCount(16),
+            new SignItem(new FabricItemSettings().maxCount(16),
                     ModBlocks.EBONY_SIGN, ModBlocks.EBONY_WALL_SIGN));
 
     public static final Item INVIS_SIGN = registerItem("invisible_sign",
-            new SignItem(new FabricItemSettings().group(ModItemGroup.SHUCKLE).maxCount(16),
+            new SignItem(new FabricItemSettings().maxCount(16),
                     ModBlocks.INVIS_SIGN, ModBlocks.INVIS_WALL_SIGN));
 
     public static final Item INVIS_ITEM_FRAME = registerItemInGroup("invisible_item_frame",
@@ -120,9 +114,21 @@ public class ModItems {
 
     private static Item registerItemInGroup(String name, Item item, ItemGroup group){
         Item newItem = Registry.register(Registries.ITEM, new Identifier(ShuckleQOL.MOD_ID, name), item);
-        ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.add(item));
+        registerItemInGroup(newItem, group);
         return newItem;
     }
 
-    public static void registerModItems() {ShuckleQOL.LOGGER.info("Registering ModBlocks for " + ShuckleQOL.MOD_ID);}
+    private static void registerItemInGroup(Item item, ItemGroup group){
+        ItemGroupEvents.modifyEntriesEvent(group).register(entries -> entries.add(item));
+    }
+
+    public static void registerModItems() {
+        ShuckleQOL.LOGGER.info("Registering ModBlocks for " + ShuckleQOL.MOD_ID);
+
+        registerItemInGroup(CHERRY_SIGN, ModItemGroup.SHUCKLE_BACKPORT);
+        registerItemInGroup(BAMBOO_SIGN, ModItemGroup.SHUCKLE_BACKPORT);
+        registerItemInGroup(PALE_OAK_SIGN, ModItemGroup.SHUCKLE_BACKPORT);
+        registerItemInGroup(EBONY_SIGN, ModItemGroup.SHUCKLE);
+        registerItemInGroup(INVIS_SIGN, ModItemGroup.SHUCKLE);
+    }
 }

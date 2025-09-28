@@ -1,15 +1,24 @@
 package ca.shuckle.mixin;
 
+import ca.shuckle.ShuckleQOL;
 import ca.shuckle.block.ModBlocks;
-import ca.shuckle.util.ModPointsOfInterest;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.util.profiler.Profiler;
 import net.minecraft.world.Heightmap;
+import net.minecraft.world.MutableWorldProperties;
+import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.poi.PointOfInterestStorage;
-import net.minecraft.world.poi.PointOfInterestType;
 import net.minecraft.world.poi.PointOfInterestTypes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -19,10 +28,14 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
-import java.util.Random;
+import java.util.function.Supplier;
 
 @Mixin(ServerWorld.class)
-public abstract class ServerWorldMixin {
+public abstract class ServerWorldMixin extends World {
+    protected ServerWorldMixin(MutableWorldProperties properties, RegistryKey<World> registryRef, DynamicRegistryManager registryManager, RegistryEntry<DimensionType> dimensionEntry, Supplier<Profiler> profiler, boolean isClient, boolean debugWorld, long biomeAccess, int maxChainedNeighborUpdates) {
+        super(properties, registryRef, registryManager, dimensionEntry, profiler, isClient, debugWorld, biomeAccess, maxChainedNeighborUpdates);
+    }
+
     @Shadow
     protected abstract PointOfInterestStorage getPointOfInterestStorage();
 
@@ -30,20 +43,16 @@ public abstract class ServerWorldMixin {
     public abstract ServerWorld toServerWorld();
 
     @Inject(method = "getLightningRodPos", at=@At("HEAD"), cancellable = true)
-    private Optional<BlockPos> getLightningRodPos(BlockPos pos2, CallbackInfoReturnable<Optional<BlockPos>> info) {
+    private void getLightningRodPos(BlockPos pos, CallbackInfoReturnable<Optional<BlockPos>> info) {
         Optional<BlockPos> optional = this.getPointOfInterestStorage().getNearestPosition((poiType) -> {
-            return poiType.matchesKey(PointOfInterestTypes.LIGHTNING_ROD) || poiType.matchesKey(ModPointsOfInterest.INVIS_LIGHTNING_ROD));
+            return poiType.matchesKey(PointOfInterestTypes.LIGHTNING_ROD) ||
+                    poiType.matchesKey(RegistryKey.of(RegistryKeys.POINT_OF_INTEREST_TYPE, new Identifier(ShuckleQOL.MOD_ID, "invisible_lightning_rod_poi")));
         }, (posx) -> {
             return posx.getY() == this.getTopY(Heightmap.Type.WORLD_SURFACE, posx.getX(), posx.getZ()) - 1;
         }, pos, 128, PointOfInterestStorage.OccupationStatus.ANY);
-        return optional.map((posx) -> {
+        info.setReturnValue(optional.map((posx) -> {
             return posx.up(1);
-        });
-
-                        poiType == PointOfInterestType.LIGHTNING_ROD || poiType == ModPointsOfInterest.INVIS_LIGHTNING_ROD,
-                        pos -> pos.getY() == this.toServerWorld().getTopY(Heightmap.Type.WORLD_SURFACE, pos.getX(), pos.getZ()) - 1,
-                        pos2, 128, PointOfInterestStorage.OccupationStatus.ANY);
-        info.setReturnValue(optional.map(pos -> pos.up(1)));
+        }));
     }
 
     @Redirect(
@@ -72,12 +81,11 @@ public abstract class ServerWorldMixin {
         return 0.0;
     }
 
-
     @Redirect(
             method = "tickChunk",
             at = @At(
                     value = "INVOKE",
-                    target = "Ljava/util/Random;nextInt(I)I"
+                    target = "Lnet/minecraft/util/math/random/Random;nextInt(I)I"
             )
     )
     private int alwaysTriggerLightning(Random random, int bound) {
