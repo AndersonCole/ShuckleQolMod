@@ -1,7 +1,7 @@
 {
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "shuckle_qol:packed_mud"
+    "item": "minecraft:packed_mud"
   },
   "result": "shuckle_qol:packed_mud_wall",
   "count": 1

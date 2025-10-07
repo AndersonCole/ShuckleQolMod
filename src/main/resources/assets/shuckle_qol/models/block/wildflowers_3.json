@@ -1,7 +1,0 @@
-{
-    "parent": "shuckle_qol:block/flowerbed_3",
-    "textures": {
-        "flowerbed": "shuckle_qol:block/wildflowers",
-        "stem": "shuckle_qol:block/wildflowers_stem"
-    }
-}

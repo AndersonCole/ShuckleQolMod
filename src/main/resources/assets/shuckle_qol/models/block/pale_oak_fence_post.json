@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/fence_post",
-  "textures": {
-    "texture": "shuckle_qol:block/pale_oak_planks"
-  }
-}

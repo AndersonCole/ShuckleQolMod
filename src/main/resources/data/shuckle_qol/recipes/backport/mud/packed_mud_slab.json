@@ -4,7 +4,7 @@
     "BBB"
   ],
   "key": {
-    "B": { "item": "shuckle_qol:packed_mud" }
+    "B": { "item": "minecraft:packed_mud" }
   },
   "result": {
     "item": "shuckle_qol:packed_mud_slab",

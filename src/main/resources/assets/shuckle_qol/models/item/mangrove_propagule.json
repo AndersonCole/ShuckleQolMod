@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "shuckle_qol:item/mangrove_propagule"
-  }
-}

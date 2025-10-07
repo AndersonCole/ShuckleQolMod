@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "shuckle_qol:block/bamboo_mosaic",
-    "top": "shuckle_qol:block/bamboo_mosaic",
-    "side": "shuckle_qol:block/bamboo_mosaic"
-  }
-}

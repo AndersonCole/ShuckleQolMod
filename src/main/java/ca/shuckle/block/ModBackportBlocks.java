@@ -3,6 +3,7 @@ package ca.shuckle.block;
 import ca.shuckle.ShuckleQOL;
 import ca.shuckle.block.custom.*;
 import ca.shuckle.item.ModItemGroup;
+import ca.shuckle.world.feature.tree.CherrySaplingGenerator;
 import ca.shuckle.world.feature.tree.PaleOakSaplingGenerator;
 import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
@@ -32,12 +33,12 @@ public class ModBackportBlocks {
             new WallBlock(FabricBlockSettings.copy(Blocks.PACKED_MUD)), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block CHERRY_SAPLING = registerBlock("cherry_sapling",
-            new SaplingBlock(new PaleOakSaplingGenerator(),
+            new SaplingBlock(new CherrySaplingGenerator(),
                     FabricBlockSettings.copy(Blocks.OAK_SAPLING).sounds(BlockSoundGroup.CHERRY_SAPLING)), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block POTTED_CHERRY_SAPLING = registerBlockWithoutBlockItem("potted_cherry_sapling",
             new FlowerPotBlock(ModBackportBlocks.CHERRY_SAPLING,
-                    FabricBlockSettings.copy(Blocks.OAK_SAPLING).sounds(BlockSoundGroup.CHERRY_SAPLING)), ModItemGroup.SHUCKLE_BACKPORT);
+                    FabricBlockSettings.copy(Blocks.POTTED_OAK_SAPLING).sounds(BlockSoundGroup.CHERRY_SAPLING)), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block CHERRY_LEAVES = registerBlock("cherry_leaves",
             new LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES).sounds(BlockSoundGroup.CHERRY_LEAVES).nonOpaque()), ModItemGroup.SHUCKLE_BACKPORT);
@@ -222,12 +223,11 @@ public class ModBackportBlocks {
     public static final Block PALE_TALL_GRASS = registerBlock("pale_tall_grass",
             new TallPlantBlock(FabricBlockSettings.copy(Blocks.TALL_GRASS)), ModItemGroup.SHUCKLE_BACKPORT);
     public static final Block RESIN_CLUMP = registerBlock("resin_clump",
-            new Block(FabricBlockSettings.of(Material.STONE, MapColor.ORANGE)
+            new ResinBlock(FabricBlockSettings.of(Material.STONE, MapColor.ORANGE)
                     .noCollision().nonOpaque()), ModItemGroup.SHUCKLE_BACKPORT);
-    //FIX ME
 
     public static final Block RESIN_BLOCK = registerBlock("resin_block",
-            new ResinBlock(FabricBlockSettings.of(Material.STONE, MapColor.ORANGE)), ModItemGroup.SHUCKLE_BACKPORT);
+            new Block(FabricBlockSettings.of(Material.STONE, MapColor.ORANGE)), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block CREAKING_HEART = registerBlock("creaking_heart",
             new PillarBlock(FabricBlockSettings.of(Material.WOOD, MapColor.ORANGE).sounds(BlockSoundGroup.WOOD)
@@ -254,15 +254,15 @@ public class ModBackportBlocks {
             new WallBlock(FabricBlockSettings.copy(ModBackportBlocks.RESIN_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block PINK_PETALS = registerBlock("pink_petals",
-            new FlowerbedBlock(FabricBlockSettings.of(Material.PLANT, MapColor.DARK_GREEN)
+            new FlowerbedBlock(FabricBlockSettings.of(Material.PLANT, MapColor.PINK)
                     .sounds(BlockSoundGroup.CHERRY_LEAVES).noCollision().nonOpaque()), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block WILDFLOWERS = registerBlock("wildflowers",
-            new FlowerbedBlock(FabricBlockSettings.of(Material.PLANT, MapColor.DARK_GREEN)
+            new FlowerbedBlock(FabricBlockSettings.of(Material.PLANT, MapColor.YELLOW)
                     .sounds(BlockSoundGroup.GRASS).noCollision().nonOpaque()), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block LEAF_LITTER = registerBlock("leaf_litter",
-            new FlatFlowerbedBlock(FabricBlockSettings.of(Material.PLANT, MapColor.DARK_GREEN)
+            new FlatFlowerbedBlock(FabricBlockSettings.of(Material.PLANT, MapColor.BROWN)
                     .sounds(BlockSoundGroup.AZALEA_LEAVES).noCollision().nonOpaque()), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static void registerModBlocks() {

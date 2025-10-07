@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "shuckle_qol:block/resin_bricks",
-    "top": "shuckle_qol:block/resin_bricks",
-    "side": "shuckle_qol:block/resin_bricks"
-  }
-}

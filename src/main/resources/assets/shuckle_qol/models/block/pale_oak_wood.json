@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "shuckle_qol:block/pale_oak_log",
-    "side": "shuckle_qol:block/pale_oak_log"
-  }
-}

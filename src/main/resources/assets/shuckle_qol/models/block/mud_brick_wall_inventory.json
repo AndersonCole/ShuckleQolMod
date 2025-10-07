@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/wall_inventory",
-  "textures": {
-    "wall": "shuckle_qol:block/mud_bricks"
-  }
-}

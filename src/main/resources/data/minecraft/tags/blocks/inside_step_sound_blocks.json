@@ -4,7 +4,6 @@
     "#shuckle_qol:backport_misc/wildflowers",
     "#shuckle_qol:backport_misc/leaf_litter",
     "shuckle_qol:pink_petals",
-    "shuckle_qol:zygarde_cell_ground",
-    "shuckle_qol:sculk_vein"
+    "shuckle_qol:zygarde_cell_ground"
   ]
 }

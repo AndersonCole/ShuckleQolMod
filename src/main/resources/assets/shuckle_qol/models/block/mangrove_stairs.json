@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "shuckle_qol:block/mangrove_planks",
-    "top": "shuckle_qol:block/mangrove_planks",
-    "side": "shuckle_qol:block/mangrove_planks"
-  }
-}
