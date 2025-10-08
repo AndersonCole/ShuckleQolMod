@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/stairs",
-  "textures": {
-    "bottom": "byg:block/black_sandstone_top",
-    "top": "byg:block/black_sandstone_top",
-    "side": "byg:block/black_sandstone_top"
-  }
-}

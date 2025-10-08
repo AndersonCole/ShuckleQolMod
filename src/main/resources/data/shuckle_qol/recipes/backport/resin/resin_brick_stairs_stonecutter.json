@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "shuckle_qol:resin_bricks"
-  },
-  "result": "shuckle_qol:resin_brick_stairs",
-  "count": 1
-}
