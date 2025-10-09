@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "fossil:ancient_stone"
-  },
-  "result": "shuckle_qol:ancient_stone_slab",
-  "count": 2
-}

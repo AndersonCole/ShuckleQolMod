@@ -97,8 +97,6 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBackportBlocks.PACKED_MUD_STAIRS);
         addDrop(ModBackportBlocks.PACKED_MUD_WALL);
 
-        addDrop(ModBlocks.CONDENSED_BLACK_ICE);
-
         addDrop(ModBlocks.INVIS_CARPET);
         addDrop(ModBlocks.INVIS_SIGN);
         addDrop(ModBlocks.INVIS_LIGHTNING_ROD);

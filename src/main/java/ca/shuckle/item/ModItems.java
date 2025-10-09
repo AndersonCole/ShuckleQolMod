@@ -45,8 +45,11 @@ public class ModItems {
             new InvisItemFrameItem(ModEntities.INVIS_GLOW_ITEM_FRAME,
                     new FabricItemSettings()), ModItemGroup.SHUCKLE);
 
+    public static final Item INVIS_CATALYST = registerItemInGroup("invisible_catalyst",
+            new GlintItem(new FabricItemSettings().rarity(Rarity.EPIC)), ModItemGroup.SHUCKLE);
+
     public static final Item RESIN_BRICK = registerItemInGroup("resin_brick",
-            new Item(new FabricItemSettings()), ModItemGroup.SHUCKLE_BACKPORT);;
+            new Item(new FabricItemSettings()), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Item BLACK_ICE_SHARD = registerItem("black_ice_shard",
             new Item(new FabricItemSettings()));

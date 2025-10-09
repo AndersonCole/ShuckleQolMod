@@ -54,16 +54,16 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         //endregion
         //region Other Mods
         getOrCreateTagBuilder(ModTags.Items.FOSSIL_LOGS)
-                .add(new Identifier("fossil", "calamites_log"))
-                .add(new Identifier("fossil", "stripped_calamites_log"))
-                .add(new Identifier("fossil", "cordaites_log"))
-                .add(new Identifier("fossil", "stripped_cordaites_log"))
-                .add(new Identifier("fossil", "palm_log"))
-                .add(new Identifier("fossil", "stripped_palm_log"))
-                .add(new Identifier("fossil", "sigillaria_log"))
-                .add(new Identifier("fossil", "stripped_sigillaria_log"))
-                .add(new Identifier("fossil", "tempskya_log"))
-                .add(new Identifier("fossil", "stripped_tempskya_log"));
+                .addOptional(new Identifier("fossil", "calamites_log"))
+                .addOptional(new Identifier("fossil", "stripped_calamites_log"))
+                .addOptional(new Identifier("fossil", "cordaites_log"))
+                .addOptional(new Identifier("fossil", "stripped_cordaites_log"))
+                .addOptional(new Identifier("fossil", "palm_log"))
+                .addOptional(new Identifier("fossil", "stripped_palm_log"))
+                .addOptional(new Identifier("fossil", "sigillaria_log"))
+                .addOptional(new Identifier("fossil", "stripped_sigillaria_log"))
+                .addOptional(new Identifier("fossil", "tempskya_log"))
+                .addOptional(new Identifier("fossil", "stripped_tempskya_log"));
         //endregion
         //region Universal Dyeing
         getOrCreateTagBuilder(ModTags.Items.DYEABLE_BEDS)

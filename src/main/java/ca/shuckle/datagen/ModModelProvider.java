@@ -140,6 +140,7 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerator itemModelGenerator){
         itemModelGenerator.register(ModItems.RESIN_BRICK, Models.GENERATED);
 
+        itemModelGenerator.register(ModItems.INVIS_CATALYST, Models.GENERATED);
         itemModelGenerator.register(ModItems.INVIS_ITEM_FRAME, Models.GENERATED);
         itemModelGenerator.register(ModItems.INVIS_GLOW_ITEM_FRAME, Models.GENERATED);
 

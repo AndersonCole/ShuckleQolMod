@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "byg:black_sandstone"
-  },
-  "result": "shuckle_qol:black_sandstone_wall",
-  "count": 1
-}
