@@ -1,13 +1,15 @@
-package ca.shuckle.datagen;
+package ca.shuckle.datagen.tags;
 
 import ca.shuckle.block.ModBackportBlocks;
 import ca.shuckle.block.ModBlocks;
+import ca.shuckle.item.ModItems;
 import ca.shuckle.util.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
@@ -21,6 +23,104 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
+        //region Vanilla Tags
+        //region Wood Set Tags
+        //logs
+        getOrCreateTagBuilder(ItemTags.LOGS)
+                .addTag(ModTags.Items.CHERRY_LOGS)
+                .addTag(ModTags.Items.PALE_OAK_LOGS);
+        getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN)
+                .addTag(ModTags.Items.CHERRY_LOGS)
+                .addTag(ModTags.Items.PALE_OAK_LOGS);
+        //leaves
+        getOrCreateTagBuilder(ItemTags.LEAVES)
+                .add(ModBackportBlocks.CHERRY_LEAVES.asItem())
+                .add(ModBackportBlocks.PALE_OAK_LEAVES.asItem());
+        //saplings
+        getOrCreateTagBuilder(ItemTags.SAPLINGS)
+                .add(ModBackportBlocks.CHERRY_SAPLING.asItem())
+                .add(ModBackportBlocks.PALE_OAK_SAPLING.asItem());
+        //planks
+        getOrCreateTagBuilder(ItemTags.PLANKS)
+                .add(ModBackportBlocks.CHERRY_PLANKS.asItem())
+                .add(ModBackportBlocks.BAMBOO_PLANKS.asItem())
+                .add(ModBackportBlocks.PALE_OAK_PLANKS.asItem());
+        //wood slabs
+        getOrCreateTagBuilder(ItemTags.WOODEN_SLABS)
+                .add(ModBackportBlocks.CHERRY_SLAB.asItem())
+                .add(ModBackportBlocks.BAMBOO_SLAB.asItem())
+                .add(ModBackportBlocks.PALE_OAK_SLAB.asItem());
+        //wood stairs
+        getOrCreateTagBuilder(ItemTags.WOODEN_STAIRS)
+                .add(ModBackportBlocks.CHERRY_STAIRS.asItem())
+                .add(ModBackportBlocks.BAMBOO_STAIRS.asItem())
+                .add(ModBackportBlocks.PALE_OAK_STAIRS.asItem());
+        //fences
+        getOrCreateTagBuilder(ItemTags.WOODEN_FENCES)
+                .add(ModBackportBlocks.CHERRY_FENCE.asItem())
+                .add(ModBackportBlocks.BAMBOO_FENCE.asItem())
+                .add(ModBackportBlocks.PALE_OAK_FENCE.asItem());
+        //fence gates
+        getOrCreateTagBuilder(ItemTags.FENCE_GATES)
+                .add(ModBackportBlocks.CHERRY_FENCE_GATE.asItem())
+                .add(ModBackportBlocks.BAMBOO_FENCE_GATE.asItem())
+                .add(ModBackportBlocks.PALE_OAK_FENCE_GATE.asItem());
+        //wooden buttons
+        getOrCreateTagBuilder(ItemTags.WOODEN_BUTTONS)
+                .add(ModBackportBlocks.CHERRY_BUTTON.asItem())
+                .add(ModBackportBlocks.BAMBOO_BUTTON.asItem())
+                .add(ModBackportBlocks.PALE_OAK_BUTTON.asItem());
+        //wooden pressure plates
+        getOrCreateTagBuilder(ItemTags.WOODEN_PRESSURE_PLATES)
+                .add(ModBackportBlocks.CHERRY_PRESSURE_PLATE.asItem())
+                .add(ModBackportBlocks.BAMBOO_PRESSURE_PLATE.asItem())
+                .add(ModBackportBlocks.PALE_OAK_PRESSURE_PLATE.asItem());
+        //signs
+        getOrCreateTagBuilder(ItemTags.SIGNS)
+                .add(ModItems.CHERRY_SIGN)
+                .add(ModItems.BAMBOO_SIGN)
+                .add(ModItems.PALE_OAK_SIGN)
+                .add(ModItems.EBONY_SIGN)
+                .add(ModItems.INVIS_SIGN);
+        //endregion
+        //region Nature Block Tags
+        //dirt
+        getOrCreateTagBuilder(ItemTags.DIRT)
+                .add(ModBackportBlocks.PALE_MOSS_BLOCK.asItem());
+        //flowers
+        getOrCreateTagBuilder(ItemTags.FLOWERS)
+                .addTag(ModTags.Items.WILDFLOWERS)
+                .add(ModBackportBlocks.CHERRY_LEAVES.asItem())
+                .add(ModBackportBlocks.PINK_PETALS.asItem());
+        //endregion
+        //slabs
+        getOrCreateTagBuilder(ItemTags.SLABS)
+                .add(ModBackportBlocks.PACKED_MUD_SLAB.asItem())
+                .add(ModBackportBlocks.BAMBOO_MOSAIC_SLAB.asItem())
+                .add(ModBackportBlocks.RESIN_BRICK_SLAB.asItem())
+                .add(ModBlocks.ANCIENT_STONE_SLAB.asItem())
+                .add(ModBlocks.BLACK_SANDSTONE_SLAB.asItem())
+                .add(ModBlocks.BLACK_CUT_SANDSTONE_SLAB.asItem())
+                .add(ModBlocks.BLACK_SMOOTH_SANDSTONE_SLAB.asItem());
+        //stairs
+        getOrCreateTagBuilder(ItemTags.STAIRS)
+                .add(ModBackportBlocks.PACKED_MUD_STAIRS.asItem())
+                .add(ModBackportBlocks.BAMBOO_MOSAIC_STAIRS.asItem())
+                .add(ModBackportBlocks.RESIN_BRICK_STAIRS.asItem())
+                .add(ModBlocks.ANCIENT_STONE_STAIRS.asItem())
+                .add(ModBlocks.BLACK_SANDSTONE_STAIRS.asItem())
+                .add(ModBlocks.BLACK_CUT_SANDSTONE_STAIRS.asItem())
+                .add(ModBlocks.BLACK_SMOOTH_SANDSTONE_STAIRS.asItem());
+        //walls
+        getOrCreateTagBuilder(ItemTags.WALLS)
+                .add(ModBackportBlocks.PACKED_MUD_WALL.asItem())
+                .add(ModBackportBlocks.RESIN_BRICK_WALL.asItem())
+                .add(ModBlocks.ANCIENT_STONE_WALL.asItem())
+                .add(ModBlocks.BLACK_SANDSTONE_WALL.asItem())
+                .add(ModBlocks.BLACK_CUT_SANDSTONE_WALL.asItem())
+                .add(ModBlocks.BLACK_SMOOTH_SANDSTONE_WALL.asItem());
+        //endregion
+        //region Shuckle Tags
         //region Backport
         getOrCreateTagBuilder(ModTags.Items.CHERRY_LOGS)
                 .add(ModBackportBlocks.CHERRY_LOG.asItem())
@@ -240,6 +340,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.RED_WOOL)
                 .add(Items.WHITE_WOOL)
                 .add(Items.YELLOW_WOOL);
+        //endregion
         //endregion
     }
 }

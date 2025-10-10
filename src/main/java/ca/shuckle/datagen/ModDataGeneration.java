@@ -1,5 +1,8 @@
 package ca.shuckle.datagen;
 
+import ca.shuckle.datagen.recipes.ModRecipeGenerator;
+import ca.shuckle.datagen.tags.ModBlockTagProvider;
+import ca.shuckle.datagen.tags.ModItemTagProvider;
 import ca.shuckle.world.feature.ModConfiguredFeatures;
 import ca.shuckle.world.feature.ModPlacedFeatures;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;

@@ -1,0 +1,209 @@
+package ca.shuckle.datagen.tags;
+
+import ca.shuckle.block.ModBackportBlocks;
+import ca.shuckle.block.ModBlocks;
+import ca.shuckle.util.ModTags;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.BlockTags;
+
+import java.util.concurrent.CompletableFuture;
+
+public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
+    public ModBlockTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+        super(output, registriesFuture);
+    }
+
+    @Override
+    protected void configure(RegistryWrapper.WrapperLookup arg) {
+        //region Vanilla Tags
+        //region Mineable
+        //pickaxe
+        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+                .add(ModBlocks.CONDENSED_BLACK_ICE)
+                .add(ModBackportBlocks.REINFORCED_DEEPSLATE)
+                .add(ModBackportBlocks.PACKED_MUD_SLAB)
+                .add(ModBackportBlocks.PACKED_MUD_STAIRS)
+                .add(ModBackportBlocks.PACKED_MUD_WALL)
+                .add(ModBackportBlocks.RESIN_BRICKS)
+                .add(ModBackportBlocks.RESIN_BRICK_SLAB)
+                .add(ModBackportBlocks.RESIN_BRICK_STAIRS)
+                .add(ModBackportBlocks.RESIN_BRICK_WALL)
+                .add(ModBackportBlocks.CHISELED_RESIN_BRICKS)
+                .add(ModBlocks.ANCIENT_STONE_SLAB)
+                .add(ModBlocks.ANCIENT_STONE_STAIRS)
+                .add(ModBlocks.ANCIENT_STONE_WALL)
+                .add(ModBlocks.BLACK_SANDSTONE_SLAB)
+                .add(ModBlocks.BLACK_SANDSTONE_STAIRS)
+                .add(ModBlocks.BLACK_SANDSTONE_WALL)
+                .add(ModBlocks.BLACK_CUT_SANDSTONE_SLAB)
+                .add(ModBlocks.BLACK_CUT_SANDSTONE_STAIRS)
+                .add(ModBlocks.BLACK_CUT_SANDSTONE_WALL)
+                .add(ModBlocks.INVIS_LIGHTNING_ROD)
+                .add(ModBlocks.SHUCKLE_MYSTERY_BLOCK);
+        //axe
+        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
+                .add(ModBackportBlocks.CREAKING_HEART)
+                .add(ModBackportBlocks.ACTIVE_CREAKING_HEART)
+                .add(ModBackportBlocks.CHERRY_DOOR)
+                .add(ModBackportBlocks.CHERRY_TRAPDOOR)
+                .add(ModBackportBlocks.BAMBOO_MOSAIC)
+                .add(ModBackportBlocks.BAMBOO_MOSAIC_SLAB)
+                .add(ModBackportBlocks.BAMBOO_MOSAIC_STAIRS)
+                .add(ModBackportBlocks.BAMBOO_DOOR)
+                .add(ModBackportBlocks.BAMBOO_TRAPDOOR)
+                .add(ModBackportBlocks.PALE_OAK_DOOR)
+                .add(ModBackportBlocks.PALE_OAK_TRAPDOOR);
+        //hoe
+        getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
+                .add(ModBackportBlocks.CHERRY_LEAVES)
+                .add(ModBackportBlocks.PALE_OAK_LEAVES)
+                .add(ModBackportBlocks.PALE_MOSS_BLOCK)
+                .add(ModBackportBlocks.PALE_MOSS_CARPET);
+        //endregion
+        //region Wood Set Tags
+        //logs
+        getOrCreateTagBuilder(BlockTags.LOGS)
+                .addTag(ModTags.Blocks.CHERRY_LOGS)
+                .addTag(ModTags.Blocks.PALE_OAK_LOGS);
+        getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN)
+                .addTag(ModTags.Blocks.CHERRY_LOGS)
+                .addTag(ModTags.Blocks.PALE_OAK_LOGS);
+        //leaves
+        getOrCreateTagBuilder(BlockTags.LEAVES)
+                .add(ModBackportBlocks.CHERRY_LEAVES)
+                .add(ModBackportBlocks.PALE_OAK_LEAVES);
+        //saplings
+        getOrCreateTagBuilder(BlockTags.SAPLINGS)
+                .add(ModBackportBlocks.CHERRY_SAPLING)
+                .add(ModBackportBlocks.PALE_OAK_SAPLING);
+        //flower pots
+        getOrCreateTagBuilder(BlockTags.FLOWER_POTS)
+                .add(ModBackportBlocks.POTTED_CHERRY_SAPLING)
+                .add(ModBackportBlocks.POTTED_PALE_OAK_SAPLING);
+        //planks
+        getOrCreateTagBuilder(BlockTags.PLANKS)
+                .add(ModBackportBlocks.CHERRY_PLANKS)
+                .add(ModBackportBlocks.BAMBOO_PLANKS)
+                .add(ModBackportBlocks.PALE_OAK_PLANKS);
+        //wood slabs
+        getOrCreateTagBuilder(BlockTags.WOODEN_SLABS)
+                .add(ModBackportBlocks.CHERRY_SLAB)
+                .add(ModBackportBlocks.BAMBOO_SLAB)
+                .add(ModBackportBlocks.PALE_OAK_SLAB);
+        //wood stairs
+        getOrCreateTagBuilder(BlockTags.WOODEN_STAIRS)
+                .add(ModBackportBlocks.CHERRY_STAIRS)
+                .add(ModBackportBlocks.BAMBOO_STAIRS)
+                .add(ModBackportBlocks.PALE_OAK_STAIRS);
+        //fences
+        getOrCreateTagBuilder(BlockTags.WOODEN_FENCES)
+                .add(ModBackportBlocks.CHERRY_FENCE)
+                .add(ModBackportBlocks.BAMBOO_FENCE)
+                .add(ModBackportBlocks.PALE_OAK_FENCE);
+        //fence gates
+        getOrCreateTagBuilder(BlockTags.FENCE_GATES)
+                .add(ModBackportBlocks.CHERRY_FENCE_GATE)
+                .add(ModBackportBlocks.BAMBOO_FENCE_GATE)
+                .add(ModBackportBlocks.PALE_OAK_FENCE_GATE);
+        //wooden buttons
+        getOrCreateTagBuilder(BlockTags.WOODEN_BUTTONS)
+                .add(ModBackportBlocks.CHERRY_BUTTON)
+                .add(ModBackportBlocks.BAMBOO_BUTTON)
+                .add(ModBackportBlocks.PALE_OAK_BUTTON);
+        //wooden pressure plates
+        getOrCreateTagBuilder(BlockTags.WOODEN_PRESSURE_PLATES)
+                .add(ModBackportBlocks.CHERRY_PRESSURE_PLATE)
+                .add(ModBackportBlocks.BAMBOO_PRESSURE_PLATE)
+                .add(ModBackportBlocks.PALE_OAK_PRESSURE_PLATE);
+        //signs
+        getOrCreateTagBuilder(BlockTags.STANDING_SIGNS)
+                .add(ModBackportBlocks.CHERRY_SIGN)
+                .add(ModBackportBlocks.BAMBOO_SIGN)
+                .add(ModBackportBlocks.PALE_OAK_SIGN)
+                .add(ModBlocks.EBONY_SIGN)
+                .add(ModBlocks.INVIS_SIGN);
+        getOrCreateTagBuilder(BlockTags.WALL_SIGNS)
+                .add(ModBackportBlocks.CHERRY_WALL_SIGN)
+                .add(ModBackportBlocks.BAMBOO_WALL_SIGN)
+                .add(ModBackportBlocks.PALE_OAK_WALL_SIGN)
+                .add(ModBlocks.EBONY_WALL_SIGN)
+                .add(ModBlocks.INVIS_WALL_SIGN);
+        //endregion
+        //region Nature Block Tags
+        //dirt
+        getOrCreateTagBuilder(BlockTags.DIRT)
+                .add(ModBackportBlocks.PALE_MOSS_BLOCK);
+        //flowers
+        getOrCreateTagBuilder(BlockTags.FLOWERS)
+                .addTag(ModTags.Blocks.WILDFLOWERS)
+                .add(ModBackportBlocks.CHERRY_LEAVES)
+                .add(ModBackportBlocks.PINK_PETALS);
+        //inside step sounds
+        getOrCreateTagBuilder(BlockTags.INSIDE_STEP_SOUND_BLOCKS)
+                .addTag(ModTags.Blocks.WILDFLOWERS)
+                .addTag(ModTags.Blocks.LEAF_LITTER)
+                .add(ModBackportBlocks.PINK_PETALS)
+                .add(ModBlocks.ZYGARDE_CELL);
+        //replaceable plants
+        getOrCreateTagBuilder(BlockTags.REPLACEABLE_PLANTS)
+                .add(ModBackportBlocks.PALE_GRASS)
+                .add(ModBackportBlocks.PALE_TALL_GRASS);
+        //big dripleaf placeable
+        getOrCreateTagBuilder(BlockTags.BIG_DRIPLEAF_PLACEABLE)
+                .add(ModBackportBlocks.PALE_MOSS_BLOCK);
+        //endregion
+        //slabs
+        getOrCreateTagBuilder(BlockTags.SLABS)
+                .add(ModBackportBlocks.PACKED_MUD_SLAB)
+                .add(ModBackportBlocks.BAMBOO_MOSAIC_SLAB)
+                .add(ModBackportBlocks.RESIN_BRICK_SLAB)
+                .add(ModBlocks.ANCIENT_STONE_SLAB)
+                .add(ModBlocks.BLACK_SANDSTONE_SLAB)
+                .add(ModBlocks.BLACK_CUT_SANDSTONE_SLAB)
+                .add(ModBlocks.BLACK_SMOOTH_SANDSTONE_SLAB);
+        //stairs
+        getOrCreateTagBuilder(BlockTags.STAIRS)
+                .add(ModBackportBlocks.PACKED_MUD_STAIRS)
+                .add(ModBackportBlocks.BAMBOO_MOSAIC_STAIRS)
+                .add(ModBackportBlocks.RESIN_BRICK_STAIRS)
+                .add(ModBlocks.ANCIENT_STONE_STAIRS)
+                .add(ModBlocks.BLACK_SANDSTONE_STAIRS)
+                .add(ModBlocks.BLACK_CUT_SANDSTONE_STAIRS)
+                .add(ModBlocks.BLACK_SMOOTH_SANDSTONE_STAIRS);
+        //walls
+        getOrCreateTagBuilder(BlockTags.WALLS)
+                .add(ModBackportBlocks.PACKED_MUD_WALL)
+                .add(ModBackportBlocks.RESIN_BRICK_WALL)
+                .add(ModBlocks.ANCIENT_STONE_WALL)
+                .add(ModBlocks.BLACK_SANDSTONE_WALL)
+                .add(ModBlocks.BLACK_CUT_SANDSTONE_WALL)
+                .add(ModBlocks.BLACK_SMOOTH_SANDSTONE_WALL);
+        //prevent mob spawning
+        getOrCreateTagBuilder(BlockTags.PREVENT_MOB_SPAWNING_INSIDE)
+                .add(ModBlocks.INVIS_CARPET);
+        //endregion
+        //region Shuckle Tags
+        getOrCreateTagBuilder(ModTags.Blocks.CHERRY_LOGS)
+                .add(ModBackportBlocks.CHERRY_LOG)
+                .add(ModBackportBlocks.STRIPPED_CHERRY_LOG)
+                .add(ModBackportBlocks.CHERRY_WOOD)
+                .add(ModBackportBlocks.STRIPPED_CHERRY_WOOD);
+        getOrCreateTagBuilder(ModTags.Blocks.BAMBOO_BLOCKS)
+                .add(ModBackportBlocks.BAMBOO_BLOCK)
+                .add(ModBackportBlocks.STRIPPED_BAMBOO_BLOCK);
+        getOrCreateTagBuilder(ModTags.Blocks.PALE_OAK_LOGS)
+                .add(ModBackportBlocks.PALE_OAK_LOG)
+                .add(ModBackportBlocks.STRIPPED_PALE_OAK_LOG)
+                .add(ModBackportBlocks.PALE_OAK_WOOD)
+                .add(ModBackportBlocks.STRIPPED_PALE_OAK_WOOD);
+        getOrCreateTagBuilder(ModTags.Blocks.WILDFLOWERS)
+                .add(ModBackportBlocks.WILDFLOWERS)
+                .add(ModBlocks.WILDFLOWERS_RED_BLUE);
+        getOrCreateTagBuilder(ModTags.Blocks.LEAF_LITTER)
+                .add(ModBackportBlocks.LEAF_LITTER)
+                .add(ModBlocks.LEAF_LITTER_OAK);
+        //endregion
+    }
+}

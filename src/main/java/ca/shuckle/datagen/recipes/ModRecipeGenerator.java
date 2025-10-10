@@ -1,8 +1,11 @@
-package ca.shuckle.datagen;
+package ca.shuckle.datagen.recipes;
 
 import ca.shuckle.ShuckleQOL;
 import ca.shuckle.block.ModBackportBlocks;
 import ca.shuckle.block.ModBlocks;
+import ca.shuckle.datagen.recipes.custom.IdentifiersShapedRecipeJsonBuilder;
+import ca.shuckle.datagen.recipes.custom.IdentifiersShapelessRecipeJsonBuilder;
+import ca.shuckle.datagen.recipes.custom.IdentifiersSingleItemRecipeJsonBuilder;
 import ca.shuckle.item.ModItems;
 import ca.shuckle.util.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -287,19 +290,20 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(hasItem(ModItems.WEAK_SHUCKLE_DNA),
                         conditionsFromItem(ModItems.WEAK_SHUCKLE_DNA)).offerTo(exporter);
         //swole shuckle dna
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.SWOLE_SHUCKLE_DNA, 1)
+        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Registries.ITEM.getId(ModItems.SWOLE_SHUCKLE_DNA), 1)
                 .pattern("ZLT")
                 .pattern("B#B")
                 .pattern("PMZ")
-                .input('#', ModItems.NORMAL_SHUCKLE_DNA)
-                .input('B', ModItems.BERRY_JUICE)
-                .input('Z', ModItems.ZYGARDE_CELL_HUNDRED_TWENTY_FIVE)
-                .input('P', Ingredient.fromJson(JsonHelper.deserialize("{\"item\":\"fossil:cooked_spinosaurus\"}")))
-                .input('T', Ingredient.fromJson(JsonHelper.deserialize("{\"item\":\"\"fossil:cooked_tyrannosaurus\"\"}")))
-                .input('M', Ingredient.fromJson(JsonHelper.deserialize("{\"item\":\"fossil:cooked_mosasaurus\"}")))
-                .input('L', Ingredient.fromJson(JsonHelper.deserialize("{\"item\":\"fossil:cooked_megalodon\"}")))
+                .inputItem('#', Registries.ITEM.getId(ModItems.NORMAL_SHUCKLE_DNA))
+                .inputItem('B', Registries.ITEM.getId(ModItems.BERRY_JUICE))
+                .inputItem('Z', Registries.ITEM.getId(ModItems.ZYGARDE_CELL_HUNDRED_TWENTY_FIVE))
+                .inputItem('P', new Identifier("fossil", "cooked_spinosaurus"))
+                .inputItem('T', new Identifier("fossil", "cooked_tyrannosaurus"))
+                .inputItem('M', new Identifier("fossil", "cooked_mosasaurus"))
+                .inputItem('L', new Identifier("fossil", "cooked_megalodon"))
                 .criterion(hasItem(ModItems.NORMAL_SHUCKLE_DNA),
-                        conditionsFromItem(ModItems.NORMAL_SHUCKLE_DNA)).offerTo(exporter);
+                        conditionsFromItem(ModItems.NORMAL_SHUCKLE_DNA))
+                .offerTo(exporter, Registries.ITEM.getId(ModItems.SWOLE_SHUCKLE_DNA));
         //region Berry Juice
         //mangrove berry
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.MANGROVE_BERRY, 4)
@@ -322,7 +326,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(hasItem(ModBackportBlocks.CHERRY_LOG),
                         conditionsFromItem(ModBackportBlocks.CHERRY_LOG)).offerTo(exporter);
         //bamboo berry
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.CHERRY_BERRY, 4)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.BAMBOO_BERRY, 4)
                 .pattern("B#B")
                 .pattern("#S#")
                 .pattern("B#B")
@@ -332,7 +336,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(hasItem(Items.BAMBOO),
                         conditionsFromItem(Items.BAMBOO)).offerTo(exporter);
         //pale berry
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.CHERRY_BERRY, 4)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.PALE_BERRY, 4)
                 .pattern("R#R")
                 .pattern("#S#")
                 .pattern("R#R")
@@ -513,14 +517,57 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
         //endregion
         //region BYG
         //ebony sign
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.EBONY_SIGN, 3)
+        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Registries.BLOCK.getId(ModBlocks.EBONY_SIGN), 3)
                 .pattern("###")
                 .pattern("###")
                 .pattern(" S ")
-                .input('#', Ingredient.fromJson(JsonHelper.deserialize("{\"item\":\"byg:ebony_planks\"}")))
-                .input('S', Items.STICK)
+                .inputItem('#', new Identifier("byg", "ebony_planks"))
+                .inputItem('S', new Identifier("minecraft", "stick"))
                 .criterion(hasItem(Items.STICK),
-                        conditionsFromItem(Items.STICK)).offerTo(exporter);
+                        conditionsFromItem(Items.STICK))
+                .offerTo(exporter, Registries.BLOCK.getId(ModBlocks.EBONY_SIGN));
+        //winter cyclamen
+        IdentifiersShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, new Identifier("byg", "winter_cyclamen"), 1)
+                .inputItem(new Identifier("byg", "winter_succulent"))
+                .inputItem(Registries.ITEM.getId(Items.CYAN_DYE))
+                .criterion(hasItem(Items.QUARTZ),
+                        conditionsFromItem(Items.QUARTZ))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "winter_cyclamen"));
+        //raw quartz block
+        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, new Identifier("byg", "raw_quartz_block"), 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .inputItem('#', Registries.ITEM.getId(Items.QUARTZ))
+                .criterion(hasItem(Items.QUARTZ),
+                        conditionsFromItem(Items.QUARTZ))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "raw_quartz_block"));
+        //quartz from raw quartz
+        IdentifiersShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Registries.ITEM.getId(Items.QUARTZ), 9)
+                .inputItem(new Identifier("byg", "raw_quartz_block"))
+                .criterion(hasItem(Items.QUARTZ),
+                        conditionsFromItem(Items.QUARTZ))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "quartz_from_raw_quartz"));
+        //black ice from ice
+        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, new Identifier("byg", "black_ice"), 8)
+                .pattern("###")
+                .pattern("#D#")
+                .pattern("###")
+                .inputItem('#', Registries.ITEM.getId(Items.ICE))
+                .inputItem('D', Registries.ITEM.getId(Items.BLACK_DYE))
+                .criterion(hasItem(Items.ICE),
+                        conditionsFromItem(Items.ICE))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "black_ice_from_ice"));
+        //black packed ice from packed ice
+        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, new Identifier("byg", "black_packed_ice"), 8)
+                .pattern("###")
+                .pattern("#D#")
+                .pattern("###")
+                .inputItem('#', Registries.ITEM.getId(Items.PACKED_ICE))
+                .inputItem('D', Registries.ITEM.getId(Items.BLACK_DYE))
+                .criterion(hasItem(Items.PACKED_ICE),
+                        conditionsFromItem(Items.PACKED_ICE))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "black_packed_ice_from_packed_ice"));
         //condensed black ice from blue ice
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.CONDENSED_BLACK_ICE, 8)
                 .pattern("###")
@@ -529,15 +576,17 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .input('#', Items.BLUE_ICE)
                 .input('D', Items.BLACK_DYE)
                 .criterion(hasItem(Items.BLUE_ICE),
-                        conditionsFromItem(Items.BLUE_ICE)).offerTo(exporter);
+                        conditionsFromItem(Items.BLUE_ICE))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "condensed_black_ice_from_blue_ice"));
         //condensed black ice
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.CONDENSED_BLACK_ICE, 1)
+        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Registries.BLOCK.getId(ModBlocks.CONDENSED_BLACK_ICE), 1)
                 .pattern("###")
                 .pattern("###")
                 .pattern("###")
-                .input('#', Ingredient.fromJson(JsonHelper.deserialize("{\"item\":\"byg:packed_black_ice\"}")))
+                .inputItem('#', new Identifier("byg", "packed_black_ice"))
                 .criterion(hasItem(Items.PACKED_ICE),
-                        conditionsFromItem(Items.PACKED_ICE)).offerTo(exporter);
+                        conditionsFromItem(Items.PACKED_ICE))
+                .offerTo(exporter, Registries.BLOCK.getId(ModBlocks.CONDENSED_BLACK_ICE));
         //black sand sets
         createSlabStairWallItemSetRecipes(exporter,
                 "byg", "black_sandstone",
@@ -553,10 +602,67 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 ModBlocks.BLACK_SMOOTH_SANDSTONE_WALL, true);
         //endregion
         //region Fossils
+        //nautilus shell from magic conch
+        IdentifiersShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Registries.ITEM.getId(Items.NAUTILUS_SHELL), 1)
+                .inputItem(new Identifier("fossil", "magic_conch"))
+                .criterion(hasItem(Items.NAUTILUS_SHELL),
+                        conditionsFromItem(Items.NAUTILUS_SHELL))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "nautilus_shell_from_magic_conch"));
+        //ancient stone
+        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, new Identifier("fossil", "ancient_stone"), 4)
+                .pattern("#D")
+                .pattern("D#")
+                .inputItem('#', new Identifier("fossil", "volcanic_rock"))
+                .inputItem('D', new Identifier("fossil", "dense_sand"))
+                .criterion(hasItem(Items.STONE),
+                        conditionsFromItem(Items.STONE))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "ancient_stone"));
         createSlabStairWallItemSetRecipes(exporter,
                 "fossil", "ancient_stone",
                 ModBlocks.ANCIENT_STONE_SLAB, ModBlocks.ANCIENT_STONE_STAIRS,
                 ModBlocks.ANCIENT_STONE_WALL, true);
+        //ancient glass
+        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, new Identifier("fossil", "ancient_glass"), 8)
+                .pattern("G#G")
+                .pattern("#R#")
+                .pattern("G#G")
+                .inputItem('#', new Identifier("fossil", "reinforced_glass"))
+                .inputItem('R', new Identifier("fossil", "relic_scrap"))
+                .inputItem('G', Registries.ITEM.getId(Items.RAW_GOLD))
+                .criterion(hasItem(Items.STONE),
+                        conditionsFromItem(Items.STONE))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "ancient_glass"));
+        //ancient wood
+        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, new Identifier("fossil", "ancient_wood_log"), 8)
+                .pattern("P#P")
+                .pattern("#S#")
+                .pattern("P#P")
+                .inputTag('#', ModTags.Items.FOSSIL_LOGS.id())
+                .inputTag('S', new Identifier("fossil", "fossil_saplings"))
+                .inputItem('P', new Identifier("fossil", "fossil_plant"))
+                .criterion(hasItem(Items.STONE),
+                        conditionsFromItem(Items.STONE))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "ancient_wood"));
+        //tar bucket
+        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, new Identifier("fossil", "tar_bucket"), 1)
+                .pattern(" # ")
+                .pattern("###")
+                .pattern(" B ")
+                .inputItem('#', new Identifier("fossil", "tar_drop"))
+                .inputItem('B', Registries.ITEM.getId(Items.BUCKET))
+                .criterion(hasItem(Items.BUCKET),
+                        conditionsFromItem(Items.BUCKET))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "tar_bucket"));
+        //tarred dirt
+        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, new Identifier("fossil", "tarred_dirt"), 4)
+                .pattern(" # ")
+                .pattern("#T#")
+                .pattern(" # ")
+                .inputTag('#', ModTags.Items.CONVERTIBLE_DIRT.id())
+                .inputItem('T', new Identifier("fossil", "tar_drop"))
+                .criterion(hasItem(Items.DIRT),
+                        conditionsFromItem(Items.DIRT))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "tarred_dirt"));
         //endregion
         //endregion
         //region Universal Dyeing
@@ -571,9 +677,6 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 null, false);
         createShapelessDyableItemSetRecipes(exporter,
                 "minecraft", "bed", ModTags.Items.DYEABLE_BEDS,
-                null, false);
-        createShapedDyableItemSetRecipes(exporter,
-                "minecraft", "carpet", ModTags.Items.DYEABLE_CARPETS,
                 null, false);
         createShapedDyableItemSetRecipes(exporter,
                 "minecraft", "stained_glass", ModTags.Items.DYEABLE_GLASS,
@@ -730,109 +833,108 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                                                    Block stairsBlock,
                                                    Block wallBlock,
                                                    boolean addStonecutterRecipes){
-        Ingredient baseIngredient = Ingredient.fromJson(
-                JsonHelper.deserialize("{\"item\":\"" + namespace + ":" + baseBlockId + "\"}"));
+        Identifier baseItem = new Identifier(namespace, baseBlockId);
         //slab recipe
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, slabBlock, 6)
+        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Registries.BLOCK.getId(slabBlock), 6)
                 .pattern("###")
-                .input('#', baseIngredient)
+                .inputItem('#', baseItem)
                 .criterion(hasItem(slabBlock),
-                        conditionsFromItem(slabBlock)).offerTo(exporter);
+                        conditionsFromItem(slabBlock))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, baseBlockId + "_slab"));
         //stairs recipe
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, stairsBlock, 4)
+        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Registries.BLOCK.getId(stairsBlock), 4)
                 .pattern("#  ")
                 .pattern("## ")
                 .pattern("###")
-                .input('#', baseIngredient)
+                .inputItem('#', baseItem)
                 .criterion(hasItem(stairsBlock),
-                        conditionsFromItem(stairsBlock)).offerTo(exporter);
+                        conditionsFromItem(stairsBlock))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, baseBlockId + "_stairs"));
         //wall recipe
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, wallBlock, 6)
+        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Registries.BLOCK.getId(wallBlock), 6)
                 .pattern("###")
                 .pattern("###")
-                .input('#', baseIngredient)
+                .inputItem('#', baseItem)
                 .criterion(hasItem(wallBlock),
-                        conditionsFromItem(wallBlock)).offerTo(exporter);
+                        conditionsFromItem(wallBlock))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, baseBlockId + "_wall"));
 
         if(addStonecutterRecipes){
             //slab stonecutting
-            SingleItemRecipeJsonBuilder.createStonecutting(baseIngredient,
-                    RecipeCategory.MISC, slabBlock, 2)
+            IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(baseItem,
+                    RecipeCategory.MISC, Registries.BLOCK.getId(slabBlock), 2)
                     .criterion(hasItem(slabBlock),
                             conditionsFromItem(slabBlock))
                     .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, baseBlockId + "_slab_stonecutting"));
             //stairs stonecutting
-            SingleItemRecipeJsonBuilder.createStonecutting(baseIngredient,
-                            RecipeCategory.MISC, stairsBlock, 1)
+            IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(baseItem,
+                            RecipeCategory.MISC, Registries.BLOCK.getId(stairsBlock), 1)
                     .criterion(hasItem(stairsBlock),
                             conditionsFromItem(stairsBlock))
                     .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, baseBlockId + "_stairs_stonecutting"));
             //wall stonecutting
-            SingleItemRecipeJsonBuilder.createStonecutting(baseIngredient,
-                            RecipeCategory.MISC, wallBlock, 1)
+            IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(baseItem,
+                            RecipeCategory.MISC, Registries.BLOCK.getId(wallBlock), 1)
                     .criterion(hasItem(wallBlock),
                             conditionsFromItem(wallBlock))
                     .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, baseBlockId + "_wall_stonecutting"));
         }
     }
 
-    /** FIX LATER WHEN ADDING OWN COPPER BLOCKS
     private void createCopperStagesStonecutterRecipes(Consumer<RecipeJsonProvider> exporter,
                                                       String namespace,
                                                       String baseBlockId,
                                                       int stonecutterOutputCount){
-        Ingredient baseIngredient = Ingredient.fromJson(
-                JsonHelper.deserialize("{\"item\":\"" + namespace + ":" + baseBlockId + "\"}"));
+        //Identifier baseItem = new Identifier(namespace, baseBlockId);
         //from copper block
-        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Items.COPPER_BLOCK),
-                        RecipeCategory.MISC, block), stonecutterOutputCount)
+        IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(Registries.ITEM.getId(Items.COPPER_BLOCK),
+                        RecipeCategory.MISC, new Identifier(namespace, baseBlockId), stonecutterOutputCount)
                 .criterion(hasItem(Items.COPPER_BLOCK),
                         conditionsFromItem(Items.COPPER_BLOCK))
                 .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, baseBlockId + "_stonecutting"));
         //from exposed copper block
-        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Items.EXPOSED_COPPER),
-                        RecipeCategory.MISC, (ItemConvertible) new Identifier(namespace, "exposed_" + baseBlockId), stonecutterOutputCount)
+        IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(Registries.ITEM.getId(Items.EXPOSED_COPPER),
+                        RecipeCategory.MISC, new Identifier(namespace, "exposed_" + baseBlockId), stonecutterOutputCount)
                 .criterion(hasItem(Items.EXPOSED_COPPER),
                         conditionsFromItem(Items.EXPOSED_COPPER))
                 .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "exposed_" + baseBlockId + "_stonecutting"));
         //from weathered copper block
-        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Items.WEATHERED_COPPER),
-                        RecipeCategory.MISC, (ItemConvertible) new Identifier(namespace, "weathered_" + baseBlockId), stonecutterOutputCount)
+        IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(Registries.ITEM.getId(Items.WEATHERED_COPPER),
+                        RecipeCategory.MISC, new Identifier(namespace, "weathered_" + baseBlockId), stonecutterOutputCount)
                 .criterion(hasItem(Items.WEATHERED_COPPER),
                         conditionsFromItem(Items.WEATHERED_COPPER))
                 .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "weathered_" + baseBlockId + "_stonecutting"));
         //from oxidized copper block
-        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Items.OXIDIZED_COPPER),
-                        RecipeCategory.MISC, (ItemConvertible) new Identifier(namespace, "oxidized_" + baseBlockId), stonecutterOutputCount)
+        IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(Registries.ITEM.getId(Items.OXIDIZED_COPPER),
+                        RecipeCategory.MISC, new Identifier(namespace, "oxidized_" + baseBlockId), stonecutterOutputCount)
                 .criterion(hasItem(Items.OXIDIZED_COPPER),
                         conditionsFromItem(Items.OXIDIZED_COPPER))
                 .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "oxidized_" + baseBlockId + "_stonecutting"));
         //from waxed copper block
-        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Items.WAXED_COPPER_BLOCK),
-                        RecipeCategory.MISC, (ItemConvertible) new Identifier(namespace, "waxed_" + baseBlockId), stonecutterOutputCount)
+        IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(Registries.ITEM.getId(Items.WAXED_COPPER_BLOCK),
+                        RecipeCategory.MISC, new Identifier(namespace, "waxed_" + baseBlockId), stonecutterOutputCount)
                 .criterion(hasItem(Items.WAXED_COPPER_BLOCK),
                         conditionsFromItem(Items.WAXED_COPPER_BLOCK))
                 .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "waxed_" + baseBlockId + "_stonecutting"));
         //from waxed exposed copper block
-        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Items.WAXED_EXPOSED_COPPER),
-                        RecipeCategory.MISC, (ItemConvertible) new Identifier(namespace, "waxed_exposed_" + baseBlockId), stonecutterOutputCount)
+        IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(Registries.ITEM.getId(Items.WAXED_EXPOSED_COPPER),
+                        RecipeCategory.MISC, new Identifier(namespace, "waxed_exposed" + baseBlockId), stonecutterOutputCount)
                 .criterion(hasItem(Items.WAXED_EXPOSED_COPPER),
                         conditionsFromItem(Items.WAXED_EXPOSED_COPPER))
                 .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "waxed_exposed_" + baseBlockId + "_stonecutting"));
         //from waxed weathered copper block
-        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Items.WAXED_WEATHERED_COPPER),
-                        RecipeCategory.MISC, (ItemConvertible) new Identifier(namespace, "waxed_weathered_" + baseBlockId), stonecutterOutputCount)
+        IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(Registries.ITEM.getId(Items.WAXED_WEATHERED_COPPER),
+                        RecipeCategory.MISC, new Identifier(namespace, "waxed_weathered_" + baseBlockId), stonecutterOutputCount)
                 .criterion(hasItem(Items.WAXED_WEATHERED_COPPER),
                         conditionsFromItem(Items.WAXED_WEATHERED_COPPER))
                 .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "waxed_weathered_" + baseBlockId + "_stonecutting"));
         //from waxed oxidized copper block
-        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Items.WAXED_OXIDIZED_COPPER),
-                        RecipeCategory.MISC, (ItemConvertible) new Identifier(namespace, "waxed_oxidized_" + baseBlockId), stonecutterOutputCount)
+        IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(Registries.ITEM.getId(Items.WAXED_OXIDIZED_COPPER),
+                        RecipeCategory.MISC, new Identifier(namespace, "waxed_oxidized_" + baseBlockId), stonecutterOutputCount)
                 .criterion(hasItem(Items.WAXED_OXIDIZED_COPPER),
                         conditionsFromItem(Items.WAXED_OXIDIZED_COPPER))
                 .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "waxed_oxidized_" + baseBlockId + "_stonecutting"));
     }
-    **/
 
     private void createShapedDyableItemSetRecipes(Consumer<RecipeJsonProvider> exporter,
                                                   String namespace,
@@ -862,7 +964,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                     .pattern("#D#")
                     .pattern("###")
                     .input('#', dyeableItemsTag)
-                    .input('#', Ingredient.fromJson(JsonHelper.deserialize("{\"item\":\"minecraft:" + dyeColour.getName() + "_dye\"}")))
+                    .input('D', Ingredient.fromJson(JsonHelper.deserialize("{\"item\":\"minecraft:" + dyeColour.getName() + "_dye\"}")))
                     .criterion("has_dyable_items",
                             conditionsFromTag(dyeableItemsTag))
                     .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_" + dyedBaseItemId));
