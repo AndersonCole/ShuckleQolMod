@@ -85,13 +85,6 @@
   "block.shuckle_qol.pale_grass": "Pale Grass",
   "block.shuckle_qol.pale_tall_grass": "Pale Tall Grass",
 
-  "block.shuckle_qol.pink_petals": "Pink Petals",
-  "block.shuckle_qol.wildflowers": "Wildflowers",
-  "block.shuckle_qol.wildflowers_red_blue": "Wildflowers",
-
-  "block.shuckle_qol.leaf_litter": "Leaf Litter",
-  "block.shuckle_qol.leaf_litter_oak": "Leaf Litter",
-
   "block.shuckle_qol.resin_clump": "Resin Clump",
   "block.shuckle_qol.resin_block": "Resin Block",
   "block.shuckle_qol.creaking_heart": "Creaking Heart",
@@ -102,6 +95,71 @@
   "block.shuckle_qol.resin_brick_stairs": "Resin Brick Stairs",
   "block.shuckle_qol.resin_brick_wall": "Resin Brick Wall",
   "block.shuckle_qol.chiseled_resin_bricks": "Chiseled Resin Bricks",
+
+  "block.shuckle_qol.pink_petals": "Pink Petals",
+  "block.shuckle_qol.wildflowers": "Wildflowers",
+  "block.shuckle_qol.wildflowers_red_blue": "Wildflowers",
+
+  "block.shuckle_qol.leaf_litter": "Leaf Litter",
+  "block.shuckle_qol.leaf_litter_oak": "Leaf Litter",
+
+  "item.shuckle_qol.copper_nugget": "Copper Nugget",
+
+  "block.shuckle_qol.chiseled_copper": "Chiseled Coppper",
+  "block.shuckle_qol.exposed_chiseled_copper": "Exposed Chiseled Copper",
+  "block.shuckle_qol.weathered_chiseled_copper": "Weathered Chiseled Copper",
+  "block.shuckle_qol.oxidized_chiseled_copper": "Oxidized Chiseled Copper",
+  "block.shuckle_qol.waxed_chiseled_copper": "Waxed Chiseled Copper",
+  "block.shuckle_qol.waxed_exposed_chiseled_copper": "Waxed Exposed Chiseled Copper",
+  "block.shuckle_qol.waxed_weathered_chiseled_copper": "Waxed Weathered Chiseled Copper",
+  "block.shuckle_qol.waxed_oxidized_chiseled_copper": "Waxed Oxidized Chiseled Copper",
+
+  "block.shuckle_qol.copper_grate": "Copper Grate",
+  "block.shuckle_qol.exposed_copper_grate": "Exposed Copper Grate",
+  "block.shuckle_qol.weathered_copper_grate": "Weathered Copper Grate",
+  "block.shuckle_qol.oxidized_copper_grate": "Oxidized Copper Grate",
+  "block.shuckle_qol.waxed_copper_grate": "Waxed Copper Grate",
+  "block.shuckle_qol.waxed_exposed_copper_grate": "Waxed Exposed Copper Grate",
+  "block.shuckle_qol.waxed_weathered_copper_grate": "Waxed Weathered Copper Grate",
+  "block.shuckle_qol.waxed_oxidized_copper_grate": "Waxed Oxidized Copper Grate",
+
+  "block.shuckle_qol.copper_bulb": "Copper Bulb",
+  "block.shuckle_qol.exposed_copper_bulb": "Exposed Copper Bulb",
+  "block.shuckle_qol.weathered_copper_bulb": "Weathered Copper Bulb",
+  "block.shuckle_qol.oxidized_copper_bulb": "Oxidized Copper Bulb",
+  "block.shuckle_qol.waxed_copper_bulb": "Waxed Copper Bulb",
+  "block.shuckle_qol.waxed_exposed_copper_bulb": "Waxed Exposed Copper Bulb",
+  "block.shuckle_qol.waxed_weathered_copper_bulb": "Waxed Weathered Copper Bulb",
+  "block.shuckle_qol.waxed_oxidized_copper_bulb": "Waxed Oxidized Copper Bulb",
+
+  "block.shuckle_qol.copper_door": "Copper Door",
+  "block.shuckle_qol.exposed_copper_door": "Exposed Copper Door",
+  "block.shuckle_qol.weathered_copper_door": "Weathered Copper Door",
+  "block.shuckle_qol.oxidized_copper_door": "Oxidized Copper Door",
+  "block.shuckle_qol.waxed_copper_door": "Waxed Copper Door",
+  "block.shuckle_qol.waxed_exposed_copper_door": "Waxed Exposed Copper Door",
+  "block.shuckle_qol.waxed_weathered_copper_door": "Waxed Weathered Copper Door",
+  "block.shuckle_qol.waxed_oxidized_copper_door": "Waxed Oxidized Copper Door",
+
+  "block.shuckle_qol.copper_trapdoor": "Copper Trapdoor",
+  "block.shuckle_qol.exposed_copper_trapdoor": "Exposed Copper Trapdoor",
+  "block.shuckle_qol.weathered_copper_trapdoor": "Weathered Copper Trapdoor",
+  "block.shuckle_qol.oxidized_copper_trapdoor": "Oxidized Copper Trapdoor",
+  "block.shuckle_qol.waxed_copper_trapdoor": "Waxed Copper Trapdoor",
+  "block.shuckle_qol.waxed_exposed_copper_trapdoor": "Waxed Exposed Copper Trapdoor",
+  "block.shuckle_qol.waxed_weathered_copper_trapdoor": "Waxed Weathered Copper Trapdoor",
+  "block.shuckle_qol.waxed_oxidized_copper_trapdoor": "Waxed Oxidized Copper Trapdoor",
+
+  "block.shuckle_qol.copper_torch": "Copper Torch",
+
+  "block.shuckle_qol.copper_lantern": "Copper Lantern",
+  "block.shuckle_qol.exposed_copper_lantern": "Exposed Copper Lantern",
+  "block.shuckle_qol.weathered_copper_lantern": "Weathered Copper Lantern",
+  "block.shuckle_qol.oxidized_copper_lantern": "Oxidized Copper Lantern",
+  "block.shuckle_qol.waxed_copper_lantern": "Waxed Copper Lantern",
+  "block.shuckle_qol.waxed_exposed_copper_lantern": "Waxed Exposed Copper Lantern",
+  "block.shuckle_qol.waxed_weathered_copper_lantern": "Waxed Weathered Copper Lantern",
+  "block.shuckle_qol.waxed_oxidized_copper_lantern": "Waxed Oxidized Copper Lantern",
 
   "block.shuckle_qol.ebony_sign": "Ebony Sign",
 

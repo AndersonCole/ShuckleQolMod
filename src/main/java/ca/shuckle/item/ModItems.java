@@ -14,28 +14,33 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import net.minecraft.util.math.Direction;
 
 public class ModItems {
 
-    public static final Item CHERRY_SIGN = registerItem("cherry_sign",
+    public static final Item CHERRY_SIGN = registerItemInGroup("cherry_sign",
             new SignItem(new FabricItemSettings().maxCount(16),
-                    ModBackportBlocks.CHERRY_SIGN, ModBackportBlocks.CHERRY_WALL_SIGN));
+                    ModBackportBlocks.CHERRY_SIGN, ModBackportBlocks.CHERRY_WALL_SIGN), ModItemGroup.SHUCKLE_BACKPORT);
 
-    public static final Item BAMBOO_SIGN = registerItem("bamboo_sign",
+    public static final Item BAMBOO_SIGN = registerItemInGroup("bamboo_sign",
             new SignItem(new FabricItemSettings().maxCount(16),
-                    ModBackportBlocks.BAMBOO_SIGN, ModBackportBlocks.BAMBOO_WALL_SIGN));
+                    ModBackportBlocks.BAMBOO_SIGN, ModBackportBlocks.BAMBOO_WALL_SIGN), ModItemGroup.SHUCKLE_BACKPORT);
 
-    public static final Item PALE_OAK_SIGN = registerItem("pale_oak_sign",
+    public static final Item PALE_OAK_SIGN = registerItemInGroup("pale_oak_sign",
             new SignItem(new FabricItemSettings().maxCount(16),
-                    ModBackportBlocks.PALE_OAK_SIGN, ModBackportBlocks.PALE_OAK_WALL_SIGN));
+                    ModBackportBlocks.PALE_OAK_SIGN, ModBackportBlocks.PALE_OAK_WALL_SIGN), ModItemGroup.SHUCKLE_BACKPORT);
 
-    public static final Item EBONY_SIGN = registerItem("ebony_sign",
-            new SignItem(new FabricItemSettings().maxCount(16),
-                    ModBlocks.EBONY_SIGN, ModBlocks.EBONY_WALL_SIGN));
+    public static final Item COPPER_TORCH = registerItemInGroup("copper_torch",
+            new VerticallyAttachableBlockItem(ModBackportBlocks.COPPER_TORCH, ModBackportBlocks.COPPER_WALL_TORCH,
+                    new FabricItemSettings(), Direction.DOWN), ModItemGroup.SHUCKLE_BACKPORT);
 
-    public static final Item INVIS_SIGN = registerItem("invisible_sign",
+    public static final Item EBONY_SIGN = registerItemInGroup("ebony_sign",
             new SignItem(new FabricItemSettings().maxCount(16),
-                    ModBlocks.INVIS_SIGN, ModBlocks.INVIS_WALL_SIGN));
+                    ModBlocks.EBONY_SIGN, ModBlocks.EBONY_WALL_SIGN), ModItemGroup.SHUCKLE);
+
+    public static final Item INVIS_SIGN = registerItemInGroup("invisible_sign",
+            new SignItem(new FabricItemSettings().maxCount(16),
+                    ModBlocks.INVIS_SIGN, ModBlocks.INVIS_WALL_SIGN), ModItemGroup.SHUCKLE);
 
     public static final Item INVIS_ITEM_FRAME = registerItemInGroup("invisible_item_frame",
             new InvisItemFrameItem(ModEntities.INVIS_ITEM_FRAME,
@@ -49,6 +54,9 @@ public class ModItems {
             new GlintItem(new FabricItemSettings().rarity(Rarity.EPIC)), ModItemGroup.SHUCKLE);
 
     public static final Item RESIN_BRICK = registerItemInGroup("resin_brick",
+            new Item(new FabricItemSettings()), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Item COPPER_NUGGET = registerItemInGroup("copper_nugget",
             new Item(new FabricItemSettings()), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Item BLACK_ICE_SHARD = registerItem("black_ice_shard",

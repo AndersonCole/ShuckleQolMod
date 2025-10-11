@@ -1,15 +1,26 @@
 package ca.shuckle.datagen;
 
+import ca.shuckle.ShuckleQOL;
 import ca.shuckle.block.ModBackportBlocks;
 import ca.shuckle.block.ModBlocks;
+import ca.shuckle.block.custom.copper.BulbBlock;
+import ca.shuckle.block.custom.copper.CopperDoorBlock;
 import ca.shuckle.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
+import net.minecraft.block.LanternBlock;
+import net.minecraft.block.enums.DoorHinge;
+import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.data.client.*;
+import net.minecraft.registry.Registries;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Direction;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nullable;
+import java.util.Optional;
+import java.util.function.Consumer;
 
 public class ModModelProvider extends FabricModelProvider {
     //https://wiki.fabricmc.net/tutorial:datagen_model if i ever need to do more custom stuff
@@ -86,6 +97,21 @@ public class ModModelProvider extends FabricModelProvider {
         resinBrickPool.wall(ModBackportBlocks.RESIN_BRICK_WALL);
         blockStateModelGenerator.registerSimpleCubeAll(ModBackportBlocks.CHISELED_RESIN_BRICKS);
         //endregion
+        //region Copper
+        createCopperModelSet("chiseled_copper",
+                blockStateModelGenerator::registerSimpleCubeAll, blockStateModelGenerator);
+        createCopperModelSet("copper_grate",
+                blockStateModelGenerator::registerSimpleCubeAll, blockStateModelGenerator);
+        createCopperModelSet("copper_bulb",
+                registerBulbBlock(blockStateModelGenerator), blockStateModelGenerator);
+        createCopperModelSet("copper_door",
+                blockStateModelGenerator::registerDoor, blockStateModelGenerator);
+        createCopperModelSet("copper_trapdoor",
+                blockStateModelGenerator::registerTrapdoor, blockStateModelGenerator);
+        blockStateModelGenerator.registerTorch(ModBackportBlocks.COPPER_TORCH, ModBackportBlocks.COPPER_WALL_TORCH);
+        createCopperModelSet("copper_lantern",
+                blockStateModelGenerator::registerLantern, blockStateModelGenerator);
+        //endregion
         blockStateModelGenerator.registerFlowerbed(ModBackportBlocks.PINK_PETALS);
         blockStateModelGenerator.registerFlowerbed(ModBackportBlocks.WILDFLOWERS);
         //endregion
@@ -139,6 +165,13 @@ public class ModModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator){
         itemModelGenerator.register(ModItems.RESIN_BRICK, Models.GENERATED);
+
+        itemModelGenerator.register(ModItems.COPPER_NUGGET, Models.GENERATED);
+
+        registerWaxedCopperItems("copper_bulb", itemModelGenerator);
+        registerWaxedCopperItems("copper_door", itemModelGenerator);
+        registerWaxedCopperItems("copper_trapdoor", itemModelGenerator);
+        registerWaxedCopperItems("copper_lantern", itemModelGenerator);
 
         itemModelGenerator.register(ModItems.INVIS_CATALYST, Models.GENERATED);
         itemModelGenerator.register(ModItems.INVIS_ITEM_FRAME, Models.GENERATED);
@@ -239,5 +272,139 @@ public class ModModelProvider extends FabricModelProvider {
                 .put(TextureKey.SIDE, sideTextureId)
                 .put(TextureKey.TOP, topTextureId)
                 .put(TextureKey.BOTTOM, bottomTextureId);
+    }
+
+    private void createCopperModelSet(String baseBlockId,
+                                      Consumer<Block> register, BlockStateModelGenerator blockStateModelGenerator){
+        String[] OXIDATION_STAGES = {
+                "", "exposed_", "weathered_", "oxidized_"
+        };
+
+        for (String oxidation : OXIDATION_STAGES) {
+            register.accept(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, oxidation + baseBlockId)));
+
+            if (baseBlockId.endsWith("bulb")) {
+                registerWaxedBulbBlock(oxidation + baseBlockId, blockStateModelGenerator);
+            } else if (baseBlockId.endsWith("_door")) {
+                registerWaxedDoorBlock(oxidation + baseBlockId, blockStateModelGenerator);
+            } else if (baseBlockId.endsWith("trapdoor")) {
+                registerWaxedTrapdoorBlock(oxidation + baseBlockId, blockStateModelGenerator);
+            } else if (baseBlockId.endsWith("lantern")) {
+                registerWaxedLanternBlock(oxidation + baseBlockId, blockStateModelGenerator);
+            } else {
+                blockStateModelGenerator.registerParented(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, oxidation + baseBlockId)),
+                        Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_" + oxidation + baseBlockId)));
+            }
+        }
+    }
+
+    private Consumer<Block> registerBulbBlock(BlockStateModelGenerator gen) {
+        return block -> {
+            String baseBlockId = Registries.BLOCK.getId(block).getPath();
+
+            Identifier offModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId);
+            Identifier poweredModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_powered");
+            Identifier litModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_lit");
+            Identifier litPoweredModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_lit_powered");
+
+            Identifier offTexture = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId);
+            Identifier poweredTexture = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_powered");
+            Identifier litTexture = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_lit");
+            Identifier litPoweredTexture = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_lit_powered");
+
+            TexturedModel.getCubeAll(offTexture).getModel()
+                    .upload(offModel, TextureMap.all(offTexture), gen.modelCollector);
+            TexturedModel.getCubeAll(poweredTexture).getModel()
+                    .upload(poweredModel, TextureMap.all(poweredTexture), gen.modelCollector);
+            TexturedModel.getCubeAll(litTexture).getModel()
+                    .upload(litModel, TextureMap.all(litTexture), gen.modelCollector);
+            TexturedModel.getCubeAll(litPoweredTexture).getModel()
+                    .upload(litPoweredModel, TextureMap.all(litPoweredTexture), gen.modelCollector);
+
+            gen.blockStateCollector.accept(
+                    VariantsBlockStateSupplier.create(block)
+                            .coordinate(BlockStateVariantMap.create(
+                                            BulbBlock.LIT,
+                                            BulbBlock.POWERED)
+                                    .register(false, false, BlockStateVariant.create().put(VariantSettings.MODEL, offModel))
+                                    .register(false, true,  BlockStateVariant.create().put(VariantSettings.MODEL, poweredModel))
+                                    .register(true, false,  BlockStateVariant.create().put(VariantSettings.MODEL, litModel))
+                                    .register(true, true,   BlockStateVariant.create().put(VariantSettings.MODEL, litPoweredModel))
+                            )
+            );
+        };
+    }
+
+    private void registerWaxedBulbBlock(String baseBlockId, BlockStateModelGenerator gen) {
+        Identifier offModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId);
+        Identifier poweredModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_powered");
+        Identifier litModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_lit");
+        Identifier litPoweredModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_lit_powered");
+
+        gen.blockStateCollector.accept(
+                VariantsBlockStateSupplier.create(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_" + baseBlockId)))
+                        .coordinate(BlockStateVariantMap.create(
+                                        BulbBlock.LIT,
+                                        BulbBlock.POWERED)
+                                .register(false, false, BlockStateVariant.create().put(VariantSettings.MODEL, offModel))
+                                .register(false, true,  BlockStateVariant.create().put(VariantSettings.MODEL, poweredModel))
+                                .register(true, false,  BlockStateVariant.create().put(VariantSettings.MODEL, litModel))
+                                .register(true, true,   BlockStateVariant.create().put(VariantSettings.MODEL, litPoweredModel))
+                        )
+        );
+    }
+
+    private void registerWaxedDoorBlock(String baseBlockId, BlockStateModelGenerator gen) {
+        Identifier bottomLeftHingeClosedModelId = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_bottom_left");
+        Identifier bottomLeftHingeOpenModelId = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_bottom_left_open");
+        Identifier bottomRightHingeClosedModelId = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_bottom_right");
+        Identifier bottomRightHingeOpenModelId = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_bottom_right_open");
+        Identifier topLeftHingeClosedModelId = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_top_left");
+        Identifier topLeftHingeOpenModelId = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_top_left_open");
+        Identifier topRightHingeClosedModelId = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_top_right");
+        Identifier topRightHingeOpenModelId = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_top_right_open");
+
+        gen.blockStateCollector.accept(
+                BlockStateModelGenerator.createDoorBlockState(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_" + baseBlockId)),
+                bottomLeftHingeClosedModelId, bottomLeftHingeOpenModelId,
+                bottomRightHingeClosedModelId, bottomRightHingeOpenModelId,
+                topLeftHingeClosedModelId, topLeftHingeOpenModelId,
+                topRightHingeClosedModelId, topRightHingeOpenModelId));
+    }
+
+    private void registerWaxedTrapdoorBlock(String baseBlockId, BlockStateModelGenerator gen) {
+        Identifier topTrapdoorId = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_top");
+        Identifier bottomTrapdoorId = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_bottom");
+        Identifier openTrapdoorId = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_open");
+
+        gen.blockStateCollector.accept(
+                BlockStateModelGenerator.createTrapdoorBlockState(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_" + baseBlockId)),
+                        topTrapdoorId, bottomTrapdoorId, openTrapdoorId));
+    }
+
+    private void registerWaxedLanternBlock(String baseBlockId, BlockStateModelGenerator gen) {
+        Identifier normalModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId);
+        Identifier hangingModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_hanging");
+
+        gen.blockStateCollector.accept(
+                VariantsBlockStateSupplier.create(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_" + baseBlockId)))
+                        .coordinate(BlockStateVariantMap.create(
+                                        LanternBlock.HANGING)
+                                .register(false, BlockStateVariant.create().put(VariantSettings.MODEL, normalModel))
+                                .register(true, BlockStateVariant.create().put(VariantSettings.MODEL, hangingModel))
+                        )
+        );
+    }
+
+    private void registerWaxedCopperItems(String baseBlockId, ItemModelGenerator gen) {
+        String[] OXIDATION_STAGES = {
+                "", "exposed_", "weathered_", "oxidized_"
+        };
+
+        for (String oxidation : OXIDATION_STAGES) {
+            gen.register(Registries.ITEM.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_" + oxidation + baseBlockId)),
+                    new Model(Optional.of(new Identifier(ShuckleQOL.MOD_ID, "item/" + oxidation + baseBlockId)), Optional.empty()));
+
+        }
     }
 }

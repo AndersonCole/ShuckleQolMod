@@ -3,8 +3,10 @@ package ca.shuckle;
 import ca.shuckle.block.ModBlocks;
 import ca.shuckle.item.ModItemGroup;
 import ca.shuckle.item.ModItems;
+import ca.shuckle.particle.ModParticles;
 import ca.shuckle.util.ModPointsOfInterest;
 import ca.shuckle.util.ModRegistries;
+import ca.shuckle.util.ModSounds;
 import ca.shuckle.world.gen.ModWorldGen;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
@@ -23,11 +25,13 @@ public class ShuckleQOL implements ModInitializer {
 		ModBlocks.registerModBlocks();
 
 		ModRegistries.registerModStuff();
+		ModSounds.registerSounds();
 
 		ModWorldGen.generateModWorldGen();
 
 		//ModEnchantments.registerModEnchantments();
 
 		ModPointsOfInterest.registerModPOIs();
+		ModParticles.registerParticles();
 	}
 }

@@ -68,12 +68,12 @@ public class ModBlocks {
 
     public static final Block EBONY_SIGN = registerBlockWithoutBlockItem("ebony_sign",
             new TerraformSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/ebony"),
-                    FabricBlockSettings.copy(Blocks.OAK_SIGN)), ModItemGroup.SHUCKLE_BACKPORT);
+                    FabricBlockSettings.copy(Blocks.OAK_SIGN)));
 
     public static final Block EBONY_WALL_SIGN = registerBlockWithoutBlockItem("ebony_wall_sign",
             new TerraformWallSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/ebony"),
                     FabricBlockSettings.copy(Blocks.OAK_WALL_SIGN)
-                            .dropsLike(EBONY_SIGN)), ModItemGroup.SHUCKLE_BACKPORT);
+                            .dropsLike(EBONY_SIGN)));
 
     public static final Block WILDFLOWERS_RED_BLUE = registerBlock("wildflowers_red_blue",
             new FlowerbedBlock(FabricBlockSettings.of(Material.PLANT, MapColor.DARK_GREEN)
@@ -100,7 +100,7 @@ public class ModBlocks {
                     FabricBlockSettings.of(Material.WOOD, MapColor.CLEAR)
                             .noCollision()
                             .strength(1.0f)
-                            .sounds(BlockSoundGroup.WOOD)), ModItemGroup.SHUCKLE_BACKPORT);
+                            .sounds(BlockSoundGroup.WOOD)));
 
     public static final Block INVIS_WALL_SIGN = registerBlockWithoutBlockItem("invisible_wall_sign",
             new TerraformWallSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/invisible"),
@@ -108,7 +108,7 @@ public class ModBlocks {
                             .noCollision()
                             .strength(1.0f)
                             .sounds(BlockSoundGroup.WOOD)
-                            .dropsLike(INVIS_SIGN)), ModItemGroup.SHUCKLE_BACKPORT);
+                            .dropsLike(INVIS_SIGN)));
 
     public static final Block SHUCKLE_MYSTERY_BLOCK = registerBlock("shuckle_mystery_block",
             new Block(FabricBlockSettings.of(Material.SCULK, MapColor.BLACK)
@@ -128,7 +128,7 @@ public class ModBlocks {
                     .sounds(BlockSoundGroup.SCULK_SENSOR).noCollision().nonOpaque()), ModItemGroup.SHUCKLE);
 
 
-    public static Block registerBlockWithoutBlockItem(String name, Block block, ItemGroup group){
+    public static Block registerBlockWithoutBlockItem(String name, Block block){
         return Registry.register(Registries.BLOCK, new Identifier(ShuckleQOL.MOD_ID, name), block);
     }
 

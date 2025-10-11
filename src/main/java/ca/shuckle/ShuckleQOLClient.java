@@ -4,13 +4,17 @@ import ca.shuckle.block.ModBackportBlocks;
 import ca.shuckle.block.ModBlocks;
 import ca.shuckle.entity.ModEntities;
 import ca.shuckle.entity.client.InvisibleItemFrameRenderer;
+import ca.shuckle.particle.ModParticles;
+import ca.shuckle.particle.custom.CopperFireFlame;
 import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.util.SpriteIdentifier;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 
 public class ShuckleQOLClient implements ClientModInitializer {
@@ -41,6 +45,14 @@ public class ShuckleQOLClient implements ClientModInitializer {
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.RESIN_CLUMP, RenderLayer.getCutout());
 
+        getCopperBlockCutouts("copper_grate");
+        getCopperBlockCutouts("copper_door");
+        getCopperBlockCutouts("copper_trapdoor");
+        getCopperBlockCutouts("copper_lantern");
+
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.COPPER_TORCH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.COPPER_WALL_TORCH, RenderLayer.getCutout());
+
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.INVIS_LIGHTNING_ROD, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.INVIS_CARPET, RenderLayer.getCutout());
 
@@ -61,5 +73,27 @@ public class ShuckleQOLClient implements ClientModInitializer {
                 new Identifier(ShuckleQOL.MOD_ID, "entity/signs/ebony")));
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
                 new Identifier(ShuckleQOL.MOD_ID, "entity/signs/invisible")));
+
+        ParticleFactoryRegistry.getInstance().register(ModParticles.COPPER_FIRE_FLAME_PARTICLE, CopperFireFlame.Factory::new);
+    }
+
+    private void getCopperBlockCutouts(String baseBlockId){
+        BlockRenderLayerMap.INSTANCE.putBlock(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, baseBlockId)),
+                RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "exposed_" + baseBlockId)),
+                RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "weathered_" + baseBlockId)),
+                RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "oxidized_" + baseBlockId)),
+                RenderLayer.getCutout());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_" + baseBlockId)),
+                RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_exposed_" + baseBlockId)),
+                RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_weathered_" + baseBlockId)),
+                RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_oxidized_" + baseBlockId)),
+                RenderLayer.getCutout());
     }
 }

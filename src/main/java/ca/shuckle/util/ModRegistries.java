@@ -5,11 +5,10 @@ import ca.shuckle.block.ModBackportBlocks;
 import ca.shuckle.block.ModBlocks;
 import com.google.common.collect.ImmutableSet;
 import net.fabricmc.fabric.api.object.builder.v1.world.poi.PointOfInterestHelper;
-import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
-import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
+import net.fabricmc.fabric.api.registry.*;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.poi.PointOfInterestType;
 
@@ -17,6 +16,7 @@ public class ModRegistries {
     public static void registerModStuff(){
         registerFuels();
         registerStrippables();
+        registerOxidizables();
         registerCompostables();
         registerFlammableBlock();
     }
@@ -85,6 +85,15 @@ public class ModRegistries {
         StrippableBlockRegistry.register(ModBackportBlocks.PALE_OAK_WOOD, ModBackportBlocks.STRIPPED_PALE_OAK_WOOD);
     }
 
+    private static void registerOxidizables(){
+        createOxidizableBlockPairings("chiseled_copper");
+        createOxidizableBlockPairings("copper_grate");
+        createOxidizableBlockPairings("copper_bulb");
+        createOxidizableBlockPairings("copper_door");
+        createOxidizableBlockPairings("copper_trapdoor");
+        createOxidizableBlockPairings("copper_lantern");
+    }
+
     private static void registerCompostables(){
         CompostingChanceRegistry registry = CompostingChanceRegistry.INSTANCE;
 
@@ -148,5 +157,24 @@ public class ModRegistries {
 
         instance.add(ModBackportBlocks.LEAF_LITTER, 30, 60);
         instance.add(ModBlocks.LEAF_LITTER_OAK, 30, 60);
+    }
+
+    public static void createOxidizableBlockPairings(String baseBlockId){
+        //oxidized blocks
+        OxidizableBlocksRegistry.registerOxidizableBlockPair(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, baseBlockId)),
+                Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "exposed_" + baseBlockId)));
+        OxidizableBlocksRegistry.registerOxidizableBlockPair(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "exposed_" + baseBlockId)),
+                Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "weathered_" + baseBlockId)));
+        OxidizableBlocksRegistry.registerOxidizableBlockPair(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "weathered_" + baseBlockId)),
+                Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "oxidized_" + baseBlockId)));
+        //waxed blocks
+        OxidizableBlocksRegistry.registerWaxableBlockPair(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, baseBlockId)),
+                Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_" + baseBlockId)));
+        OxidizableBlocksRegistry.registerWaxableBlockPair(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "exposed_" + baseBlockId)),
+                Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_exposed_" + baseBlockId)));
+        OxidizableBlocksRegistry.registerWaxableBlockPair(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "weathered_" + baseBlockId)),
+                Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_weathered_" + baseBlockId)));
+        OxidizableBlocksRegistry.registerWaxableBlockPair(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "oxidized_" + baseBlockId)),
+                Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_oxidized_" + baseBlockId)));
     }
 }

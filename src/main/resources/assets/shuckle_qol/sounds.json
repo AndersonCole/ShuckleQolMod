@@ -1,0 +1,355 @@
+{
+  "block.copper_bulb.break": {
+    "sounds": [
+      "shuckle_qol:copper_bulb/break1",
+      "shuckle_qol:copper_bulb/break2",
+      "shuckle_qol:copper_bulb/break3",
+      "shuckle_qol:copper_bulb/break4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.copper_bulb.fall": {
+    "sounds": [
+      "shuckle_qol:copper_bulb/step1",
+      "shuckle_qol:copper_bulb/step2",
+      "shuckle_qol:copper_bulb/step3",
+      "shuckle_qol:copper_bulb/step4",
+      "shuckle_qol:copper_bulb/step5",
+      "shuckle_qol:copper_bulb/step6"
+    ]
+  },
+  "block.copper_bulb.hit": {
+    "sounds": [
+      "shuckle_qol:copper_bulb/step1",
+      "shuckle_qol:copper_bulb/step2",
+      "shuckle_qol:copper_bulb/step3",
+      "shuckle_qol:copper_bulb/step4",
+      "shuckle_qol:copper_bulb/step5",
+      "shuckle_qol:copper_bulb/step6"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.copper_bulb.place": {
+    "sounds": [
+      "shuckle_qol:copper_bulb/place1",
+      "shuckle_qol:copper_bulb/place2",
+      "shuckle_qol:copper_bulb/place3",
+      "shuckle_qol:copper_bulb/place4"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.copper_bulb.step": {
+    "sounds": [
+      "shuckle_qol:copper_bulb/step1",
+      "shuckle_qol:copper_bulb/step2",
+      "shuckle_qol:copper_bulb/step3",
+      "shuckle_qol:copper_bulb/step4",
+      "shuckle_qol:copper_bulb/step5",
+      "shuckle_qol:copper_bulb/step6"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.copper_bulb.turn_off": {
+    "sounds": [
+      {
+        "attenuation_distance": 6,
+        "name": "shuckle_qol:copper_bulb/turn_off",
+        "pitch": 0.75
+      }
+    ],
+    "subtitle": "subtitles.block.copper_bulb.turn_off"
+  },
+  "block.copper_bulb.turn_on": {
+    "sounds": [
+      {
+        "attenuation_distance": 6,
+        "name": "shuckle_qol:copper_bulb/turn_on"
+      }
+    ],
+    "subtitle": "subtitles.block.copper_bulb.turn_on"
+  },
+  "block.copper_door.close": {
+    "sounds": [
+      "shuckle_qol:copper_door/toggle1",
+      "shuckle_qol:copper_door/toggle2",
+      "shuckle_qol:copper_door/toggle3"
+    ],
+    "subtitle": "subtitles.block.door.toggle"
+  },
+  "block.copper_door.open": {
+    "sounds": [
+      "shuckle_qol:copper_door/toggle1",
+      "shuckle_qol:copper_door/toggle2",
+      {
+        "name": "shuckle_qol:copper_door/toggle2",
+        "pitch": 1.1
+      },
+      "shuckle_qol:copper_door/toggle3",
+      {
+        "name": "shuckle_qol:copper_door/toggle3",
+        "pitch": 1.1
+      }
+    ],
+    "subtitle": "subtitles.block.door.toggle"
+  },
+  "block.copper_trapdoor.close": {
+    "sounds": [
+      "shuckle_qol:copper_trapdoor/toggle1",
+      "shuckle_qol:copper_trapdoor/toggle2",
+      "shuckle_qol:copper_trapdoor/toggle3",
+      "shuckle_qol:copper_trapdoor/toggle4"
+    ],
+    "subtitle": "subtitles.block.copper_trapdoor.close"
+  },
+  "block.copper_trapdoor.open": {
+    "sounds": [
+      "shuckle_qol:copper_trapdoor/toggle1",
+      "shuckle_qol:copper_trapdoor/toggle2",
+      "shuckle_qol:copper_trapdoor/toggle3",
+      "shuckle_qol:copper_trapdoor/toggle4"
+    ],
+    "subtitle": "subtitles.block.copper_trapdoor.open"
+  },
+  "block.copper_grate.break": {
+    "sounds": [
+      "shuckle_qol:copper_grate/break1",
+      "shuckle_qol:copper_grate/break2",
+      "shuckle_qol:copper_grate/break3",
+      "shuckle_qol:copper_grate/break4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.copper_grate.fall": {
+    "sounds": [
+      "shuckle_qol:copper_grate/step1",
+      "shuckle_qol:copper_grate/step2",
+      "shuckle_qol:copper_grate/step3",
+      "shuckle_qol:copper_grate/step4",
+      "shuckle_qol:copper_grate/step5",
+      "shuckle_qol:copper_grate/step6"
+    ]
+  },
+  "block.copper_grate.hit": {
+    "sounds": [
+      "shuckle_qol:copper_grate/step1",
+      "shuckle_qol:copper_grate/step2",
+      "shuckle_qol:copper_grate/step3",
+      "shuckle_qol:copper_grate/step4",
+      "shuckle_qol:copper_grate/step5",
+      "shuckle_qol:copper_grate/step6"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.copper_grate.place": {
+    "sounds": [
+      "shuckle_qol:copper_grate/break1",
+      {
+        "name": "shuckle_qol:copper_grate/break1",
+        "pitch": 0.95
+      },
+      "shuckle_qol:copper_grate/break2",
+      "shuckle_qol:copper_grate/break3",
+      "shuckle_qol:copper_grate/break4"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.copper_grate.step": {
+    "sounds": [
+      "shuckle_qol:copper_grate/step1",
+      "shuckle_qol:copper_grate/step2",
+      "shuckle_qol:copper_grate/step3",
+      "shuckle_qol:copper_grate/step4",
+      "shuckle_qol:copper_grate/step5",
+      "shuckle_qol:copper_grate/step6"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.tuff_bricks.break": {
+    "sounds": [
+      "shuckle_qol:tuff_bricks/place1",
+      "shuckle_qol:tuff_bricks/place2",
+      "shuckle_qol:tuff_bricks/place3",
+      "shuckle_qol:tuff_bricks/place4",
+      "shuckle_qol:tuff_bricks/place5"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.tuff_bricks.fall": {
+    "sounds": [
+      "shuckle_qol:tuff_bricks/step1",
+      "shuckle_qol:tuff_bricks/step2",
+      "shuckle_qol:tuff_bricks/step3",
+      "shuckle_qol:tuff_bricks/step4",
+      "shuckle_qol:tuff_bricks/step5",
+      "shuckle_qol:tuff_bricks/step6"
+    ]
+  },
+  "block.tuff_bricks.hit": {
+    "sounds": [
+      "shuckle_qol:tuff_bricks/step1",
+      "shuckle_qol:tuff_bricks/step2",
+      "shuckle_qol:tuff_bricks/step3",
+      "shuckle_qol:tuff_bricks/step4",
+      "shuckle_qol:tuff_bricks/step5",
+      "shuckle_qol:tuff_bricks/step6"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.tuff_bricks.place": {
+    "sounds": [
+      "shuckle_qol:tuff_bricks/place1",
+      "shuckle_qol:tuff_bricks/place2",
+      "shuckle_qol:tuff_bricks/place3",
+      "shuckle_qol:tuff_bricks/place4",
+      "shuckle_qol:tuff_bricks/place5"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.tuff_bricks.step": {
+    "sounds": [
+      "shuckle_qol:tuff_bricks/step1",
+      "shuckle_qol:tuff_bricks/step2",
+      "shuckle_qol:tuff_bricks/step3",
+      "shuckle_qol:tuff_bricks/step4",
+      "shuckle_qol:tuff_bricks/step5",
+      "shuckle_qol:tuff_bricks/step6"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "block.polished_tuff.break": {
+    "sounds": [
+      {
+        "name": "block/tuff/break1",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/break2",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/break3",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/break4",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/break5",
+        "pitch": 1.2
+      }
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.polished_tuff.fall": {
+    "sounds": [
+      {
+        "name": "block/tuff/step1",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/step2",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/step3",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/step4",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/step5",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/step6",
+        "pitch": 1.2
+      }
+    ]
+  },
+  "block.polished_tuff.hit": {
+    "sounds": [
+      {
+        "name": "block/tuff/step1",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/step2",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/step3",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/step4",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/step5",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/step6",
+        "pitch": 1.2
+      }
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.polished_tuff.place": {
+    "sounds": [
+      {
+        "name": "block/tuff/break1",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/break2",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/break3",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/break4",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/break5",
+        "pitch": 1.2
+      }
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.polished_tuff.step": {
+    "sounds": [
+      {
+        "name": "block/tuff/step1",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/step2",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/step3",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/step4",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/step5",
+        "pitch": 1.2
+      },
+      {
+        "name": "block/tuff/step6",
+        "pitch": 1.2
+      }
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  }
+}
