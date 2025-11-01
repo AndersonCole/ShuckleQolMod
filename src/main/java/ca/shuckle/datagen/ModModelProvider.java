@@ -9,16 +9,19 @@ import ca.shuckle.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.LanternBlock;
 import net.minecraft.block.enums.DoorHinge;
 import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.data.client.*;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
+import javax.swing.text.html.Option;
 import java.util.Optional;
 import java.util.function.Consumer;
 
@@ -108,6 +111,12 @@ public class ModModelProvider extends FabricModelProvider {
                 blockStateModelGenerator::registerDoor, blockStateModelGenerator);
         createCopperModelSet("copper_trapdoor",
                 blockStateModelGenerator::registerTrapdoor, blockStateModelGenerator);
+        createCopperModelSet("copper_bars",
+                registerBarsBlock(blockStateModelGenerator), blockStateModelGenerator);
+        createCopperModelSet("copper_chain",
+                registerChainBlock(blockStateModelGenerator), blockStateModelGenerator);
+        createCopperModelSet("lightning_rod",
+                registerLightningRodBlock(blockStateModelGenerator), blockStateModelGenerator);
         blockStateModelGenerator.registerTorch(ModBackportBlocks.COPPER_TORCH, ModBackportBlocks.COPPER_WALL_TORCH);
         createCopperModelSet("copper_lantern",
                 blockStateModelGenerator::registerLantern, blockStateModelGenerator);
@@ -171,6 +180,9 @@ public class ModModelProvider extends FabricModelProvider {
         registerWaxedCopperItems("copper_bulb", itemModelGenerator);
         registerWaxedCopperItems("copper_door", itemModelGenerator);
         registerWaxedCopperItems("copper_trapdoor", itemModelGenerator);
+        registerAllCopperItems("copper_bars", itemModelGenerator);
+        registerAllCopperItems("copper_chain", itemModelGenerator);
+        registerWaxedCopperItems("lightning_rod", itemModelGenerator);
         registerWaxedCopperItems("copper_lantern", itemModelGenerator);
 
         itemModelGenerator.register(ModItems.INVIS_CATALYST, Models.GENERATED);
@@ -275,7 +287,8 @@ public class ModModelProvider extends FabricModelProvider {
     }
 
     private void createCopperModelSet(String baseBlockId,
-                                      Consumer<Block> register, BlockStateModelGenerator blockStateModelGenerator){
+                                      Consumer<Block> register,
+                                      BlockStateModelGenerator blockStateModelGenerator){
         String[] OXIDATION_STAGES = {
                 "", "exposed_", "weathered_", "oxidized_"
         };
@@ -289,8 +302,16 @@ public class ModModelProvider extends FabricModelProvider {
                 registerWaxedDoorBlock(oxidation + baseBlockId, blockStateModelGenerator);
             } else if (baseBlockId.endsWith("trapdoor")) {
                 registerWaxedTrapdoorBlock(oxidation + baseBlockId, blockStateModelGenerator);
+            } else if (baseBlockId.endsWith("bars")) {
+                registerWaxedBarsBlock(oxidation + baseBlockId, blockStateModelGenerator);
+            } else if (baseBlockId.endsWith("chain")) {
+                registerWaxedChainBlock(oxidation + baseBlockId, blockStateModelGenerator);
             } else if (baseBlockId.endsWith("lantern")) {
                 registerWaxedLanternBlock(oxidation + baseBlockId, blockStateModelGenerator);
+            } else if (baseBlockId.endsWith("rod")) {
+                if (!oxidation.equals("")){
+                    registerWaxedLightningRodBlock(oxidation + baseBlockId, blockStateModelGenerator);
+                }
             } else {
                 blockStateModelGenerator.registerParented(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, oxidation + baseBlockId)),
                         Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_" + oxidation + baseBlockId)));
@@ -332,6 +353,179 @@ public class ModModelProvider extends FabricModelProvider {
                                     .register(true, true,   BlockStateVariant.create().put(VariantSettings.MODEL, litPoweredModel))
                             )
             );
+        };
+    }
+
+    private Consumer<Block> registerBarsBlock(BlockStateModelGenerator gen) {
+        return block -> {
+            String[] barFiles = {
+                    "_post",
+                    "_post_ends",
+                    "_cap",
+                    "_cap_alt",
+                    "_side",
+                    "_side_alt"
+            };
+
+            String baseBlockId = Registries.BLOCK.getId(block).getPath();
+
+            Identifier postModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_post");
+            Identifier postEndModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_post_ends");
+            Identifier capModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_cap");
+            Identifier capAltModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_cap_alt");
+            Identifier sideModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_side");
+            Identifier sideAltModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_side_alt");
+
+            gen.blockStateCollector.accept(
+                    MultipartBlockStateSupplier.create(block)
+                        .with(BlockStateVariant.create().put(VariantSettings.MODEL, postEndModel))
+                        .with(When.create()
+                                        .set(Properties.NORTH, false)
+                                        .set(Properties.EAST, false)
+                                        .set(Properties.SOUTH, false)
+                                        .set(Properties.WEST, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, postModel))
+                        .with(When.create().set(Properties.NORTH, true)
+                                        .set(Properties.SOUTH, false)
+                                        .set(Properties.EAST, false)
+                                        .set(Properties.WEST, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, capModel))
+                        .with(When.create().set(Properties.EAST, true)
+                                        .set(Properties.NORTH, false)
+                                        .set(Properties.SOUTH, false)
+                                        .set(Properties.WEST, false),
+                                BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, capModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create().set(Properties.SOUTH, true)
+                                        .set(Properties.NORTH, false)
+                                        .set(Properties.EAST, false)
+                                        .set(Properties.WEST, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, capAltModel))
+                        .with(When.create().set(Properties.WEST, true)
+                                        .set(Properties.NORTH, false)
+                                        .set(Properties.EAST, false)
+                                        .set(Properties.SOUTH, false),
+                                BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, capAltModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create().set(Properties.NORTH, true),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, sideModel))
+                        .with(When.create().set(Properties.EAST, true),
+                                BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, sideModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create().set(Properties.SOUTH, true),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, sideAltModel))
+                        .with(When.create().set(Properties.WEST, true),
+                                BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, sideAltModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90)));
+
+            for (String barFile : barFiles){
+                new Model(
+                        Optional.of(new Identifier(ShuckleQOL.MOD_ID, "block/template_bars" + barFile)),
+                        Optional.empty(),
+                        TextureKey.TEXTURE
+                ).upload(
+                        new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + barFile),
+                        TextureMap.texture(new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId)),
+                        gen.modelCollector
+                );
+            }
+        };
+    }
+
+    private Consumer<Block> registerChainBlock(BlockStateModelGenerator gen){
+        return block -> {
+            String baseBlockId = Registries.BLOCK.getId(block).getPath();
+
+            Identifier textureId = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId);
+
+            gen.registerAxisRotated(block, textureId);
+
+            new Model(
+                    Optional.of(new Identifier(ShuckleQOL.MOD_ID, "block/template_chain")),
+                    Optional.empty(),
+                    TextureKey.TEXTURE
+            ).upload(
+                    textureId,
+                    TextureMap.texture(textureId),
+                    gen.modelCollector
+            );
+        };
+    }
+
+    private Consumer<Block> registerLightningRodBlock(BlockStateModelGenerator gen) {
+        return block -> {
+            String baseBlockId = Registries.BLOCK.getId(block).getPath();
+
+            Identifier offModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId);
+            Identifier onModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_on");
+
+            gen.blockStateCollector.accept(
+                    VariantsBlockStateSupplier.create(block)
+                            .coordinate(BlockStateVariantMap.create(Properties.FACING, Properties.POWERED)
+                                    .register(Direction.UP, false, BlockStateVariant.create().put(VariantSettings.MODEL, offModel))
+                                    .register(Direction.UP, true,  BlockStateVariant.create().put(VariantSettings.MODEL, onModel))
+
+                                    .register(Direction.DOWN, false, BlockStateVariant.create()
+                                            .put(VariantSettings.MODEL, offModel)
+                                            .put(VariantSettings.X, VariantSettings.Rotation.R180))
+                                    .register(Direction.DOWN, true, BlockStateVariant.create()
+                                            .put(VariantSettings.MODEL, onModel)
+                                            .put(VariantSettings.X, VariantSettings.Rotation.R180))
+                                    .register(Direction.NORTH, false, BlockStateVariant.create()
+                                            .put(VariantSettings.MODEL, offModel)
+                                            .put(VariantSettings.X, VariantSettings.Rotation.R90))
+                                    .register(Direction.NORTH, true, BlockStateVariant.create()
+                                            .put(VariantSettings.MODEL, onModel)
+                                            .put(VariantSettings.X, VariantSettings.Rotation.R90))
+                                    .register(Direction.SOUTH, false, BlockStateVariant.create()
+                                            .put(VariantSettings.MODEL, offModel)
+                                            .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                            .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                                    .register(Direction.SOUTH, true, BlockStateVariant.create()
+                                            .put(VariantSettings.MODEL, onModel)
+                                            .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                            .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                                    .register(Direction.EAST, false, BlockStateVariant.create()
+                                            .put(VariantSettings.MODEL, offModel)
+                                            .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                            .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                                    .register(Direction.EAST, true, BlockStateVariant.create()
+                                            .put(VariantSettings.MODEL, onModel)
+                                            .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                            .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                                    .register(Direction.WEST, false, BlockStateVariant.create()
+                                            .put(VariantSettings.MODEL, offModel)
+                                            .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                            .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+                                    .register(Direction.WEST, true, BlockStateVariant.create()
+                                            .put(VariantSettings.MODEL, onModel)
+                                            .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                            .put(VariantSettings.Y, VariantSettings.Rotation.R270))));
+
+            new Model(
+                    Optional.of(new Identifier(ShuckleQOL.MOD_ID, "block/template_lightning_rod")),
+                    Optional.empty(),
+                    TextureKey.TEXTURE
+            ).upload(
+                    offModel,
+                    TextureMap.texture(offModel),
+                    gen.modelCollector
+            );
+
+            new Model(
+                    Optional.of(new Identifier(ShuckleQOL.MOD_ID, "block/template_lightning_rod_on")),
+                    Optional.empty(),
+                    TextureKey.TEXTURE
+            ).upload(
+                    onModel,
+                    TextureMap.texture(new Identifier("minecraft", "block/lightning_rod_on")),
+                    gen.modelCollector
+            );
+            gen.registerParentedItemModel(block, offModel);
         };
     }
 
@@ -382,6 +576,117 @@ public class ModModelProvider extends FabricModelProvider {
                         topTrapdoorId, bottomTrapdoorId, openTrapdoorId));
     }
 
+    private void registerWaxedChainBlock(String baseBlockId, BlockStateModelGenerator gen) {
+        Block block = Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_" + baseBlockId));
+
+        Identifier textureId = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId);
+
+        gen.registerAxisRotated(block, textureId);
+    }
+
+    private void registerWaxedBarsBlock(String baseBlockId, BlockStateModelGenerator gen) {
+        Identifier postModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_post");
+        Identifier postEndModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_post_ends");
+        Identifier capModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_cap");
+        Identifier capAltModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_cap_alt");
+        Identifier sideModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_side");
+        Identifier sideAltModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_side_alt");
+
+        gen.blockStateCollector.accept(
+                MultipartBlockStateSupplier.create(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_" + baseBlockId)))
+                        .with(BlockStateVariant.create().put(VariantSettings.MODEL, postEndModel))
+                        .with(When.create()
+                                        .set(Properties.NORTH, false)
+                                        .set(Properties.EAST, false)
+                                        .set(Properties.SOUTH, false)
+                                        .set(Properties.WEST, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, postModel))
+                        .with(When.create().set(Properties.NORTH, true)
+                                        .set(Properties.SOUTH, false)
+                                        .set(Properties.EAST, false)
+                                        .set(Properties.WEST, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, capModel))
+                        .with(When.create().set(Properties.EAST, true)
+                                        .set(Properties.NORTH, false)
+                                        .set(Properties.SOUTH, false)
+                                        .set(Properties.WEST, false),
+                                BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, capModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create().set(Properties.SOUTH, true)
+                                        .set(Properties.NORTH, false)
+                                        .set(Properties.EAST, false)
+                                        .set(Properties.WEST, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, capAltModel))
+                        .with(When.create().set(Properties.WEST, true)
+                                        .set(Properties.NORTH, false)
+                                        .set(Properties.EAST, false)
+                                        .set(Properties.SOUTH, false),
+                                BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, capAltModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create().set(Properties.NORTH, true),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, sideModel))
+                        .with(When.create().set(Properties.EAST, true),
+                                BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, sideModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create().set(Properties.SOUTH, true),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, sideAltModel))
+                        .with(When.create().set(Properties.WEST, true),
+                                BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, sideAltModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90)));
+    }
+
+    private void registerWaxedLightningRodBlock(String baseBlockId, BlockStateModelGenerator gen) {
+        Identifier offModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId);
+        Identifier onModel = new Identifier("minecraft", "block/lightning_rod_on");
+
+        gen.blockStateCollector.accept(
+                VariantsBlockStateSupplier.create(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_" + baseBlockId)))
+                        .coordinate(BlockStateVariantMap.create(Properties.FACING, Properties.POWERED)
+                                .register(Direction.UP, false, BlockStateVariant.create().put(VariantSettings.MODEL, offModel))
+                                .register(Direction.UP, true,  BlockStateVariant.create().put(VariantSettings.MODEL, onModel))
+
+                                .register(Direction.DOWN, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, offModel)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R180))
+                                .register(Direction.DOWN, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, onModel)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R180))
+                                .register(Direction.NORTH, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, offModel)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90))
+                                .register(Direction.NORTH, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, onModel)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90))
+                                .register(Direction.SOUTH, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, offModel)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                                .register(Direction.SOUTH, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, onModel)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                                .register(Direction.EAST, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, offModel)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                                .register(Direction.EAST, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, onModel)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                                .register(Direction.WEST, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, offModel)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+                                .register(Direction.WEST, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, onModel)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))));
+    }
+
     private void registerWaxedLanternBlock(String baseBlockId, BlockStateModelGenerator gen) {
         Identifier normalModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId);
         Identifier hangingModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_hanging");
@@ -396,15 +701,30 @@ public class ModModelProvider extends FabricModelProvider {
         );
     }
 
-    private void registerWaxedCopperItems(String baseBlockId, ItemModelGenerator gen) {
+    private <T> void registerAllCopperItems(String baseBlockId, ItemModelGenerator gen) {
         String[] OXIDATION_STAGES = {
-                "", "exposed_", "weathered_", "oxidized_"
+            "", "exposed_", "weathered_", "oxidized_"
         };
 
         for (String oxidation : OXIDATION_STAGES) {
+            gen.register(Registries.ITEM.get(new Identifier(ShuckleQOL.MOD_ID, oxidation + baseBlockId)), Models.GENERATED);
             gen.register(Registries.ITEM.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_" + oxidation + baseBlockId)),
-                    new Model(Optional.of(new Identifier(ShuckleQOL.MOD_ID, "item/" + oxidation + baseBlockId)), Optional.empty()));
+                    new Model(Optional.of(new Identifier(ShuckleQOL.MOD_ID, "item/" + oxidation + baseBlockId)),
+                            Optional.empty()));
+        }
+    }
 
+    private void registerWaxedCopperItems(String baseBlockId, ItemModelGenerator gen) {
+        String[] OXIDATION_STAGES = {
+            "", "exposed_", "weathered_", "oxidized_"
+        };
+
+        for (String oxidation : OXIDATION_STAGES) {
+            if (!(baseBlockId.endsWith("rod") && oxidation.equals(""))) {
+                gen.register(Registries.ITEM.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_" + oxidation + baseBlockId)),
+                        new Model(Optional.of(new Identifier(ShuckleQOL.MOD_ID, "item/" + oxidation + baseBlockId)),
+                                Optional.empty()));
+            }
         }
     }
 }

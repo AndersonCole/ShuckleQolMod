@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
+  "parent": "shuckle_qol:block/template_lightning_rod",
   "textures": {
-    "layer0": "shuckle_qol:item/invisible_lightning_rod"
+    "texture": "shuckle_qol:block/invisible_lightning_rod"
   }
 }

@@ -150,6 +150,32 @@
   "block.shuckle_qol.waxed_weathered_copper_trapdoor": "Waxed Weathered Copper Trapdoor",
   "block.shuckle_qol.waxed_oxidized_copper_trapdoor": "Waxed Oxidized Copper Trapdoor",
 
+  "block.shuckle_qol.copper_bars": "Copper Bars",
+  "block.shuckle_qol.exposed_copper_bars": "Exposed Copper Bars",
+  "block.shuckle_qol.weathered_copper_bars": "Weathered Copper Bars",
+  "block.shuckle_qol.oxidized_copper_bars": "Oxidized Copper Bars",
+  "block.shuckle_qol.waxed_copper_bars": "Waxed Copper Bars",
+  "block.shuckle_qol.waxed_exposed_copper_bars": "Waxed Exposed Copper Bars",
+  "block.shuckle_qol.waxed_weathered_copper_bars": "Waxed Weathered Copper Bars",
+  "block.shuckle_qol.waxed_oxidized_copper_bars": "Waxed Oxidized Copper Bars",
+
+  "block.shuckle_qol.copper_chain": "Copper Chain",
+  "block.shuckle_qol.exposed_copper_chain": "Exposed Copper Chain",
+  "block.shuckle_qol.weathered_copper_chain": "Weathered Copper Chain",
+  "block.shuckle_qol.oxidized_copper_chain": "Oxidized Copper Chain",
+  "block.shuckle_qol.waxed_copper_chain": "Waxed Copper Chain",
+  "block.shuckle_qol.waxed_exposed_copper_chain": "Waxed Exposed Copper Chain",
+  "block.shuckle_qol.waxed_weathered_copper_chain": "Waxed Weathered Copper Chain",
+  "block.shuckle_qol.waxed_oxidized_copper_chain": "Waxed Oxidized Copper Chain",
+
+  "block.shuckle_qol.lightning_rod": "Oxidizable Lightning Rod",
+  "block.shuckle_qol.exposed_lightning_rod": "Exposed Lightning Rod",
+  "block.shuckle_qol.weathered_lightning_rod": "Weathered Lightning Rod",
+  "block.shuckle_qol.oxidized_lightning_rod": "Oxidized Lightning Rod",
+  "block.shuckle_qol.waxed_exposed_lightning_rod": "Waxed Exposed Lightning Rod",
+  "block.shuckle_qol.waxed_weathered_lightning_rod": "Waxed Weathered Lightning Rod",
+  "block.shuckle_qol.waxed_oxidized_lightning_rod": "Waxed Oxidized Lightning Rod",
+
   "block.shuckle_qol.copper_torch": "Copper Torch",
 
   "block.shuckle_qol.copper_lantern": "Copper Lantern",

@@ -19,6 +19,10 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
     protected void configure(RegistryWrapper.WrapperLookup arg) {
         //region Vanilla Tags
         //region Mineable
+        //region Copper Blocks
+        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+                .add(ModBackportBlocks.CHISELED_COPPER);
+        //endregion
         //pickaxe
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(ModBlocks.CONDENSED_BLACK_ICE)

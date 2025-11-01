@@ -412,6 +412,50 @@ public class ModBackportBlocks {
     public static final Block WAXED_OXIDIZED_COPPER_TRAPDOOR = registerBlock("waxed_oxidized_copper_trapdoor",
             new CopperTrapdoorBlock(FabricBlockSettings.copyOf(OXIDIZED_COPPER_TRAPDOOR), BlockSetType.IRON), ModItemGroup.SHUCKLE_BACKPORT);
 
+    //bars
+    public static final Block COPPER_BARS = registerBlock("copper_bars",
+            new OxidizablePaneBlock(Oxidizable.OxidationLevel.UNAFFECTED,
+                    FabricBlockSettings.copyOf(Blocks.IRON_BARS).sounds(BlockSoundGroup.COPPER)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block EXPOSED_COPPER_BARS = registerBlock("exposed_copper_bars",
+            new OxidizablePaneBlock(Oxidizable.OxidationLevel.EXPOSED,
+                    FabricBlockSettings.copyOf(ModBackportBlocks.COPPER_BARS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block WEATHERED_COPPER_BARS = registerBlock("weathered_copper_bars",
+            new OxidizablePaneBlock(Oxidizable.OxidationLevel.WEATHERED,
+                    FabricBlockSettings.copyOf(ModBackportBlocks.COPPER_BARS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block OXIDIZED_COPPER_BARS = registerBlock("oxidized_copper_bars",
+            new OxidizablePaneBlock(Oxidizable.OxidationLevel.OXIDIZED,
+                    FabricBlockSettings.copyOf(ModBackportBlocks.COPPER_BARS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block WAXED_COPPER_BARS = registerBlock("waxed_copper_bars",
+            new PaneBlock(FabricBlockSettings.copyOf(ModBackportBlocks.COPPER_BARS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block WAXED_EXPOSED_COPPER_BARS = registerBlock("waxed_exposed_copper_bars",
+            new PaneBlock(FabricBlockSettings.copyOf(ModBackportBlocks.EXPOSED_COPPER_BARS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block WAXED_WEATHERED_COPPER_BARS = registerBlock("waxed_weathered_copper_bars",
+            new PaneBlock(FabricBlockSettings.copyOf(ModBackportBlocks.WEATHERED_COPPER_BARS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block WAXED_OXIDIZED_COPPER_BARS = registerBlock("waxed_oxidized_copper_bars",
+            new PaneBlock(FabricBlockSettings.copyOf(ModBackportBlocks.OXIDIZED_COPPER_BARS)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    //chain
+    public static final Block COPPER_CHAIN = registerBlock("copper_chain",
+            new OxidizableChainBlock(Oxidizable.OxidationLevel.UNAFFECTED,
+                    FabricBlockSettings.copyOf(Blocks.CHAIN)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block EXPOSED_COPPER_CHAIN = registerBlock("exposed_copper_chain",
+            new OxidizableChainBlock(Oxidizable.OxidationLevel.EXPOSED,
+                    FabricBlockSettings.copyOf(Blocks.CHAIN)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block WEATHERED_COPPER_CHAIN = registerBlock("weathered_copper_chain",
+            new OxidizableChainBlock(Oxidizable.OxidationLevel.WEATHERED,
+                    FabricBlockSettings.copyOf(Blocks.CHAIN)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block OXIDIZED_COPPER_CHAIN = registerBlock("oxidized_copper_chain",
+            new OxidizableChainBlock(Oxidizable.OxidationLevel.OXIDIZED,
+                    FabricBlockSettings.copyOf(Blocks.CHAIN)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block WAXED_COPPER_CHAIN = registerBlock("waxed_copper_chain",
+            new ChainBlock(FabricBlockSettings.copyOf(ModBackportBlocks.COPPER_CHAIN)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block WAXED_EXPOSED_COPPER_CHAIN = registerBlock("waxed_exposed_copper_chain",
+            new ChainBlock(FabricBlockSettings.copyOf(ModBackportBlocks.EXPOSED_COPPER_CHAIN)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block WAXED_WEATHERED_COPPER_CHAIN = registerBlock("waxed_weathered_copper_chain",
+            new ChainBlock(FabricBlockSettings.copyOf(ModBackportBlocks.WEATHERED_COPPER_CHAIN)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block WAXED_OXIDIZED_COPPER_CHAIN = registerBlock("waxed_oxidized_copper_chain",
+            new ChainBlock(FabricBlockSettings.copyOf(ModBackportBlocks.OXIDIZED_COPPER_CHAIN)), ModItemGroup.SHUCKLE_BACKPORT);
+
     //torch
     public static final Block COPPER_TORCH = registerBlockWithoutBlockItem("copper_torch",
             new TorchBlock(FabricBlockSettings.of(Material.DECORATION)
@@ -449,6 +493,32 @@ public class ModBackportBlocks {
             new LanternBlock(FabricBlockSettings.copyOf(WEATHERED_COPPER_LANTERN)), ModItemGroup.SHUCKLE_BACKPORT);
     public static final Block WAXED_OXIDIZED_COPPER_LANTERN = registerBlock("waxed_oxidized_copper_lantern",
             new LanternBlock(FabricBlockSettings.copyOf(OXIDIZED_COPPER_LANTERN)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    //lightning rods
+    public static final Block LIGHTNING_ROD = registerBlock("lightning_rod",
+            new OxidizableLightningRodBlock(Oxidizable.OxidationLevel.UNAFFECTED,
+                    FabricBlockSettings.copyOf(Blocks.LIGHTNING_ROD)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block EXPOSED_LIGHTNING_ROD = registerBlock("exposed_lightning_rod",
+            new OxidizableLightningRodBlock(Oxidizable.OxidationLevel.EXPOSED,
+                    FabricBlockSettings.copyOf(Blocks.LIGHTNING_ROD).mapColor(Blocks.EXPOSED_COPPER.getDefaultMapColor())),
+            ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block WEATHERED_LIGHTNING_ROD = registerBlock("weathered_lightning_rod",
+            new OxidizableLightningRodBlock(Oxidizable.OxidationLevel.WEATHERED,
+                    FabricBlockSettings.copyOf(Blocks.LIGHTNING_ROD).mapColor(Blocks.WEATHERED_COPPER.getDefaultMapColor())),
+            ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block OXIDIZED_LIGHTNING_ROD = registerBlock("oxidized_lightning_rod",
+            new OxidizableLightningRodBlock(Oxidizable.OxidationLevel.OXIDIZED,
+                    FabricBlockSettings.copyOf(Blocks.LIGHTNING_ROD).mapColor(Blocks.OXIDIZED_COPPER.getDefaultMapColor())),
+            ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block WAXED_EXPOSED_LIGHTNING_ROD = registerBlock("waxed_exposed_lightning_rod",
+            new LightningRodBlock(FabricBlockSettings.copyOf(ModBackportBlocks.EXPOSED_LIGHTNING_ROD)),
+            ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block WAXED_WEATHERED_LIGHTNING_ROD = registerBlock("waxed_weathered_lightning_rod",
+            new LightningRodBlock(FabricBlockSettings.copyOf(ModBackportBlocks.WEATHERED_LIGHTNING_ROD)),
+            ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block WAXED_OXIDIZED_LIGHTNING_ROD = registerBlock("waxed_oxidized_lightning_rod",
+            new LightningRodBlock(FabricBlockSettings.copyOf(ModBackportBlocks.OXIDIZED_LIGHTNING_ROD)),
+            ModItemGroup.SHUCKLE_BACKPORT);
 
     //endregion
     //region Tuff

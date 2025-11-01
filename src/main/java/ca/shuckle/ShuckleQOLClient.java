@@ -48,6 +48,8 @@ public class ShuckleQOLClient implements ClientModInitializer {
         getCopperBlockCutouts("copper_grate");
         getCopperBlockCutouts("copper_door");
         getCopperBlockCutouts("copper_trapdoor");
+        getCopperBlockCutouts("copper_bars");
+        getCopperBlockCutouts("copper_chain");
         getCopperBlockCutouts("copper_lantern");
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.COPPER_TORCH, RenderLayer.getCutout());

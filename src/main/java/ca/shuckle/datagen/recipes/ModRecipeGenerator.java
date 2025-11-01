@@ -885,7 +885,6 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                                                       String namespace,
                                                       String baseBlockId,
                                                       int stonecutterOutputCount){
-        //Identifier baseItem = new Identifier(namespace, baseBlockId);
         //from copper block
         IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(Registries.ITEM.getId(Items.COPPER_BLOCK),
                         RecipeCategory.MISC, new Identifier(namespace, baseBlockId), stonecutterOutputCount)

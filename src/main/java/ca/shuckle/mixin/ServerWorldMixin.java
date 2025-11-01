@@ -1,6 +1,7 @@
 package ca.shuckle.mixin;
 
 import ca.shuckle.ShuckleQOL;
+import ca.shuckle.block.ModBackportBlocks;
 import ca.shuckle.block.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -46,7 +47,22 @@ public abstract class ServerWorldMixin extends World {
     private void getLightningRodPos(BlockPos pos, CallbackInfoReturnable<Optional<BlockPos>> info) {
         Optional<BlockPos> optional = this.getPointOfInterestStorage().getNearestPosition((poiType) -> {
             return poiType.matchesKey(PointOfInterestTypes.LIGHTNING_ROD) ||
-                    poiType.matchesKey(RegistryKey.of(RegistryKeys.POINT_OF_INTEREST_TYPE, new Identifier(ShuckleQOL.MOD_ID, "invisible_lightning_rod_poi")));
+                    poiType.matchesKey(RegistryKey.of(RegistryKeys.POINT_OF_INTEREST_TYPE,
+                            new Identifier(ShuckleQOL.MOD_ID, "oxidizable_lightning_rod_poi"))) ||
+                    poiType.matchesKey(RegistryKey.of(RegistryKeys.POINT_OF_INTEREST_TYPE,
+                            new Identifier(ShuckleQOL.MOD_ID, "exposed_lightning_rod_poi"))) ||
+                    poiType.matchesKey(RegistryKey.of(RegistryKeys.POINT_OF_INTEREST_TYPE,
+                            new Identifier(ShuckleQOL.MOD_ID, "weathered_lightning_rod_poi"))) ||
+                    poiType.matchesKey(RegistryKey.of(RegistryKeys.POINT_OF_INTEREST_TYPE,
+                            new Identifier(ShuckleQOL.MOD_ID, "oxidized_lightning_rod_poi"))) ||
+                    poiType.matchesKey(RegistryKey.of(RegistryKeys.POINT_OF_INTEREST_TYPE,
+                            new Identifier(ShuckleQOL.MOD_ID, "waxed_exposed_lightning_rod_poi"))) ||
+                    poiType.matchesKey(RegistryKey.of(RegistryKeys.POINT_OF_INTEREST_TYPE,
+                            new Identifier(ShuckleQOL.MOD_ID, "waxed_weathered_lightning_rod_poi"))) ||
+                    poiType.matchesKey(RegistryKey.of(RegistryKeys.POINT_OF_INTEREST_TYPE,
+                            new Identifier(ShuckleQOL.MOD_ID, "waxed_oxidized_lightning_rod_poi"))) ||
+                    poiType.matchesKey(RegistryKey.of(RegistryKeys.POINT_OF_INTEREST_TYPE,
+                            new Identifier(ShuckleQOL.MOD_ID, "invisible_lightning_rod_poi")));
         }, (posx) -> {
             return posx.getY() == this.getTopY(Heightmap.Type.WORLD_SURFACE, posx.getX(), posx.getZ()) - 1;
         }, pos, 128, PointOfInterestStorage.OccupationStatus.ANY);
@@ -64,23 +80,20 @@ public abstract class ServerWorldMixin extends World {
     )
     private boolean stopSkeletonHorseSpawnsOnLightningRods(BlockState state, Block block) {
         if (block == Blocks.LIGHTNING_ROD) {
-            return state.isOf(Blocks.LIGHTNING_ROD) || state.isOf(ModBlocks.INVIS_LIGHTNING_ROD);
+            return state.isOf(Blocks.LIGHTNING_ROD) ||
+                    state.isOf(ModBackportBlocks.LIGHTNING_ROD) ||
+                    state.isOf(ModBackportBlocks.EXPOSED_LIGHTNING_ROD) ||
+                    state.isOf(ModBackportBlocks.WEATHERED_LIGHTNING_ROD) ||
+                    state.isOf(ModBackportBlocks.OXIDIZED_LIGHTNING_ROD) ||
+                    state.isOf(ModBackportBlocks.WAXED_EXPOSED_LIGHTNING_ROD) ||
+                    state.isOf(ModBackportBlocks.WAXED_WEATHERED_LIGHTNING_ROD) ||
+                    state.isOf(ModBackportBlocks.WAXED_OXIDIZED_LIGHTNING_ROD) ||
+                    state.isOf(ModBlocks.INVIS_LIGHTNING_ROD);
         }
         return state.isOf(block);
     }
 
     /**
-    @Redirect(
-            method = "tickChunk",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Ljava/util/Random;nextDouble()D"
-            )
-    )
-    private double alwaysTriggerSkeletonTrap(Random random) {
-        return 0.0;
-    }
-
     @Redirect(
             method = "tickChunk",
             at = @At(

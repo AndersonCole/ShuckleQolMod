@@ -91,7 +91,10 @@ public class ModRegistries {
         createOxidizableBlockPairings("copper_bulb");
         createOxidizableBlockPairings("copper_door");
         createOxidizableBlockPairings("copper_trapdoor");
+        createOxidizableBlockPairings("copper_bars");
+        createOxidizableBlockPairings("copper_chain");
         createOxidizableBlockPairings("copper_lantern");
+        createOxidizableBlockPairings("lightning_rod", new Identifier("minecraft", "lightning_rod"));
     }
 
     private static void registerCompostables(){
@@ -170,6 +173,25 @@ public class ModRegistries {
         //waxed blocks
         OxidizableBlocksRegistry.registerWaxableBlockPair(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, baseBlockId)),
                 Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_" + baseBlockId)));
+        OxidizableBlocksRegistry.registerWaxableBlockPair(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "exposed_" + baseBlockId)),
+                Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_exposed_" + baseBlockId)));
+        OxidizableBlocksRegistry.registerWaxableBlockPair(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "weathered_" + baseBlockId)),
+                Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_weathered_" + baseBlockId)));
+        OxidizableBlocksRegistry.registerWaxableBlockPair(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "oxidized_" + baseBlockId)),
+                Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_oxidized_" + baseBlockId)));
+    }
+
+    public static void createOxidizableBlockPairings(String baseBlockId, Identifier existingWaxedBlockId){
+        //oxidized blocks
+        OxidizableBlocksRegistry.registerOxidizableBlockPair(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, baseBlockId)),
+                Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "exposed_" + baseBlockId)));
+        OxidizableBlocksRegistry.registerOxidizableBlockPair(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "exposed_" + baseBlockId)),
+                Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "weathered_" + baseBlockId)));
+        OxidizableBlocksRegistry.registerOxidizableBlockPair(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "weathered_" + baseBlockId)),
+                Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "oxidized_" + baseBlockId)));
+        //waxed blocks
+        OxidizableBlocksRegistry.registerWaxableBlockPair(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, baseBlockId)),
+                Registries.BLOCK.get(existingWaxedBlockId));
         OxidizableBlocksRegistry.registerWaxableBlockPair(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "exposed_" + baseBlockId)),
                 Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_exposed_" + baseBlockId)));
         OxidizableBlocksRegistry.registerWaxableBlockPair(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, "weathered_" + baseBlockId)),
