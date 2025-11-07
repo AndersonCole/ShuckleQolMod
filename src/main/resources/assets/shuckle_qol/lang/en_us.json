@@ -168,7 +168,8 @@
   "block.shuckle_qol.waxed_weathered_copper_chain": "Waxed Weathered Copper Chain",
   "block.shuckle_qol.waxed_oxidized_copper_chain": "Waxed Oxidized Copper Chain",
 
-  "block.shuckle_qol.lightning_rod": "Oxidizable Lightning Rod",
+  "block.shuckle_qol.lightning_rod": "Lightning Rod",
+  "block.minecraft.lightning_rod": "Waxed Lightning Rod",
   "block.shuckle_qol.exposed_lightning_rod": "Exposed Lightning Rod",
   "block.shuckle_qol.weathered_lightning_rod": "Weathered Lightning Rod",
   "block.shuckle_qol.oxidized_lightning_rod": "Oxidized Lightning Rod",

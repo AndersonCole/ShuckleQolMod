@@ -3,7 +3,9 @@ package ca.shuckle.util;
 import ca.shuckle.ShuckleQOL;
 import ca.shuckle.block.ModBackportBlocks;
 import ca.shuckle.block.ModBlocks;
+import ca.shuckle.command.OxidizeFasterCommand;
 import com.google.common.collect.ImmutableSet;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.object.builder.v1.world.poi.PointOfInterestHelper;
 import net.fabricmc.fabric.api.registry.*;
 import net.minecraft.block.Block;
@@ -14,11 +16,16 @@ import net.minecraft.world.poi.PointOfInterestType;
 
 public class ModRegistries {
     public static void registerModStuff(){
+        registerCommands();
         registerFuels();
         registerStrippables();
         registerOxidizables();
         registerCompostables();
         registerFlammableBlock();
+    }
+
+    private static void registerCommands(){
+        CommandRegistrationCallback.EVENT.register(OxidizeFasterCommand::register);
     }
 
     private static int getSmeltTime(double itemsSmelted){

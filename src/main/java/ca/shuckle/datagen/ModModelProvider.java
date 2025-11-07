@@ -6,6 +6,7 @@ import ca.shuckle.block.ModBlocks;
 import ca.shuckle.block.custom.copper.BulbBlock;
 import ca.shuckle.block.custom.copper.CopperDoorBlock;
 import ca.shuckle.item.ModItems;
+import ca.shuckle.util.ModOxidizationHelpers;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
@@ -101,25 +102,34 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerSimpleCubeAll(ModBackportBlocks.CHISELED_RESIN_BRICKS);
         //endregion
         //region Copper
-        createCopperModelSet("chiseled_copper",
-                blockStateModelGenerator::registerSimpleCubeAll, blockStateModelGenerator);
-        createCopperModelSet("copper_grate",
-                blockStateModelGenerator::registerSimpleCubeAll, blockStateModelGenerator);
-        createCopperModelSet("copper_bulb",
-                registerBulbBlock(blockStateModelGenerator), blockStateModelGenerator);
-        createCopperModelSet("copper_door",
-                blockStateModelGenerator::registerDoor, blockStateModelGenerator);
-        createCopperModelSet("copper_trapdoor",
-                blockStateModelGenerator::registerTrapdoor, blockStateModelGenerator);
-        createCopperModelSet("copper_bars",
-                registerBarsBlock(blockStateModelGenerator), blockStateModelGenerator);
-        createCopperModelSet("copper_chain",
-                registerChainBlock(blockStateModelGenerator), blockStateModelGenerator);
-        createCopperModelSet("lightning_rod",
-                registerLightningRodBlock(blockStateModelGenerator), blockStateModelGenerator);
+        createOxidizableModelSet("chiseled_copper",
+                blockStateModelGenerator::registerSimpleCubeAll,
+                ModOxidizationHelpers.getCopperOxidizationStages(), blockStateModelGenerator);
+        createOxidizableModelSet("copper_grate",
+                blockStateModelGenerator::registerSimpleCubeAll,
+                ModOxidizationHelpers.getCopperOxidizationStages(), blockStateModelGenerator);
+        createOxidizableModelSet("copper_bulb",
+                registerBulbBlock(blockStateModelGenerator),
+                ModOxidizationHelpers.getCopperOxidizationStages(), blockStateModelGenerator);
+        createOxidizableModelSet("copper_door",
+                blockStateModelGenerator::registerDoor,
+                ModOxidizationHelpers.getCopperOxidizationStages(), blockStateModelGenerator);
+        createOxidizableModelSet("copper_trapdoor",
+                blockStateModelGenerator::registerTrapdoor,
+                ModOxidizationHelpers.getCopperOxidizationStages(), blockStateModelGenerator);
+        createOxidizableModelSet("copper_bars",
+                registerBarsBlock(blockStateModelGenerator),
+                ModOxidizationHelpers.getCopperOxidizationStages(), blockStateModelGenerator);
+        createOxidizableModelSet("copper_chain",
+                registerChainBlock(blockStateModelGenerator),
+                ModOxidizationHelpers.getCopperOxidizationStages(), blockStateModelGenerator);
+        createOxidizableModelSet("lightning_rod",
+                registerLightningRodBlock(blockStateModelGenerator),
+                ModOxidizationHelpers.getCopperOxidizationStages(), blockStateModelGenerator);
         blockStateModelGenerator.registerTorch(ModBackportBlocks.COPPER_TORCH, ModBackportBlocks.COPPER_WALL_TORCH);
-        createCopperModelSet("copper_lantern",
-                blockStateModelGenerator::registerLantern, blockStateModelGenerator);
+        createOxidizableModelSet("copper_lantern",
+                blockStateModelGenerator::registerLantern,
+                ModOxidizationHelpers.getCopperOxidizationStages(), blockStateModelGenerator);
         //endregion
         blockStateModelGenerator.registerFlowerbed(ModBackportBlocks.PINK_PETALS);
         blockStateModelGenerator.registerFlowerbed(ModBackportBlocks.WILDFLOWERS);
@@ -177,13 +187,22 @@ public class ModModelProvider extends FabricModelProvider {
 
         itemModelGenerator.register(ModItems.COPPER_NUGGET, Models.GENERATED);
 
-        registerWaxedCopperItems("copper_bulb", itemModelGenerator);
-        registerWaxedCopperItems("copper_door", itemModelGenerator);
-        registerWaxedCopperItems("copper_trapdoor", itemModelGenerator);
-        registerAllCopperItems("copper_bars", itemModelGenerator);
-        registerAllCopperItems("copper_chain", itemModelGenerator);
-        registerWaxedCopperItems("lightning_rod", itemModelGenerator);
-        registerWaxedCopperItems("copper_lantern", itemModelGenerator);
+        //region copper
+        registerWaxedOxidizableItems("copper_bulb",
+                ModOxidizationHelpers.getCopperOxidizationStages(), itemModelGenerator);
+        registerWaxedOxidizableItems("copper_door",
+                ModOxidizationHelpers.getCopperOxidizationStages(), itemModelGenerator);
+        registerWaxedOxidizableItems("copper_trapdoor",
+                ModOxidizationHelpers.getCopperOxidizationStages(), itemModelGenerator);
+        registerAllOxidizableItems("copper_bars",
+                ModOxidizationHelpers.getCopperOxidizationStages(), itemModelGenerator);
+        registerAllOxidizableItems("copper_chain",
+                ModOxidizationHelpers.getCopperOxidizationStages(), itemModelGenerator);
+        registerWaxedOxidizableItems("lightning_rod",
+                ModOxidizationHelpers.getCopperOxidizationStages(), itemModelGenerator);
+        registerWaxedOxidizableItems("copper_lantern",
+                ModOxidizationHelpers.getCopperOxidizationStages(), itemModelGenerator);
+        //endregion
 
         itemModelGenerator.register(ModItems.INVIS_CATALYST, Models.GENERATED);
         itemModelGenerator.register(ModItems.INVIS_ITEM_FRAME, Models.GENERATED);
@@ -286,14 +305,11 @@ public class ModModelProvider extends FabricModelProvider {
                 .put(TextureKey.BOTTOM, bottomTextureId);
     }
 
-    private void createCopperModelSet(String baseBlockId,
+    private void createOxidizableModelSet(String baseBlockId,
                                       Consumer<Block> register,
+                                      String[] oxidizationStages,
                                       BlockStateModelGenerator blockStateModelGenerator){
-        String[] OXIDATION_STAGES = {
-                "", "exposed_", "weathered_", "oxidized_"
-        };
-
-        for (String oxidation : OXIDATION_STAGES) {
+        for (String oxidation : oxidizationStages) {
             register.accept(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, oxidation + baseBlockId)));
 
             if (baseBlockId.endsWith("bulb")) {
@@ -461,7 +477,7 @@ public class ModModelProvider extends FabricModelProvider {
             String baseBlockId = Registries.BLOCK.getId(block).getPath();
 
             Identifier offModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId);
-            Identifier onModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_on");
+            Identifier onModel = new Identifier("minecraft", "block/lightning_rod_on");
 
             gen.blockStateCollector.accept(
                     VariantsBlockStateSupplier.create(block)
@@ -513,16 +529,6 @@ public class ModModelProvider extends FabricModelProvider {
             ).upload(
                     offModel,
                     TextureMap.texture(offModel),
-                    gen.modelCollector
-            );
-
-            new Model(
-                    Optional.of(new Identifier(ShuckleQOL.MOD_ID, "block/template_lightning_rod_on")),
-                    Optional.empty(),
-                    TextureKey.TEXTURE
-            ).upload(
-                    onModel,
-                    TextureMap.texture(new Identifier("minecraft", "block/lightning_rod_on")),
                     gen.modelCollector
             );
             gen.registerParentedItemModel(block, offModel);
@@ -701,12 +707,8 @@ public class ModModelProvider extends FabricModelProvider {
         );
     }
 
-    private <T> void registerAllCopperItems(String baseBlockId, ItemModelGenerator gen) {
-        String[] OXIDATION_STAGES = {
-            "", "exposed_", "weathered_", "oxidized_"
-        };
-
-        for (String oxidation : OXIDATION_STAGES) {
+    private <T> void registerAllOxidizableItems(String baseBlockId, String[] oxidizationStages, ItemModelGenerator gen) {
+        for (String oxidation : oxidizationStages) {
             gen.register(Registries.ITEM.get(new Identifier(ShuckleQOL.MOD_ID, oxidation + baseBlockId)), Models.GENERATED);
             gen.register(Registries.ITEM.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_" + oxidation + baseBlockId)),
                     new Model(Optional.of(new Identifier(ShuckleQOL.MOD_ID, "item/" + oxidation + baseBlockId)),
@@ -714,12 +716,8 @@ public class ModModelProvider extends FabricModelProvider {
         }
     }
 
-    private void registerWaxedCopperItems(String baseBlockId, ItemModelGenerator gen) {
-        String[] OXIDATION_STAGES = {
-            "", "exposed_", "weathered_", "oxidized_"
-        };
-
-        for (String oxidation : OXIDATION_STAGES) {
+    private void registerWaxedOxidizableItems(String baseBlockId, String[] oxidizationStages, ItemModelGenerator gen) {
+        for (String oxidation : oxidizationStages) {
             if (!(baseBlockId.endsWith("rod") && oxidation.equals(""))) {
                 gen.register(Registries.ITEM.get(new Identifier(ShuckleQOL.MOD_ID, "waxed_" + oxidation + baseBlockId)),
                         new Model(Optional.of(new Identifier(ShuckleQOL.MOD_ID, "item/" + oxidation + baseBlockId)),

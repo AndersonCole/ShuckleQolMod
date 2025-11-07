@@ -359,7 +359,7 @@ public class ModBackportBlocks {
                     FabricBlockSettings.of(Material.METAL)
                             .mapColor(Blocks.COPPER_BLOCK.getDefaultMapColor())
                             .strength(3.0F, 6.0F)
-                            .nonOpaque().requiresTool()
+                            .nonOpaque().requiresTool().ticksRandomly()
                             .sounds(BlockSoundGroup.COPPER), BlockSetType.IRON), ModItemGroup.SHUCKLE_BACKPORT);
     public static final Block EXPOSED_COPPER_DOOR = registerBlock("exposed_copper_door",
             new OxidizableDoorBlock(Oxidizable.OxidationLevel.EXPOSED,

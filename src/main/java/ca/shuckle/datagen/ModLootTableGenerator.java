@@ -87,6 +87,89 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBackportBlocks.RESIN_BRICK_WALL);
         addDrop(ModBackportBlocks.CHISELED_RESIN_BRICKS);
         //endregion
+        //region Copper
+        addDrop(ModBackportBlocks.CHISELED_COPPER);
+        addDrop(ModBackportBlocks.EXPOSED_CHISELED_COPPER);
+        addDrop(ModBackportBlocks.WEATHERED_CHISELED_COPPER);
+        addDrop(ModBackportBlocks.OXIDIZED_CHISELED_COPPER);
+        addDrop(ModBackportBlocks.WAXED_CHISELED_COPPER);
+        addDrop(ModBackportBlocks.WAXED_EXPOSED_CHISELED_COPPER);
+        addDrop(ModBackportBlocks.WAXED_WEATHERED_CHISELED_COPPER);
+        addDrop(ModBackportBlocks.WAXED_OXIDIZED_CHISELED_COPPER);
+
+        addDrop(ModBackportBlocks.COPPER_GRATE);
+        addDrop(ModBackportBlocks.EXPOSED_COPPER_GRATE);
+        addDrop(ModBackportBlocks.WEATHERED_COPPER_GRATE);
+        addDrop(ModBackportBlocks.OXIDIZED_COPPER_GRATE);
+        addDrop(ModBackportBlocks.WAXED_COPPER_GRATE);
+        addDrop(ModBackportBlocks.WAXED_EXPOSED_COPPER_GRATE);
+        addDrop(ModBackportBlocks.WAXED_WEATHERED_COPPER_GRATE);
+        addDrop(ModBackportBlocks.WAXED_OXIDIZED_COPPER_GRATE);
+
+        addDrop(ModBackportBlocks.COPPER_BULB);
+        addDrop(ModBackportBlocks.EXPOSED_COPPER_BULB);
+        addDrop(ModBackportBlocks.WEATHERED_COPPER_BULB);
+        addDrop(ModBackportBlocks.OXIDIZED_COPPER_BULB);
+        addDrop(ModBackportBlocks.WAXED_COPPER_BULB);
+        addDrop(ModBackportBlocks.WAXED_EXPOSED_COPPER_BULB);
+        addDrop(ModBackportBlocks.WAXED_WEATHERED_COPPER_BULB);
+        addDrop(ModBackportBlocks.WAXED_OXIDIZED_COPPER_BULB);
+
+        addDrop(ModBackportBlocks.COPPER_DOOR, doorDrops(ModBackportBlocks.COPPER_DOOR));
+        addDrop(ModBackportBlocks.EXPOSED_COPPER_DOOR, doorDrops(ModBackportBlocks.EXPOSED_COPPER_DOOR));
+        addDrop(ModBackportBlocks.WEATHERED_COPPER_DOOR, doorDrops(ModBackportBlocks.WEATHERED_COPPER_DOOR));
+        addDrop(ModBackportBlocks.OXIDIZED_COPPER_DOOR, doorDrops(ModBackportBlocks.OXIDIZED_COPPER_DOOR));
+        addDrop(ModBackportBlocks.WAXED_COPPER_DOOR, doorDrops(ModBackportBlocks.WAXED_COPPER_DOOR));
+        addDrop(ModBackportBlocks.WAXED_EXPOSED_COPPER_DOOR, doorDrops(ModBackportBlocks.WAXED_EXPOSED_COPPER_DOOR));
+        addDrop(ModBackportBlocks.WAXED_WEATHERED_COPPER_DOOR, doorDrops(ModBackportBlocks.WAXED_WEATHERED_COPPER_DOOR));
+        addDrop(ModBackportBlocks.WAXED_OXIDIZED_COPPER_DOOR, doorDrops(ModBackportBlocks.WAXED_OXIDIZED_COPPER_DOOR));
+
+        addDrop(ModBackportBlocks.COPPER_TRAPDOOR);
+        addDrop(ModBackportBlocks.EXPOSED_COPPER_TRAPDOOR);
+        addDrop(ModBackportBlocks.WEATHERED_COPPER_TRAPDOOR);
+        addDrop(ModBackportBlocks.OXIDIZED_COPPER_TRAPDOOR);
+        addDrop(ModBackportBlocks.WAXED_COPPER_TRAPDOOR);
+        addDrop(ModBackportBlocks.WAXED_EXPOSED_COPPER_TRAPDOOR);
+        addDrop(ModBackportBlocks.WAXED_WEATHERED_COPPER_TRAPDOOR);
+        addDrop(ModBackportBlocks.WAXED_OXIDIZED_COPPER_TRAPDOOR);
+
+        addDrop(ModBackportBlocks.COPPER_BARS);
+        addDrop(ModBackportBlocks.EXPOSED_COPPER_BARS);
+        addDrop(ModBackportBlocks.WEATHERED_COPPER_BARS);
+        addDrop(ModBackportBlocks.OXIDIZED_COPPER_BARS);
+        addDrop(ModBackportBlocks.WAXED_COPPER_BARS);
+        addDrop(ModBackportBlocks.WAXED_EXPOSED_COPPER_BARS);
+        addDrop(ModBackportBlocks.WAXED_WEATHERED_COPPER_BARS);
+        addDrop(ModBackportBlocks.WAXED_OXIDIZED_COPPER_BARS);
+
+        addDrop(ModBackportBlocks.COPPER_CHAIN);
+        addDrop(ModBackportBlocks.EXPOSED_COPPER_CHAIN);
+        addDrop(ModBackportBlocks.WEATHERED_COPPER_CHAIN);
+        addDrop(ModBackportBlocks.OXIDIZED_COPPER_CHAIN);
+        addDrop(ModBackportBlocks.WAXED_COPPER_CHAIN);
+        addDrop(ModBackportBlocks.WAXED_EXPOSED_COPPER_CHAIN);
+        addDrop(ModBackportBlocks.WAXED_WEATHERED_COPPER_CHAIN);
+        addDrop(ModBackportBlocks.WAXED_OXIDIZED_COPPER_CHAIN);
+
+        addDrop(ModBackportBlocks.LIGHTNING_ROD);
+        addDrop(ModBackportBlocks.EXPOSED_LIGHTNING_ROD);
+        addDrop(ModBackportBlocks.WEATHERED_LIGHTNING_ROD);
+        addDrop(ModBackportBlocks.OXIDIZED_LIGHTNING_ROD);
+        addDrop(ModBackportBlocks.WAXED_EXPOSED_LIGHTNING_ROD);
+        addDrop(ModBackportBlocks.WAXED_WEATHERED_LIGHTNING_ROD);
+        addDrop(ModBackportBlocks.WAXED_OXIDIZED_LIGHTNING_ROD);
+
+        addDrop(ModBackportBlocks.COPPER_TORCH);
+
+        addDrop(ModBackportBlocks.COPPER_LANTERN);
+        addDrop(ModBackportBlocks.EXPOSED_COPPER_LANTERN);
+        addDrop(ModBackportBlocks.WEATHERED_COPPER_LANTERN);
+        addDrop(ModBackportBlocks.OXIDIZED_COPPER_LANTERN);
+        addDrop(ModBackportBlocks.WAXED_COPPER_LANTERN);
+        addDrop(ModBackportBlocks.WAXED_EXPOSED_COPPER_LANTERN);
+        addDrop(ModBackportBlocks.WAXED_WEATHERED_COPPER_LANTERN);
+        addDrop(ModBackportBlocks.WAXED_OXIDIZED_COPPER_LANTERN);
+        //endregion
         addDrop(ModBackportBlocks.WILDFLOWERS, flowerbedDrops(ModBackportBlocks.WILDFLOWERS));
         addDrop(ModBackportBlocks.LEAF_LITTER, flowerbedDrops(ModBackportBlocks.LEAF_LITTER));
         //endregion

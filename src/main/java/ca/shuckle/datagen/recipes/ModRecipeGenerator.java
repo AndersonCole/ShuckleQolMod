@@ -7,6 +7,7 @@ import ca.shuckle.datagen.recipes.custom.IdentifiersShapedRecipeJsonBuilder;
 import ca.shuckle.datagen.recipes.custom.IdentifiersShapelessRecipeJsonBuilder;
 import ca.shuckle.datagen.recipes.custom.IdentifiersSingleItemRecipeJsonBuilder;
 import ca.shuckle.item.ModItems;
+import ca.shuckle.util.ModOxidizationHelpers;
 import ca.shuckle.util.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -27,6 +28,7 @@ import net.minecraft.util.JsonHelper;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 public class ModRecipeGenerator extends FabricRecipeProvider {
@@ -177,6 +179,183 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(hasItem(ModBackportBlocks.RESIN_BRICKS),
                         conditionsFromItem(ModBackportBlocks.RESIN_BRICKS))
                 .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "chiseled_resin_bricks_stonecutting"));
+        //endregion
+        //region Copper
+        //nuggets
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        Items.COPPER_INGOT, 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .input('#', ModItems.COPPER_NUGGET)
+                .criterion(hasItem(ModItems.COPPER_NUGGET),
+                        conditionsFromItem(ModItems.COPPER_NUGGET))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "copper_ingot_from_nuggets"));
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModItems.COPPER_NUGGET, 9)
+                .input(Items.COPPER_INGOT)
+                .criterion(hasItem(Items.COPPER_INGOT),
+                        conditionsFromItem(Items.COPPER_INGOT)).offerTo(exporter);
+        //chiseled recipe
+        createOxidizableRecipes(exporter,
+                "minecraft", "cut_copper_slab",
+                ShuckleQOL.MOD_ID, "chiseled_copper",
+                List.of("#",
+                        "#"),
+                null,
+                Blocks.CUT_COPPER.asItem(),
+                ModOxidizationHelpers.getCopperOxidizationStages(), 1);
+        createWaxedOxidizableRecipes(exporter,
+                ShuckleQOL.MOD_ID, "chiseled_copper",
+                ModBackportBlocks.CHISELED_COPPER.asItem(), ModOxidizationHelpers.getCopperOxidizationStages());
+        //grate recipe
+        createOxidizableRecipes(exporter,
+                "minecraft", "copper_block",
+                ShuckleQOL.MOD_ID, "copper_grate",
+                List.of(" # ",
+                        "# #",
+                        " # "),
+                null,
+                Blocks.COPPER_BLOCK.asItem(),
+                ModOxidizationHelpers.getCopperOxidizationStages(), 4);
+        createWaxedOxidizableRecipes(exporter,
+                ShuckleQOL.MOD_ID, "copper_grate",
+                ModBackportBlocks.COPPER_GRATE.asItem(), ModOxidizationHelpers.getCopperOxidizationStages());
+        //bulb recipe
+        createOxidizableRecipes(exporter,
+                "minecraft", "copper_block",
+                ShuckleQOL.MOD_ID, "copper_bulb",
+                List.of(" # ",
+                        "#B#",
+                        " R "),
+                Map.of('B', new Identifier("minecraft", "blaze_rod"),
+                        'R', new Identifier("minecraft", "redstone")),
+                Blocks.COPPER_BLOCK.asItem(),
+                ModOxidizationHelpers.getCopperOxidizationStages(), 4);
+        createWaxedOxidizableRecipes(exporter,
+                ShuckleQOL.MOD_ID, "copper_bulb",
+                ModBackportBlocks.COPPER_BULB.asItem(), ModOxidizationHelpers.getCopperOxidizationStages());
+        //door recipe
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.COPPER_DOOR, 3)
+                .pattern("##")
+                .pattern("##")
+                .pattern("##")
+                .input('#', Items.COPPER_INGOT)
+                .criterion(hasItem(Items.COPPER_INGOT),
+                        conditionsFromItem(Items.COPPER_INGOT)).offerTo(exporter);
+        createWaxedOxidizableRecipes(exporter,
+                ShuckleQOL.MOD_ID, "copper_door",
+                ModBackportBlocks.COPPER_DOOR.asItem(), ModOxidizationHelpers.getCopperOxidizationStages());
+        //trapdoor recipe
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.COPPER_TRAPDOOR, 3)
+                .pattern("##")
+                .pattern("##")
+                .input('#', Items.COPPER_INGOT)
+                .criterion(hasItem(Items.COPPER_INGOT),
+                        conditionsFromItem(Items.COPPER_INGOT)).offerTo(exporter);
+        createWaxedOxidizableRecipes(exporter,
+                ShuckleQOL.MOD_ID, "copper_trapdoor",
+                ModBackportBlocks.COPPER_TRAPDOOR.asItem(), ModOxidizationHelpers.getCopperOxidizationStages());
+        //bars recipe
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.COPPER_BARS, 16)
+                .pattern("###")
+                .pattern("###")
+                .input('#', Items.COPPER_INGOT)
+                .criterion(hasItem(Items.COPPER_INGOT),
+                        conditionsFromItem(Items.COPPER_INGOT)).offerTo(exporter);
+        createWaxedOxidizableRecipes(exporter,
+                ShuckleQOL.MOD_ID, "copper_bars",
+                ModBackportBlocks.COPPER_BARS.asItem(), ModOxidizationHelpers.getCopperOxidizationStages());
+        //chain recipe
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.COPPER_CHAIN, 1)
+                .pattern("C")
+                .pattern("#")
+                .pattern("C")
+                .input('#', Items.COPPER_INGOT)
+                .input('C', ModItems.COPPER_NUGGET)
+                .criterion(hasItem(Items.COPPER_INGOT),
+                        conditionsFromItem(Items.COPPER_INGOT)).offerTo(exporter);
+        createWaxedOxidizableRecipes(exporter,
+                ShuckleQOL.MOD_ID, "copper_chain",
+                ModBackportBlocks.COPPER_CHAIN.asItem(), ModOxidizationHelpers.getCopperOxidizationStages());
+        //lightning rod recipe
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        Blocks.LIGHTNING_ROD, 1)
+                .input(ModBackportBlocks.LIGHTNING_ROD)
+                .input(Items.HONEYCOMB)
+                .criterion(hasItem(Blocks.LIGHTNING_ROD),
+                        conditionsFromItem(Blocks.LIGHTNING_ROD)).offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.WAXED_EXPOSED_LIGHTNING_ROD, 1)
+                .input(ModBackportBlocks.EXPOSED_LIGHTNING_ROD)
+                .input(Items.HONEYCOMB)
+                .criterion(hasItem(Blocks.LIGHTNING_ROD),
+                        conditionsFromItem(Blocks.LIGHTNING_ROD)).offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.WAXED_WEATHERED_LIGHTNING_ROD, 1)
+                .input(ModBackportBlocks.WEATHERED_LIGHTNING_ROD)
+                .input(Items.HONEYCOMB)
+                .criterion(hasItem(Blocks.LIGHTNING_ROD),
+                        conditionsFromItem(Blocks.LIGHTNING_ROD)).offerTo(exporter);
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.WAXED_OXIDIZED_LIGHTNING_ROD, 1)
+                .input(ModBackportBlocks.OXIDIZED_LIGHTNING_ROD)
+                .input(Items.HONEYCOMB)
+                .criterion(hasItem(Blocks.LIGHTNING_ROD),
+                        conditionsFromItem(Blocks.LIGHTNING_ROD)).offerTo(exporter);
+        //torch recipe
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModItems.COPPER_TORCH, 4)
+                .pattern("C")
+                .pattern("#")
+                .pattern("S")
+                .input('#', Items.COAL)
+                .input('S', Items.STICK)
+                .input('C', ModItems.COPPER_NUGGET)
+                .criterion(hasItem(ModItems.COPPER_NUGGET),
+                        conditionsFromItem(ModItems.COPPER_NUGGET))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "copper_torch_from_coal"));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModItems.COPPER_TORCH, 4)
+                .pattern("C")
+                .pattern("#")
+                .pattern("S")
+                .input('#', Items.CHARCOAL)
+                .input('S', Items.STICK)
+                .input('C', ModItems.COPPER_NUGGET)
+                .criterion(hasItem(ModItems.COPPER_NUGGET),
+                        conditionsFromItem(ModItems.COPPER_NUGGET))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "copper_torch_from_charcoal"));
+        //lantern recipe
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.COPPER_LANTERN, 1)
+                .pattern("###")
+                .pattern("#T#")
+                .pattern("###")
+                .input('#', ModItems.COPPER_NUGGET)
+                .input('T', ModItems.COPPER_TORCH)
+                .criterion(hasItem(ModItems.COPPER_NUGGET),
+                        conditionsFromItem(ModItems.COPPER_NUGGET)).offerTo(exporter);
+        createWaxedOxidizableRecipes(exporter,
+                ShuckleQOL.MOD_ID, "copper_lantern",
+                ModBackportBlocks.COPPER_LANTERN.asItem(), ModOxidizationHelpers.getCopperOxidizationStages());
+        //stonecutter recipes
+        createOxidizableStonecutterRecipes(exporter,
+                "minecraft", "copper_block",
+                ShuckleQOL.MOD_ID, "copper_grate",
+                Blocks.COPPER_BLOCK.asItem(), ModOxidizationHelpers.getCopperOxidizationStages(), 4);
+        createOxidizableStonecutterRecipes(exporter,
+                "minecraft", "copper_block",
+                ShuckleQOL.MOD_ID, "chiseled_copper",
+                Blocks.COPPER_BLOCK.asItem(), ModOxidizationHelpers.getCopperOxidizationStages(), 4);
+        createOxidizableStonecutterRecipes(exporter,
+                "minecraft", "cut_copper",
+                ShuckleQOL.MOD_ID, "chiseled_copper",
+                Blocks.COPPER_BLOCK.asItem(), ModOxidizationHelpers.getCopperOxidizationStages(), 1);
         //endregion
         //endregion
         //region Shuckle
@@ -490,31 +669,6 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
         //endregion
         //endregion
         //region Other Mods
-        //region Copper Backport
-        /** Gotta fix this by adding all the copper blocks myself later
-        //door recipe
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, (ItemConvertible) new Identifier("copperandtuffbackport", "copper_door"), 3)
-                .pattern("##")
-                .pattern("##")
-                .pattern("##")
-                .input('#', Items.COPPER_INGOT)
-                .criterion(hasItem(Items.COPPER_INGOT),
-                        conditionsFromItem(Items.COPPER_INGOT)).offerTo(exporter);
-        //trapdoor recipe
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, (ItemConvertible) new Identifier("copperandtuffbackport", "copper_trapdoor"), 2)
-                .pattern("###")
-                .pattern("###")
-                .input('#', Items.COPPER_INGOT)
-                .criterion(hasItem(Items.COPPER_INGOT),
-                        conditionsFromItem(Items.COPPER_INGOT)).offerTo(exporter);
-
-        //cheaper stonecutter recipes
-        createCopperStagesStonecutterRecipes(exporter,
-                "copperandtuffbackport", "copper_door", 1);
-        createCopperStagesStonecutterRecipes(exporter,
-                "copperandtuffbackport", "copper_trapdoor", 2);
-         **/
-        //endregion
         //region BYG
         //ebony sign
         IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Registries.BLOCK.getId(ModBlocks.EBONY_SIGN), 3)
@@ -881,58 +1035,83 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
         }
     }
 
-    private void createCopperStagesStonecutterRecipes(Consumer<RecipeJsonProvider> exporter,
-                                                      String namespace,
-                                                      String baseBlockId,
-                                                      int stonecutterOutputCount){
-        //from copper block
-        IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(Registries.ITEM.getId(Items.COPPER_BLOCK),
-                        RecipeCategory.MISC, new Identifier(namespace, baseBlockId), stonecutterOutputCount)
-                .criterion(hasItem(Items.COPPER_BLOCK),
-                        conditionsFromItem(Items.COPPER_BLOCK))
-                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, baseBlockId + "_stonecutting"));
-        //from exposed copper block
-        IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(Registries.ITEM.getId(Items.EXPOSED_COPPER),
-                        RecipeCategory.MISC, new Identifier(namespace, "exposed_" + baseBlockId), stonecutterOutputCount)
-                .criterion(hasItem(Items.EXPOSED_COPPER),
-                        conditionsFromItem(Items.EXPOSED_COPPER))
-                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "exposed_" + baseBlockId + "_stonecutting"));
-        //from weathered copper block
-        IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(Registries.ITEM.getId(Items.WEATHERED_COPPER),
-                        RecipeCategory.MISC, new Identifier(namespace, "weathered_" + baseBlockId), stonecutterOutputCount)
-                .criterion(hasItem(Items.WEATHERED_COPPER),
-                        conditionsFromItem(Items.WEATHERED_COPPER))
-                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "weathered_" + baseBlockId + "_stonecutting"));
-        //from oxidized copper block
-        IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(Registries.ITEM.getId(Items.OXIDIZED_COPPER),
-                        RecipeCategory.MISC, new Identifier(namespace, "oxidized_" + baseBlockId), stonecutterOutputCount)
-                .criterion(hasItem(Items.OXIDIZED_COPPER),
-                        conditionsFromItem(Items.OXIDIZED_COPPER))
-                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "oxidized_" + baseBlockId + "_stonecutting"));
-        //from waxed copper block
-        IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(Registries.ITEM.getId(Items.WAXED_COPPER_BLOCK),
-                        RecipeCategory.MISC, new Identifier(namespace, "waxed_" + baseBlockId), stonecutterOutputCount)
-                .criterion(hasItem(Items.WAXED_COPPER_BLOCK),
-                        conditionsFromItem(Items.WAXED_COPPER_BLOCK))
-                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "waxed_" + baseBlockId + "_stonecutting"));
-        //from waxed exposed copper block
-        IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(Registries.ITEM.getId(Items.WAXED_EXPOSED_COPPER),
-                        RecipeCategory.MISC, new Identifier(namespace, "waxed_exposed" + baseBlockId), stonecutterOutputCount)
-                .criterion(hasItem(Items.WAXED_EXPOSED_COPPER),
-                        conditionsFromItem(Items.WAXED_EXPOSED_COPPER))
-                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "waxed_exposed_" + baseBlockId + "_stonecutting"));
-        //from waxed weathered copper block
-        IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(Registries.ITEM.getId(Items.WAXED_WEATHERED_COPPER),
-                        RecipeCategory.MISC, new Identifier(namespace, "waxed_weathered_" + baseBlockId), stonecutterOutputCount)
-                .criterion(hasItem(Items.WAXED_WEATHERED_COPPER),
-                        conditionsFromItem(Items.WAXED_WEATHERED_COPPER))
-                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "waxed_weathered_" + baseBlockId + "_stonecutting"));
-        //from waxed oxidized copper block
-        IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(Registries.ITEM.getId(Items.WAXED_OXIDIZED_COPPER),
-                        RecipeCategory.MISC, new Identifier(namespace, "waxed_oxidized_" + baseBlockId), stonecutterOutputCount)
-                .criterion(hasItem(Items.WAXED_OXIDIZED_COPPER),
-                        conditionsFromItem(Items.WAXED_OXIDIZED_COPPER))
-                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "waxed_oxidized_" + baseBlockId + "_stonecutting"));
+    private void createOxidizableRecipes(Consumer<RecipeJsonProvider> exporter,
+                                         String inputNamespace,
+                                         String inputBaseBlockId,
+                                         String outputNamespace,
+                                         String outputBaseBlockId,
+                                         List<String> pattern,
+                                         @Nullable Map<Character, Identifier> itemInputs,
+                                         Item recipeUnlockItem,
+                                         String[] oxidizationStages,
+                                         int outputCount) {
+        String[] WAX_STAGES = {
+                "", "waxed_"
+        };
+
+        IdentifiersShapedRecipeJsonBuilder recipeBuilder;
+
+        for (String oxidation : oxidizationStages) {
+            for (String wax : WAX_STAGES) {
+                recipeBuilder = IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        new Identifier(outputNamespace, wax + oxidation + outputBaseBlockId), outputCount);
+
+                for (String line : pattern) {
+                    recipeBuilder.pattern(line);
+                }
+
+                recipeBuilder.inputItem('#', new Identifier(inputNamespace, wax + oxidation + inputBaseBlockId));
+
+                if (itemInputs != null){
+                    for (Map.Entry<Character, Identifier> item : itemInputs.entrySet()) {
+                        recipeBuilder.inputItem(item.getKey(), item.getValue());
+                    }
+                }
+
+                recipeBuilder.criterion(hasItem(recipeUnlockItem), conditionsFromItem(recipeUnlockItem));
+                recipeBuilder.offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, wax + oxidation + outputBaseBlockId));
+            }
+        }
+    }
+
+    private void createWaxedOxidizableRecipes(Consumer<RecipeJsonProvider> exporter,
+                                              String namespace,
+                                              String baseBlockId,
+                                              Item recipeUnlockItem,
+                                              String[] oxidizationStages) {
+        for (String oxidation : oxidizationStages) {
+            IdentifiersShapelessRecipeJsonBuilder.create(RecipeCategory.MISC,
+                    new Identifier(namespace, "waxed_" + oxidation + baseBlockId), 1)
+                    .inputItem(new Identifier(namespace, oxidation + baseBlockId))
+                    .inputItem(new Identifier("minecraft", "honeycomb"))
+                    .criterion(hasItem(recipeUnlockItem),
+                            conditionsFromItem(recipeUnlockItem))
+                    .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "waxed_" + oxidation + baseBlockId + "_with_honeycomb"));
+        }
+    }
+
+    private void createOxidizableStonecutterRecipes(Consumer<RecipeJsonProvider> exporter,
+                                                          String inputNamespace,
+                                                          String inputBaseBlockId,
+                                                          String outputNamespace,
+                                                          String outputBaseBlockId,
+                                                          Item recipeUnlockItem,
+                                                          String[] oxidizationStages,
+                                                          int stonecutterOutputCount) {
+        String[] WAX_STAGES = {
+                "", "waxed_"
+        };
+
+        for (String oxidation : oxidizationStages) {
+            for (String wax : WAX_STAGES) {
+                IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(new Identifier(inputNamespace, wax + oxidation + inputBaseBlockId),
+                                RecipeCategory.MISC,
+                                new Identifier(outputNamespace, wax + oxidation + outputBaseBlockId), stonecutterOutputCount)
+                        .criterion(hasItem(recipeUnlockItem),
+                                conditionsFromItem(recipeUnlockItem))
+                        .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, wax + oxidation + outputBaseBlockId + "_from_" + inputBaseBlockId + "_stonecutting"));
+            }
+        }
     }
 
     private void createShapedDyableItemSetRecipes(Consumer<RecipeJsonProvider> exporter,
