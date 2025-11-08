@@ -21,7 +21,7 @@ public class FlatFlowerbedBlock
         extends PlantBlock
         implements Fertilizable {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
-    public static final IntProperty FLOWER_AMOUNT = IntProperty.of("flower_amount", 1, 4);
+    public static final IntProperty FLOWER_AMOUNT = Properties.FLOWER_AMOUNT;
 
     public FlatFlowerbedBlock(AbstractBlock.Settings settings) {
         super(settings);

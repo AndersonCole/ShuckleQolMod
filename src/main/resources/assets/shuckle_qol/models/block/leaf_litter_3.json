@@ -1,6 +1,0 @@
-{
-  "parent": "shuckle_qol:block/flat_flowerbed_3",
-  "textures": {
-    "flowerbed": "shuckle_qol:block/leaf_litter"
-  }
-}

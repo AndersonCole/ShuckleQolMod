@@ -170,6 +170,24 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBackportBlocks.WAXED_WEATHERED_COPPER_LANTERN);
         addDrop(ModBackportBlocks.WAXED_OXIDIZED_COPPER_LANTERN);
         //endregion
+        //region Tuff
+        addDrop(ModBackportBlocks.TUFF_SLAB, slabDrops(ModBackportBlocks.TUFF_SLAB));
+        addDrop(ModBackportBlocks.TUFF_STAIRS);
+        addDrop(ModBackportBlocks.TUFF_WALL);
+
+        addDrop(ModBackportBlocks.POLISHED_TUFF);
+        addDrop(ModBackportBlocks.POLISHED_TUFF_SLAB, slabDrops(ModBackportBlocks.POLISHED_TUFF_SLAB));
+        addDrop(ModBackportBlocks.POLISHED_TUFF_STAIRS);
+        addDrop(ModBackportBlocks.POLISHED_TUFF_WALL);
+
+        addDrop(ModBackportBlocks.TUFF_BRICKS);
+        addDrop(ModBackportBlocks.TUFF_BRICK_SLAB, slabDrops(ModBackportBlocks.TUFF_BRICK_SLAB));
+        addDrop(ModBackportBlocks.TUFF_BRICK_STAIRS);
+        addDrop(ModBackportBlocks.TUFF_BRICK_WALL);
+
+        addDrop(ModBackportBlocks.CHISELED_TUFF);
+        addDrop(ModBackportBlocks.CHISELED_TUFF_BRICKS);
+        //endregion
         addDrop(ModBackportBlocks.WILDFLOWERS, flowerbedDrops(ModBackportBlocks.WILDFLOWERS));
         addDrop(ModBackportBlocks.LEAF_LITTER, flowerbedDrops(ModBackportBlocks.LEAF_LITTER));
         //endregion

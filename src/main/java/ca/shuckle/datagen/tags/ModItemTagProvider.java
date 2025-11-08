@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
@@ -55,6 +56,16 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModBackportBlocks.CHERRY_STAIRS.asItem())
                 .add(ModBackportBlocks.BAMBOO_STAIRS.asItem())
                 .add(ModBackportBlocks.PALE_OAK_STAIRS.asItem());
+        //wood doors
+        getOrCreateTagBuilder(ItemTags.WOODEN_DOORS)
+                .add(ModBackportBlocks.CHERRY_DOOR.asItem())
+                .add(ModBackportBlocks.BAMBOO_DOOR.asItem())
+                .add(ModBackportBlocks.PALE_OAK_DOOR.asItem());
+        //wood trapdoors
+        getOrCreateTagBuilder(ItemTags.WOODEN_TRAPDOORS)
+                .add(ModBackportBlocks.CHERRY_TRAPDOOR.asItem())
+                .add(ModBackportBlocks.BAMBOO_TRAPDOOR.asItem())
+                .add(ModBackportBlocks.PALE_OAK_TRAPDOOR.asItem());
         //fences
         getOrCreateTagBuilder(ItemTags.WOODEN_FENCES)
                 .add(ModBackportBlocks.CHERRY_FENCE.asItem())
@@ -119,6 +130,26 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModBlocks.BLACK_SANDSTONE_WALL.asItem())
                 .add(ModBlocks.BLACK_CUT_SANDSTONE_WALL.asItem())
                 .add(ModBlocks.BLACK_SMOOTH_SANDSTONE_WALL.asItem());
+        //doors
+        getOrCreateTagBuilder(ItemTags.DOORS)
+                .add(ModBackportBlocks.COPPER_DOOR.asItem())
+                .add(ModBackportBlocks.EXPOSED_COPPER_DOOR.asItem())
+                .add(ModBackportBlocks.WEATHERED_COPPER_DOOR.asItem())
+                .add(ModBackportBlocks.OXIDIZED_COPPER_DOOR.asItem())
+                .add(ModBackportBlocks.WAXED_COPPER_DOOR.asItem())
+                .add(ModBackportBlocks.WAXED_EXPOSED_COPPER_DOOR.asItem())
+                .add(ModBackportBlocks.WAXED_WEATHERED_COPPER_DOOR.asItem())
+                .add(ModBackportBlocks.WAXED_OXIDIZED_COPPER_DOOR.asItem());
+        //trapdoors
+        getOrCreateTagBuilder(ItemTags.TRAPDOORS)
+                .add(ModBackportBlocks.COPPER_TRAPDOOR.asItem())
+                .add(ModBackportBlocks.EXPOSED_COPPER_TRAPDOOR.asItem())
+                .add(ModBackportBlocks.WEATHERED_COPPER_TRAPDOOR.asItem())
+                .add(ModBackportBlocks.OXIDIZED_COPPER_TRAPDOOR.asItem())
+                .add(ModBackportBlocks.WAXED_COPPER_TRAPDOOR.asItem())
+                .add(ModBackportBlocks.WAXED_EXPOSED_COPPER_TRAPDOOR.asItem())
+                .add(ModBackportBlocks.WAXED_WEATHERED_COPPER_TRAPDOOR.asItem())
+                .add(ModBackportBlocks.WAXED_OXIDIZED_COPPER_TRAPDOOR.asItem());
         //endregion
         //region Shuckle Tags
         //region Backport

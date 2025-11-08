@@ -357,6 +357,112 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 ShuckleQOL.MOD_ID, "chiseled_copper",
                 Blocks.COPPER_BLOCK.asItem(), ModOxidizationHelpers.getCopperOxidizationStages(), 1);
         //endregion
+        //region Tuff
+        //tuff
+        createSlabStairWallItemSetRecipes(exporter,
+                "minecraft", "tuff",
+                ModBackportBlocks.TUFF_SLAB, ModBackportBlocks.TUFF_STAIRS,
+                ModBackportBlocks.TUFF_WALL, true);
+
+        //polished tuff
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.POLISHED_TUFF, 4)
+                .pattern("##")
+                .pattern("##")
+                .input('#', Items.TUFF)
+                .criterion(hasItem(Items.TUFF),
+                        conditionsFromItem(Items.TUFF)).offerTo(exporter);
+        createSlabStairWallItemSetRecipes(exporter,
+                ShuckleQOL.MOD_ID, "polished_tuff",
+                ModBackportBlocks.POLISHED_TUFF_SLAB, ModBackportBlocks.POLISHED_TUFF_STAIRS,
+                ModBackportBlocks.POLISHED_TUFF_WALL, true);
+
+        //tuff bricks
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.TUFF_BRICKS, 4)
+                .pattern("##")
+                .pattern("##")
+                .input('#', ModBackportBlocks.POLISHED_TUFF)
+                .criterion(hasItem(ModBackportBlocks.POLISHED_TUFF),
+                        conditionsFromItem(ModBackportBlocks.POLISHED_TUFF)).offerTo(exporter);
+        createSlabStairWallItemSetRecipes(exporter,
+                ShuckleQOL.MOD_ID, "tuff_bricks",
+                ModBackportBlocks.TUFF_BRICK_SLAB, ModBackportBlocks.TUFF_BRICK_STAIRS,
+                ModBackportBlocks.TUFF_BRICK_WALL, true);
+
+        //chiseled tuff
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.CHISELED_TUFF, 1)
+                .pattern("#")
+                .pattern("#")
+                .input('#', ModBackportBlocks.TUFF_SLAB)
+                .criterion(hasItem(Items.TUFF),
+                        conditionsFromItem(Items.TUFF)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.CHISELED_TUFF_BRICKS, 1)
+                .pattern("#")
+                .pattern("#")
+                .input('#', ModBackportBlocks.TUFF_BRICK_SLAB)
+                .criterion(hasItem(ModBackportBlocks.TUFF_BRICKS),
+                        conditionsFromItem(ModBackportBlocks.TUFF_BRICKS)).offerTo(exporter);
+
+        //stonecutter recipes
+        //from tuff
+        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Items.TUFF),
+                        RecipeCategory.MISC, ModBackportBlocks.POLISHED_TUFF, 1)
+                .criterion(hasItem(Items.TUFF),
+                        conditionsFromItem(Items.TUFF))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "polished_tuff_from_tuff_stonecutting"));
+        createSlabStairWallItemSetStonecutterRecipes(exporter,
+                new Identifier("minecraft", "tuff"), "polished_tuff", "from_tuff_",
+                ModBackportBlocks.POLISHED_TUFF_SLAB, ModBackportBlocks.POLISHED_TUFF_STAIRS,
+                ModBackportBlocks.POLISHED_TUFF_WALL);
+
+        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Items.TUFF),
+                        RecipeCategory.MISC, ModBackportBlocks.TUFF_BRICKS, 1)
+                .criterion(hasItem(Items.TUFF),
+                        conditionsFromItem(Items.TUFF))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "tuff_bricks_from_tuff_stonecutting"));
+        createSlabStairWallItemSetStonecutterRecipes(exporter,
+                new Identifier("minecraft", "tuff"), "tuff_brick", "from_tuff_",
+                ModBackportBlocks.TUFF_BRICK_SLAB, ModBackportBlocks.TUFF_BRICK_STAIRS,
+                ModBackportBlocks.TUFF_BRICK_WALL);
+
+        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Items.TUFF),
+                        RecipeCategory.MISC, ModBackportBlocks.CHISELED_TUFF, 1)
+                .criterion(hasItem(Items.TUFF),
+                        conditionsFromItem(Items.TUFF))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "chiseled_tuff_from_tuff_stonecutting"));
+        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Items.TUFF),
+                        RecipeCategory.MISC, ModBackportBlocks.CHISELED_TUFF_BRICKS, 1)
+                .criterion(hasItem(Items.TUFF),
+                        conditionsFromItem(Items.TUFF))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "chiseled_tuff_bricks_from_tuff_stonecutting"));
+
+        //from polished tuff
+        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBackportBlocks.POLISHED_TUFF),
+                        RecipeCategory.MISC, ModBackportBlocks.TUFF_BRICKS, 1)
+                .criterion(hasItem(ModBackportBlocks.POLISHED_TUFF),
+                        conditionsFromItem(ModBackportBlocks.POLISHED_TUFF))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "tuff_bricks_from_polished_tuff_stonecutting"));
+        createSlabStairWallItemSetStonecutterRecipes(exporter,
+                new Identifier(ShuckleQOL.MOD_ID, "polished_tuff"), "tuff_brick", "from_polished_tuff_",
+                ModBackportBlocks.TUFF_BRICK_SLAB, ModBackportBlocks.TUFF_BRICK_STAIRS,
+                ModBackportBlocks.TUFF_BRICK_WALL);
+
+        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBackportBlocks.POLISHED_TUFF),
+                        RecipeCategory.MISC, ModBackportBlocks.CHISELED_TUFF_BRICKS, 1)
+                .criterion(hasItem(ModBackportBlocks.POLISHED_TUFF),
+                        conditionsFromItem(ModBackportBlocks.POLISHED_TUFF))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "chiseled_tuff_bricks_from_polished_tuff_stonecutting"));
+
+        //from tuff bricks
+        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBackportBlocks.TUFF_BRICKS),
+                        RecipeCategory.MISC, ModBackportBlocks.CHISELED_TUFF_BRICKS, 1)
+                .criterion(hasItem(ModBackportBlocks.TUFF_BRICKS),
+                        conditionsFromItem(ModBackportBlocks.TUFF_BRICKS))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "chiseled_tuff_bricks_from_tuff_bricks_stonecutting"));
+        //endregion
         //endregion
         //region Shuckle
         //region Invisible Blocks
@@ -992,8 +1098,8 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
         IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Registries.BLOCK.getId(slabBlock), 6)
                 .pattern("###")
                 .inputItem('#', baseItem)
-                .criterion(hasItem(slabBlock),
-                        conditionsFromItem(slabBlock))
+                .criterion(hasItem(Registries.BLOCK.get(baseItem)),
+                        conditionsFromItem(Registries.BLOCK.get(baseItem)))
                 .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, baseBlockId + "_slab"));
         //stairs recipe
         IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Registries.BLOCK.getId(stairsBlock), 4)
@@ -1001,38 +1107,53 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .pattern("## ")
                 .pattern("###")
                 .inputItem('#', baseItem)
-                .criterion(hasItem(stairsBlock),
-                        conditionsFromItem(stairsBlock))
+                .criterion(hasItem(Registries.BLOCK.get(baseItem)),
+                        conditionsFromItem(Registries.BLOCK.get(baseItem)))
                 .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, baseBlockId + "_stairs"));
         //wall recipe
         IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Registries.BLOCK.getId(wallBlock), 6)
                 .pattern("###")
                 .pattern("###")
                 .inputItem('#', baseItem)
-                .criterion(hasItem(wallBlock),
-                        conditionsFromItem(wallBlock))
+                .criterion(hasItem(Registries.BLOCK.get(baseItem)),
+                        conditionsFromItem(Registries.BLOCK.get(baseItem)))
                 .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, baseBlockId + "_wall"));
 
         if(addStonecutterRecipes){
-            //slab stonecutting
-            IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(baseItem,
-                    RecipeCategory.MISC, Registries.BLOCK.getId(slabBlock), 2)
-                    .criterion(hasItem(slabBlock),
-                            conditionsFromItem(slabBlock))
-                    .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, baseBlockId + "_slab_stonecutting"));
-            //stairs stonecutting
-            IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(baseItem,
-                            RecipeCategory.MISC, Registries.BLOCK.getId(stairsBlock), 1)
-                    .criterion(hasItem(stairsBlock),
-                            conditionsFromItem(stairsBlock))
-                    .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, baseBlockId + "_stairs_stonecutting"));
-            //wall stonecutting
-            IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(baseItem,
-                            RecipeCategory.MISC, Registries.BLOCK.getId(wallBlock), 1)
-                    .criterion(hasItem(wallBlock),
-                            conditionsFromItem(wallBlock))
-                    .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, baseBlockId + "_wall_stonecutting"));
+            createSlabStairWallItemSetStonecutterRecipes(exporter,
+                    baseItem, baseBlockId, "",
+                    slabBlock, stairsBlock, wallBlock);
         }
+    }
+
+    private void createSlabStairWallItemSetStonecutterRecipes(Consumer<RecipeJsonProvider> exporter,
+                                                   Identifier baseItem,
+                                                   String baseBlockId,
+                                                   String extraIdText,
+                                                   Block slabBlock,
+                                                   Block stairsBlock,
+                                                   Block wallBlock) {
+        //slab stonecutting
+        IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(baseItem,
+                        RecipeCategory.MISC, Registries.BLOCK.getId(slabBlock), 2)
+                .criterion(hasItem(Registries.BLOCK.get(baseItem)),
+                        conditionsFromItem(Registries.BLOCK.get(baseItem)))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID,
+                        baseBlockId + "_slab_" + extraIdText + "stonecutting"));
+        //stairs stonecutting
+        IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(baseItem,
+                        RecipeCategory.MISC, Registries.BLOCK.getId(stairsBlock), 1)
+                .criterion(hasItem(Registries.BLOCK.get(baseItem)),
+                        conditionsFromItem(Registries.BLOCK.get(baseItem)))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID,
+                        baseBlockId + "_stairs_" + extraIdText + "stonecutting"));
+        //wall stonecutting
+        IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(baseItem,
+                        RecipeCategory.MISC, Registries.BLOCK.getId(wallBlock), 1)
+                .criterion(hasItem(Registries.BLOCK.get(baseItem)),
+                        conditionsFromItem(Registries.BLOCK.get(baseItem)))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID,
+                        baseBlockId + "_wall_" + extraIdText + "stonecutting"));
     }
 
     private void createOxidizableRecipes(Consumer<RecipeJsonProvider> exporter,

@@ -5,8 +5,10 @@ import ca.shuckle.block.ModBlocks;
 import ca.shuckle.util.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.ItemTags;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -119,6 +121,14 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBackportBlocks.WAXED_EXPOSED_COPPER_BULB)
                 .add(ModBackportBlocks.WAXED_WEATHERED_COPPER_BULB)
                 .add(ModBackportBlocks.WAXED_OXIDIZED_COPPER_BULB)
+                .add(ModBackportBlocks.LIGHTNING_ROD)
+                .add(ModBackportBlocks.EXPOSED_LIGHTNING_ROD)
+                .add(ModBackportBlocks.WEATHERED_LIGHTNING_ROD)
+                .add(ModBackportBlocks.OXIDIZED_LIGHTNING_ROD)
+                .add(ModBackportBlocks.WAXED_EXPOSED_LIGHTNING_ROD)
+                .add(ModBackportBlocks.WAXED_WEATHERED_LIGHTNING_ROD)
+                .add(ModBackportBlocks.WAXED_OXIDIZED_LIGHTNING_ROD);
+        getOrCreateTagBuilder(BlockTags.DOORS)
                 .add(ModBackportBlocks.COPPER_DOOR)
                 .add(ModBackportBlocks.EXPOSED_COPPER_DOOR)
                 .add(ModBackportBlocks.WEATHERED_COPPER_DOOR)
@@ -126,7 +136,8 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBackportBlocks.WAXED_COPPER_DOOR)
                 .add(ModBackportBlocks.WAXED_EXPOSED_COPPER_DOOR)
                 .add(ModBackportBlocks.WAXED_WEATHERED_COPPER_DOOR)
-                .add(ModBackportBlocks.WAXED_OXIDIZED_COPPER_DOOR)
+                .add(ModBackportBlocks.WAXED_OXIDIZED_COPPER_DOOR);
+        getOrCreateTagBuilder(BlockTags.TRAPDOORS)
                 .add(ModBackportBlocks.COPPER_TRAPDOOR)
                 .add(ModBackportBlocks.EXPOSED_COPPER_TRAPDOOR)
                 .add(ModBackportBlocks.WEATHERED_COPPER_TRAPDOOR)
@@ -134,38 +145,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBackportBlocks.WAXED_COPPER_TRAPDOOR)
                 .add(ModBackportBlocks.WAXED_EXPOSED_COPPER_TRAPDOOR)
                 .add(ModBackportBlocks.WAXED_WEATHERED_COPPER_TRAPDOOR)
-                .add(ModBackportBlocks.WAXED_OXIDIZED_COPPER_TRAPDOOR)
-                .add(ModBackportBlocks.COPPER_BARS)
-                .add(ModBackportBlocks.EXPOSED_COPPER_BARS)
-                .add(ModBackportBlocks.WEATHERED_COPPER_BARS)
-                .add(ModBackportBlocks.OXIDIZED_COPPER_BARS)
-                .add(ModBackportBlocks.WAXED_COPPER_BARS)
-                .add(ModBackportBlocks.WAXED_EXPOSED_COPPER_BARS)
-                .add(ModBackportBlocks.WAXED_WEATHERED_COPPER_BARS)
-                .add(ModBackportBlocks.WAXED_OXIDIZED_COPPER_BARS)
-                .add(ModBackportBlocks.COPPER_CHAIN)
-                .add(ModBackportBlocks.EXPOSED_COPPER_CHAIN)
-                .add(ModBackportBlocks.WEATHERED_COPPER_CHAIN)
-                .add(ModBackportBlocks.OXIDIZED_COPPER_CHAIN)
-                .add(ModBackportBlocks.WAXED_COPPER_CHAIN)
-                .add(ModBackportBlocks.WAXED_EXPOSED_COPPER_CHAIN)
-                .add(ModBackportBlocks.WAXED_WEATHERED_COPPER_CHAIN)
-                .add(ModBackportBlocks.WAXED_OXIDIZED_COPPER_CHAIN)
-                .add(ModBackportBlocks.LIGHTNING_ROD)
-                .add(ModBackportBlocks.EXPOSED_LIGHTNING_ROD)
-                .add(ModBackportBlocks.WEATHERED_LIGHTNING_ROD)
-                .add(ModBackportBlocks.OXIDIZED_LIGHTNING_ROD)
-                .add(ModBackportBlocks.WAXED_EXPOSED_LIGHTNING_ROD)
-                .add(ModBackportBlocks.WAXED_WEATHERED_LIGHTNING_ROD)
-                .add(ModBackportBlocks.WAXED_OXIDIZED_LIGHTNING_ROD)
-                .add(ModBackportBlocks.COPPER_LANTERN)
-                .add(ModBackportBlocks.EXPOSED_COPPER_LANTERN)
-                .add(ModBackportBlocks.WEATHERED_COPPER_LANTERN)
-                .add(ModBackportBlocks.OXIDIZED_COPPER_LANTERN)
-                .add(ModBackportBlocks.WAXED_COPPER_LANTERN)
-                .add(ModBackportBlocks.WAXED_EXPOSED_COPPER_LANTERN)
-                .add(ModBackportBlocks.WAXED_WEATHERED_COPPER_LANTERN)
-                .add(ModBackportBlocks.WAXED_OXIDIZED_COPPER_LANTERN);
+                .add(ModBackportBlocks.WAXED_OXIDIZED_COPPER_TRAPDOOR);
         //endregion
         //pickaxe
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
@@ -179,6 +159,19 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBackportBlocks.RESIN_BRICK_STAIRS)
                 .add(ModBackportBlocks.RESIN_BRICK_WALL)
                 .add(ModBackportBlocks.CHISELED_RESIN_BRICKS)
+                .add(ModBackportBlocks.TUFF_SLAB)
+                .add(ModBackportBlocks.TUFF_STAIRS)
+                .add(ModBackportBlocks.TUFF_WALL)
+                .add(ModBackportBlocks.POLISHED_TUFF)
+                .add(ModBackportBlocks.POLISHED_TUFF_SLAB)
+                .add(ModBackportBlocks.POLISHED_TUFF_STAIRS)
+                .add(ModBackportBlocks.POLISHED_TUFF_WALL)
+                .add(ModBackportBlocks.TUFF_BRICKS)
+                .add(ModBackportBlocks.TUFF_BRICK_SLAB)
+                .add(ModBackportBlocks.TUFF_BRICK_STAIRS)
+                .add(ModBackportBlocks.TUFF_BRICK_WALL)
+                .add(ModBackportBlocks.CHISELED_TUFF)
+                .add(ModBackportBlocks.CHISELED_TUFF_BRICKS)
                 .add(ModBlocks.ANCIENT_STONE_SLAB)
                 .add(ModBlocks.ANCIENT_STONE_STAIRS)
                 .add(ModBlocks.ANCIENT_STONE_WALL)
@@ -245,6 +238,16 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBackportBlocks.CHERRY_STAIRS)
                 .add(ModBackportBlocks.BAMBOO_STAIRS)
                 .add(ModBackportBlocks.PALE_OAK_STAIRS);
+        //wood doors
+        getOrCreateTagBuilder(BlockTags.WOODEN_DOORS)
+                .add(ModBackportBlocks.CHERRY_DOOR)
+                .add(ModBackportBlocks.BAMBOO_DOOR)
+                .add(ModBackportBlocks.PALE_OAK_DOOR);
+        //wood trapdoors
+        getOrCreateTagBuilder(BlockTags.WOODEN_TRAPDOORS)
+                .add(ModBackportBlocks.CHERRY_TRAPDOOR)
+                .add(ModBackportBlocks.BAMBOO_TRAPDOOR)
+                .add(ModBackportBlocks.PALE_OAK_TRAPDOOR);
         //fences
         getOrCreateTagBuilder(BlockTags.WOODEN_FENCES)
                 .add(ModBackportBlocks.CHERRY_FENCE)
@@ -307,6 +310,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBackportBlocks.PACKED_MUD_SLAB)
                 .add(ModBackportBlocks.BAMBOO_MOSAIC_SLAB)
                 .add(ModBackportBlocks.RESIN_BRICK_SLAB)
+                .add(ModBackportBlocks.TUFF_SLAB)
+                .add(ModBackportBlocks.POLISHED_TUFF_SLAB)
+                .add(ModBackportBlocks.TUFF_BRICK_SLAB)
                 .add(ModBlocks.ANCIENT_STONE_SLAB)
                 .add(ModBlocks.BLACK_SANDSTONE_SLAB)
                 .add(ModBlocks.BLACK_CUT_SANDSTONE_SLAB)
@@ -316,6 +322,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBackportBlocks.PACKED_MUD_STAIRS)
                 .add(ModBackportBlocks.BAMBOO_MOSAIC_STAIRS)
                 .add(ModBackportBlocks.RESIN_BRICK_STAIRS)
+                .add(ModBackportBlocks.TUFF_STAIRS)
+                .add(ModBackportBlocks.POLISHED_TUFF_STAIRS)
+                .add(ModBackportBlocks.TUFF_BRICK_STAIRS)
                 .add(ModBlocks.ANCIENT_STONE_STAIRS)
                 .add(ModBlocks.BLACK_SANDSTONE_STAIRS)
                 .add(ModBlocks.BLACK_CUT_SANDSTONE_STAIRS)
@@ -324,6 +333,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(BlockTags.WALLS)
                 .add(ModBackportBlocks.PACKED_MUD_WALL)
                 .add(ModBackportBlocks.RESIN_BRICK_WALL)
+                .add(ModBackportBlocks.TUFF_WALL)
+                .add(ModBackportBlocks.POLISHED_TUFF_WALL)
+                .add(ModBackportBlocks.TUFF_BRICK_WALL)
                 .add(ModBlocks.ANCIENT_STONE_WALL)
                 .add(ModBlocks.BLACK_SANDSTONE_WALL)
                 .add(ModBlocks.BLACK_CUT_SANDSTONE_WALL)

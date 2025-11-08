@@ -522,7 +522,35 @@ public class ModBackportBlocks {
 
     //endregion
     //region Tuff
+    public static final Block TUFF_SLAB = registerBlock("tuff_slab",
+            new SlabBlock(FabricBlockSettings.copyOf(Blocks.TUFF)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block TUFF_STAIRS = registerBlock("tuff_stairs",
+            new StairsBlock(Blocks.TUFF.getDefaultState(), FabricBlockSettings.copyOf(Blocks.TUFF)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block TUFF_WALL = registerBlock("tuff_wall",
+            new WallBlock(FabricBlockSettings.copyOf(Blocks.TUFF)), ModItemGroup.SHUCKLE_BACKPORT);
 
+    public static final Block POLISHED_TUFF = registerBlock("polished_tuff",
+            new Block(FabricBlockSettings.copyOf(Blocks.TUFF).sounds(ModSounds.POLISHED_TUFF)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block POLISHED_TUFF_SLAB = registerBlock("polished_tuff_slab",
+            new SlabBlock(FabricBlockSettings.copyOf(POLISHED_TUFF)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block POLISHED_TUFF_STAIRS = registerBlock("polished_tuff_stairs",
+            new StairsBlock(POLISHED_TUFF.getDefaultState(), FabricBlockSettings.copyOf(POLISHED_TUFF)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block POLISHED_TUFF_WALL = registerBlock("polished_tuff_wall",
+            new WallBlock(FabricBlockSettings.copyOf(POLISHED_TUFF)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block TUFF_BRICKS = registerBlock("tuff_bricks",
+            new Block(FabricBlockSettings.copyOf(Blocks.TUFF).sounds(ModSounds.TUFF_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block TUFF_BRICK_SLAB = registerBlock("tuff_brick_slab",
+            new SlabBlock(FabricBlockSettings.copyOf(TUFF_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block TUFF_BRICK_STAIRS = registerBlock("tuff_brick_stairs",
+            new StairsBlock(TUFF_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(TUFF_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block TUFF_BRICK_WALL = registerBlock("tuff_brick_wall",
+            new WallBlock(FabricBlockSettings.copyOf(TUFF_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block CHISELED_TUFF = registerBlock("chiseled_tuff",
+            new Block(FabricBlockSettings.copyOf(Blocks.TUFF)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block CHISELED_TUFF_BRICKS = registerBlock("chiseled_tuff_bricks",
+            new Block(FabricBlockSettings.copyOf(TUFF_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
     //endregion
     public static final Block WILDFLOWERS = registerBlock("wildflowers",
             new FlowerbedBlock(FabricBlockSettings.of(Material.PLANT, MapColor.YELLOW)

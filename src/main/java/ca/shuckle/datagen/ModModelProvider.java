@@ -4,25 +4,19 @@ import ca.shuckle.ShuckleQOL;
 import ca.shuckle.block.ModBackportBlocks;
 import ca.shuckle.block.ModBlocks;
 import ca.shuckle.block.custom.copper.BulbBlock;
-import ca.shuckle.block.custom.copper.CopperDoorBlock;
 import ca.shuckle.item.ModItems;
 import ca.shuckle.util.ModOxidizationHelpers;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.LanternBlock;
-import net.minecraft.block.enums.DoorHinge;
-import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.data.client.*;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 import java.util.function.Consumer;
 
@@ -131,8 +125,30 @@ public class ModModelProvider extends FabricModelProvider {
                 blockStateModelGenerator::registerLantern,
                 ModOxidizationHelpers.getCopperOxidizationStages(), blockStateModelGenerator);
         //endregion
+        //region Tuff
+        registerExternalSlabTexture(blockStateModelGenerator,
+                "minecraft", "tuff", null, null, null, ModBackportBlocks.TUFF_SLAB);
+        registerExternalStairsTexture(blockStateModelGenerator,
+                "minecraft", "tuff", null, null, ModBackportBlocks.TUFF_STAIRS);
+        registerExternalWallTexture(blockStateModelGenerator,
+                "minecraft", "tuff", ModBackportBlocks.TUFF_WALL);
+
+        BlockStateModelGenerator.BlockTexturePool polishedTuffPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBackportBlocks.POLISHED_TUFF);
+        polishedTuffPool.slab(ModBackportBlocks.POLISHED_TUFF_SLAB);
+        polishedTuffPool.stairs(ModBackportBlocks.POLISHED_TUFF_STAIRS);
+        polishedTuffPool.wall(ModBackportBlocks.POLISHED_TUFF_WALL);
+
+        BlockStateModelGenerator.BlockTexturePool tuffBricksPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBackportBlocks.TUFF_BRICKS);
+        tuffBricksPool.slab(ModBackportBlocks.TUFF_BRICK_SLAB);
+        tuffBricksPool.stairs(ModBackportBlocks.TUFF_BRICK_STAIRS);
+        tuffBricksPool.wall(ModBackportBlocks.TUFF_BRICK_WALL);
+
+        registerChiseled(blockStateModelGenerator, ModBackportBlocks.CHISELED_TUFF);
+        registerChiseled(blockStateModelGenerator, ModBackportBlocks.CHISELED_TUFF_BRICKS);
+        //endregion
         blockStateModelGenerator.registerFlowerbed(ModBackportBlocks.PINK_PETALS);
         blockStateModelGenerator.registerFlowerbed(ModBackportBlocks.WILDFLOWERS);
+        registerFlatFlowerbed(blockStateModelGenerator, ModBackportBlocks.LEAF_LITTER);
         //endregion
 
         //region Shuckle Blocks
@@ -145,6 +161,8 @@ public class ModModelProvider extends FabricModelProvider {
 
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.CONDENSED_BLACK_ICE);
         blockStateModelGenerator.registerFlowerbed(ModBlocks.WILDFLOWERS_RED_BLUE);
+        registerFlatFlowerbed(blockStateModelGenerator, ModBlocks.LEAF_LITTER_OAK);
+        registerFlatFlowerbed(blockStateModelGenerator, ModBlocks.ZYGARDE_CELL);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.SHUCKLE_MYSTERY_BLOCK);
         //endregion
         //region Other Mod Blocks
@@ -303,6 +321,101 @@ public class ModModelProvider extends FabricModelProvider {
                 .put(TextureKey.SIDE, sideTextureId)
                 .put(TextureKey.TOP, topTextureId)
                 .put(TextureKey.BOTTOM, bottomTextureId);
+    }
+
+    private void registerChiseled(BlockStateModelGenerator gen, Block block) {
+        gen.blockStateCollector.accept(BlockStateModelGenerator.createSingletonBlockState(block,
+                Models.CUBE_COLUMN.upload(block, new TextureMap()
+                                .put(TextureKey.END, TextureMap.getSubId(block, "_top"))
+                                .put(TextureKey.SIDE, TextureMap.getSubId(block, "")),
+                        gen.modelCollector)
+        ));
+    }
+
+    private static TextureMap flatFlowerbedTextureMap(Block block) {
+        return new TextureMap().put(TextureKey.FLOWERBED, TextureMap.getId(block));
+    }
+
+    private static TexturedModel.Factory getFlatFlowerbedFactory(int flowerbedNum) {
+        return TexturedModel.makeFactory(ModModelProvider::flatFlowerbedTextureMap,
+                new Model(Optional.of(new Identifier(ShuckleQOL.MOD_ID, "block/flat_flowerbed_" + flowerbedNum)),
+                        Optional.of("_" + flowerbedNum), TextureKey.FLOWERBED));
+    }
+
+    public void registerFlatFlowerbed(BlockStateModelGenerator gen, Block flowerbed) {
+        gen.registerItemModel(flowerbed.asItem());
+
+        Identifier flowerbed1 = getFlatFlowerbedFactory(1).upload(flowerbed, gen.modelCollector);
+        Identifier flowerbed2 = getFlatFlowerbedFactory(2).upload(flowerbed, gen.modelCollector);
+        Identifier flowerbed3 = getFlatFlowerbedFactory(3).upload(flowerbed, gen.modelCollector);
+        Identifier flowerbed4 = getFlatFlowerbedFactory(4).upload(flowerbed, gen.modelCollector);
+
+        gen.blockStateCollector.accept(
+                MultipartBlockStateSupplier.create(flowerbed)
+
+                        .with((When)When.create().set(Properties.FLOWER_AMOUNT, Integer.valueOf(1),
+                                new Integer[]{2, 3, 4}).set(Properties.HORIZONTAL_FACING, Direction.NORTH),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, flowerbed1))
+                        .with((When)When.create().set(Properties.FLOWER_AMOUNT, Integer.valueOf(1),
+                                new Integer[]{2, 3, 4}).set(Properties.HORIZONTAL_FACING, Direction.EAST),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, flowerbed1)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with((When)When.create().set(Properties.FLOWER_AMOUNT, Integer.valueOf(1),
+                                new Integer[]{2, 3, 4}).set(Properties.HORIZONTAL_FACING, Direction.SOUTH),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, flowerbed1)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                        .with((When)When.create().set(Properties.FLOWER_AMOUNT, Integer.valueOf(1),
+                                new Integer[]{2, 3, 4}).set(Properties.HORIZONTAL_FACING, Direction.WEST),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, flowerbed1)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+
+                        .with((When)When.create().set(Properties.FLOWER_AMOUNT, Integer.valueOf(2),
+                                new Integer[]{3, 4}).set(Properties.HORIZONTAL_FACING, Direction.NORTH),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, flowerbed2))
+                        .with((When)When.create().set(Properties.FLOWER_AMOUNT, Integer.valueOf(2),
+                                new Integer[]{3, 4}).set(Properties.HORIZONTAL_FACING, Direction.EAST),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, flowerbed2)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with((When)When.create().set(Properties.FLOWER_AMOUNT, Integer.valueOf(2),
+                                new Integer[]{3, 4}).set(Properties.HORIZONTAL_FACING, Direction.SOUTH),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, flowerbed2)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                        .with((When)When.create().set(Properties.FLOWER_AMOUNT, Integer.valueOf(2),
+                                new Integer[]{3, 4}).set(Properties.HORIZONTAL_FACING, Direction.WEST),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, flowerbed2)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+
+                        .with((When)When.create().set(Properties.FLOWER_AMOUNT, Integer.valueOf(3),
+                                new Integer[]{4}).set(Properties.HORIZONTAL_FACING, Direction.NORTH),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, flowerbed3))
+                        .with((When)When.create().set(Properties.FLOWER_AMOUNT, Integer.valueOf(3),
+                                new Integer[]{4}).set(Properties.HORIZONTAL_FACING, Direction.EAST),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, flowerbed3)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with((When)When.create().set(Properties.FLOWER_AMOUNT, Integer.valueOf(3),
+                                new Integer[]{4}).set(Properties.HORIZONTAL_FACING, Direction.SOUTH),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, flowerbed3)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                        .with((When)When.create().set(Properties.FLOWER_AMOUNT, Integer.valueOf(3),
+                                new Integer[]{4}).set(Properties.HORIZONTAL_FACING, Direction.WEST),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, flowerbed3)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+
+                        .with((When)When.create().set(Properties.FLOWER_AMOUNT, 4)
+                                        .set(Properties.HORIZONTAL_FACING, Direction.NORTH),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, flowerbed4))
+                        .with((When)When.create().set(Properties.FLOWER_AMOUNT, 4)
+                                .set(Properties.HORIZONTAL_FACING, Direction.EAST),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, flowerbed4)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with((When)When.create().set(Properties.FLOWER_AMOUNT, 4)
+                                .set(Properties.HORIZONTAL_FACING, Direction.SOUTH),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, flowerbed4)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                        .with((When)When.create().set(Properties.FLOWER_AMOUNT, 4)
+                                .set(Properties.HORIZONTAL_FACING, Direction.WEST),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, flowerbed4)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270)));
     }
 
     private void createOxidizableModelSet(String baseBlockId,
