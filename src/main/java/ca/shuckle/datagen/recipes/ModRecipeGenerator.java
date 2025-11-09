@@ -776,16 +776,6 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
         //endregion
         //region Other Mods
         //region BYG
-        //ebony sign
-        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, Registries.BLOCK.getId(ModBlocks.EBONY_SIGN), 3)
-                .pattern("###")
-                .pattern("###")
-                .pattern(" S ")
-                .inputItem('#', new Identifier("byg", "ebony_planks"))
-                .inputItem('S', new Identifier("minecraft", "stick"))
-                .criterion(hasItem(Items.STICK),
-                        conditionsFromItem(Items.STICK))
-                .offerTo(exporter, Registries.BLOCK.getId(ModBlocks.EBONY_SIGN));
         //winter cyclamen
         IdentifiersShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, new Identifier("byg", "winter_cyclamen"), 1)
                 .inputItem(new Identifier("byg", "winter_succulent"))

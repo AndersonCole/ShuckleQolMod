@@ -91,7 +91,6 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.CHERRY_SIGN)
                 .add(ModItems.BAMBOO_SIGN)
                 .add(ModItems.PALE_OAK_SIGN)
-                .add(ModItems.EBONY_SIGN)
                 .add(ModItems.INVIS_SIGN);
         //endregion
         //region Nature Block Tags

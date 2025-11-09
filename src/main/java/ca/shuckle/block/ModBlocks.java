@@ -66,15 +66,6 @@ public class ModBlocks {
     public static final Block BLACK_SMOOTH_SANDSTONE_WALL = registerBlock("black_smooth_sandstone_wall",
             new WallBlock(FabricBlockSettings.copy(Blocks.SMOOTH_SANDSTONE)), ModItemGroup.SHUCKLE);
 
-    public static final Block EBONY_SIGN = registerBlockWithoutBlockItem("ebony_sign",
-            new TerraformSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/ebony"),
-                    FabricBlockSettings.copy(Blocks.OAK_SIGN)));
-
-    public static final Block EBONY_WALL_SIGN = registerBlockWithoutBlockItem("ebony_wall_sign",
-            new TerraformWallSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/ebony"),
-                    FabricBlockSettings.copy(Blocks.OAK_WALL_SIGN)
-                            .dropsLike(EBONY_SIGN)));
-
     public static final Block WILDFLOWERS_RED_BLUE = registerBlock("wildflowers_red_blue",
             new FlowerbedBlock(FabricBlockSettings.of(Material.PLANT, MapColor.DARK_GREEN)
                     .sounds(BlockSoundGroup.GRASS).noCollision().nonOpaque()), ModItemGroup.SHUCKLE);

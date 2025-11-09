@@ -211,7 +211,6 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
         //endregion
         //region Other Mod Blocks
         //region BYG
-        addDrop(ModBlocks.EBONY_SIGN);
         //region Sand
         addDrop(ModBlocks.BLACK_SANDSTONE_SLAB, slabDrops(ModBlocks.BLACK_SANDSTONE_SLAB));
         addDrop(ModBlocks.BLACK_SANDSTONE_STAIRS);

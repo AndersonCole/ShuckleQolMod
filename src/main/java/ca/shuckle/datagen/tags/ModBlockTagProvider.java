@@ -273,13 +273,11 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBackportBlocks.CHERRY_SIGN)
                 .add(ModBackportBlocks.BAMBOO_SIGN)
                 .add(ModBackportBlocks.PALE_OAK_SIGN)
-                .add(ModBlocks.EBONY_SIGN)
                 .add(ModBlocks.INVIS_SIGN);
         getOrCreateTagBuilder(BlockTags.WALL_SIGNS)
                 .add(ModBackportBlocks.CHERRY_WALL_SIGN)
                 .add(ModBackportBlocks.BAMBOO_WALL_SIGN)
                 .add(ModBackportBlocks.PALE_OAK_WALL_SIGN)
-                .add(ModBlocks.EBONY_WALL_SIGN)
                 .add(ModBlocks.INVIS_WALL_SIGN);
         //endregion
         //region Nature Block Tags

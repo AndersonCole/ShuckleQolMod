@@ -34,10 +34,6 @@ public class ModItems {
             new VerticallyAttachableBlockItem(ModBackportBlocks.COPPER_TORCH, ModBackportBlocks.COPPER_WALL_TORCH,
                     new FabricItemSettings(), Direction.DOWN), ModItemGroup.SHUCKLE_BACKPORT);
 
-    public static final Item EBONY_SIGN = registerItemInGroup("ebony_sign",
-            new SignItem(new FabricItemSettings().maxCount(16),
-                    ModBlocks.EBONY_SIGN, ModBlocks.EBONY_WALL_SIGN), ModItemGroup.SHUCKLE);
-
     public static final Item INVIS_SIGN = registerItemInGroup("invisible_sign",
             new SignItem(new FabricItemSettings().maxCount(16),
                     ModBlocks.INVIS_SIGN, ModBlocks.INVIS_WALL_SIGN), ModItemGroup.SHUCKLE);
@@ -139,7 +135,6 @@ public class ModItems {
         registerItemInGroup(CHERRY_SIGN, ModItemGroup.SHUCKLE_BACKPORT);
         registerItemInGroup(BAMBOO_SIGN, ModItemGroup.SHUCKLE_BACKPORT);
         registerItemInGroup(PALE_OAK_SIGN, ModItemGroup.SHUCKLE_BACKPORT);
-        registerItemInGroup(EBONY_SIGN, ModItemGroup.SHUCKLE);
         registerItemInGroup(INVIS_SIGN, ModItemGroup.SHUCKLE);
     }
 }

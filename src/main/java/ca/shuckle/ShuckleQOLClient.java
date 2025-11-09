@@ -72,8 +72,6 @@ public class ShuckleQOLClient implements ClientModInitializer {
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
                 new Identifier(ShuckleQOL.MOD_ID, "entity/signs/pale_oak")));
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
-                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/ebony")));
-        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
                 new Identifier(ShuckleQOL.MOD_ID, "entity/signs/invisible")));
 
         ParticleFactoryRegistry.getInstance().register(ModParticles.COPPER_FIRE_FLAME_PARTICLE, CopperFireFlame.Factory::new);
