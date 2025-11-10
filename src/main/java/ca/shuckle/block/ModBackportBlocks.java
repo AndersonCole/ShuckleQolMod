@@ -36,6 +36,26 @@ public class ModBackportBlocks {
 
     public static final Block PACKED_MUD_WALL = registerBlock("packed_mud_wall",
             new WallBlock(FabricBlockSettings.copy(Blocks.PACKED_MUD)), ModItemGroup.SHUCKLE_BACKPORT);
+    //region Shelves
+    public static final Block OAK_SHELF = registerBlock("oak_shelf",
+            new ShelfBlock(FabricBlockSettings.copy(Blocks.OAK_PLANKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block SPRUCE_SHELF = registerBlock("spruce_shelf",
+            new ShelfBlock(FabricBlockSettings.copy(Blocks.SPRUCE_PLANKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block BIRCH_SHELF = registerBlock("birch_shelf",
+            new ShelfBlock(FabricBlockSettings.copy(Blocks.BIRCH_PLANKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block JUNGLE_SHELF = registerBlock("jungle_shelf",
+            new ShelfBlock(FabricBlockSettings.copy(Blocks.JUNGLE_PLANKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block ACACIA_SHELF = registerBlock("acacia_shelf",
+            new ShelfBlock(FabricBlockSettings.copy(Blocks.ACACIA_PLANKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block DARK_OAK_SHELF = registerBlock("dark_oak_shelf",
+            new ShelfBlock(FabricBlockSettings.copy(Blocks.DARK_OAK_PLANKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block MANGROVE_SHELF = registerBlock("mangrove_shelf",
+            new ShelfBlock(FabricBlockSettings.copy(Blocks.MANGROVE_PLANKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block CRIMSON_SHELF = registerBlock("crimson_shelf",
+            new ShelfBlock(FabricBlockSettings.copy(Blocks.CRIMSON_PLANKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block WARPED_SHELF = registerBlock("warped_shelf",
+            new ShelfBlock(FabricBlockSettings.copy(Blocks.WARPED_PLANKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    //endregion
     //region Biome Sets
     //region Cherry
     public static final Block CHERRY_SAPLING = registerBlock("cherry_sapling",
@@ -90,6 +110,9 @@ public class ModBackportBlocks {
             new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING,
                     FabricBlockSettings.copy(Blocks.OAK_PRESSURE_PLATE).sounds(BlockSoundGroup.CHERRY_WOOD).nonOpaque(), BlockSetType.CHERRY), ModItemGroup.SHUCKLE_BACKPORT);
 
+    public static final Block CHERRY_SHELF = registerBlock("cherry_shelf",
+            new ShelfBlock(FabricBlockSettings.copy(ModBackportBlocks.CHERRY_PLANKS)), ModItemGroup.SHUCKLE_BACKPORT);
+
     public static final Block CHERRY_SIGN = registerBlockWithoutBlockItem("cherry_sign",
             new TerraformSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/cherry"),
                     FabricBlockSettings.copy(Blocks.OAK_SIGN).sounds(BlockSoundGroup.CHERRY_WOOD)));
@@ -139,6 +162,9 @@ public class ModBackportBlocks {
     public static final Block BAMBOO_PRESSURE_PLATE = registerBlock("bamboo_pressure_plate",
             new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING,
                     FabricBlockSettings.copy(Blocks.OAK_PRESSURE_PLATE).sounds(BlockSoundGroup.BAMBOO).nonOpaque(), BlockSetType.BAMBOO), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block BAMBOO_SHELF = registerBlock("bamboo_shelf",
+            new ShelfBlock(FabricBlockSettings.copy(ModBackportBlocks.BAMBOO_PLANKS)), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block BAMBOO_SIGN = registerBlockWithoutBlockItem("bamboo_sign",
             new TerraformSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/bamboo"),
@@ -212,6 +238,9 @@ public class ModBackportBlocks {
     public static final Block PALE_OAK_PRESSURE_PLATE = registerBlock("pale_oak_pressure_plate",
             new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING,
                     FabricBlockSettings.copy(Blocks.OAK_PRESSURE_PLATE).nonOpaque(), BlockSetType.OAK), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block PALE_OAK_SHELF = registerBlock("pale_oak_shelf",
+            new ShelfBlock(FabricBlockSettings.copy(ModBackportBlocks.PALE_OAK_PLANKS)), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block PALE_OAK_SIGN = registerBlockWithoutBlockItem("pale_oak_sign",
             new TerraformSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/pale_oak"),

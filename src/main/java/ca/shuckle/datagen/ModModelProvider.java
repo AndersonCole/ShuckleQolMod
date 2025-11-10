@@ -29,6 +29,17 @@ public class ModModelProvider extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
         //region Backport Blocks
+        //region Shelves
+        registerShelfBlock("minecraft", "oak", "_log", blockStateModelGenerator);
+        registerShelfBlock("minecraft", "spruce", "_log", blockStateModelGenerator);
+        registerShelfBlock("minecraft", "birch", "_log", blockStateModelGenerator);
+        registerShelfBlock("minecraft", "jungle", "_log", blockStateModelGenerator);
+        registerShelfBlock("minecraft", "acacia", "_log", blockStateModelGenerator);
+        registerShelfBlock("minecraft", "dark_oak", "_log", blockStateModelGenerator);
+        registerShelfBlock("minecraft", "mangrove", "_log", blockStateModelGenerator);
+        registerShelfBlock("minecraft", "crimson", "_stem", blockStateModelGenerator);
+        registerShelfBlock("minecraft", "warped", "_stem", blockStateModelGenerator);
+        //endregion
         //region Cherry blocks
         blockStateModelGenerator.registerTintableCross(ModBackportBlocks.CHERRY_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
         blockStateModelGenerator.registerSimpleCubeAll(ModBackportBlocks.CHERRY_LEAVES);
@@ -45,6 +56,7 @@ public class ModModelProvider extends FabricModelProvider {
         cherryPool.fenceGate(ModBackportBlocks.CHERRY_FENCE_GATE);
         cherryPool.button(ModBackportBlocks.CHERRY_BUTTON);
         cherryPool.pressurePlate(ModBackportBlocks.CHERRY_PRESSURE_PLATE);
+        registerShelfBlock(ShuckleQOL.MOD_ID, "cherry", "_log", blockStateModelGenerator);
         //endregion
         //region Bamboo
         blockStateModelGenerator.registerLog(ModBackportBlocks.BAMBOO_BLOCK).log(ModBackportBlocks.BAMBOO_BLOCK);
@@ -59,6 +71,7 @@ public class ModModelProvider extends FabricModelProvider {
         bambooPool.fenceGate(ModBackportBlocks.BAMBOO_FENCE_GATE);
         bambooPool.button(ModBackportBlocks.BAMBOO_BUTTON);
         bambooPool.pressurePlate(ModBackportBlocks.BAMBOO_PRESSURE_PLATE);
+        registerShelfBlock(ShuckleQOL.MOD_ID, "bamboo", "_block", blockStateModelGenerator);
 
         BlockStateModelGenerator.BlockTexturePool bambooMosaicPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBackportBlocks.BAMBOO_MOSAIC);
         bambooMosaicPool.slab(ModBackportBlocks.BAMBOO_MOSAIC_SLAB);
@@ -80,6 +93,7 @@ public class ModModelProvider extends FabricModelProvider {
         paleOakPool.fenceGate(ModBackportBlocks.PALE_OAK_FENCE_GATE);
         paleOakPool.button(ModBackportBlocks.PALE_OAK_BUTTON);
         paleOakPool.pressurePlate(ModBackportBlocks.PALE_OAK_PRESSURE_PLATE);
+        registerShelfBlock(ShuckleQOL.MOD_ID, "pale_oak", "_log", blockStateModelGenerator);
 
         blockStateModelGenerator.registerWoolAndCarpet(ModBackportBlocks.PALE_MOSS_BLOCK, ModBackportBlocks.PALE_MOSS_CARPET);
         blockStateModelGenerator.registerTintableCross(ModBackportBlocks.PALE_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
@@ -204,6 +218,21 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RESIN_BRICK, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.COPPER_NUGGET, Models.GENERATED);
+
+        //region shelves
+        registerShelfItem("minecraft", "oak", "_log", itemModelGenerator);
+        registerShelfItem("minecraft", "spruce", "_log", itemModelGenerator);
+        registerShelfItem("minecraft", "birch", "_log", itemModelGenerator);
+        registerShelfItem("minecraft", "jungle", "_log", itemModelGenerator);
+        registerShelfItem("minecraft", "acacia", "_log", itemModelGenerator);
+        registerShelfItem("minecraft", "dark_oak", "_log", itemModelGenerator);
+        registerShelfItem("minecraft", "mangrove", "_log", itemModelGenerator);
+        registerShelfItem(ShuckleQOL.MOD_ID, "cherry", "_log", itemModelGenerator);
+        registerShelfItem(ShuckleQOL.MOD_ID, "bamboo", "_block", itemModelGenerator);
+        registerShelfItem(ShuckleQOL.MOD_ID, "pale_oak", "_log", itemModelGenerator);
+        registerShelfItem("minecraft", "crimson", "_stem", itemModelGenerator);
+        registerShelfItem("minecraft", "warped", "_stem", itemModelGenerator);
+        //endregion
 
         //region copper
         registerWaxedOxidizableItems("copper_bulb",
@@ -342,7 +371,7 @@ public class ModModelProvider extends FabricModelProvider {
                         Optional.of("_" + flowerbedNum), TextureKey.FLOWERBED));
     }
 
-    public void registerFlatFlowerbed(BlockStateModelGenerator gen, Block flowerbed) {
+    private void registerFlatFlowerbed(BlockStateModelGenerator gen, Block flowerbed) {
         gen.registerItemModel(flowerbed.asItem());
 
         Identifier flowerbed1 = getFlatFlowerbedFactory(1).upload(flowerbed, gen.modelCollector);
@@ -416,6 +445,87 @@ public class ModModelProvider extends FabricModelProvider {
                                 .set(Properties.HORIZONTAL_FACING, Direction.WEST),
                                 BlockStateVariant.create().put(VariantSettings.MODEL, flowerbed4)
                                         .put(VariantSettings.Y, VariantSettings.Rotation.R270)));
+    }
+
+    private void registerShelfBlock(String woodNamespace, String woodType, String woodSuffix, BlockStateModelGenerator gen) {
+        String[] shelfFiles = {
+                "_body",
+                "_powered",
+                "_unpowered"
+        };
+
+        Identifier bodyModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + woodType + "_shelf_body");
+        Identifier poweredModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + woodType + "_shelf_powered");
+        Identifier unpoweredModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + woodType + "_shelf_unpowered");
+
+        gen.blockStateCollector.accept(
+                MultipartBlockStateSupplier.create(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, woodType + "_shelf")))
+                        .with(When.create().set(Properties.HORIZONTAL_FACING, Direction.NORTH),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, bodyModel))
+                        .with(When.create().set(Properties.HORIZONTAL_FACING, Direction.EAST),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, bodyModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create().set(Properties.HORIZONTAL_FACING, Direction.SOUTH),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, bodyModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                        .with(When.create().set(Properties.HORIZONTAL_FACING, Direction.WEST),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, bodyModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+
+                        .with(When.create()
+                                        .set(Properties.HORIZONTAL_FACING, Direction.NORTH)
+                                        .set(Properties.POWERED, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, unpoweredModel))
+                        .with(When.create()
+                                        .set(Properties.HORIZONTAL_FACING, Direction.EAST)
+                                        .set(Properties.POWERED, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, unpoweredModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create()
+                                        .set(Properties.HORIZONTAL_FACING, Direction.SOUTH)
+                                        .set(Properties.POWERED, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, unpoweredModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                        .with(When.create()
+                                        .set(Properties.HORIZONTAL_FACING, Direction.WEST)
+                                        .set(Properties.POWERED, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, unpoweredModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+
+                        .with(When.create()
+                                        .set(Properties.HORIZONTAL_FACING, Direction.NORTH)
+                                        .set(Properties.POWERED, true),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, poweredModel))
+                        .with(When.create()
+                                        .set(Properties.HORIZONTAL_FACING, Direction.EAST)
+                                        .set(Properties.POWERED, true),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, poweredModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create()
+                                        .set(Properties.HORIZONTAL_FACING, Direction.SOUTH)
+                                        .set(Properties.POWERED, true),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, poweredModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                        .with(When.create()
+                                        .set(Properties.HORIZONTAL_FACING, Direction.WEST)
+                                        .set(Properties.POWERED, true),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, poweredModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+        );
+
+        for (String shelfFile : shelfFiles) {
+            new Model(
+                    Optional.of(new Identifier(ShuckleQOL.MOD_ID, "block/template_shelf" + shelfFile)),
+                    Optional.empty(),
+                    TextureKey.ALL, TextureKey.PARTICLE
+            ).upload(
+                    new Identifier(ShuckleQOL.MOD_ID, "block/" + woodType + "_shelf" + shelfFile),
+                    new TextureMap()
+                            .put(TextureKey.ALL, new Identifier(ShuckleQOL.MOD_ID, "block/" + woodType + "_shelf"))
+                            .put(TextureKey.PARTICLE, new Identifier(woodNamespace, "block/" + "stripped_" + woodType + woodSuffix)),
+                    gen.modelCollector
+            );
+        }
     }
 
     private void createOxidizableModelSet(String baseBlockId,
@@ -817,6 +927,20 @@ public class ModModelProvider extends FabricModelProvider {
                                 .register(false, BlockStateVariant.create().put(VariantSettings.MODEL, normalModel))
                                 .register(true, BlockStateVariant.create().put(VariantSettings.MODEL, hangingModel))
                         )
+        );
+    }
+
+    private void registerShelfItem(String woodNamespace, String woodType, String woodSuffix, ItemModelGenerator gen) {
+        new Model(
+                Optional.of(new Identifier(ShuckleQOL.MOD_ID, "block/template_shelf_inventory")),
+                Optional.empty(),
+                TextureKey.ALL, TextureKey.PARTICLE
+        ).upload(
+                new Identifier(ShuckleQOL.MOD_ID, "item/" + woodType + "_shelf"),
+                new TextureMap()
+                        .put(TextureKey.ALL, new Identifier(ShuckleQOL.MOD_ID, "block/" + woodType + "_shelf"))
+                        .put(TextureKey.PARTICLE, new Identifier(woodNamespace, "block/" + "stripped_" + woodType + woodSuffix)),
+                gen.writer
         );
     }
 

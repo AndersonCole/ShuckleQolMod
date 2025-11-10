@@ -31,7 +31,7 @@ public class OxidizeFasterCommand {
         ModStateManager.getServerState(context.getSource().getServer()).setOxidizeFaster(value);
 
         if (value) {
-            context.getSource().sendFeedback(Text.literal("Copper now oxidizes faster!"), true);
+            context.getSource().sendFeedback(Text.literal("Copper now oxidizes faster when in water!"), true);
         } else {
             context.getSource().sendFeedback(Text.literal("Copper now oxidizes normally!"), true);
         }

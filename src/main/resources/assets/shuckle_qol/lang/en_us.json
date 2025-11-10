@@ -28,6 +28,16 @@
   "block.shuckle_qol.ancient_stone_stairs": "Ancient Stone Stairs",
   "block.shuckle_qol.ancient_stone_wall": "Ancient Stone Wall",
 
+  "block.shuckle_qol.oak_shelf": "Oak Shelf",
+  "block.shuckle_qol.spruce_shelf": "Spruce Shelf",
+  "block.shuckle_qol.birch_shelf": "Birch Shelf",
+  "block.shuckle_qol.jungle_shelf": "Jungle Shelf",
+  "block.shuckle_qol.acacia_shelf": "Acacia Shelf",
+  "block.shuckle_qol.dark_oak_shelf": "Dark Oak Shelf",
+  "block.shuckle_qol.mangrove_shelf": "Mangrove Shelf",
+  "block.shuckle_qol.crimson_shelf": "Crimson Shelf",
+  "block.shuckle_qol.warped_shelf": "Warped Shelf",
+
   "block.shuckle_qol.cherry_sapling": "Cherry Sapling",
   "block.shuckle_qol.potted_cherry_sapling": "Potted Cherry Sapling",
   "block.shuckle_qol.cherry_leaves": "Cherry Leaves",
@@ -44,6 +54,7 @@
   "block.shuckle_qol.cherry_fence_gate": "Cherry Fence Gate",
   "block.shuckle_qol.cherry_button": "Cherry Button",
   "block.shuckle_qol.cherry_pressure_plate": "Cherry Pressure Plate",
+  "block.shuckle_qol.cherry_shelf": "Cherry Shelf",
   "block.shuckle_qol.cherry_sign": "Cherry Sign",
 
   "block.shuckle_qol.bamboo_block": "Bamboo Block",
@@ -57,6 +68,7 @@
   "block.shuckle_qol.bamboo_fence_gate": "Bamboo Fence Gate",
   "block.shuckle_qol.bamboo_button": "Bamboo Button",
   "block.shuckle_qol.bamboo_pressure_plate": "Bamboo Pressure Plate",
+  "block.shuckle_qol.bamboo_shelf": "Bamboo Shelf",
   "block.shuckle_qol.bamboo_sign": "Bamboo Sign",
   "block.shuckle_qol.bamboo_mosaic": "Bamboo Mosaic",
   "block.shuckle_qol.bamboo_mosaic_slab": "Bamboo Mosaic Slab",
@@ -78,6 +90,7 @@
   "block.shuckle_qol.pale_oak_fence_gate": "Pale Oak Fence Gate",
   "block.shuckle_qol.pale_oak_button": "Pale Oak Button",
   "block.shuckle_qol.pale_oak_pressure_plate": "Pale Oak Pressure Plate",
+  "block.shuckle_qol.pale_oak_shelf": "Pale Oak Shelf",
   "block.shuckle_qol.pale_oak_sign": "Pale Oak Sign",
 
   "block.shuckle_qol.pale_moss_block": "Pale Moss Block",
@@ -204,8 +217,6 @@
 
   "block.shuckle_qol.chiseled_tuff": "Chiseled Tuff",
   "block.shuckle_qol.chiseled_tuff_bricks": "Chiseled Tuff Bricks",
-
-  "block.shuckle_qol.ebony_sign": "Ebony Sign",
 
   "item.shuckle_qol.invisible_catalyst": "Invisibility Catalyst",
   "block.shuckle_qol.invisible_lightning_rod": "Invisible Lightning Rod",

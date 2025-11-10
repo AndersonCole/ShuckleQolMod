@@ -39,27 +39,37 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
     @Override
     public void generate(Consumer<RecipeJsonProvider> exporter) {
         //region Backport
+        //shelves
+        createShelfRecipe(exporter, "minecraft", "stripped_oak_log", "oak_shelf");
+        createShelfRecipe(exporter, "minecraft", "stripped_spruce_log", "spruce_shelf");
+        createShelfRecipe(exporter, "minecraft", "stripped_birch_log", "birch_shelf");
+        createShelfRecipe(exporter, "minecraft", "stripped_jungle_log", "jungle_shelf");
+        createShelfRecipe(exporter, "minecraft", "stripped_acacia_log", "acacia_shelf");
+        createShelfRecipe(exporter, "minecraft", "stripped_dark_oak_log", "dark_oak_shelf");
+        createShelfRecipe(exporter, "minecraft", "stripped_mangrove_log", "mangrove_shelf");
+        createShelfRecipe(exporter, "minecraft", "stripped_crimson_stem", "crimson_shelf");
+        createShelfRecipe(exporter, "minecraft", "stripped_warped_stem", "warped_shelf");
         //cherry wood set
         createWoodItemSetRecipes(exporter, "cherry", ModTags.Items.CHERRY_LOGS,
-                ModBackportBlocks.CHERRY_LOG, ModBackportBlocks.STRIPPED_CHERRY_LOG,
-                ModBackportBlocks.CHERRY_WOOD, ModBackportBlocks.STRIPPED_CHERRY_WOOD,
+                ModBackportBlocks.CHERRY_LOG, ModBackportBlocks.CHERRY_WOOD,
+                ModBackportBlocks.STRIPPED_CHERRY_LOG, ModBackportBlocks.STRIPPED_CHERRY_WOOD,
                 ModBackportBlocks.CHERRY_PLANKS, 4,
                 ModBackportBlocks.CHERRY_SLAB, ModBackportBlocks.CHERRY_STAIRS,
                 ModBackportBlocks.CHERRY_DOOR, ModBackportBlocks.CHERRY_TRAPDOOR,
                 ModBackportBlocks.CHERRY_FENCE, ModBackportBlocks.CHERRY_FENCE_GATE,
                 ModBackportBlocks.CHERRY_BUTTON, ModBackportBlocks.CHERRY_PRESSURE_PLATE,
-                ModItems.CHERRY_SIGN);
+                ModBackportBlocks.CHERRY_SHELF, ModItems.CHERRY_SIGN);
         //region Bamboo
         //bamboo wood set
         createWoodItemSetRecipes(exporter, "bamboo", ModTags.Items.BAMBOO_BLOCKS,
-                ModBackportBlocks.BAMBOO_BLOCK, ModBackportBlocks.STRIPPED_BAMBOO_BLOCK,
-                null, null,
+                ModBackportBlocks.BAMBOO_BLOCK, null,
+                ModBackportBlocks.STRIPPED_BAMBOO_BLOCK, null,
                 ModBackportBlocks.BAMBOO_PLANKS, 2,
                 ModBackportBlocks.BAMBOO_SLAB, ModBackportBlocks.BAMBOO_STAIRS,
                 ModBackportBlocks.BAMBOO_DOOR, ModBackportBlocks.BAMBOO_TRAPDOOR,
                 ModBackportBlocks.BAMBOO_FENCE, ModBackportBlocks.BAMBOO_FENCE_GATE,
                 ModBackportBlocks.BAMBOO_BUTTON, ModBackportBlocks.BAMBOO_PRESSURE_PLATE,
-                ModItems.BAMBOO_SIGN);
+                ModBackportBlocks.BAMBOO_SHELF, ModItems.BAMBOO_SIGN);
         //bamboo mosaic
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
                         ModBackportBlocks.BAMBOO_MOSAIC,1)
@@ -86,14 +96,14 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
         //region Pale Garden
         //pale oak wood set
         createWoodItemSetRecipes(exporter, "pale_oak", ModTags.Items.PALE_OAK_LOGS,
-                ModBackportBlocks.PALE_OAK_LOG, ModBackportBlocks.STRIPPED_PALE_OAK_LOG,
-                ModBackportBlocks.PALE_OAK_WOOD, ModBackportBlocks.STRIPPED_PALE_OAK_WOOD,
+                ModBackportBlocks.PALE_OAK_LOG, ModBackportBlocks.PALE_OAK_WOOD,
+                ModBackportBlocks.STRIPPED_PALE_OAK_LOG, ModBackportBlocks.STRIPPED_PALE_OAK_WOOD,
                 ModBackportBlocks.PALE_OAK_PLANKS, 4,
                 ModBackportBlocks.PALE_OAK_SLAB, ModBackportBlocks.PALE_OAK_STAIRS,
                 ModBackportBlocks.PALE_OAK_DOOR, ModBackportBlocks.PALE_OAK_TRAPDOOR,
                 ModBackportBlocks.PALE_OAK_FENCE, ModBackportBlocks.PALE_OAK_FENCE_GATE,
                 ModBackportBlocks.PALE_OAK_BUTTON, ModBackportBlocks.PALE_OAK_PRESSURE_PLATE,
-                ModItems.PALE_OAK_SIGN);
+                ModBackportBlocks.PALE_OAK_SHELF, ModItems.PALE_OAK_SIGN);
         //pale moss carpet
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBackportBlocks.PALE_MOSS_CARPET, 3)
                 .pattern("##")
@@ -966,6 +976,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                                           Block fenceGateBlock,
                                           Block buttonBlock,
                                           Block pressurePlateBlock,
+                                          Block shelfItem,
                                           Item signItem
                                           ){
         if(woodBlock != null && strippedWoodBlock != null){
@@ -1054,6 +1065,15 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .input('#', planksBlock)
                 .criterion(hasItem(planksBlock),
                         conditionsFromItem(planksBlock)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, shelfItem, 6)
+                .pattern("###")
+                .pattern("   ")
+                .pattern("###")
+                .input('#', strippedLogBlock)
+                .criterion(hasItem(strippedLogBlock),
+                        conditionsFromItem(strippedLogBlock)).offerTo(exporter);
+
         //sign
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, signItem, 3)
                 .pattern("###")
@@ -1144,6 +1164,22 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         conditionsFromItem(Registries.BLOCK.get(baseItem)))
                 .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID,
                         baseBlockId + "_wall_" + extraIdText + "stonecutting"));
+    }
+
+    private void createShelfRecipe(Consumer<RecipeJsonProvider> exporter,
+                                   String inputNamespace,
+                                   String inputBlock,
+                                   String outputBlock) {
+        Identifier shelfItem = new Identifier(ShuckleQOL.MOD_ID, outputBlock);
+
+        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, shelfItem, 6)
+                .pattern("###")
+                .pattern("   ")
+                .pattern("###")
+                .inputItem('#', new Identifier(inputNamespace, inputBlock))
+                .criterion(hasItem(Registries.BLOCK.get(shelfItem)),
+                        conditionsFromItem(Registries.BLOCK.get(shelfItem)))
+                .offerTo(exporter, shelfItem);
     }
 
     private void createOxidizableRecipes(Consumer<RecipeJsonProvider> exporter,
