@@ -25,6 +25,11 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
         //region Vanilla Tags
+        getOrCreateTagBuilder(ItemTags.TRIMMABLE_ARMOR)
+                .add(ModItems.COPPER_HELMET)
+                .add(ModItems.COPPER_CHESTPLATE)
+                .add(ModItems.COPPER_LEGGINGS)
+                .add(ModItems.COPPER_BOOTS);
         //region Wood Set Tags
         //logs
         getOrCreateTagBuilder(ItemTags.LOGS)

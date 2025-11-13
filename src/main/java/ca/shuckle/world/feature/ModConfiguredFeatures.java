@@ -2,28 +2,38 @@ package ca.shuckle.world.feature;
 
 import ca.shuckle.ShuckleQOL;
 import ca.shuckle.block.ModBackportBlocks;
+import ca.shuckle.block.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.PropaguleBlock;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.state.property.Properties;
+import net.minecraft.structure.rule.RuleTest;
+import net.minecraft.structure.rule.TagMatchRuleTest;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DataPool;
+import net.minecraft.util.collection.Pool;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.VerticalSurfaceType;
-import net.minecraft.util.math.intprovider.ConstantIntProvider;
-import net.minecraft.util.math.intprovider.IntProvider;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
-import net.minecraft.util.math.intprovider.WeightedListIntProvider;
+import net.minecraft.util.math.intprovider.*;
+import net.minecraft.world.gen.blockpredicate.BlockPredicate;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.ThreeLayersFeatureSize;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.CherryFoliagePlacer;
 import net.minecraft.world.gen.foliage.DarkOakFoliagePlacer;
 import net.minecraft.world.gen.foliage.JungleFoliagePlacer;
+import net.minecraft.world.gen.placementmodifier.BlockFilterPlacementModifier;
 import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
+import net.minecraft.world.gen.stateprovider.RandomizedIntBlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
+import net.minecraft.world.gen.treedecorator.AttachedToLeavesTreeDecorator;
+import net.minecraft.world.gen.treedecorator.LeavesVineTreeDecorator;
 import net.minecraft.world.gen.trunk.CherryTrunkPlacer;
 import net.minecraft.world.gen.trunk.DarkOakTrunkPlacer;
 import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
@@ -37,9 +47,14 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?,?>> PALE_MOSS_VEGETATION_KEY = registerKey("pale_moss_vegetation");
     public static final RegistryKey<ConfiguredFeature<?,?>> PALE_MOSS_PATCH_KEY = registerKey("pale_moss_patch");
     public static final RegistryKey<ConfiguredFeature<?,?>> PALE_MOSS_BONEMEAL_KEY = registerKey("pale_moss_bonemeal");
+    public static final RegistryKey<ConfiguredFeature<?,?>> BUSH_VEGETATION_KEY = registerKey("bush_vegetation");
+    public static final RegistryKey<ConfiguredFeature<?,?>> BUSH_PATCH_KEY = registerKey("bush_patch");
+    public static final RegistryKey<ConfiguredFeature<?,?>> DRY_GRASS_VEGETATION_KEY = registerKey("dry_grass_vegetation");
+    public static final RegistryKey<ConfiguredFeature<?,?>> DRY_GRASS_PATCH_KEY = registerKey("dry_grass_patch");
+
+    public static final RegistryKey<ConfiguredFeature<?, ?>> SHUCKLE_ORE_KEY = registerKey("shuckle_ore");
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context){
-        var placedFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.PLACED_FEATURE);
         var configuredFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
         register(context, CHERRY_TREE_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
@@ -57,7 +72,10 @@ public class ModConfiguredFeatures {
                 new DarkOakTrunkPlacer(6, 2, 1),
                 BlockStateProvider.of(ModBackportBlocks.PALE_OAK_LEAVES),
                 new DarkOakFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0)),
-                new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty())).ignoreVines().build());
+                new ThreeLayersFeatureSize(1, 1, 0, 1, 2, OptionalInt.empty()))
+                .decorators(List.of(new AttachedToLeavesTreeDecorator(0.14f, 1, 0,
+                                BlockStateProvider.of((BlockState)ModBackportBlocks.PALE_HANGING_MOSS.getDefaultState()),
+                                2, List.of(Direction.DOWN)))).ignoreVines().build());
 
         register(context, PALE_MOSS_VEGETATION_KEY, Feature.SIMPLE_BLOCK,
                 new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(
@@ -80,6 +98,52 @@ public class ModConfiguredFeatures {
                 new PlacementModifier[0]), VerticalSurfaceType.FLOOR,
                 ConstantIntProvider.create(1), 0.0f, 5, 0.6f,
                 UniformIntProvider.create(1, 2), 0.75f));
+
+        register(context, BUSH_VEGETATION_KEY, Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(
+                        DataPool.<BlockState>builder()
+                                .add(Blocks.AIR.getDefaultState(), 25)
+                                .add(Blocks.GRASS.getDefaultState(), 25)
+                                .add(ModBackportBlocks.BUSH.getDefaultState(), 20)
+                                .add(ModBackportBlocks.FIREFLY_BUSH.getDefaultState(), 10)
+                                .add(ModBackportBlocks.LIT_FIREFLY_BUSH.getDefaultState(), 5)
+                                .add(ModBackportBlocks.LEAF_LITTER.getDefaultState().with(Properties.FLOWER_AMOUNT, 1), 5)
+                                .add(ModBackportBlocks.LEAF_LITTER.getDefaultState().with(Properties.FLOWER_AMOUNT, 2), 10)
+                                .add(ModBackportBlocks.LEAF_LITTER.getDefaultState().with(Properties.FLOWER_AMOUNT, 3), 10)
+                                .add(ModBackportBlocks.LEAF_LITTER.getDefaultState().with(Properties.FLOWER_AMOUNT, 4), 5))));
+
+        register(context, BUSH_PATCH_KEY, Feature.VEGETATION_PATCH,
+                new VegetationPatchFeatureConfig(BlockTags.MOSS_REPLACEABLE,
+                        BlockStateProvider.of(Blocks.GRASS_BLOCK),
+                        PlacedFeatures.createEntry(configuredFeatureRegistryEntryLookup.getOrThrow(BUSH_VEGETATION_KEY),
+                                new PlacementModifier[0]), VerticalSurfaceType.FLOOR,
+                        ConstantIntProvider.create(1), 0.0f, 2, 0.8f,
+                        UniformIntProvider.create(2, 5), 0.3f));
+
+        register(context, DRY_GRASS_VEGETATION_KEY, Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(
+                        DataPool.<BlockState>builder()
+                                .add(Blocks.AIR.getDefaultState(), 75)
+                                .add(Blocks.DEAD_BUSH.getDefaultState(), 5)
+                                .add(Blocks.CACTUS.getDefaultState(), 5)
+                                .add(ModBackportBlocks.CACTUS_FLOWER.getDefaultState(), 1)
+                                .add(ModBackportBlocks.SHORT_DRY_GRASS.getDefaultState(), 20)
+                                .add(ModBackportBlocks.TALL_DRY_GRASS.getDefaultState(), 10))));
+
+        register(context, DRY_GRASS_PATCH_KEY, Feature.VEGETATION_PATCH,
+                new VegetationPatchFeatureConfig(BlockTags.DEAD_BUSH_MAY_PLACE_ON,
+                        BlockStateProvider.of(Blocks.SAND),
+                        PlacedFeatures.createEntry(configuredFeatureRegistryEntryLookup.getOrThrow(DRY_GRASS_VEGETATION_KEY),
+                                new PlacementModifier[0]), VerticalSurfaceType.FLOOR,
+                        ConstantIntProvider.create(1), 0.0f, 2, 0.5f,
+                        UniformIntProvider.create(4, 7), 0.3f));
+
+        RuleTest deepslateReplaceables = new TagMatchRuleTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
+
+        List<OreFeatureConfig.Target> shuckleOre =
+                List.of(OreFeatureConfig.createTarget(deepslateReplaceables, ModBlocks.SHUCKLE_ORE.getDefaultState()));
+
+        register(context, SHUCKLE_ORE_KEY, Feature.SCATTERED_ORE, new OreFeatureConfig(shuckleOre, 2, 1.0f));
     }
 
     public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name){

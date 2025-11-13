@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "shuckle_qol:block/pale_tall_grass_top"
+    "layer0": "shuckle_qol:item/lit_firefly_bush"
   }
 }

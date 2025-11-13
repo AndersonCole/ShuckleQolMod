@@ -41,6 +41,8 @@ public class ModSounds {
     public static final SoundEvent BLOCK_COPPER_TRAPDOOR_CLOSE = register("block.copper_trapdoor.close");
     public static final SoundEvent BLOCK_COPPER_TRAPDOOR_OPEN = register("block.copper_trapdoor.open");
 
+    public static final SoundEvent SHUCKLE_CRY = register("entity.villager.work_shuckle");
+
     public static final BlockSoundGroup TUFF_BRICKS = new BlockSoundGroup(1.0F, 1.0F,
             ModSounds.BLOCK_TUFF_BRICKS_BREAK, ModSounds.BLOCK_TUFF_BRICKS_STEP, ModSounds.BLOCK_TUFF_BRICKS_PLACE,
             ModSounds.BLOCK_TUFF_BRICKS_HIT, ModSounds.BLOCK_TUFF_BRICKS_FALL);

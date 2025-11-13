@@ -39,6 +39,14 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
     @Override
     public void generate(Consumer<RecipeJsonProvider> exporter) {
         //region Backport
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        Items.SADDLE,1)
+                .pattern(" # ")
+                .pattern("#I#")
+                .input('#', Items.LEATHER)
+                .input('I', Items.IRON_INGOT)
+                .criterion(hasItem(Items.LEATHER),
+                        conditionsFromItem(Items.LEATHER)).offerTo(exporter);
         //shelves
         createShelfRecipe(exporter, "minecraft", "stripped_oak_log", "oak_shelf");
         createShelfRecipe(exporter, "minecraft", "stripped_spruce_log", "spruce_shelf");
@@ -366,6 +374,111 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 "minecraft", "cut_copper",
                 ShuckleQOL.MOD_ID, "chiseled_copper",
                 Blocks.COPPER_BLOCK.asItem(), ModOxidizationHelpers.getCopperOxidizationStages(), 1);
+
+        //tools
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModItems.COPPER_PICKAXE, 1)
+                .pattern("###")
+                .pattern(" S ")
+                .pattern(" S ")
+                .input('#', Items.COPPER_INGOT)
+                .input('S', Items.STICK)
+                .criterion(hasItem(Items.COPPER_INGOT),
+                        conditionsFromItem(Items.COPPER_INGOT)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModItems.COPPER_AXE, 1)
+                .pattern("## ")
+                .pattern("#S ")
+                .pattern(" S ")
+                .input('#', Items.COPPER_INGOT)
+                .input('S', Items.STICK)
+                .criterion(hasItem(Items.COPPER_INGOT),
+                        conditionsFromItem(Items.COPPER_INGOT)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModItems.COPPER_SHOVEL, 1)
+                .pattern(" # ")
+                .pattern(" S ")
+                .pattern(" S ")
+                .input('#', Items.COPPER_INGOT)
+                .input('S', Items.STICK)
+                .criterion(hasItem(Items.COPPER_INGOT),
+                        conditionsFromItem(Items.COPPER_INGOT)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModItems.COPPER_SWORD, 1)
+                .pattern(" # ")
+                .pattern(" # ")
+                .pattern(" S ")
+                .input('#', Items.COPPER_INGOT)
+                .input('S', Items.STICK)
+                .criterion(hasItem(Items.COPPER_INGOT),
+                        conditionsFromItem(Items.COPPER_INGOT)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModItems.COPPER_HOE, 1)
+                .pattern("## ")
+                .pattern(" S ")
+                .pattern(" S ")
+                .input('#', Items.COPPER_INGOT)
+                .input('S', Items.STICK)
+                .criterion(hasItem(Items.COPPER_INGOT),
+                        conditionsFromItem(Items.COPPER_INGOT)).offerTo(exporter);
+
+        //armor
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModItems.COPPER_HELMET, 1)
+                .pattern("###")
+                .pattern("# #")
+                .input('#', Items.COPPER_INGOT)
+                .criterion(hasItem(Items.COPPER_INGOT),
+                        conditionsFromItem(Items.COPPER_INGOT)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModItems.COPPER_CHESTPLATE, 1)
+                .pattern("# #")
+                .pattern("###")
+                .pattern("###")
+                .input('#', Items.COPPER_INGOT)
+                .criterion(hasItem(Items.COPPER_INGOT),
+                        conditionsFromItem(Items.COPPER_INGOT)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModItems.COPPER_LEGGINGS, 1)
+                .pattern("###")
+                .pattern("# #")
+                .pattern("# #")
+                .input('#', Items.COPPER_INGOT)
+                .criterion(hasItem(Items.COPPER_INGOT),
+                        conditionsFromItem(Items.COPPER_INGOT)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModItems.COPPER_BOOTS, 1)
+                .pattern("# #")
+                .pattern("# #")
+                .input('#', Items.COPPER_INGOT)
+                .criterion(hasItem(Items.COPPER_INGOT),
+                        conditionsFromItem(Items.COPPER_INGOT)).offerTo(exporter);
+
+        //smelting
+        CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(ModItems.COPPER_PICKAXE, ModItems.COPPER_AXE,
+                                ModItems.COPPER_SHOVEL, ModItems.COPPER_SWORD, ModItems.COPPER_HOE,
+                                ModItems.COPPER_HELMET, ModItems.COPPER_CHESTPLATE, ModItems.COPPER_LEGGINGS, ModItems.COPPER_BOOTS),
+                        RecipeCategory.MISC, ModItems.COPPER_NUGGET,
+                        0.1f,200)
+                .criterion(hasItem(Items.COPPER_INGOT),
+                        conditionsFromItem(Items.COPPER_INGOT))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "copper_nuggets_from_tools_armor_smelting"));
+
+        CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItems(ModItems.COPPER_PICKAXE, ModItems.COPPER_AXE,
+                                ModItems.COPPER_SHOVEL, ModItems.COPPER_SWORD, ModItems.COPPER_HOE,
+                                ModItems.COPPER_HELMET, ModItems.COPPER_CHESTPLATE, ModItems.COPPER_LEGGINGS, ModItems.COPPER_BOOTS),
+                        RecipeCategory.MISC, ModItems.COPPER_NUGGET,
+                        0.1f,100)
+                .criterion(hasItem(Items.COPPER_INGOT),
+                        conditionsFromItem(Items.COPPER_INGOT))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "copper_nuggets_from_tools_armor_blasting"));
         //endregion
         //region Tuff
         //tuff
@@ -757,6 +870,13 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         conditionsFromItem(Blocks.DEEPSLATE))
                 .criterion(hasItem(Blocks.BONE_BLOCK),
                         conditionsFromItem(Blocks.BONE_BLOCK)).offerTo(exporter);
+        //tinted glass pane
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.TINTED_GLASS_PANE, 16)
+                .pattern("###")
+                .pattern("###")
+                .input('#', Blocks.TINTED_GLASS)
+                .criterion(hasItem(Blocks.TINTED_GLASS),
+                        conditionsFromItem(Blocks.TINTED_GLASS)).offerTo(exporter);
         //packed mud set
         createSlabStairWallItemSetRecipes(exporter,
                 "minecraft", "packed_mud",
@@ -786,12 +906,29 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
         //endregion
         //region Other Mods
         //region BYG
+        //blue therium
+        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        new Identifier(ShuckleQOL.MOD_ID, "therium_glass"), 8)
+                .pattern("###")
+                .pattern("#I#")
+                .pattern("###")
+                .inputItem('#', new Identifier("byg", "therium_glass"))
+                .inputItem('D', new Identifier("minecraft", "light_blue_dye"))
+                .criterion(hasItem(Items.LIGHT_BLUE_DYE),
+                        conditionsFromItem(Items.LIGHT_BLUE_DYE))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "therium_glass_dyeing"));
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.THERIUM_GLASS_PANE, 16)
+                .pattern("###")
+                .pattern("###")
+                .input('#', ModBlocks.THERIUM_GLASS)
+                .criterion(hasItem(ModBlocks.THERIUM_GLASS),
+                        conditionsFromItem(ModBlocks.THERIUM_GLASS)).offerTo(exporter);
         //winter cyclamen
         IdentifiersShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, new Identifier("byg", "winter_cyclamen"), 1)
                 .inputItem(new Identifier("byg", "winter_succulent"))
                 .inputItem(Registries.ITEM.getId(Items.CYAN_DYE))
-                .criterion(hasItem(Items.QUARTZ),
-                        conditionsFromItem(Items.QUARTZ))
+                .criterion(hasItem(Items.CYAN_DYE),
+                        conditionsFromItem(Items.CYAN_DYE))
                 .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "winter_cyclamen"));
         //raw quartz block
         IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, new Identifier("byg", "raw_quartz_block"), 1)
@@ -1066,6 +1203,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(hasItem(planksBlock),
                         conditionsFromItem(planksBlock)).offerTo(exporter);
 
+        //shelf
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, shelfItem, 6)
                 .pattern("###")
                 .pattern("   ")

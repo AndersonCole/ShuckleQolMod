@@ -1,8 +1,7 @@
 package ca.shuckle.block;
 
 import ca.shuckle.ShuckleQOL;
-import ca.shuckle.block.custom.FlatFlowerbedBlock;
-import ca.shuckle.block.custom.ShuckleBlock;
+import ca.shuckle.block.custom.*;
 import ca.shuckle.item.ModItemGroup;
 import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
@@ -17,6 +16,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 public class ModBlocks {
     public static final Block CONDENSED_BLACK_ICE = registerBlock("condensed_black_ice",
@@ -25,6 +25,9 @@ public class ModBlocks {
                     .slipperiness(0.99f)
                     .sounds(BlockSoundGroup.GLASS)
                     .allowsSpawning(((state, world, pos, type) -> false))), ModItemGroup.SHUCKLE);
+
+    public static final Block SHUCKLE_ORE = registerBlock("shuckle_ore",
+            new ExperienceDroppingBlock(FabricBlockSettings.copyOf(Blocks.DEEPSLATE_EMERALD_ORE), UniformIntProvider.create(3, 7)), ModItemGroup.SHUCKLE);
 
     public static final Block ANCIENT_STONE_SLAB = registerBlock("ancient_stone_slab",
             new SlabBlock(FabricBlockSettings.copy(Blocks.STONE)), ModItemGroup.SHUCKLE);
@@ -35,6 +38,15 @@ public class ModBlocks {
 
     public static final Block ANCIENT_STONE_WALL = registerBlock("ancient_stone_wall",
             new WallBlock(FabricBlockSettings.copy(Blocks.STONE)), ModItemGroup.SHUCKLE);
+
+    public static final Block THERIUM_GLASS = registerBlock("therium_glass",
+            new ConnectedGlassBlock(FabricBlockSettings.copyOf(Blocks.GLASS).luminance(state -> 12)), ModItemGroup.SHUCKLE);
+
+    public static final Block THERIUM_GLASS_PANE = registerBlock("therium_glass_pane",
+            new ConnectedGlassPaneBlock(FabricBlockSettings.copyOf(Blocks.GLASS_PANE).luminance(state -> 12)), ModItemGroup.SHUCKLE);
+
+    public static final Block TINTED_GLASS_PANE = registerBlock("tinted_glass_pane",
+            new ConnectedTintedGlassPaneBlock(FabricBlockSettings.copyOf(Blocks.GLASS_PANE)), ModItemGroup.SHUCKLE);
 
     public static final Block BLACK_SANDSTONE_SLAB = registerBlock("black_sandstone_slab",
             new SlabBlock(FabricBlockSettings.copy(Blocks.SANDSTONE)), ModItemGroup.SHUCKLE);

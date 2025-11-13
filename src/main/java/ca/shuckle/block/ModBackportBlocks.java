@@ -258,6 +258,9 @@ public class ModBackportBlocks {
     public static final Block PALE_MOSS_CARPET = registerBlock("pale_moss_carpet",
             new CarpetBlock(FabricBlockSettings.copy(Blocks.MOSS_CARPET)), ModItemGroup.SHUCKLE_BACKPORT);
 
+    public static final Block PALE_HANGING_MOSS = registerBlock("pale_hanging_moss",
+            new HangingMossBlock(FabricBlockSettings.copy(Blocks.HANGING_ROOTS)), ModItemGroup.SHUCKLE_BACKPORT);
+
     public static final Block PALE_GRASS = registerBlock("pale_grass",
             new FernBlock(FabricBlockSettings.copy(Blocks.GRASS)), ModItemGroup.SHUCKLE_BACKPORT);
 
@@ -588,6 +591,24 @@ public class ModBackportBlocks {
     public static final Block LEAF_LITTER = registerBlock("leaf_litter",
             new FlatFlowerbedBlock(FabricBlockSettings.of(Material.PLANT, MapColor.BROWN)
                     .sounds(BlockSoundGroup.AZALEA_LEAVES).noCollision().nonOpaque()), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block BUSH = registerBlock("bush",
+            new ForestFernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block FIREFLY_BUSH = registerBlock("firefly_bush",
+            new ForestFernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block LIT_FIREFLY_BUSH = registerBlock("lit_firefly_bush",
+            new ForestFernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block SHORT_DRY_GRASS = registerBlock("short_dry_grass",
+            new DesertFernBlock(FabricBlockSettings.copy(Blocks.DEAD_BUSH)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block TALL_DRY_GRASS = registerBlock("tall_dry_grass",
+            new DesertFernBlock(FabricBlockSettings.copy(Blocks.DEAD_BUSH)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block CACTUS_FLOWER = registerBlock("cactus_flower",
+            new CactusFlowerBlock(FabricBlockSettings.copy(Blocks.PEONY).sounds(BlockSoundGroup.AZALEA)), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static void registerModBlocks() {
         //called so the class loads

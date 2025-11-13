@@ -2,8 +2,10 @@ package ca.shuckle.datagen;
 
 import ca.shuckle.block.ModBackportBlocks;
 import ca.shuckle.block.ModBlocks;
+import ca.shuckle.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.minecraft.loot.entry.LootPoolEntry;
 
 public class ModLootTableGenerator extends FabricBlockLootTableProvider {
     public ModLootTableGenerator(FabricDataOutput dataOutput) {
@@ -90,6 +92,7 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
 
         addDrop(ModBackportBlocks.PALE_MOSS_BLOCK);
         addDrop(ModBackportBlocks.PALE_MOSS_CARPET);
+        addDrop(ModBackportBlocks.PALE_HANGING_MOSS, dropsWithShears(ModBackportBlocks.PALE_HANGING_MOSS));
 
         addDrop(ModBackportBlocks.CREAKING_HEART);
         addDrop(ModBackportBlocks.ACTIVE_CREAKING_HEART);
@@ -204,9 +207,19 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
         //endregion
         addDrop(ModBackportBlocks.WILDFLOWERS, flowerbedDrops(ModBackportBlocks.WILDFLOWERS));
         addDrop(ModBackportBlocks.LEAF_LITTER, flowerbedDrops(ModBackportBlocks.LEAF_LITTER));
+
+        addDrop(ModBackportBlocks.BUSH, dropsWithShears(ModBackportBlocks.BUSH));
+        addDrop(ModBackportBlocks.FIREFLY_BUSH, dropsWithShears(ModBackportBlocks.FIREFLY_BUSH));
+        addDrop(ModBackportBlocks.LIT_FIREFLY_BUSH, dropsWithShears(ModBackportBlocks.LIT_FIREFLY_BUSH));
+
+        addDrop(ModBackportBlocks.SHORT_DRY_GRASS, dropsWithShears(ModBackportBlocks.SHORT_DRY_GRASS));
+        addDrop(ModBackportBlocks.TALL_DRY_GRASS, dropsWithShears(ModBackportBlocks.SHORT_DRY_GRASS));
         //endregion
         //region Shuckle Blocks
+        addDrop(ModBlocks.SHUCKLE_ORE, oreDrops(ModBlocks.SHUCKLE_ORE, ModItems.DULL_SHUCKLE_GEM));
         addDrop(ModBackportBlocks.REINFORCED_DEEPSLATE);
+
+        addDropWithSilkTouch(ModBlocks.TINTED_GLASS_PANE);
 
         addDrop(ModBackportBlocks.PACKED_MUD_SLAB, slabDrops(ModBackportBlocks.PACKED_MUD_SLAB));
         addDrop(ModBackportBlocks.PACKED_MUD_STAIRS);
@@ -225,6 +238,8 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
         //endregion
         //region Other Mod Blocks
         //region BYG
+        addDropWithSilkTouch(ModBlocks.THERIUM_GLASS);
+        addDropWithSilkTouch(ModBlocks.THERIUM_GLASS_PANE);
         //region Sand
         addDrop(ModBlocks.BLACK_SANDSTONE_SLAB, slabDrops(ModBlocks.BLACK_SANDSTONE_SLAB));
         addDrop(ModBlocks.BLACK_SANDSTONE_STAIRS);

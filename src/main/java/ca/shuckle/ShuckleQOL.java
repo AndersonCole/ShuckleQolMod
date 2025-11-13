@@ -7,6 +7,7 @@ import ca.shuckle.particle.ModParticles;
 import ca.shuckle.util.ModPointsOfInterest;
 import ca.shuckle.util.ModRegistries;
 import ca.shuckle.util.ModSounds;
+import ca.shuckle.villager.ModVillagers;
 import ca.shuckle.world.gen.ModWorldGen;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
@@ -26,12 +27,13 @@ public class ShuckleQOL implements ModInitializer {
 
 		ModRegistries.registerModStuff();
 		ModSounds.registerSounds();
+        ModParticles.registerParticles();
+
+        ModPointsOfInterest.registerModPOIs();
+        ModVillagers.registerVillagers();
 
 		ModWorldGen.generateModWorldGen();
 
 		//ModEnchantments.registerModEnchantments();
-
-		ModPointsOfInterest.registerModPOIs();
-		ModParticles.registerParticles();
 	}
 }

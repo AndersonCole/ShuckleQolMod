@@ -30,6 +30,11 @@ public class ModPointsOfInterest {
     public static final PointOfInterestType INVIS_LIGHTNING_ROD =
             registerPOI("invisible_lightning_rod_poi", 0, 1, ModBlocks.INVIS_LIGHTNING_ROD);
 
+    public static final PointOfInterestType SHUCKLE_VILLAGER =
+            registerPOI("shuckle_villager_poi", 1, 1, ModBlocks.SHUCKLE_BLOCK);
+    public static final PointOfInterestType SHINY_SHUCKLE_VILLAGER =
+            registerPOI("shiny_shuckle_villager_poi", 1, 1, ModBlocks.SHINY_SHUCKLE_BLOCK);
+
     private static PointOfInterestType registerPOI(String name, int ticketCount, int searchDistance, Block block){
         return PointOfInterestHelper.register(new Identifier(ShuckleQOL.MOD_ID, name), ticketCount, searchDistance,
                 ImmutableSet.copyOf(block.getStateManager().getStates()));

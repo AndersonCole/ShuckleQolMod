@@ -3,14 +3,17 @@ package ca.shuckle.datagen;
 import ca.shuckle.ShuckleQOL;
 import ca.shuckle.block.ModBackportBlocks;
 import ca.shuckle.block.ModBlocks;
+import ca.shuckle.block.custom.ConnectedGlassPaneBlock;
 import ca.shuckle.block.custom.copper.BulbBlock;
 import ca.shuckle.item.ModItems;
 import ca.shuckle.util.ModOxidizationHelpers;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
+import net.minecraft.block.ConnectingBlock;
 import net.minecraft.block.LanternBlock;
 import net.minecraft.data.client.*;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
@@ -97,6 +100,8 @@ public class ModModelProvider extends FabricModelProvider {
 
         blockStateModelGenerator.registerWoolAndCarpet(ModBackportBlocks.PALE_MOSS_BLOCK, ModBackportBlocks.PALE_MOSS_CARPET);
         blockStateModelGenerator.registerTintableCross(ModBackportBlocks.PALE_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
+        blockStateModelGenerator.registerDoubleBlock(ModBackportBlocks.PALE_TALL_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
+        blockStateModelGenerator.registerTintableCross(ModBackportBlocks.PALE_HANGING_MOSS, BlockStateModelGenerator.TintType.NOT_TINTED);
 
         blockStateModelGenerator.registerLog(ModBackportBlocks.CREAKING_HEART).log(ModBackportBlocks.CREAKING_HEART);
         blockStateModelGenerator.registerLog(ModBackportBlocks.ACTIVE_CREAKING_HEART).log(ModBackportBlocks.ACTIVE_CREAKING_HEART);
@@ -163,9 +168,16 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerFlowerbed(ModBackportBlocks.PINK_PETALS);
         blockStateModelGenerator.registerFlowerbed(ModBackportBlocks.WILDFLOWERS);
         registerFlatFlowerbed(blockStateModelGenerator, ModBackportBlocks.LEAF_LITTER);
+        blockStateModelGenerator.registerTintableCross(ModBackportBlocks.BUSH, BlockStateModelGenerator.TintType.NOT_TINTED);
+        blockStateModelGenerator.registerTintableCross(ModBackportBlocks.FIREFLY_BUSH, BlockStateModelGenerator.TintType.NOT_TINTED);
+        blockStateModelGenerator.registerTintableCross(ModBackportBlocks.SHORT_DRY_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
+        blockStateModelGenerator.registerTintableCross(ModBackportBlocks.TALL_DRY_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
+        blockStateModelGenerator.registerTintableCross(ModBackportBlocks.CACTUS_FLOWER, BlockStateModelGenerator.TintType.NOT_TINTED);
         //endregion
 
         //region Shuckle Blocks
+        registerConnectedGlassPaneBlock("tinted_glass", blockStateModelGenerator);
+
         registerExternalSlabTexture(blockStateModelGenerator,
                 "minecraft", "packed_mud", null, null, null, ModBackportBlocks.PACKED_MUD_SLAB);
         registerExternalStairsTexture(blockStateModelGenerator,
@@ -177,10 +189,13 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerFlowerbed(ModBlocks.WILDFLOWERS_RED_BLUE);
         registerFlatFlowerbed(blockStateModelGenerator, ModBlocks.LEAF_LITTER_OAK);
         registerFlatFlowerbed(blockStateModelGenerator, ModBlocks.ZYGARDE_CELL);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.SHUCKLE_ORE);
         blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.SHUCKLE_MYSTERY_BLOCK);
         //endregion
         //region Other Mod Blocks
         //region BYG
+        registerConnectedGlassBlock("therium_glass", blockStateModelGenerator);
+        registerConnectedGlassPaneBlock("therium_glass", blockStateModelGenerator);
         //region Black Sand
         registerExternalSlabTexture(blockStateModelGenerator,
                 "byg", "black_sandstone", "black_sandstone_top", "black_sandstone_bottom", null, ModBlocks.BLACK_SANDSTONE_SLAB);
@@ -249,7 +264,24 @@ public class ModModelProvider extends FabricModelProvider {
                 ModOxidizationHelpers.getCopperOxidizationStages(), itemModelGenerator);
         registerWaxedOxidizableItems("copper_lantern",
                 ModOxidizationHelpers.getCopperOxidizationStages(), itemModelGenerator);
+
+        itemModelGenerator.register(ModItems.COPPER_PICKAXE, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.COPPER_AXE, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.COPPER_SHOVEL, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.COPPER_SWORD, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.COPPER_HOE, Models.HANDHELD);
+
+        itemModelGenerator.registerArmor((ArmorItem) ModItems.COPPER_HELMET);
+        itemModelGenerator.registerArmor((ArmorItem) ModItems.COPPER_CHESTPLATE);
+        itemModelGenerator.registerArmor((ArmorItem) ModItems.COPPER_LEGGINGS);
+        itemModelGenerator.registerArmor((ArmorItem) ModItems.COPPER_BOOTS);
         //endregion
+
+        registerConnectedGlassPaneItem("therium_glass", itemModelGenerator);
+        registerConnectedGlassPaneItem("tinted_glass", itemModelGenerator);
+
+        itemModelGenerator.register(ModItems.DULL_SHUCKLE_GEM, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SHUCKLE_GEM, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.INVIS_CATALYST, Models.GENERATED);
         itemModelGenerator.register(ModItems.INVIS_ITEM_FRAME, Models.GENERATED);
@@ -522,10 +554,432 @@ public class ModModelProvider extends FabricModelProvider {
                     new Identifier(ShuckleQOL.MOD_ID, "block/" + woodType + "_shelf" + shelfFile),
                     new TextureMap()
                             .put(TextureKey.ALL, new Identifier(ShuckleQOL.MOD_ID, "block/" + woodType + "_shelf"))
-                            .put(TextureKey.PARTICLE, new Identifier(woodNamespace, "block/" + "stripped_" + woodType + woodSuffix)),
+                            .put(TextureKey.PARTICLE, new Identifier(woodNamespace, "block/stripped_" + woodType + woodSuffix)),
                     gen.modelCollector
             );
         }
+    }
+
+    private void registerConnectedGlassBlock(String baseBlockId, BlockStateModelGenerator gen) {
+        Identifier baseModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_base");
+        Identifier upModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_up");
+        Identifier downModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_down");
+        Identifier leftModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_left");
+        Identifier rightModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_right");
+        Identifier cornerUpModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_corner_up");
+        Identifier cornerDownModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_corner_down");
+
+        gen.blockStateCollector.accept(
+                MultipartBlockStateSupplier.create(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, baseBlockId)))
+                        .with(BlockStateVariant.create().put(VariantSettings.MODEL, baseModel))
+
+                        .with(When.create().set(ConnectingBlock.DOWN, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, downModel).put(VariantSettings.UVLOCK, false))
+                        .with(When.create().set(ConnectingBlock.UP, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, upModel).put(VariantSettings.UVLOCK, false))
+                        .with(When.create().set(ConnectingBlock.EAST, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, rightModel).put(VariantSettings.Y, VariantSettings.Rotation.R0))
+                        .with(When.create().set(ConnectingBlock.WEST, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, leftModel).put(VariantSettings.Y, VariantSettings.Rotation.R0))
+                        .with(When.create().set(ConnectingBlock.NORTH, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, leftModel).put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create().set(ConnectingBlock.SOUTH, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, rightModel).put(VariantSettings.Y, VariantSettings.Rotation.R90))
+
+                        .with(When.create().set(ConnectingBlock.EAST, false).set(ConnectingBlock.UP, false).set(ConnectingBlock.NORTH, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, cornerUpModel).put(VariantSettings.Y, VariantSettings.Rotation.R0))
+                        .with(When.create().set(ConnectingBlock.EAST, false).set(ConnectingBlock.UP, false).set(ConnectingBlock.SOUTH, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, cornerUpModel).put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create().set(ConnectingBlock.WEST, false).set(ConnectingBlock.UP, false).set(ConnectingBlock.SOUTH, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, cornerUpModel).put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                        .with(When.create().set(ConnectingBlock.WEST, false).set(ConnectingBlock.UP, false).set(ConnectingBlock.NORTH, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, cornerUpModel).put(VariantSettings.Y, VariantSettings.Rotation.R270))
+                        .with(When.create().set(ConnectingBlock.EAST, false).set(ConnectingBlock.DOWN, false).set(ConnectingBlock.NORTH, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, cornerDownModel).put(VariantSettings.Y, VariantSettings.Rotation.R0))
+                        .with(When.create().set(ConnectingBlock.EAST, false).set(ConnectingBlock.DOWN, false).set(ConnectingBlock.SOUTH, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, cornerDownModel).put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create().set(ConnectingBlock.WEST, false).set(ConnectingBlock.DOWN, false).set(ConnectingBlock.SOUTH, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, cornerDownModel).put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                        .with(When.create().set(ConnectingBlock.WEST, false).set(ConnectingBlock.DOWN, false).set(ConnectingBlock.NORTH, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, cornerDownModel).put(VariantSettings.Y, VariantSettings.Rotation.R270))
+        );
+
+        new Model(
+                Optional.of(new Identifier("minecraft", "block/cube_all")),
+                Optional.empty(),
+                TextureKey.ALL, TextureKey.PARTICLE
+        ).upload(
+                new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_base"),
+                new TextureMap()
+                        .put(TextureKey.ALL, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/base"))
+                        .put(TextureKey.PARTICLE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/all")),
+                gen.modelCollector
+        );
+
+        new Model(
+                Optional.of(new Identifier("minecraft", "block/cube_all")),
+                Optional.empty(),
+                TextureKey.ALL
+        ).upload(
+                new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_all"),
+                new TextureMap()
+                        .put(TextureKey.ALL, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/all")),
+                gen.modelCollector
+        );
+
+        for (String side : new String[] { "left", "right" }) {
+            String opposite;
+            if (side.equals("left")) {
+                opposite = "right";
+            } else {
+                opposite = "left";
+            }
+
+            new Model(
+                    Optional.of(new Identifier("minecraft", "block/cube")),
+                    Optional.empty(),
+                    TextureKey.DOWN, TextureKey.UP, TextureKey.NORTH, TextureKey.EAST,
+                    TextureKey.SOUTH, TextureKey.WEST, TextureKey.PARTICLE
+            ).upload(
+                    new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_" + side),
+                    new TextureMap()
+                            .put(TextureKey.DOWN, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/" + side))
+                            .put(TextureKey.UP, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/" + side))
+                            .put(TextureKey.NORTH, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/" + opposite))
+                            .put(TextureKey.EAST, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/blank"))
+                            .put(TextureKey.SOUTH, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/" + side))
+                            .put(TextureKey.WEST, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/blank"))
+                            .put(TextureKey.PARTICLE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/all")),
+                    gen.modelCollector
+            );
+        }
+
+        for (String orientation : new String[] { "up", "down"}) {
+            new Model(
+                    Optional.of(new Identifier("minecraft", "block/cube")),
+                    Optional.empty(),
+                    TextureKey.DOWN, TextureKey.UP, TextureKey.NORTH, TextureKey.EAST,
+                    TextureKey.SOUTH, TextureKey.WEST, TextureKey.PARTICLE
+            ).upload(
+                    new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_" + orientation),
+                    new TextureMap()
+                            .put(TextureKey.DOWN, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/blank"))
+                            .put(TextureKey.UP, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/blank"))
+                            .put(TextureKey.NORTH, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/" + orientation))
+                            .put(TextureKey.EAST, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/" + orientation))
+                            .put(TextureKey.SOUTH, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/" + orientation))
+                            .put(TextureKey.WEST, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/" + orientation))
+                            .put(TextureKey.PARTICLE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/all")),
+                    gen.modelCollector
+            );
+
+            new Model(
+                    Optional.of(new Identifier(ShuckleQOL.MOD_ID, "block/template_connected_glass_corner_" + orientation)),
+                    Optional.empty(),
+                    TextureKey.TEXTURE, TextureKey.INSIDE, TextureKey.PARTICLE
+            ).upload(
+                    new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_corner_" + orientation),
+                    new TextureMap()
+                            .put(TextureKey.TEXTURE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/corner"))
+                            .put(TextureKey.INSIDE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/blank"))
+                            .put(TextureKey.PARTICLE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/all")),
+                    gen.modelCollector
+            );
+        }
+
+        gen.registerParentedItemModel(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, baseBlockId)),
+                new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_all"));
+    }
+
+
+    private void registerConnectedGlassPaneBlock(String baseBlockId, BlockStateModelGenerator gen) {
+        Identifier upPostModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_post_up");
+        Identifier downPostModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_post_down");
+
+        Identifier upSideModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_side_up");
+        Identifier downSideModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_side_down");
+        Identifier upSideAltModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_side_alt_up");
+        Identifier downSideAltModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_side_alt_down");
+
+        Identifier baseModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_side_base");
+        Identifier baseAltModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_side_alt_base");
+
+        Identifier upModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_up");
+        Identifier downModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_down");
+        Identifier upAltModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_alt_up");
+        Identifier downAltModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_alt_down");
+        Identifier leftModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_left");
+        Identifier rightModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_right");
+
+        Identifier baseCenterModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_center_base");
+        Identifier upCenterModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_center_up");
+        Identifier downCenterModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_center_down");
+        Identifier baseCenterAltModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_center_alt_base");
+        Identifier upCenterAltModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_center_alt_up");
+        Identifier downCenterAltModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_center_alt_down");
+
+        Identifier cornerUpModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_corner_up");
+        Identifier cornerDownModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_corner_down");
+
+        gen.blockStateCollector.accept(
+                MultipartBlockStateSupplier.create(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, baseBlockId + "_pane")))
+                        //middle post of the glass, only top and bottom edge textures
+                        .with(When.create().set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_UP, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, upPostModel))
+                        .with(When.create().set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_DOWN, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, downPostModel))
+
+                        //sides extending, only top and bottom edges
+                        .with(When.create()
+                                        .set(Properties.NORTH, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_UP, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, upSideModel))
+                        .with(When.create()
+                                        .set(Properties.NORTH, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_DOWN, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, downSideModel))
+                        .with(When.create()
+                                        .set(Properties.EAST, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_UP, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, upSideModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create()
+                                        .set(Properties.EAST, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_DOWN, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, downSideModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create()
+                                        .set(Properties.SOUTH, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_UP, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, upSideAltModel))
+                        .with(When.create()
+                                        .set(Properties.SOUTH, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_DOWN, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, downSideAltModel))
+                        .with(When.create()
+                                        .set(Properties.WEST, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_UP, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, upSideAltModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create()
+                                        .set(Properties.WEST, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_DOWN, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, downSideAltModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+
+                        //sides extending, only the side faces
+                        .with(When.create()
+                                        .set(Properties.NORTH, true),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, baseModel))
+                        .with(When.create()
+                                        .set(Properties.NORTH, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_UP, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, upModel))
+                        .with(When.create()
+                                        .set(Properties.NORTH, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_DOWN, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, downModel))
+                        .with(When.create()
+                                        .set(Properties.NORTH, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_NORTH, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, rightModel))
+
+                        .with(When.create()
+                                        .set(Properties.EAST, true),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, baseModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create()
+                                        .set(Properties.EAST, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_UP, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, upModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create()
+                                        .set(Properties.EAST, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_DOWN, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, downModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create()
+                                        .set(Properties.EAST, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_EAST, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, rightModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+
+                        .with(When.create()
+                                        .set(Properties.SOUTH, true),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, baseAltModel))
+                        .with(When.create()
+                                        .set(Properties.SOUTH, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_UP, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, upAltModel))
+                        .with(When.create()
+                                        .set(Properties.SOUTH, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_DOWN, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, downAltModel))
+                        .with(When.create()
+                                        .set(Properties.SOUTH, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_SOUTH, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, leftModel))
+
+                        .with(When.create()
+                                        .set(Properties.WEST, true),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, baseAltModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create()
+                                        .set(Properties.WEST, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_UP, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, upAltModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create()
+                                        .set(Properties.WEST, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_DOWN, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, downAltModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create()
+                                        .set(Properties.WEST, true)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_WEST, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, leftModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+
+                        // no sides variants
+                        .with(When.create()
+                                        .set(Properties.NORTH, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, baseCenterModel))
+                        .with(When.create()
+                                        .set(Properties.NORTH, false)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_UP, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, upCenterModel))
+                        .with(When.create()
+                                        .set(Properties.NORTH, false)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_DOWN, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, downCenterModel))
+
+                        .with(When.create().set(Properties.EAST, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, baseCenterModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create()
+                                        .set(Properties.EAST, false)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_UP, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, upCenterModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create()
+                                        .set(Properties.EAST, false)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_DOWN, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, downCenterModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+
+                        .with(When.create()
+                                        .set(Properties.SOUTH, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, baseCenterAltModel))
+                        .with(When.create()
+                                        .set(Properties.SOUTH, false)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_UP, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, upCenterAltModel))
+                        .with(When.create()
+                                        .set(Properties.SOUTH, false)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_DOWN, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, downCenterAltModel))
+
+                        .with(When.create()
+                                        .set(Properties.WEST, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, baseCenterAltModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create()
+                                        .set(Properties.WEST, false)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_UP, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, upCenterAltModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .with(When.create()
+                                        .set(Properties.WEST, false)
+                                        .set(ConnectedGlassPaneBlock.TEXTURE_CONNECT_DOWN, false),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, downCenterAltModel)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+        );
+
+        for (String edge : new String[] { "up", "down" }) {
+            new Model(
+                    Optional.of(new Identifier(ShuckleQOL.MOD_ID, "block/template_connected_glass_pane_post_" + edge)),
+                    Optional.empty(),
+                    TextureKey.EDGE, TextureKey.PARTICLE
+            ).upload(
+                    new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_post_" + edge),
+                    new TextureMap()
+                            .put(TextureKey.EDGE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/pane_edge"))
+                            .put(TextureKey.PARTICLE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/all")),
+                    gen.modelCollector
+            );
+
+            for (String alt : new String[]{"", "_alt"}) {
+                new Model(
+                        Optional.of(new Identifier(ShuckleQOL.MOD_ID, "block/template_connected_glass_pane_side" + alt + "_" + edge)),
+                        Optional.empty(),
+                        TextureKey.EDGE, TextureKey.PARTICLE
+                ).upload(
+                        new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane" + alt + "_" + edge),
+                        new TextureMap()
+                                .put(TextureKey.EDGE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/pane_edge"))
+                                .put(TextureKey.PARTICLE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/all")),
+                        gen.modelCollector
+                );
+            }
+        }
+
+        for (String alt : new String[]{"", "alt_"}) {
+            for (String layer : new String[]{"base", "up", "down"}) {
+                new Model(
+                        alt.equals("alt_") ? Optional.of(new Identifier(ShuckleQOL.MOD_ID, "block/template_connected_glass_pane_side_alt"))
+                                : Optional.of(new Identifier(ShuckleQOL.MOD_ID, "block/template_connected_glass_pane_side")),
+                        Optional.empty(),
+                        TextureKey.EDGE, TextureKey.PARTICLE, TextureKey.PANE
+                ).upload(
+                        new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_side_" + alt + layer),
+                        new TextureMap()
+                                .put(TextureKey.EDGE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/pane_edge"))
+                                .put(TextureKey.PANE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/" + layer))
+                                .put(TextureKey.PARTICLE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/all")),
+                        gen.modelCollector
+                );
+
+                new Model(
+                        alt.equals("alt_") ? Optional.of(new Identifier(ShuckleQOL.MOD_ID, "block/template_connected_glass_pane_center_alt"))
+                                : Optional.of(new Identifier(ShuckleQOL.MOD_ID, "block/template_connected_glass_pane_center")),
+                        Optional.empty(),
+                        TextureKey.PANE, TextureKey.PARTICLE
+                ).upload(
+                        new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_pane_center_" + alt + layer),
+                        new TextureMap()
+                                .put(TextureKey.PANE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/" + layer))
+                                .put(TextureKey.PARTICLE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/all")),
+                        gen.modelCollector
+                );
+            }
+        }
+
+        new Model(
+                Optional.of(new Identifier(ShuckleQOL.MOD_ID, "block/template_connected_glass_pane_side")),
+                Optional.empty(),
+                TextureKey.EDGE, TextureKey.PANE, TextureKey.PARTICLE
+        ).upload(
+                rightModel,
+                new TextureMap()
+                        .put(TextureKey.EDGE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/blank"))
+                        .put(TextureKey.PANE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/right"))
+                        .put(TextureKey.PARTICLE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/all")),
+                gen.modelCollector
+        );
+
+        new Model(
+                Optional.of(new Identifier(ShuckleQOL.MOD_ID, "block/template_connected_glass_pane_side_alt")),
+                Optional.empty(),
+                TextureKey.EDGE, TextureKey.PANE, TextureKey.PARTICLE
+        ).upload(
+                leftModel,
+                new TextureMap()
+
+                        .put(TextureKey.EDGE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/blank"))
+                        .put(TextureKey.PANE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/left"))
+                        .put(TextureKey.PARTICLE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/all")),
+                gen.modelCollector
+        );
     }
 
     private void createOxidizableModelSet(String baseBlockId,
@@ -961,5 +1415,18 @@ public class ModModelProvider extends FabricModelProvider {
                                 Optional.empty()));
             }
         }
+    }
+
+    private void registerConnectedGlassPaneItem(String baseBlockId, ItemModelGenerator gen) {
+        new Model(
+                Optional.of(new Identifier("minecraft", "item/generated")),
+                Optional.empty(),
+                TextureKey.LAYER0
+        ).upload(
+                new Identifier(ShuckleQOL.MOD_ID, "item/" + baseBlockId + "_pane"),
+                new TextureMap()
+                        .put(TextureKey.LAYER0, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/all")),
+                gen.writer
+        );
     }
 }

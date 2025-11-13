@@ -2,6 +2,7 @@ package ca.shuckle.datagen.tags;
 
 import ca.shuckle.block.ModBackportBlocks;
 import ca.shuckle.block.ModBlocks;
+import ca.shuckle.util.ModPointsOfInterest;
 import ca.shuckle.util.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -9,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.registry.tag.PointOfInterestTypeTags;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -149,6 +151,7 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         //endregion
         //pickaxe
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+                .add(ModBlocks.SHUCKLE_ORE)
                 .add(ModBlocks.CONDENSED_BLACK_ICE)
                 .add(ModBackportBlocks.REINFORCED_DEEPSLATE)
                 .add(ModBackportBlocks.PACKED_MUD_SLAB)
@@ -214,6 +217,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBackportBlocks.PALE_OAK_LEAVES)
                 .add(ModBackportBlocks.PALE_MOSS_BLOCK)
                 .add(ModBackportBlocks.PALE_MOSS_CARPET);
+        //needs diamond tool
+        getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
+                .add(ModBlocks.SHUCKLE_ORE);
         //endregion
         //region Wood Set Tags
         //logs

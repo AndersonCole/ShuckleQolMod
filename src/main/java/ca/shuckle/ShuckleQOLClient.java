@@ -33,6 +33,7 @@ public class ShuckleQOLClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.POTTED_PALE_OAK_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.PALE_OAK_LEAVES, RenderLayer.getCutout());
 
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.PALE_HANGING_MOSS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.PALE_GRASS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.PALE_TALL_GRASS, RenderLayer.getCutout());
 
@@ -42,6 +43,14 @@ public class ShuckleQOLClient implements ClientModInitializer {
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.LEAF_LITTER, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LEAF_LITTER_OAK, RenderLayer.getCutout());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.BUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.FIREFLY_BUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.LIT_FIREFLY_BUSH, RenderLayer.getCutout());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.SHORT_DRY_GRASS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.TALL_DRY_GRASS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.CACTUS_FLOWER, RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.RESIN_CLUMP, RenderLayer.getCutout());
 
@@ -54,6 +63,10 @@ public class ShuckleQOLClient implements ClientModInitializer {
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.COPPER_TORCH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.COPPER_WALL_TORCH, RenderLayer.getCutout());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.THERIUM_GLASS, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.THERIUM_GLASS_PANE, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.TINTED_GLASS_PANE, RenderLayer.getTranslucent());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.INVIS_LIGHTNING_ROD, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.INVIS_CARPET, RenderLayer.getCutout());

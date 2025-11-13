@@ -1,0 +1,12 @@
+{
+  "ambientocclusion": false,
+  "elements": [
+    {
+      "from": [ 7, 0, 9 ],
+      "to": [ 9, 16, 16 ],
+      "faces": {
+        "down":  { "uv": [  7, 0,  9,  7 ], "texture": "#edge" }
+      }
+    }
+  ]
+}

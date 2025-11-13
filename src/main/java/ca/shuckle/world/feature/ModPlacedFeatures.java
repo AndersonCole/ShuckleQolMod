@@ -2,11 +2,13 @@ package ca.shuckle.world.feature;
 
 import ca.shuckle.ShuckleQOL;
 import ca.shuckle.block.ModBackportBlocks;
+import ca.shuckle.world.feature.ore.ModOrePlacement;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.placementmodifier.*;
 
@@ -16,6 +18,10 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> CHERRY_TREE_PLACED_KEY = registerKey("cherry_tree_placed");
     public static final RegistryKey<PlacedFeature> PALE_OAK_TREE_PLACED_KEY = registerKey("pale_oak_tree_placed");
     public static final RegistryKey<PlacedFeature> PALE_MOSS_PLACED_KEY = registerKey("pale_moss_placed");
+    public static final RegistryKey<PlacedFeature> BUSH_PLACED_KEY = registerKey("bush_placed");
+    public static final RegistryKey<PlacedFeature> DRY_GRASS_PLACED_KEY = registerKey("dry_grass_placed");
+
+    public static final RegistryKey<PlacedFeature> SHUCKLE_ORE_PLACED_KEY = registerKey("shuckle_ore_placed");
 
     public static void bootstrap(Registerable<PlacedFeature> context){
         var configuredFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
@@ -30,6 +36,16 @@ public class ModPlacedFeatures {
 
         register(context, PALE_MOSS_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.PALE_MOSS_PATCH_KEY),
                 VegetationPlacedFeatures.treeModifiers(PlacedFeatures.createCountExtraModifier(1, 0.05f, 2)));
+
+        register(context, BUSH_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.BUSH_PATCH_KEY),
+                VegetationPlacedFeatures.treeModifiers(PlacedFeatures.createCountExtraModifier(0, 0.2f, 1)));
+
+        register(context, DRY_GRASS_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.DRY_GRASS_PATCH_KEY),
+                VegetationPlacedFeatures.treeModifiers(PlacedFeatures.createCountExtraModifier(0, 0.05f, 1)));
+
+        register(context, SHUCKLE_ORE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.SHUCKLE_ORE_KEY),
+                ModOrePlacement.modifiersWithCount(2,
+                        HeightRangePlacementModifier.trapezoid(YOffset.fixed(-64), YOffset.fixed(-50))));
     }
 
     public static RegistryKey<PlacedFeature> registerKey(String name){

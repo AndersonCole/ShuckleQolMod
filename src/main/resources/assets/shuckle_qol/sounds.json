@@ -351,5 +351,13 @@
       }
     ],
     "subtitle": "subtitles.block.generic.footsteps"
+  },
+  "entity.villager.work_shuckle": {
+    "sounds": [
+      {
+        "name": "shuckle_qol:shuckle_cry",
+        "volume": 0.4
+      }
+    ]
   }
 }
