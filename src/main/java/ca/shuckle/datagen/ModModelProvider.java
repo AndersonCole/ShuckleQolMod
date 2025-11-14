@@ -13,6 +13,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.ConnectingBlock;
 import net.minecraft.block.LanternBlock;
 import net.minecraft.data.client.*;
+import net.minecraft.data.family.BlockFamilies;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.state.property.Properties;
@@ -59,6 +60,9 @@ public class ModModelProvider extends FabricModelProvider {
         cherryPool.fenceGate(ModBackportBlocks.CHERRY_FENCE_GATE);
         cherryPool.button(ModBackportBlocks.CHERRY_BUTTON);
         cherryPool.pressurePlate(ModBackportBlocks.CHERRY_PRESSURE_PLATE);
+        cherryPool.family(BlockFamilies.register(ModBackportBlocks.CHERRY_PLANKS)
+                .sign(ModBackportBlocks.CHERRY_SIGN, ModBackportBlocks.CHERRY_WALL_SIGN)
+                .group("wooden").unlockCriterionName("has_planks").build());
         registerShelfBlock(ShuckleQOL.MOD_ID, "cherry", "_log", blockStateModelGenerator);
         //endregion
         //region Bamboo
@@ -74,6 +78,9 @@ public class ModModelProvider extends FabricModelProvider {
         bambooPool.fenceGate(ModBackportBlocks.BAMBOO_FENCE_GATE);
         bambooPool.button(ModBackportBlocks.BAMBOO_BUTTON);
         bambooPool.pressurePlate(ModBackportBlocks.BAMBOO_PRESSURE_PLATE);
+        bambooPool.family(BlockFamilies.register(ModBackportBlocks.BAMBOO_PLANKS)
+                .sign(ModBackportBlocks.BAMBOO_SIGN, ModBackportBlocks.BAMBOO_WALL_SIGN)
+                .group("wooden").unlockCriterionName("has_planks").build());
         registerShelfBlock(ShuckleQOL.MOD_ID, "bamboo", "_block", blockStateModelGenerator);
 
         BlockStateModelGenerator.BlockTexturePool bambooMosaicPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBackportBlocks.BAMBOO_MOSAIC);
@@ -96,6 +103,9 @@ public class ModModelProvider extends FabricModelProvider {
         paleOakPool.fenceGate(ModBackportBlocks.PALE_OAK_FENCE_GATE);
         paleOakPool.button(ModBackportBlocks.PALE_OAK_BUTTON);
         paleOakPool.pressurePlate(ModBackportBlocks.PALE_OAK_PRESSURE_PLATE);
+        paleOakPool.family(BlockFamilies.register(ModBackportBlocks.PALE_OAK_PLANKS)
+                .sign(ModBackportBlocks.PALE_OAK_SIGN, ModBackportBlocks.PALE_OAK_WALL_SIGN)
+                .group("wooden").unlockCriterionName("has_planks").build());
         registerShelfBlock(ShuckleQOL.MOD_ID, "pale_oak", "_log", blockStateModelGenerator);
 
         blockStateModelGenerator.registerWoolAndCarpet(ModBackportBlocks.PALE_MOSS_BLOCK, ModBackportBlocks.PALE_MOSS_CARPET);
@@ -233,6 +243,21 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RESIN_BRICK, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.COPPER_NUGGET, Models.GENERATED);
+
+        //region hanging signs
+        itemModelGenerator.register(ModItems.OAK_HANGING_SIGN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SPRUCE_HANGING_SIGN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BIRCH_HANGING_SIGN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.JUNGLE_HANGING_SIGN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.ACACIA_HANGING_SIGN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.DARK_OAK_HANGING_SIGN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.MANGROVE_HANGING_SIGN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CHERRY_HANGING_SIGN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.BAMBOO_HANGING_SIGN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.PALE_OAK_HANGING_SIGN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.CRIMSON_HANGING_SIGN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.WARPED_HANGING_SIGN, Models.GENERATED);
+        //endregion
 
         //region shelves
         registerShelfItem("minecraft", "oak", "_log", itemModelGenerator);

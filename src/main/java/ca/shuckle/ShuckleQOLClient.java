@@ -78,6 +78,32 @@ public class ShuckleQOLClient implements ClientModInitializer {
         EntityRendererRegistry.register(ModEntities.INVIS_ITEM_FRAME, InvisibleItemFrameRenderer::new);
         EntityRendererRegistry.register(ModEntities.INVIS_GLOW_ITEM_FRAME, InvisibleItemFrameRenderer::new);
 
+        //hanging signs
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
+                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/oak")));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
+                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/spruce")));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
+                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/birch")));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
+                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/jungle")));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
+                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/acacia")));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
+                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/dark_oak")));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
+                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/mangrove")));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
+                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/cherry")));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
+                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/bamboo")));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
+                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/pale_oak")));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
+                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/crimson")));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
+                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/warped")));
+        //signs
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
                 new Identifier(ShuckleQOL.MOD_ID, "entity/signs/cherry")));
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,

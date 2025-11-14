@@ -15,6 +15,17 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
     @Override
     public void generate() {
         //region Backport Blocks
+        //region Hanging Signs
+        addDrop(ModBackportBlocks.OAK_HANGING_SIGN);
+        addDrop(ModBackportBlocks.SPRUCE_HANGING_SIGN);
+        addDrop(ModBackportBlocks.BIRCH_HANGING_SIGN);
+        addDrop(ModBackportBlocks.JUNGLE_HANGING_SIGN);
+        addDrop(ModBackportBlocks.ACACIA_HANGING_SIGN);
+        addDrop(ModBackportBlocks.DARK_OAK_HANGING_SIGN);
+        addDrop(ModBackportBlocks.MANGROVE_HANGING_SIGN);
+        addDrop(ModBackportBlocks.CRIMSON_HANGING_SIGN);
+        addDrop(ModBackportBlocks.WARPED_HANGING_SIGN);
+        //endregion
         //region Shelves
         addDrop(ModBackportBlocks.OAK_SHELF);
         addDrop(ModBackportBlocks.SPRUCE_SHELF);
@@ -46,6 +57,7 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBackportBlocks.CHERRY_PRESSURE_PLATE);
         addDrop(ModBackportBlocks.CHERRY_SHELF);
         addDrop(ModBackportBlocks.CHERRY_SIGN);
+        addDrop(ModBackportBlocks.CHERRY_HANGING_SIGN);
 
         addDrop(ModBackportBlocks.PINK_PETALS, flowerbedDrops(ModBackportBlocks.PINK_PETALS));
         //endregion
@@ -64,6 +76,7 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBackportBlocks.BAMBOO_PRESSURE_PLATE);
         addDrop(ModBackportBlocks.BAMBOO_SHELF);
         addDrop(ModBackportBlocks.BAMBOO_SIGN);
+        addDrop(ModBackportBlocks.BAMBOO_HANGING_SIGN);
 
         addDrop(ModBackportBlocks.BAMBOO_MOSAIC);
         addDrop(ModBackportBlocks.BAMBOO_MOSAIC_SLAB, slabDrops(ModBackportBlocks.BAMBOO_MOSAIC_SLAB));
@@ -89,6 +102,7 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBackportBlocks.PALE_OAK_PRESSURE_PLATE);
         addDrop(ModBackportBlocks.PALE_OAK_SHELF);
         addDrop(ModBackportBlocks.PALE_OAK_SIGN);
+        addDrop(ModBackportBlocks.PALE_OAK_HANGING_SIGN);
 
         addDrop(ModBackportBlocks.PALE_MOSS_BLOCK);
         addDrop(ModBackportBlocks.PALE_MOSS_CARPET);

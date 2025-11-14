@@ -47,6 +47,16 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .input('I', Items.IRON_INGOT)
                 .criterion(hasItem(Items.LEATHER),
                         conditionsFromItem(Items.LEATHER)).offerTo(exporter);
+        //hanging signs
+        createHangingSignRecipe(exporter, "minecraft", "stripped_oak_log", "oak_hanging_sign");
+        createHangingSignRecipe(exporter, "minecraft", "stripped_spruce_log", "spruce_hanging_sign");
+        createHangingSignRecipe(exporter, "minecraft", "stripped_birch_log", "birch_hanging_sign");
+        createHangingSignRecipe(exporter, "minecraft", "stripped_jungle_log", "jungle_hanging_sign");
+        createHangingSignRecipe(exporter, "minecraft", "stripped_acacia_log", "acacia_hanging_sign");
+        createHangingSignRecipe(exporter, "minecraft", "stripped_dark_oak_log", "dark_oak_hanging_sign");
+        createHangingSignRecipe(exporter, "minecraft", "stripped_mangrove_log", "mangrove_hanging_sign");
+        createHangingSignRecipe(exporter, "minecraft", "stripped_crimson_stem", "crimson_hanging_sign");
+        createHangingSignRecipe(exporter, "minecraft", "stripped_warped_stem", "warped_hanging_sign");
         //shelves
         createShelfRecipe(exporter, "minecraft", "stripped_oak_log", "oak_shelf");
         createShelfRecipe(exporter, "minecraft", "stripped_spruce_log", "spruce_shelf");
@@ -66,7 +76,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 ModBackportBlocks.CHERRY_DOOR, ModBackportBlocks.CHERRY_TRAPDOOR,
                 ModBackportBlocks.CHERRY_FENCE, ModBackportBlocks.CHERRY_FENCE_GATE,
                 ModBackportBlocks.CHERRY_BUTTON, ModBackportBlocks.CHERRY_PRESSURE_PLATE,
-                ModBackportBlocks.CHERRY_SHELF, ModItems.CHERRY_SIGN);
+                ModBackportBlocks.CHERRY_SHELF, ModItems.CHERRY_SIGN, ModItems.CHERRY_HANGING_SIGN);
         //region Bamboo
         //bamboo wood set
         createWoodItemSetRecipes(exporter, "bamboo", ModTags.Items.BAMBOO_BLOCKS,
@@ -77,7 +87,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 ModBackportBlocks.BAMBOO_DOOR, ModBackportBlocks.BAMBOO_TRAPDOOR,
                 ModBackportBlocks.BAMBOO_FENCE, ModBackportBlocks.BAMBOO_FENCE_GATE,
                 ModBackportBlocks.BAMBOO_BUTTON, ModBackportBlocks.BAMBOO_PRESSURE_PLATE,
-                ModBackportBlocks.BAMBOO_SHELF, ModItems.BAMBOO_SIGN);
+                ModBackportBlocks.BAMBOO_SHELF, ModItems.BAMBOO_SIGN, ModItems.BAMBOO_HANGING_SIGN);
         //bamboo mosaic
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
                         ModBackportBlocks.BAMBOO_MOSAIC,1)
@@ -111,7 +121,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 ModBackportBlocks.PALE_OAK_DOOR, ModBackportBlocks.PALE_OAK_TRAPDOOR,
                 ModBackportBlocks.PALE_OAK_FENCE, ModBackportBlocks.PALE_OAK_FENCE_GATE,
                 ModBackportBlocks.PALE_OAK_BUTTON, ModBackportBlocks.PALE_OAK_PRESSURE_PLATE,
-                ModBackportBlocks.PALE_OAK_SHELF, ModItems.PALE_OAK_SIGN);
+                ModBackportBlocks.PALE_OAK_SHELF, ModItems.PALE_OAK_SIGN, ModItems.PALE_OAK_HANGING_SIGN);
         //pale moss carpet
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBackportBlocks.PALE_MOSS_CARPET, 3)
                 .pattern("##")
@@ -668,7 +678,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .pattern("#S#")
                 .pattern("V#V")
                 .input('#', Items.SCULK_CATALYST)
-                .input('V', Items.SCULK_VEIN)
+                .input('V', Items.ECHO_SHARD)
                 .input('S', ModItems.DARK_STAR)
                 .criterion(hasItem(ModItems.DARK_STAR),
                         conditionsFromItem(ModItems.DARK_STAR)).offerTo(exporter);
@@ -1114,7 +1124,8 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                                           Block buttonBlock,
                                           Block pressurePlateBlock,
                                           Block shelfItem,
-                                          Item signItem
+                                          Item signItem,
+                                          Item hangingSignItem
                                           ){
         if(woodBlock != null && strippedWoodBlock != null){
             //charcoal recipe
@@ -1222,8 +1233,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(hasItem(planksBlock),
                         conditionsFromItem(planksBlock)).offerTo(exporter);
         //hanging sign
-        /**
-        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, hangingSignItem, 1)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, hangingSignItem, 6)
                 .pattern("C C")
                 .pattern("###")
                 .pattern("###")
@@ -1231,7 +1241,6 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .input('C', Items.CHAIN)
                 .criterion(hasItem(strippedLogBlock),
                         conditionsFromItem(strippedLogBlock)).offerTo(exporter);
-         **/
     }
 
     private void createSlabStairWallItemSetRecipes(Consumer<RecipeJsonProvider> exporter,
@@ -1318,6 +1327,23 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(hasItem(Registries.BLOCK.get(shelfItem)),
                         conditionsFromItem(Registries.BLOCK.get(shelfItem)))
                 .offerTo(exporter, shelfItem);
+    }
+
+    private void createHangingSignRecipe(Consumer<RecipeJsonProvider> exporter,
+                                   String inputNamespace,
+                                   String inputBlock,
+                                   String outputBlock) {
+        Identifier hangingSignItem = new Identifier(ShuckleQOL.MOD_ID, outputBlock);
+
+        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, hangingSignItem, 6)
+                .pattern("C C")
+                .pattern("###")
+                .pattern("###")
+                .inputItem('#', new Identifier(inputNamespace, inputBlock))
+                .inputItem('C', new Identifier("minecraft", "chain"))
+                .criterion(hasItem(Registries.BLOCK.get(hangingSignItem)),
+                        conditionsFromItem(Registries.BLOCK.get(hangingSignItem)))
+                .offerTo(exporter, hangingSignItem);
     }
 
     private void createOxidizableRecipes(Consumer<RecipeJsonProvider> exporter,

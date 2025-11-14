@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "shuckle_qol",
-  "version": "4.0.1",
+  "version": "4.1.0",
 
   "name": "Shuckle's QOL Mod",
   "description": "Adds whatever qol change as needed to the server",

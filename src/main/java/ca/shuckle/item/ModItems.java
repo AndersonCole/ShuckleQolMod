@@ -27,6 +27,55 @@ import java.util.List;
 public class ModItems {
 
     //region Backport
+    //hanging signs
+    public static final Item OAK_HANGING_SIGN = registerItemInGroup("oak_hanging_sign",
+            new HangingSignItem(ModBackportBlocks.OAK_HANGING_SIGN, ModBackportBlocks.OAK_WALL_HANGING_SIGN,
+                    new FabricItemSettings().maxCount(16)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Item SPRUCE_HANGING_SIGN = registerItemInGroup("spruce_hanging_sign",
+            new HangingSignItem(ModBackportBlocks.SPRUCE_HANGING_SIGN, ModBackportBlocks.SPRUCE_WALL_HANGING_SIGN,
+                    new FabricItemSettings().maxCount(16)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Item BIRCH_HANGING_SIGN = registerItemInGroup("birch_hanging_sign",
+            new HangingSignItem(ModBackportBlocks.BIRCH_HANGING_SIGN, ModBackportBlocks.BIRCH_WALL_HANGING_SIGN,
+                    new FabricItemSettings().maxCount(16)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Item JUNGLE_HANGING_SIGN = registerItemInGroup("jungle_hanging_sign",
+            new HangingSignItem(ModBackportBlocks.JUNGLE_HANGING_SIGN, ModBackportBlocks.JUNGLE_WALL_HANGING_SIGN,
+                    new FabricItemSettings().maxCount(16)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Item ACACIA_HANGING_SIGN = registerItemInGroup("acacia_hanging_sign",
+            new HangingSignItem(ModBackportBlocks.ACACIA_HANGING_SIGN, ModBackportBlocks.ACACIA_WALL_HANGING_SIGN,
+                    new FabricItemSettings().maxCount(16)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Item DARK_OAK_HANGING_SIGN = registerItemInGroup("dark_oak_hanging_sign",
+            new HangingSignItem(ModBackportBlocks.DARK_OAK_HANGING_SIGN, ModBackportBlocks.DARK_OAK_WALL_HANGING_SIGN,
+                    new FabricItemSettings().maxCount(16)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Item MANGROVE_HANGING_SIGN = registerItemInGroup("mangrove_hanging_sign",
+            new HangingSignItem(ModBackportBlocks.MANGROVE_HANGING_SIGN, ModBackportBlocks.MANGROVE_WALL_HANGING_SIGN,
+                    new FabricItemSettings().maxCount(16)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Item CHERRY_HANGING_SIGN = registerItemInGroup("cherry_hanging_sign",
+            new HangingSignItem(ModBackportBlocks.CHERRY_HANGING_SIGN, ModBackportBlocks.CHERRY_WALL_HANGING_SIGN,
+                    new FabricItemSettings().maxCount(16)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Item BAMBOO_HANGING_SIGN = registerItemInGroup("bamboo_hanging_sign",
+            new HangingSignItem(ModBackportBlocks.BAMBOO_HANGING_SIGN, ModBackportBlocks.BAMBOO_WALL_HANGING_SIGN,
+                    new FabricItemSettings().maxCount(16)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Item PALE_OAK_HANGING_SIGN = registerItemInGroup("pale_oak_hanging_sign",
+            new HangingSignItem(ModBackportBlocks.PALE_OAK_HANGING_SIGN, ModBackportBlocks.PALE_OAK_WALL_HANGING_SIGN,
+                    new FabricItemSettings().maxCount(16)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Item CRIMSON_HANGING_SIGN = registerItemInGroup("crimson_hanging_sign",
+            new HangingSignItem(ModBackportBlocks.CRIMSON_HANGING_SIGN, ModBackportBlocks.CRIMSON_WALL_HANGING_SIGN,
+                    new FabricItemSettings().maxCount(16)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Item WARPED_HANGING_SIGN = registerItemInGroup("warped_hanging_sign",
+            new HangingSignItem(ModBackportBlocks.WARPED_HANGING_SIGN, ModBackportBlocks.WARPED_WALL_HANGING_SIGN,
+                    new FabricItemSettings().maxCount(16)), ModItemGroup.SHUCKLE_BACKPORT);
+    //signs
     public static final Item CHERRY_SIGN = registerItemInGroup("cherry_sign",
             new SignItem(new FabricItemSettings().maxCount(16),
                     ModBackportBlocks.CHERRY_SIGN, ModBackportBlocks.CHERRY_WALL_SIGN), ModItemGroup.SHUCKLE_BACKPORT);

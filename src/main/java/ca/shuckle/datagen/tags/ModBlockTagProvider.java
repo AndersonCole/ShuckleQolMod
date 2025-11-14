@@ -190,6 +190,24 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
                 .add(ModBackportBlocks.CREAKING_HEART)
                 .add(ModBackportBlocks.ACTIVE_CREAKING_HEART)
+                .add(ModBackportBlocks.OAK_HANGING_SIGN)
+                .add(ModBackportBlocks.OAK_WALL_HANGING_SIGN)
+                .add(ModBackportBlocks.SPRUCE_HANGING_SIGN)
+                .add(ModBackportBlocks.SPRUCE_WALL_HANGING_SIGN)
+                .add(ModBackportBlocks.BIRCH_HANGING_SIGN)
+                .add(ModBackportBlocks.BIRCH_WALL_HANGING_SIGN)
+                .add(ModBackportBlocks.JUNGLE_HANGING_SIGN)
+                .add(ModBackportBlocks.JUNGLE_WALL_HANGING_SIGN)
+                .add(ModBackportBlocks.ACACIA_HANGING_SIGN)
+                .add(ModBackportBlocks.ACACIA_WALL_HANGING_SIGN)
+                .add(ModBackportBlocks.DARK_OAK_HANGING_SIGN)
+                .add(ModBackportBlocks.DARK_OAK_WALL_HANGING_SIGN)
+                .add(ModBackportBlocks.MANGROVE_HANGING_SIGN)
+                .add(ModBackportBlocks.MANGROVE_WALL_HANGING_SIGN)
+                .add(ModBackportBlocks.CRIMSON_HANGING_SIGN)
+                .add(ModBackportBlocks.CRIMSON_WALL_HANGING_SIGN)
+                .add(ModBackportBlocks.WARPED_HANGING_SIGN)
+                .add(ModBackportBlocks.WARPED_WALL_HANGING_SIGN)
                 .add(ModBackportBlocks.OAK_SHELF)
                 .add(ModBackportBlocks.SPRUCE_SHELF)
                 .add(ModBackportBlocks.BIRCH_SHELF)
@@ -202,15 +220,21 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBackportBlocks.CHERRY_DOOR)
                 .add(ModBackportBlocks.CHERRY_TRAPDOOR)
                 .add(ModBackportBlocks.CHERRY_SHELF)
+                .add(ModBackportBlocks.CHERRY_HANGING_SIGN)
+                .add(ModBackportBlocks.CHERRY_WALL_HANGING_SIGN)
                 .add(ModBackportBlocks.BAMBOO_DOOR)
                 .add(ModBackportBlocks.BAMBOO_TRAPDOOR)
                 .add(ModBackportBlocks.BAMBOO_SHELF)
+                .add(ModBackportBlocks.BAMBOO_HANGING_SIGN)
+                .add(ModBackportBlocks.BAMBOO_WALL_HANGING_SIGN)
                 .add(ModBackportBlocks.BAMBOO_MOSAIC)
                 .add(ModBackportBlocks.BAMBOO_MOSAIC_SLAB)
                 .add(ModBackportBlocks.BAMBOO_MOSAIC_STAIRS)
                 .add(ModBackportBlocks.PALE_OAK_DOOR)
                 .add(ModBackportBlocks.PALE_OAK_TRAPDOOR)
-                .add(ModBackportBlocks.PALE_OAK_SHELF);
+                .add(ModBackportBlocks.PALE_OAK_SHELF)
+                .add(ModBackportBlocks.PALE_OAK_HANGING_SIGN)
+                .add(ModBackportBlocks.PALE_OAK_WALL_HANGING_SIGN);
         //hoe
         getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
                 .add(ModBackportBlocks.CHERRY_LEAVES)
@@ -297,6 +321,44 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBackportBlocks.BAMBOO_WALL_SIGN)
                 .add(ModBackportBlocks.PALE_OAK_WALL_SIGN)
                 .add(ModBlocks.INVIS_WALL_SIGN);
+        //hanging signs
+        getOrCreateTagBuilder(ModTags.Blocks.CEILING_HANGING_SIGNS)
+                .add(ModBackportBlocks.OAK_HANGING_SIGN)
+                .add(ModBackportBlocks.SPRUCE_HANGING_SIGN)
+                .add(ModBackportBlocks.BIRCH_HANGING_SIGN)
+                .add(ModBackportBlocks.JUNGLE_HANGING_SIGN)
+                .add(ModBackportBlocks.ACACIA_HANGING_SIGN)
+                .add(ModBackportBlocks.DARK_OAK_HANGING_SIGN)
+                .add(ModBackportBlocks.MANGROVE_HANGING_SIGN)
+                .add(ModBackportBlocks.CHERRY_HANGING_SIGN)
+                .add(ModBackportBlocks.BAMBOO_HANGING_SIGN)
+                .add(ModBackportBlocks.PALE_OAK_HANGING_SIGN)
+                .add(ModBackportBlocks.CRIMSON_HANGING_SIGN)
+                .add(ModBackportBlocks.WARPED_HANGING_SIGN);
+
+        getOrCreateTagBuilder(ModTags.Blocks.WALL_HANGING_SIGNS)
+                .add(ModBackportBlocks.OAK_WALL_HANGING_SIGN)
+                .add(ModBackportBlocks.SPRUCE_WALL_HANGING_SIGN)
+                .add(ModBackportBlocks.BIRCH_WALL_HANGING_SIGN)
+                .add(ModBackportBlocks.JUNGLE_WALL_HANGING_SIGN)
+                .add(ModBackportBlocks.ACACIA_WALL_HANGING_SIGN)
+                .add(ModBackportBlocks.DARK_OAK_WALL_HANGING_SIGN)
+                .add(ModBackportBlocks.MANGROVE_WALL_HANGING_SIGN)
+                .add(ModBackportBlocks.CHERRY_WALL_HANGING_SIGN)
+                .add(ModBackportBlocks.BAMBOO_WALL_HANGING_SIGN)
+                .add(ModBackportBlocks.PALE_OAK_WALL_HANGING_SIGN)
+                .add(ModBackportBlocks.CRIMSON_WALL_HANGING_SIGN)
+                .add(ModBackportBlocks.WARPED_WALL_HANGING_SIGN);
+
+        getOrCreateTagBuilder(BlockTags.ALL_HANGING_SIGNS)
+                .addTag(ModTags.Blocks.CEILING_HANGING_SIGNS)
+                .addTag(ModTags.Blocks.WALL_HANGING_SIGNS);
+
+        getOrCreateTagBuilder(BlockTags.CEILING_HANGING_SIGNS)
+                .addTag(ModTags.Blocks.CEILING_HANGING_SIGNS);
+
+        getOrCreateTagBuilder(BlockTags.WALL_HANGING_SIGNS)
+                .addTag(ModTags.Blocks.WALL_HANGING_SIGNS);
         //endregion
         //region Nature Block Tags
         //dirt

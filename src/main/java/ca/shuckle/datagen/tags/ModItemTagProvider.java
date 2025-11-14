@@ -97,6 +97,20 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.BAMBOO_SIGN)
                 .add(ModItems.PALE_OAK_SIGN)
                 .add(ModItems.INVIS_SIGN);
+        //hanging signs
+        getOrCreateTagBuilder(ItemTags.HANGING_SIGNS)
+                .add(ModItems.OAK_HANGING_SIGN)
+                .add(ModItems.SPRUCE_HANGING_SIGN)
+                .add(ModItems.BIRCH_HANGING_SIGN)
+                .add(ModItems.JUNGLE_HANGING_SIGN)
+                .add(ModItems.ACACIA_HANGING_SIGN)
+                .add(ModItems.DARK_OAK_HANGING_SIGN)
+                .add(ModItems.MANGROVE_HANGING_SIGN)
+                .add(ModItems.CHERRY_HANGING_SIGN)
+                .add(ModItems.BAMBOO_HANGING_SIGN)
+                .add(ModItems.PALE_OAK_HANGING_SIGN)
+                .add(ModItems.CRIMSON_HANGING_SIGN)
+                .add(ModItems.WARPED_HANGING_SIGN);
         //endregion
         //region Nature Block Tags
         //dirt

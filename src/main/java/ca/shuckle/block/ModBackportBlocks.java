@@ -8,13 +8,12 @@ import ca.shuckle.particle.ModParticles;
 import ca.shuckle.util.ModSounds;
 import ca.shuckle.world.feature.tree.CherrySaplingGenerator;
 import ca.shuckle.world.feature.tree.PaleOakSaplingGenerator;
+import com.terraformersmc.terraform.sign.block.TerraformHangingSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformWallHangingSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
-import net.minecraft.data.family.BlockFamilies;
-import net.minecraft.data.family.BlockFamily;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
@@ -36,6 +35,98 @@ public class ModBackportBlocks {
 
     public static final Block PACKED_MUD_WALL = registerBlock("packed_mud_wall",
             new WallBlock(FabricBlockSettings.copy(Blocks.PACKED_MUD)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    //region Hanging Signs
+    public static final Block OAK_HANGING_SIGN = registerBlockWithoutBlockItem("oak_hanging_sign",
+            new TerraformHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/oak"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/oak"),
+                    FabricBlockSettings.of(Material.WOOD).noCollision().strength(1.0f).sounds(BlockSoundGroup.HANGING_SIGN)));
+    public static final Block OAK_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("oak_wall_hanging_sign",
+            new TerraformWallHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/oak"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/oak"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.OAK_HANGING_SIGN)
+                            .dropsLike(ModBackportBlocks.OAK_HANGING_SIGN)));
+
+    public static final Block SPRUCE_HANGING_SIGN = registerBlockWithoutBlockItem("spruce_hanging_sign",
+            new TerraformHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/spruce"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/spruce"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.OAK_HANGING_SIGN)));
+    public static final Block SPRUCE_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("spruce_wall_hanging_sign",
+            new TerraformWallHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/spruce"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/spruce"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.SPRUCE_HANGING_SIGN)
+                            .dropsLike(ModBackportBlocks.SPRUCE_HANGING_SIGN)));
+
+    public static final Block BIRCH_HANGING_SIGN = registerBlockWithoutBlockItem("birch_hanging_sign",
+            new TerraformHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/birch"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/birch"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.OAK_HANGING_SIGN)));
+    public static final Block BIRCH_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("birch_wall_hanging_sign",
+            new TerraformWallHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/birch"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/birch"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.BIRCH_HANGING_SIGN)
+                            .dropsLike(ModBackportBlocks.BIRCH_HANGING_SIGN)));
+
+    public static final Block JUNGLE_HANGING_SIGN = registerBlockWithoutBlockItem("jungle_hanging_sign",
+            new TerraformHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/jungle"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/jungle"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.OAK_HANGING_SIGN)));
+    public static final Block JUNGLE_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("jungle_wall_hanging_sign",
+            new TerraformWallHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/jungle"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/jungle"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.JUNGLE_HANGING_SIGN)
+                            .dropsLike(ModBackportBlocks.JUNGLE_HANGING_SIGN)));
+
+    public static final Block ACACIA_HANGING_SIGN = registerBlockWithoutBlockItem("acacia_hanging_sign",
+            new TerraformHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/acacia"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/acacia"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.OAK_HANGING_SIGN)));
+    public static final Block ACACIA_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("acacia_wall_hanging_sign",
+            new TerraformWallHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/acacia"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/acacia"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.ACACIA_HANGING_SIGN)
+                            .dropsLike(ModBackportBlocks.ACACIA_HANGING_SIGN)));
+
+    public static final Block DARK_OAK_HANGING_SIGN = registerBlockWithoutBlockItem("dark_oak_hanging_sign",
+            new TerraformHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/dark_oak"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/dark_oak"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.OAK_HANGING_SIGN)));
+    public static final Block DARK_OAK_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("dark_oak_wall_hanging_sign",
+            new TerraformWallHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/dark_oak"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/dark_oak"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.DARK_OAK_HANGING_SIGN)
+                            .dropsLike(ModBackportBlocks.DARK_OAK_HANGING_SIGN)));
+
+    public static final Block MANGROVE_HANGING_SIGN = registerBlockWithoutBlockItem("mangrove_hanging_sign",
+            new TerraformHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/mangrove"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/mangrove"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.OAK_HANGING_SIGN)));
+    public static final Block MANGROVE_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("mangrove_wall_hanging_sign",
+            new TerraformWallHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/mangrove"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/mangrove"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.MANGROVE_HANGING_SIGN)
+                            .dropsLike(ModBackportBlocks.MANGROVE_HANGING_SIGN)));
+
+    public static final Block CRIMSON_HANGING_SIGN = registerBlockWithoutBlockItem("crimson_hanging_sign",
+            new TerraformHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/crimson"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/crimson"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.OAK_HANGING_SIGN).sounds(BlockSoundGroup.NETHER_WOOD_HANGING_SIGN)));
+    public static final Block CRIMSON_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("crimson_wall_hanging_sign",
+            new TerraformWallHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/crimson"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/crimson"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.CRIMSON_HANGING_SIGN)
+                            .dropsLike(ModBackportBlocks.CRIMSON_HANGING_SIGN)));
+
+    public static final Block WARPED_HANGING_SIGN = registerBlockWithoutBlockItem("warped_hanging_sign",
+            new TerraformHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/warped"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/warped"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.OAK_HANGING_SIGN).sounds(BlockSoundGroup.NETHER_WOOD_HANGING_SIGN)));
+    public static final Block WARPED_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("warped_wall_hanging_sign",
+            new TerraformWallHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/warped"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/warped"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.WARPED_HANGING_SIGN)
+                            .dropsLike(ModBackportBlocks.WARPED_HANGING_SIGN)));
+    //endregion
     //region Shelves
     public static final Block OAK_SHELF = registerBlock("oak_shelf",
             new ShelfBlock(FabricBlockSettings.copy(Blocks.OAK_PLANKS)), ModItemGroup.SHUCKLE_BACKPORT);
@@ -122,6 +213,16 @@ public class ModBackportBlocks {
                     FabricBlockSettings.copy(Blocks.OAK_WALL_SIGN).sounds(BlockSoundGroup.CHERRY_WOOD)
                             .dropsLike(CHERRY_SIGN)));
 
+    public static final Block CHERRY_HANGING_SIGN = registerBlockWithoutBlockItem("cherry_hanging_sign",
+            new TerraformHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/cherry"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/cherry"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.OAK_HANGING_SIGN).sounds(BlockSoundGroup.CHERRY_WOOD_HANGING_SIGN)));
+    public static final Block CHERRY_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("cherry_wall_hanging_sign",
+            new TerraformWallHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/cherry"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/cherry"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.CHERRY_HANGING_SIGN)
+                            .dropsLike(ModBackportBlocks.CHERRY_HANGING_SIGN)));
+
     public static final Block PINK_PETALS = registerBlock("pink_petals",
             new FlowerbedBlock(FabricBlockSettings.of(Material.PLANT, MapColor.PINK)
                     .sounds(BlockSoundGroup.CHERRY_LEAVES).noCollision().nonOpaque()), ModItemGroup.SHUCKLE_BACKPORT);
@@ -174,6 +275,16 @@ public class ModBackportBlocks {
             new TerraformWallSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/bamboo"),
                     FabricBlockSettings.copy(Blocks.OAK_WALL_SIGN).sounds(BlockSoundGroup.BAMBOO)
                     .dropsLike(BAMBOO_SIGN)));
+
+    public static final Block BAMBOO_HANGING_SIGN = registerBlockWithoutBlockItem("bamboo_hanging_sign",
+            new TerraformHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/bamboo"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/bamboo"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.OAK_HANGING_SIGN).sounds(BlockSoundGroup.BAMBOO_WOOD_HANGING_SIGN)));
+    public static final Block BAMBOO_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("bamboo_wall_hanging_sign",
+            new TerraformWallHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/bamboo"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/bamboo"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.BAMBOO_HANGING_SIGN)
+                            .dropsLike(ModBackportBlocks.BAMBOO_HANGING_SIGN)));
 
     public static final Block BAMBOO_MOSAIC = registerBlock("bamboo_mosaic",
             new Block(FabricBlockSettings.copy(Blocks.OAK_PLANKS).sounds(BlockSoundGroup.BAMBOO)), ModItemGroup.SHUCKLE_BACKPORT);
@@ -250,6 +361,16 @@ public class ModBackportBlocks {
             new TerraformWallSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/pale_oak"),
                     FabricBlockSettings.copy(Blocks.OAK_WALL_SIGN)
                             .dropsLike(PALE_OAK_SIGN)));
+
+    public static final Block PALE_OAK_HANGING_SIGN = registerBlockWithoutBlockItem("pale_oak_hanging_sign",
+            new TerraformHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/pale_oak"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/pale_oak"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.OAK_HANGING_SIGN)));
+    public static final Block PALE_OAK_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("pale_oak_wall_hanging_sign",
+            new TerraformWallHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/pale_oak"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/pale_oak"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.PALE_OAK_HANGING_SIGN)
+                            .dropsLike(ModBackportBlocks.PALE_OAK_HANGING_SIGN)));
 
 
     public static final Block PALE_MOSS_BLOCK = registerBlock("pale_moss_block",

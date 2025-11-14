@@ -15,6 +15,10 @@ public class ModTags {
                 createTag("bamboo_blocks");
         public static final TagKey<Block> PALE_OAK_LOGS =
                 createTag("pale_oak_logs");
+        public static final TagKey<Block> CEILING_HANGING_SIGNS =
+                createTag("ceiling_hanging_signs");
+        public static final TagKey<Block> WALL_HANGING_SIGNS =
+                createTag("wall_hanging_signs");
         public static final TagKey<Block> WILDFLOWERS =
                 createTag("wildflowers");
         public static final TagKey<Block> LEAF_LITTER =

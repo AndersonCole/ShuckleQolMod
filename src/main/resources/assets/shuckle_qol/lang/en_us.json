@@ -17,8 +17,8 @@
   "tooltip.shuckle_qol.shuckle_gem.line2": "Exchangeable for powerful relics from a bygone age,",
   "tooltip.shuckle_qol.shuckle_gem.line3": "with a Villager at a §9certain§r §6workstation§r...",
 
-  "entity.minecraft.villager.shuckle_villager": "Shuckle Historian",
-  "entity.minecraft.villager.shiny_shuckle_villager": "Shuckle Artisan",
+  "entity.minecraft.villager.shuckle": "Shuckle Historian",
+  "entity.minecraft.villager.shiny_shuckle": "Shuckle Artisan",
 
   "block.shuckle_qol.therium_glass": "Therium Glass",
   "block.shuckle_qol.therium_glass_pane": "Therium Glass Pane",
@@ -46,6 +46,16 @@
   "block.shuckle_qol.ancient_stone_slab": "Ancient Stone Slab",
   "block.shuckle_qol.ancient_stone_stairs": "Ancient Stone Stairs",
   "block.shuckle_qol.ancient_stone_wall": "Ancient Stone Wall",
+
+  "block.shuckle_qol.oak_hanging_sign": "Oak Hanging Sign",
+  "block.shuckle_qol.spruce_hanging_sign": "Spruce Hanging Sign",
+  "block.shuckle_qol.birch_hanging_sign": "Birch Hanging Sign",
+  "block.shuckle_qol.jungle_hanging_sign": "Jungle Hanging Sign",
+  "block.shuckle_qol.acacia_hanging_sign": "Acacia Hanging Sign",
+  "block.shuckle_qol.dark_oak_hanging_sign": "Dark Oak Hanging Sign",
+  "block.shuckle_qol.mangrove_hanging_sign": "Mangrove Hanging Sign",
+  "block.shuckle_qol.crimson_hanging_sign": "Crimson Hanging Sign",
+  "block.shuckle_qol.warped_hanging_sign": "Warped Hanging Sign",
 
   "block.shuckle_qol.oak_shelf": "Oak Shelf",
   "block.shuckle_qol.spruce_shelf": "Spruce Shelf",
@@ -75,6 +85,7 @@
   "block.shuckle_qol.cherry_pressure_plate": "Cherry Pressure Plate",
   "block.shuckle_qol.cherry_shelf": "Cherry Shelf",
   "block.shuckle_qol.cherry_sign": "Cherry Sign",
+  "block.shuckle_qol.cherry_hanging_sign": "Cherry Hanging Sign",
 
   "block.shuckle_qol.bamboo_block": "Bamboo Block",
   "block.shuckle_qol.stripped_bamboo_block": "Stripped Bamboo Block",
@@ -89,6 +100,7 @@
   "block.shuckle_qol.bamboo_pressure_plate": "Bamboo Pressure Plate",
   "block.shuckle_qol.bamboo_shelf": "Bamboo Shelf",
   "block.shuckle_qol.bamboo_sign": "Bamboo Sign",
+  "block.shuckle_qol.bamboo_hanging_sign": "Bamboo Hanging Sign",
   "block.shuckle_qol.bamboo_mosaic": "Bamboo Mosaic",
   "block.shuckle_qol.bamboo_mosaic_slab": "Bamboo Mosaic Slab",
   "block.shuckle_qol.bamboo_mosaic_stairs": "Bamboo Mosaic Stairs",
@@ -111,6 +123,7 @@
   "block.shuckle_qol.pale_oak_pressure_plate": "Pale Oak Pressure Plate",
   "block.shuckle_qol.pale_oak_shelf": "Pale Oak Shelf",
   "block.shuckle_qol.pale_oak_sign": "Pale Oak Sign",
+  "block.shuckle_qol.pale_oak_hanging_sign": "Pale Oak Hanging Sign",
 
   "block.shuckle_qol.pale_moss_block": "Pale Moss Block",
   "block.shuckle_qol.pale_moss_carpet": "Pale Moss Carpet",
@@ -235,7 +248,7 @@
   "item.shuckle_qol.copper_hoe": "Copper Hoe",
 
   "item.shuckle_qol.copper_helmet": "Copper Helmet",
-  "item.shuckle_qol.copper_armor": "Copper Armor",
+  "item.shuckle_qol.copper_chestplate": "Copper Chestplate",
   "item.shuckle_qol.copper_leggings": "Copper Leggings",
   "item.shuckle_qol.copper_boots": "Copper Boots",
 
