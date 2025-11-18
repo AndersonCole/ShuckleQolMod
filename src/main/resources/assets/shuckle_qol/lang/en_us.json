@@ -305,5 +305,74 @@
 
   "block.shuckle_qol.shuckle_mystery_block": "Shuckle's Gambling Block",
   "block.shuckle_qol.shuckle_block": "Shuckle Display Block",
-  "block.shuckle_qol.shiny_shuckle_block": "Shiny Shuckle Display Block"
+  "block.shuckle_qol.shiny_shuckle_block": "Shiny Shuckle Display Block",
+
+  "advancement.shuckle_qol.shuckle.title": "Collect My Block",
+  "advancement.shuckle_qol.shuckle.description": "A monumental task...",
+
+  "advancement.shuckle_qol.berry.title": "Culinary World Tour",
+  "advancement.shuckle_qol.berry.description": "Collect a berry crafted from each of the backported biomes",
+
+  "advancement.shuckle_qol.berry_juice.title": "Shuckle's Culinary Delight",
+  "advancement.shuckle_qol.berry_juice.description": "Restores 20HP on a single pokemon... Wait, wrong game",
+
+  "advancement.shuckle_qol.zygarde_1.title": "The First of Many",
+  "advancement.shuckle_qol.zygarde_1.description": "Zygarde is hiding within the brown birch saplings, try analyzing some!",
+
+  "advancement.shuckle_qol.zygarde_2.title": "A Hard Day's Work",
+  "advancement.shuckle_qol.zygarde_2.description": "Day or Night...",
+
+  "advancement.shuckle_qol.zygarde_3.title": "Lysandre Fanboy",
+  "advancement.shuckle_qol.zygarde_3.description": "Rain or Shine...",
+
+  "advancement.shuckle_qol.zygarde_4.title": "Routemaxxing",
+  "advancement.shuckle_qol.zygarde_4.description": "ROUTES ROUTES ROUTES",
+
+  "advancement.shuckle_qol.black_ice_1.title": "A Dark Shard",
+  "advancement.shuckle_qol.black_ice_1.description": "Perhaps there's some power hidden within... Try breaking some Condensed Black Ice with fortune!",
+
+  "advancement.shuckle_qol.black_ice_2.title": "Crystallized Darkness",
+  "advancement.shuckle_qol.black_ice_2.description": "Mesmerizingly glitters with dark potential",
+
+  "advancement.shuckle_qol.star_1.title": "Light of a Dying Star",
+  "advancement.shuckle_qol.star_1.description": "A symbol of light, turned to darkness",
+
+  "advancement.shuckle_qol.star_2.title": "Star from the Depths",
+  "advancement.shuckle_qol.star_2.description": "Further darkened in the Deep Dark",
+
+  "advancement.shuckle_qol.star_3.title": "A Star Reborn",
+  "advancement.shuckle_qol.star_3.description": "Forged in heat strong enough to cleanse the darkness",
+
+  "advancement.shuckle_qol.shell_1.title": "Something Familiar...",
+  "advancement.shuckle_qol.shell_1.description": "Looks like a piece of a larger whole... Try analyzing some Conduits!",
+
+  "advancement.shuckle_qol.shell_2.title": "Fossilized Familiarity",
+  "advancement.shuckle_qol.shell_2.description": "Unusable while fossilized, it needs to be brought back to life!",
+
+  "advancement.shuckle_qol.shell_3.title": "An Empty Shell",
+  "advancement.shuckle_qol.shell_3.description": "There's still trace amounts of DNA to be analyzed from this",
+
+  "advancement.shuckle_qol.dna_1.title": "He Needs More POWER!",
+  "advancement.shuckle_qol.dna_1.description": "Strengthen Shuckle to discover its ultimate secrets!",
+
+  "advancement.shuckle_qol.dna_2.title": "To Go Even Further Beyond!",
+  "advancement.shuckle_qol.dna_2.description": "Shuckle's power can still be pushed further!",
+
+  "advancement.shuckle_qol.dna_3.title": "Ultimate Lifeform",
+  "advancement.shuckle_qol.dna_3.description": "Acquire the DNA of a being most powerful",
+
+  "advancement.shuckle_qol.mystery_block.title": "§kPotential Man§r",
+  "advancement.shuckle_qol.mystery_block.description": "§k---§rWhat will you obtain?§k---§r",
+
+  "advancement.shuckle_qol.shuckle_block.title": "Shuckle",
+  "advancement.shuckle_qol.shuckle_block.description": "A great power contained. Can be used as a Villager Workstation",
+
+  "advancement.shuckle_qol.shiny_shuckle_block.title": "Shiny Shuckle",
+  "advancement.shuckle_qol.shiny_shuckle_block.description": "A rarity among rarities. Can be used as a Villager Workstation",
+
+  "advancement.shuckle_qol.gem_1.title": "A Dull Treasure",
+  "advancement.shuckle_qol.gem_1.description": "Scrap of a lost civilization...",
+
+  "advancement.shuckle_qol.gem_2.title": "Magnificently Polished",
+  "advancement.shuckle_qol.gem_2.description": "Certain collectors will exchange rare items for these valuable gems"
 }

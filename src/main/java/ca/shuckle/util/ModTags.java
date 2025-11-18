@@ -19,6 +19,8 @@ public class ModTags {
                 createTag("ceiling_hanging_signs");
         public static final TagKey<Block> WALL_HANGING_SIGNS =
                 createTag("wall_hanging_signs");
+        public static final TagKey<Block> SHELVES =
+                createTag("shelves");
         public static final TagKey<Block> WILDFLOWERS =
                 createTag("wildflowers");
         public static final TagKey<Block> LEAF_LITTER =

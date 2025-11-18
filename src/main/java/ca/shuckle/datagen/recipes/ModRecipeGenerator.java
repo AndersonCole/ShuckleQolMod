@@ -47,6 +47,15 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .input('I', Items.IRON_INGOT)
                 .criterion(hasItem(Items.LEATHER),
                         conditionsFromItem(Items.LEATHER)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        Items.LODESTONE,1)
+                .pattern("###")
+                .pattern("#I#")
+                .pattern("###")
+                .input('#', Items.CHISELED_STONE_BRICKS)
+                .input('I', Items.IRON_INGOT)
+                .criterion(hasItem(Items.CHISELED_STONE_BRICKS),
+                        conditionsFromItem(Items.CHISELED_STONE_BRICKS)).offerTo(exporter);
         //hanging signs
         createHangingSignRecipe(exporter, "minecraft", "stripped_oak_log", "oak_hanging_sign");
         createHangingSignRecipe(exporter, "minecraft", "stripped_spruce_log", "spruce_hanging_sign");

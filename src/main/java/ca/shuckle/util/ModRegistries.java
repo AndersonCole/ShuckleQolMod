@@ -4,6 +4,7 @@ import ca.shuckle.ShuckleQOL;
 import ca.shuckle.block.ModBackportBlocks;
 import ca.shuckle.block.ModBlocks;
 import ca.shuckle.command.OxidizeFasterCommand;
+import ca.shuckle.item.ModItems;
 import com.google.common.collect.ImmutableSet;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.object.builder.v1.world.poi.PointOfInterestHelper;
@@ -34,6 +35,22 @@ public class ModRegistries {
     private static void registerFuels() {
         FuelRegistry registry = FuelRegistry.INSTANCE;
 
+        registry.add(ModBackportBlocks.OAK_SHELF, getSmeltTime(1.5));
+        registry.add(ModBackportBlocks.SPRUCE_SHELF, getSmeltTime(1.5));
+        registry.add(ModBackportBlocks.BIRCH_SHELF, getSmeltTime(1.5));
+        registry.add(ModBackportBlocks.JUNGLE_SHELF, getSmeltTime(1.5));
+        registry.add(ModBackportBlocks.ACACIA_SHELF, getSmeltTime(1.5));
+        registry.add(ModBackportBlocks.DARK_OAK_SHELF, getSmeltTime(1.5));
+        registry.add(ModBackportBlocks.MANGROVE_SHELF, getSmeltTime(1.5));
+
+        registry.add(ModItems.OAK_HANGING_SIGN, getSmeltTime(4));
+        registry.add(ModItems.SPRUCE_HANGING_SIGN, getSmeltTime(4));
+        registry.add(ModItems.BIRCH_HANGING_SIGN, getSmeltTime(4));
+        registry.add(ModItems.JUNGLE_HANGING_SIGN, getSmeltTime(4));
+        registry.add(ModItems.ACACIA_HANGING_SIGN, getSmeltTime(4));
+        registry.add(ModItems.DARK_OAK_HANGING_SIGN, getSmeltTime(4));
+        registry.add(ModItems.MANGROVE_HANGING_SIGN, getSmeltTime(4));
+
         registry.add(ModBackportBlocks.CHERRY_LOG, getSmeltTime(1.5));
         registry.add(ModBackportBlocks.CHERRY_WOOD, getSmeltTime(1.5));
         registry.add(ModBackportBlocks.STRIPPED_CHERRY_LOG, getSmeltTime(1.5));
@@ -47,6 +64,9 @@ public class ModRegistries {
         registry.add(ModBackportBlocks.CHERRY_FENCE_GATE, getSmeltTime(1.5));
         registry.add(ModBackportBlocks.CHERRY_BUTTON, getSmeltTime(0.5));
         registry.add(ModBackportBlocks.CHERRY_PRESSURE_PLATE, getSmeltTime(1.5));
+        registry.add(ModItems.CHERRY_SIGN, getSmeltTime(1));
+        registry.add(ModItems.CHERRY_HANGING_SIGN, getSmeltTime(4));
+        registry.add(ModBackportBlocks.CHERRY_SHELF, getSmeltTime(1.5));
 
         registry.add(ModBackportBlocks.BAMBOO_BLOCK, getSmeltTime(1.5));
         registry.add(ModBackportBlocks.STRIPPED_BAMBOO_BLOCK, getSmeltTime(1.5));
@@ -59,6 +79,9 @@ public class ModRegistries {
         registry.add(ModBackportBlocks.BAMBOO_FENCE_GATE, getSmeltTime(1.5));
         registry.add(ModBackportBlocks.BAMBOO_BUTTON, getSmeltTime(0.5));
         registry.add(ModBackportBlocks.BAMBOO_PRESSURE_PLATE, getSmeltTime(1.5));
+        registry.add(ModItems.BAMBOO_SIGN, getSmeltTime(1));
+        registry.add(ModItems.BAMBOO_HANGING_SIGN, getSmeltTime(4));
+        registry.add(ModBackportBlocks.BAMBOO_SHELF, getSmeltTime(1.5));
         registry.add(ModBackportBlocks.BAMBOO_MOSAIC, getSmeltTime(1.5));
         registry.add(ModBackportBlocks.BAMBOO_MOSAIC_SLAB, getSmeltTime(0.75));
         registry.add(ModBackportBlocks.BAMBOO_MOSAIC_STAIRS, getSmeltTime(1.5));
@@ -77,6 +100,9 @@ public class ModRegistries {
         registry.add(ModBackportBlocks.PALE_OAK_FENCE_GATE, getSmeltTime(1.5));
         registry.add(ModBackportBlocks.PALE_OAK_BUTTON, getSmeltTime(0.5));
         registry.add(ModBackportBlocks.PALE_OAK_PRESSURE_PLATE, getSmeltTime(1.5));
+        registry.add(ModItems.PALE_OAK_SIGN, getSmeltTime(1));
+        registry.add(ModItems.PALE_OAK_HANGING_SIGN, getSmeltTime(4));
+        registry.add(ModBackportBlocks.PALE_OAK_SHELF, getSmeltTime(1.5));
 
         registry.add(ModBackportBlocks.LEAF_LITTER, getSmeltTime(0.5));
         registry.add(ModBlocks.LEAF_LITTER_OAK, getSmeltTime(0.5));
@@ -128,6 +154,14 @@ public class ModRegistries {
     private static void registerFlammableBlock() {
         FlammableBlockRegistry instance = FlammableBlockRegistry.getDefaultInstance();
 
+        instance.add(ModBackportBlocks.OAK_SHELF, 30, 20);
+        instance.add(ModBackportBlocks.SPRUCE_SHELF, 30, 20);
+        instance.add(ModBackportBlocks.BIRCH_SHELF, 30, 20);
+        instance.add(ModBackportBlocks.JUNGLE_SHELF, 30, 20);
+        instance.add(ModBackportBlocks.ACACIA_SHELF, 30, 20);
+        instance.add(ModBackportBlocks.DARK_OAK_SHELF, 30, 20);
+        instance.add(ModBackportBlocks.MANGROVE_SHELF, 30, 20);
+
         instance.add(ModBackportBlocks.CHERRY_LEAVES, 30, 60);
         instance.add(ModBackportBlocks.CHERRY_LOG, 5, 5);
         instance.add(ModBackportBlocks.CHERRY_WOOD, 5, 5);
@@ -138,6 +172,7 @@ public class ModRegistries {
         instance.add(ModBackportBlocks.CHERRY_STAIRS, 5, 20);
         instance.add(ModBackportBlocks.CHERRY_FENCE, 5, 20);
         instance.add(ModBackportBlocks.CHERRY_FENCE_GATE, 5, 20);
+        instance.add(ModBackportBlocks.CHERRY_SHELF, 30, 20);
 
         instance.add(ModBackportBlocks.BAMBOO_BLOCK, 5, 5);
         instance.add(ModBackportBlocks.STRIPPED_BAMBOO_BLOCK, 5, 5);
@@ -146,6 +181,7 @@ public class ModRegistries {
         instance.add(ModBackportBlocks.BAMBOO_STAIRS, 5, 20);
         instance.add(ModBackportBlocks.BAMBOO_FENCE, 5, 20);
         instance.add(ModBackportBlocks.BAMBOO_FENCE_GATE, 5, 20);
+        instance.add(ModBackportBlocks.BAMBOO_SHELF, 30, 20);
         instance.add(ModBackportBlocks.BAMBOO_MOSAIC, 5, 20);
         instance.add(ModBackportBlocks.BAMBOO_MOSAIC_SLAB, 5, 20);
         instance.add(ModBackportBlocks.BAMBOO_MOSAIC_STAIRS, 5, 20);
@@ -160,13 +196,25 @@ public class ModRegistries {
         instance.add(ModBackportBlocks.PALE_OAK_STAIRS, 5, 20);
         instance.add(ModBackportBlocks.PALE_OAK_FENCE, 5, 20);
         instance.add(ModBackportBlocks.PALE_OAK_FENCE_GATE, 5, 20);
+        instance.add(ModBackportBlocks.PALE_OAK_SHELF, 30, 20);
 
         instance.add(ModBackportBlocks.PINK_PETALS, 30, 60);
         instance.add(ModBackportBlocks.WILDFLOWERS, 30, 60);
         instance.add(ModBlocks.WILDFLOWERS_RED_BLUE, 30, 60);
 
-        instance.add(ModBackportBlocks.LEAF_LITTER, 30, 60);
-        instance.add(ModBlocks.LEAF_LITTER_OAK, 30, 60);
+        instance.add(ModBackportBlocks.BUSH, 60, 100);
+        instance.add(ModBackportBlocks.FIREFLY_BUSH, 60, 100);
+        instance.add(ModBackportBlocks.LIT_FIREFLY_BUSH, 60, 100);
+
+        instance.add(ModBackportBlocks.SHORT_DRY_GRASS, 60, 100);
+        instance.add(ModBackportBlocks.TALL_DRY_GRASS, 60, 100);
+        instance.add(ModBackportBlocks.CACTUS_FLOWER, 60, 100);
+
+        instance.add(ModBackportBlocks.PINK_PETALS, 60, 100);
+        instance.add(ModBackportBlocks.WILDFLOWERS, 60, 100);
+        instance.add(ModBlocks.WILDFLOWERS_RED_BLUE, 60, 100);
+        instance.add(ModBackportBlocks.LEAF_LITTER, 60, 100);
+        instance.add(ModBlocks.LEAF_LITTER_OAK, 60, 100);
     }
 
     public static void createOxidizableBlockPairings(String baseBlockId){
