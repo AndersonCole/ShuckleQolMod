@@ -88,6 +88,15 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 ModBackportBlocks.CHERRY_SHELF, ModItems.CHERRY_SIGN, ModItems.CHERRY_HANGING_SIGN);
         //region Bamboo
         //bamboo wood set
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.BAMBOO_BLOCK,1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .input('#', Items.BAMBOO)
+                .criterion(hasItem(Items.BAMBOO),
+                        conditionsFromItem(Items.BAMBOO)).offerTo(exporter);
+
         createWoodItemSetRecipes(exporter, "bamboo", ModTags.Items.BAMBOO_BLOCKS,
                 ModBackportBlocks.BAMBOO_BLOCK, null,
                 ModBackportBlocks.STRIPPED_BAMBOO_BLOCK, null,
@@ -929,7 +938,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
         IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
                         new Identifier(ShuckleQOL.MOD_ID, "therium_glass"), 8)
                 .pattern("###")
-                .pattern("#I#")
+                .pattern("#D#")
                 .pattern("###")
                 .inputItem('#', new Identifier("byg", "therium_glass"))
                 .inputItem('D', new Identifier("minecraft", "light_blue_dye"))
@@ -975,7 +984,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         conditionsFromItem(Items.ICE))
                 .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "black_ice_from_ice"));
         //black packed ice from packed ice
-        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, new Identifier("byg", "black_packed_ice"), 8)
+        IdentifiersShapedRecipeJsonBuilder.create(RecipeCategory.MISC, new Identifier("byg", "packed_black_ice"), 8)
                 .pattern("###")
                 .pattern("#D#")
                 .pattern("###")
@@ -983,7 +992,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .inputItem('D', Registries.ITEM.getId(Items.BLACK_DYE))
                 .criterion(hasItem(Items.PACKED_ICE),
                         conditionsFromItem(Items.PACKED_ICE))
-                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "black_packed_ice_from_packed_ice"));
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "packed_black_ice_from_packed_ice"));
         //condensed black ice from blue ice
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBlocks.CONDENSED_BLACK_ICE, 8)
                 .pattern("###")
@@ -1391,6 +1400,10 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 recipeBuilder.criterion(hasItem(recipeUnlockItem), conditionsFromItem(recipeUnlockItem));
                 recipeBuilder.offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, wax + oxidation + outputBaseBlockId));
             }
+
+            if (inputBaseBlockId.equals("copper_block") && oxidation.isEmpty()){
+                inputBaseBlockId = "copper";
+            }
         }
     }
 
@@ -1430,6 +1443,10 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         .criterion(hasItem(recipeUnlockItem),
                                 conditionsFromItem(recipeUnlockItem))
                         .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, wax + oxidation + outputBaseBlockId + "_from_" + inputBaseBlockId + "_stonecutting"));
+            }
+
+            if (inputBaseBlockId.equals("copper_block") && oxidation.isEmpty()){
+                inputBaseBlockId = "copper";
             }
         }
     }
