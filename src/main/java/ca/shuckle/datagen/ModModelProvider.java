@@ -175,6 +175,43 @@ public class ModModelProvider extends FabricModelProvider {
         registerChiseled(blockStateModelGenerator, ModBackportBlocks.CHISELED_TUFF);
         registerChiseled(blockStateModelGenerator, ModBackportBlocks.CHISELED_TUFF_BRICKS);
         //endregion
+        //region Cinnabar
+        BlockStateModelGenerator.BlockTexturePool cinnabarPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBackportBlocks.CINNABAR);
+        cinnabarPool.slab(ModBackportBlocks.CINNABAR_SLAB);
+        cinnabarPool.stairs(ModBackportBlocks.CINNABAR_STAIRS);
+        cinnabarPool.wall(ModBackportBlocks.CINNABAR_WALL);
+
+        BlockStateModelGenerator.BlockTexturePool polishedCinnabarPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBackportBlocks.POLISHED_CINNABAR);
+        polishedCinnabarPool.slab(ModBackportBlocks.POLISHED_CINNABAR_SLAB);
+        polishedCinnabarPool.stairs(ModBackportBlocks.POLISHED_CINNABAR_STAIRS);
+        polishedCinnabarPool.wall(ModBackportBlocks.POLISHED_CINNABAR_WALL);
+
+        BlockStateModelGenerator.BlockTexturePool cinnabarBricksPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBackportBlocks.CINNABAR_BRICKS);
+        cinnabarBricksPool.slab(ModBackportBlocks.CINNABAR_BRICK_SLAB);
+        cinnabarBricksPool.stairs(ModBackportBlocks.CINNABAR_BRICK_STAIRS);
+        cinnabarBricksPool.wall(ModBackportBlocks.CINNABAR_BRICK_WALL);
+
+        blockStateModelGenerator.registerSimpleCubeAll(ModBackportBlocks.CHISELED_CINNABAR);
+        //endregion
+        //region Sulfur
+        BlockStateModelGenerator.BlockTexturePool sulfurPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBackportBlocks.SULFUR);
+        sulfurPool.slab(ModBackportBlocks.SULFUR_SLAB);
+        sulfurPool.stairs(ModBackportBlocks.SULFUR_STAIRS);
+        sulfurPool.wall(ModBackportBlocks.SULFUR_WALL);
+
+        BlockStateModelGenerator.BlockTexturePool polishedSulfurPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBackportBlocks.POLISHED_SULFUR);
+        polishedSulfurPool.slab(ModBackportBlocks.POLISHED_SULFUR_SLAB);
+        polishedSulfurPool.stairs(ModBackportBlocks.POLISHED_SULFUR_STAIRS);
+        polishedSulfurPool.wall(ModBackportBlocks.POLISHED_SULFUR_WALL);
+
+        BlockStateModelGenerator.BlockTexturePool sulfurBricksPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBackportBlocks.SULFUR_BRICKS);
+        sulfurBricksPool.slab(ModBackportBlocks.SULFUR_BRICK_SLAB);
+        sulfurBricksPool.stairs(ModBackportBlocks.SULFUR_BRICK_STAIRS);
+        sulfurBricksPool.wall(ModBackportBlocks.SULFUR_BRICK_WALL);
+
+        blockStateModelGenerator.registerSimpleCubeAll(ModBackportBlocks.CHISELED_SULFUR);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBackportBlocks.POTENT_SULFUR);
+        //endregion
         blockStateModelGenerator.registerFlowerbed(ModBackportBlocks.PINK_PETALS);
         blockStateModelGenerator.registerFlowerbed(ModBackportBlocks.WILDFLOWERS);
         registerFlatFlowerbed(blockStateModelGenerator, ModBackportBlocks.LEAF_LITTER);
@@ -307,6 +344,16 @@ public class ModModelProvider extends FabricModelProvider {
 
         itemModelGenerator.register(ModItems.DULL_SHUCKLE_GEM, Models.GENERATED);
         itemModelGenerator.register(ModItems.SHUCKLE_GEM, Models.GENERATED);
+
+        itemModelGenerator.register(ModItems.PICKAXE_TEMPLATE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.AXE_TEMPLATE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.SHOVEL_TEMPLATE, Models.GENERATED);
+        itemModelGenerator.register(ModItems.HOE_TEMPLATE, Models.GENERATED);
+
+        itemModelGenerator.register(ModItems.SHUCKLE_PICKAXE, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.SHUCKLE_AXE, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.SHUCKLE_SHOVEL, Models.HANDHELD);
+        itemModelGenerator.register(ModItems.SHUCKLE_HOE, Models.HANDHELD);
 
         itemModelGenerator.register(ModItems.INVIS_CATALYST, Models.GENERATED);
         itemModelGenerator.register(ModItems.INVIS_ITEM_FRAME, Models.GENERATED);

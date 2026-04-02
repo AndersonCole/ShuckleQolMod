@@ -5,6 +5,7 @@ import ca.shuckle.block.ModBackportBlocks;
 import ca.shuckle.block.ModBlocks;
 import ca.shuckle.entity.ModEntities;
 import ca.shuckle.item.custom.BerryJuiceItem;
+import ca.shuckle.item.custom.BreakableMiningToolItem;
 import ca.shuckle.item.custom.GlintItem;
 import ca.shuckle.item.custom.InvisItemFrameItem;
 import ca.shuckle.item.tools_armor.ModArmorMaterials;
@@ -15,6 +16,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -137,7 +139,7 @@ public class ModItems {
      public static final Item NETHERITE_HOE = register("netherite_hoe",
      settings -> new HoeItem(ToolMaterial.NETHERITE, -4.0F, 0.0F, settings), new Item.Settings().fireproof());
      */
-    //endregion"tooltip.shuckle_qol.shuckle_gem.line1"
+    //endregion
     //region Shuckle Items
     public static final Item DULL_SHUCKLE_GEM = registerItemInGroup("dull_shuckle_gem",
             new Item(new FabricItemSettings().rarity(Rarity.RARE)) {
@@ -159,6 +161,34 @@ public class ModItems {
                     super.appendTooltip(stack, world, tooltip, context);
                 }
             }, ModItemGroup.SHUCKLE);
+
+    public static final Item PICKAXE_TEMPLATE = registerItem("pickaxe_template",
+            new Item(new FabricItemSettings()));
+
+    public static final Item AXE_TEMPLATE = registerItem("axe_template",
+            new Item(new FabricItemSettings()));
+
+    public static final Item SHOVEL_TEMPLATE = registerItem("shovel_template",
+            new Item(new FabricItemSettings()));
+
+    public static final Item HOE_TEMPLATE = registerItem("hoe_template",
+            new Item(new FabricItemSettings()));
+
+    public static final Item SHUCKLE_PICKAXE = registerItemInGroup("shuckle_pickaxe",
+            new BreakableMiningToolItem(1.0f, -2.8f, ModToolMaterial.SHUCKLE,
+                    BlockTags.PICKAXE_MINEABLE, new FabricItemSettings()), ModItemGroup.SHUCKLE);
+
+    public static final Item SHUCKLE_AXE = registerItemInGroup("shuckle_axe",
+            new BreakableMiningToolItem(5.0f, -3.0f, ModToolMaterial.SHUCKLE,
+                    BlockTags.AXE_MINEABLE, new FabricItemSettings()), ModItemGroup.SHUCKLE);
+
+    public static final Item SHUCKLE_SHOVEL = registerItemInGroup("shuckle_shovel",
+            new BreakableMiningToolItem(1.5f, -3.0f,ModToolMaterial.SHUCKLE,
+                    BlockTags.SHOVEL_MINEABLE, new FabricItemSettings()), ModItemGroup.SHUCKLE);
+
+    public static final Item SHUCKLE_HOE = registerItemInGroup("shuckle_hoe",
+            new BreakableMiningToolItem(-4.0f, 0.0f,ModToolMaterial.SHUCKLE,
+                    BlockTags.HOE_MINEABLE, new FabricItemSettings()), ModItemGroup.SHUCKLE);
 
     public static final Item INVIS_SIGN = registerItemInGroup("invisible_sign",
             new SignItem(new FabricItemSettings().maxCount(16),

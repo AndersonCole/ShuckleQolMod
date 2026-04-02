@@ -29,7 +29,7 @@ public class ModVillagers {
         TradeOfferHelper.registerVillagerOffers(SHUCKLE_VILLAGER, 1,
                 factories -> {
                     factories.add(((entity, random) -> new TradeOffer(
-                            new ItemStack(ModItems.DULL_SHUCKLE_GEM, 2),
+                            new ItemStack(ModItems.DULL_SHUCKLE_GEM, 8),
                             new ItemStack(Items.EMERALD, 64),
                             new ItemStack(ModItems.SHUCKLE_GEM, 1),
                             4, 2, 0f
@@ -210,35 +210,191 @@ public class ModVillagers {
                             1, 20, 0f
                     )));
                 });
-        TradeOfferHelper.registerVillagerOffers(SHUCKLE_VILLAGER, 4,
-                factories -> {
-                    factories.add(((entity, random) -> new TradeOffer(
-                            new ItemStack(ModItems.SHUCKLE_GEM, 16),
-                            new ItemStack(ModItems.WEAK_SHUCKLE_DNA, 1),
-                            1, 30, 0f
-                    )));
-                });
 
         //level 5 trades
         TradeOfferHelper.registerVillagerOffers(SHUCKLE_VILLAGER, 5,
                 factories -> {
                     factories.add(((entity, random) -> new TradeOffer(
                             new ItemStack(ModItems.SHUCKLE_GEM, 64),
+                            new ItemStack(ModItems.WEAK_SHUCKLE_DNA, 1),
                             new ItemStack(ModItems.NORMAL_SHUCKLE_DNA, 1),
-                            new ItemStack(ModItems.SWOLE_SHUCKLE_DNA, 1),
                             1, 50, 0f
                     )));
                 });
     }
 
     public static void registerShinyShuckleTrades() {
+        //level 1 trades
         TradeOfferHelper.registerVillagerOffers(SHINY_SHUCKLE_VILLAGER, 1,
                 factories -> {
                     factories.add(((entity, random) -> new TradeOffer(
-                            new ItemStack(ModItems.DULL_SHUCKLE_GEM, 2),
+                            new ItemStack(ModItems.DULL_SHUCKLE_GEM, 4),
                             new ItemStack(Items.EMERALD, 32),
                             new ItemStack(ModItems.SHUCKLE_GEM, 1),
                             16, 2, 0f
+                    )));
+                });
+
+        //level 2 trades
+        TradeOfferHelper.registerVillagerOffers(SHINY_SHUCKLE_VILLAGER, 2,
+                factories -> {
+                    factories.add(((entity, random) -> new TradeOffer(
+                            new ItemStack(ModItems.SHUCKLE_GEM, 8),
+                            new ItemStack(ModItems.WEAK_SHUCKLE_DNA, 1),
+                            1, 5, 0f
+                    )));
+                });
+
+        TradeOfferHelper.registerVillagerOffers(SHINY_SHUCKLE_VILLAGER, 2,
+                factories -> {
+                    factories.add(((entity, random) -> new TradeOffer(
+                            new ItemStack(ModItems.SHUCKLE_GEM, 32),
+                            new ItemStack(ModItems.WEAK_SHUCKLE_DNA, 1),
+                            new ItemStack(ModItems.NORMAL_SHUCKLE_DNA, 1),
+                            1, 5, 0f
+                    )));
+                });
+
+        //level 3 trades
+        TradeOfferHelper.registerVillagerOffers(SHINY_SHUCKLE_VILLAGER, 3,
+                factories -> {
+                    factories.add(((entity, random) -> new TradeOffer(
+                            new ItemStack(ModItems.DULL_SHUCKLE_GEM, 1),
+                            new ItemStack(Items.EMERALD_BLOCK, 32),
+                            new ItemStack(ModItems.SHUCKLE_GEM, 1),
+                            16, 2, 0f
+                    )));
+                });
+
+        TradeOfferHelper.registerVillagerOffers(SHINY_SHUCKLE_VILLAGER, 3,
+                factories -> {
+                    factories.add(((entity, random) -> new TradeOffer(
+                            new ItemStack(ModItems.SHUCKLE_GEM, 64),
+                            new ItemStack(ModItems.NORMAL_SHUCKLE_DNA, 1),
+                            new ItemStack(ModItems.SWOLE_SHUCKLE_DNA, 1),
+                            1, 10, 0f
+                    )));
+                });
+
+        //level 4 trades
+        TradeOfferHelper.registerVillagerOffers(SHINY_SHUCKLE_VILLAGER, 4,
+                factories -> {
+                    factories.add(((entity, random) -> new TradeOffer(
+                            new ItemStack(ModItems.SHUCKLE_GEM, 64),
+                            new ItemStack(Items.NETHERITE_PICKAXE, 1),
+                            new ItemStack(ModItems.PICKAXE_TEMPLATE, 1),
+                            2, 5, 0f
+                    )));
+                });
+
+        TradeOfferHelper.registerVillagerOffers(SHINY_SHUCKLE_VILLAGER, 4,
+                factories -> {
+                    factories.add(((entity, random) -> new TradeOffer(
+                            new ItemStack(ModItems.SHUCKLE_GEM, 64),
+                            new ItemStack(Items.NETHERITE_AXE, 1),
+                            new ItemStack(ModItems.AXE_TEMPLATE, 1),
+                            2, 5, 0f
+                    )));
+                });
+
+        TradeOfferHelper.registerVillagerOffers(SHINY_SHUCKLE_VILLAGER, 4,
+                factories -> {
+                    factories.add(((entity, random) -> new TradeOffer(
+                            new ItemStack(ModItems.SHUCKLE_GEM, 64),
+                            new ItemStack(Items.NETHERITE_SHOVEL, 1),
+                            new ItemStack(ModItems.SHOVEL_TEMPLATE, 1),
+                            2, 5, 0f
+                    )));
+                });
+
+        TradeOfferHelper.registerVillagerOffers(SHINY_SHUCKLE_VILLAGER, 4,
+                factories -> {
+                    factories.add(((entity, random) -> new TradeOffer(
+                            new ItemStack(ModItems.SHUCKLE_GEM, 64),
+                            new ItemStack(Items.NETHERITE_HOE, 1),
+                            new ItemStack(ModItems.HOE_TEMPLATE, 1),
+                            2, 5, 0f
+                    )));
+                });
+
+        //level 5 trades
+        TradeOfferHelper.registerVillagerOffers(SHINY_SHUCKLE_VILLAGER, 5,
+                factories -> {
+                    factories.add(((entity, random) -> new TradeOffer(
+                            new ItemStack(ModItems.SHUCKLE_GEM, 32),
+                            new ItemStack(Items.NETHERITE_BLOCK, 1),
+                            new ItemStack(ModItems.PICKAXE_TEMPLATE, 9),
+                            1, 32, 0f
+                    )));
+                });
+
+        TradeOfferHelper.registerVillagerOffers(SHINY_SHUCKLE_VILLAGER, 5,
+                factories -> {
+                    factories.add(((entity, random) -> new TradeOffer(
+                            new ItemStack(ModItems.SHUCKLE_GEM, 16),
+                            new ItemStack(Items.NETHER_STAR, 64),
+                            new ItemStack(ModItems.PICKAXE_TEMPLATE, 1),
+                            4, 32, 0f
+                    )));
+                });
+
+        TradeOfferHelper.registerVillagerOffers(SHINY_SHUCKLE_VILLAGER, 5,
+                factories -> {
+                    factories.add(((entity, random) -> new TradeOffer(
+                            new ItemStack(ModItems.SHUCKLE_GEM, 32),
+                            new ItemStack(Items.NETHERITE_BLOCK, 1),
+                            new ItemStack(ModItems.AXE_TEMPLATE, 9),
+                            1, 32, 0f
+                    )));
+                });
+
+        TradeOfferHelper.registerVillagerOffers(SHINY_SHUCKLE_VILLAGER, 5,
+                factories -> {
+                    factories.add(((entity, random) -> new TradeOffer(
+                            new ItemStack(ModItems.SHUCKLE_GEM, 16),
+                            new ItemStack(Items.NETHER_STAR, 64),
+                            new ItemStack(ModItems.AXE_TEMPLATE, 1),
+                            4, 32, 0f
+                    )));
+                });
+
+        TradeOfferHelper.registerVillagerOffers(SHINY_SHUCKLE_VILLAGER, 5,
+                factories -> {
+                    factories.add(((entity, random) -> new TradeOffer(
+                            new ItemStack(ModItems.SHUCKLE_GEM, 32),
+                            new ItemStack(Items.NETHERITE_BLOCK, 1),
+                            new ItemStack(ModItems.SHOVEL_TEMPLATE, 9),
+                            1, 32, 0f
+                    )));
+                });
+
+        TradeOfferHelper.registerVillagerOffers(SHINY_SHUCKLE_VILLAGER, 5,
+                factories -> {
+                    factories.add(((entity, random) -> new TradeOffer(
+                            new ItemStack(ModItems.SHUCKLE_GEM, 16),
+                            new ItemStack(Items.NETHER_STAR, 64),
+                            new ItemStack(ModItems.SHOVEL_TEMPLATE, 1),
+                            4, 32, 0f
+                    )));
+                });
+
+        TradeOfferHelper.registerVillagerOffers(SHINY_SHUCKLE_VILLAGER, 5,
+                factories -> {
+                    factories.add(((entity, random) -> new TradeOffer(
+                            new ItemStack(ModItems.SHUCKLE_GEM, 32),
+                            new ItemStack(Items.NETHERITE_BLOCK, 1),
+                            new ItemStack(ModItems.HOE_TEMPLATE, 9),
+                            1, 32, 0f
+                    )));
+                });
+
+        TradeOfferHelper.registerVillagerOffers(SHINY_SHUCKLE_VILLAGER, 5,
+                factories -> {
+                    factories.add(((entity, random) -> new TradeOffer(
+                            new ItemStack(ModItems.SHUCKLE_GEM, 16),
+                            new ItemStack(Items.NETHER_STAR, 64),
+                            new ItemStack(ModItems.HOE_TEMPLATE, 1),
+                            4, 32, 0f
                     )));
                 });
     }

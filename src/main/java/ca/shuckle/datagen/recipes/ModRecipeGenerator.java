@@ -13,6 +13,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.SmithingTableBlock;
 import net.minecraft.data.server.recipe.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
@@ -36,6 +37,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
         super(dataOutput);
     }
 
+    @SuppressWarnings("removal")
     @Override
     public void generate(Consumer<RecipeJsonProvider> exporter) {
         //region Backport
@@ -295,7 +297,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 ModBackportBlocks.COPPER_DOOR.asItem(), ModOxidizationHelpers.getCopperOxidizationStages());
         //trapdoor recipe
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
-                        ModBackportBlocks.COPPER_TRAPDOOR, 3)
+                        ModBackportBlocks.COPPER_TRAPDOOR, 1)
                 .pattern("##")
                 .pattern("##")
                 .input('#', Items.COPPER_INGOT)
@@ -614,6 +616,195 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         conditionsFromItem(ModBackportBlocks.TUFF_BRICKS))
                 .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "chiseled_tuff_bricks_from_tuff_bricks_stonecutting"));
         //endregion
+        //region Cinnabar
+        //cinnabar
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.CINNABAR, 8)
+                .pattern("###")
+                .pattern("#D#")
+                .pattern("###")
+                .input('#', Items.TUFF)
+                .input('D', Items.RED_DYE)
+                .criterion(hasItem(Items.TUFF),
+                        conditionsFromItem(Items.TUFF)).offerTo(exporter);
+        createSlabStairWallItemSetRecipes(exporter,
+                ShuckleQOL.MOD_ID, "cinnabar",
+                ModBackportBlocks.CINNABAR_SLAB, ModBackportBlocks.CINNABAR_STAIRS,
+                ModBackportBlocks.CINNABAR_WALL, true);
+
+        //polished cinnabar
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.POLISHED_CINNABAR, 4)
+                .pattern("##")
+                .pattern("##")
+                .input('#', ModBackportBlocks.CINNABAR)
+                .criterion(hasItem(ModBackportBlocks.CINNABAR),
+                        conditionsFromItem(ModBackportBlocks.CINNABAR)).offerTo(exporter);
+        createSlabStairWallItemSetRecipes(exporter,
+                ShuckleQOL.MOD_ID, "polished_cinnabar",
+                ModBackportBlocks.POLISHED_CINNABAR_SLAB, ModBackportBlocks.POLISHED_CINNABAR_STAIRS,
+                ModBackportBlocks.POLISHED_CINNABAR_WALL, true);
+
+        //cinnabar bricks
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.CINNABAR_BRICKS, 4)
+                .pattern("##")
+                .pattern("##")
+                .input('#', ModBackportBlocks.POLISHED_CINNABAR)
+                .criterion(hasItem(ModBackportBlocks.POLISHED_CINNABAR),
+                        conditionsFromItem(ModBackportBlocks.POLISHED_CINNABAR)).offerTo(exporter);
+        createSlabStairWallItemSetRecipes(exporter,
+                ShuckleQOL.MOD_ID, "cinnabar_bricks",
+                ModBackportBlocks.CINNABAR_BRICK_SLAB, ModBackportBlocks.CINNABAR_BRICK_STAIRS,
+                ModBackportBlocks.CINNABAR_BRICK_WALL, true);
+
+        //chiseled cinnabar
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.CHISELED_CINNABAR, 1)
+                .pattern("#")
+                .pattern("#")
+                .input('#', ModBackportBlocks.CINNABAR_SLAB)
+                .criterion(hasItem(ModBackportBlocks.CINNABAR),
+                        conditionsFromItem(ModBackportBlocks.CINNABAR)).offerTo(exporter);
+
+        //stonecutter recipes
+        //from cinnabar
+        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBackportBlocks.CINNABAR),
+                        RecipeCategory.MISC, ModBackportBlocks.POLISHED_CINNABAR, 1)
+                .criterion(hasItem(ModBackportBlocks.CINNABAR),
+                        conditionsFromItem(ModBackportBlocks.CINNABAR))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "polished_cinnabar_from_cinnabar_stonecutting"));
+        createSlabStairWallItemSetStonecutterRecipes(exporter,
+                new Identifier(ShuckleQOL.MOD_ID, "cinnabar"), "polished_cinnabar", "from_cinnabar_",
+                ModBackportBlocks.POLISHED_CINNABAR_SLAB, ModBackportBlocks.POLISHED_CINNABAR_STAIRS,
+                ModBackportBlocks.POLISHED_CINNABAR_WALL);
+
+        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBackportBlocks.CINNABAR),
+                        RecipeCategory.MISC, ModBackportBlocks.CINNABAR_BRICKS, 1)
+                .criterion(hasItem(ModBackportBlocks.CINNABAR),
+                        conditionsFromItem(ModBackportBlocks.CINNABAR))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "cinnabar_bricks_from_cinnabar_stonecutting"));
+        createSlabStairWallItemSetStonecutterRecipes(exporter,
+                new Identifier(ShuckleQOL.MOD_ID, "cinnabar"), "cinnabar_brick", "from_cinnabar_",
+                ModBackportBlocks.CINNABAR_BRICK_SLAB, ModBackportBlocks.CINNABAR_BRICK_STAIRS,
+                ModBackportBlocks.CINNABAR_BRICK_WALL);
+
+        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBackportBlocks.CINNABAR),
+                        RecipeCategory.MISC, ModBackportBlocks.CHISELED_CINNABAR, 1)
+                .criterion(hasItem(ModBackportBlocks.CINNABAR),
+                        conditionsFromItem(ModBackportBlocks.CINNABAR))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "chiseled_cinnabar_from_cinnabar_stonecutting"));
+
+        //from polished cinnabar
+        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBackportBlocks.POLISHED_CINNABAR),
+                        RecipeCategory.MISC, ModBackportBlocks.CINNABAR_BRICKS, 1)
+                .criterion(hasItem(ModBackportBlocks.POLISHED_CINNABAR),
+                        conditionsFromItem(ModBackportBlocks.POLISHED_CINNABAR))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "cinnabar_bricks_from_polished_cinnabar_stonecutting"));
+        createSlabStairWallItemSetStonecutterRecipes(exporter,
+                new Identifier(ShuckleQOL.MOD_ID, "polished_cinnabar"), "cinnabar_brick", "from_polished_cinnabar_",
+                ModBackportBlocks.CINNABAR_BRICK_SLAB, ModBackportBlocks.CINNABAR_BRICK_STAIRS,
+                ModBackportBlocks.CINNABAR_BRICK_WALL);
+        //endregion
+        //region Sulfur
+        //sulfur
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.SULFUR, 8)
+                .pattern("###")
+                .pattern("#D#")
+                .pattern("###")
+                .input('#', Items.TUFF)
+                .input('D', Items.YELLOW_DYE)
+                .criterion(hasItem(Items.TUFF),
+                        conditionsFromItem(Items.TUFF)).offerTo(exporter);
+        createSlabStairWallItemSetRecipes(exporter,
+                ShuckleQOL.MOD_ID, "sulfur",
+                ModBackportBlocks.SULFUR_SLAB, ModBackportBlocks.SULFUR_STAIRS,
+                ModBackportBlocks.SULFUR_WALL, true);
+
+        //polished sulfur
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.POLISHED_SULFUR, 4)
+                .pattern("##")
+                .pattern("##")
+                .input('#', ModBackportBlocks.SULFUR)
+                .criterion(hasItem(ModBackportBlocks.SULFUR),
+                        conditionsFromItem(ModBackportBlocks.SULFUR)).offerTo(exporter);
+        createSlabStairWallItemSetRecipes(exporter,
+                ShuckleQOL.MOD_ID, "polished_sulfur",
+                ModBackportBlocks.POLISHED_SULFUR_SLAB, ModBackportBlocks.POLISHED_SULFUR_STAIRS,
+                ModBackportBlocks.POLISHED_SULFUR_WALL, true);
+
+        //sulfur bricks
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.SULFUR_BRICKS, 4)
+                .pattern("##")
+                .pattern("##")
+                .input('#', ModBackportBlocks.POLISHED_SULFUR)
+                .criterion(hasItem(ModBackportBlocks.POLISHED_SULFUR),
+                        conditionsFromItem(ModBackportBlocks.POLISHED_SULFUR)).offerTo(exporter);
+        createSlabStairWallItemSetRecipes(exporter,
+                ShuckleQOL.MOD_ID, "sulfur_bricks",
+                ModBackportBlocks.SULFUR_BRICK_SLAB, ModBackportBlocks.SULFUR_BRICK_STAIRS,
+                ModBackportBlocks.SULFUR_BRICK_WALL, true);
+
+        //chiseled sulfur
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.CHISELED_SULFUR, 1)
+                .pattern("#")
+                .pattern("#")
+                .input('#', ModBackportBlocks.SULFUR_SLAB)
+                .criterion(hasItem(ModBackportBlocks.SULFUR),
+                        conditionsFromItem(ModBackportBlocks.SULFUR)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.POTENT_SULFUR, 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .input('#', ModBackportBlocks.SULFUR)
+                .criterion(hasItem(ModBackportBlocks.SULFUR),
+                        conditionsFromItem(ModBackportBlocks.SULFUR)).offerTo(exporter);
+
+        //stonecutter recipes
+        //from sulfur
+        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBackportBlocks.SULFUR),
+                        RecipeCategory.MISC, ModBackportBlocks.POLISHED_SULFUR, 1)
+                .criterion(hasItem(ModBackportBlocks.SULFUR),
+                        conditionsFromItem(ModBackportBlocks.SULFUR))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "polished_sulfur_from_sulfur_stonecutting"));
+        createSlabStairWallItemSetStonecutterRecipes(exporter,
+                new Identifier(ShuckleQOL.MOD_ID, "sulfur"), "polished_sulfur", "from_sulfur_",
+                ModBackportBlocks.POLISHED_SULFUR_SLAB, ModBackportBlocks.POLISHED_SULFUR_STAIRS,
+                ModBackportBlocks.POLISHED_SULFUR_WALL);
+
+        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBackportBlocks.SULFUR),
+                        RecipeCategory.MISC, ModBackportBlocks.SULFUR_BRICKS, 1)
+                .criterion(hasItem(ModBackportBlocks.SULFUR),
+                        conditionsFromItem(ModBackportBlocks.SULFUR))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "sulfur_bricks_from_sulfur_stonecutting"));
+        createSlabStairWallItemSetStonecutterRecipes(exporter,
+                new Identifier(ShuckleQOL.MOD_ID, "sulfur"), "sulfur_brick", "from_sulfur_",
+                ModBackportBlocks.SULFUR_BRICK_SLAB, ModBackportBlocks.SULFUR_BRICK_STAIRS,
+                ModBackportBlocks.SULFUR_BRICK_WALL);
+
+        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBackportBlocks.SULFUR),
+                        RecipeCategory.MISC, ModBackportBlocks.CHISELED_SULFUR, 1)
+                .criterion(hasItem(ModBackportBlocks.SULFUR),
+                        conditionsFromItem(ModBackportBlocks.SULFUR))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "chiseled_sulfur_from_sulfur_stonecutting"));
+
+        //from polished sulfur
+        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBackportBlocks.POLISHED_SULFUR),
+                        RecipeCategory.MISC, ModBackportBlocks.SULFUR_BRICKS, 1)
+                .criterion(hasItem(ModBackportBlocks.POLISHED_SULFUR),
+                        conditionsFromItem(ModBackportBlocks.POLISHED_SULFUR))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "sulfur_bricks_from_polished_sulfur_stonecutting"));
+        createSlabStairWallItemSetStonecutterRecipes(exporter,
+                new Identifier(ShuckleQOL.MOD_ID, "polished_sulfur"), "sulfur_brick", "from_polished_sulfur_",
+                ModBackportBlocks.SULFUR_BRICK_SLAB, ModBackportBlocks.SULFUR_BRICK_STAIRS,
+                ModBackportBlocks.SULFUR_BRICK_WALL);
+        //endregion
         //endregion
         //region Shuckle
         //region Invisible Blocks
@@ -827,6 +1018,35 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(hasItem(ModItems.ZYGARDE_CELL_TWENTY_FIVE),
                         conditionsFromItem(ModItems.ZYGARDE_CELL_TWENTY_FIVE)).offerTo(exporter);
         //endregion
+        //endregion
+        //region Shuckle Tools
+        LegacySmithingRecipeJsonBuilder.create(Ingredient.ofItems(ModItems.PICKAXE_TEMPLATE),
+                        Ingredient.ofItems(ModItems.SWOLE_SHUCKLE_DNA),
+                        RecipeCategory.MISC, ModItems.SHUCKLE_PICKAXE)
+                .criterion(hasItem(ModItems.SWOLE_SHUCKLE_DNA),
+                        conditionsFromItem(ModItems.SWOLE_SHUCKLE_DNA))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "shuckle_pickaxe_smithing"));
+
+        LegacySmithingRecipeJsonBuilder.create(Ingredient.ofItems(ModItems.AXE_TEMPLATE),
+                        Ingredient.ofItems(ModItems.SWOLE_SHUCKLE_DNA),
+                        RecipeCategory.MISC, ModItems.SHUCKLE_AXE)
+                .criterion(hasItem(ModItems.SWOLE_SHUCKLE_DNA),
+                        conditionsFromItem(ModItems.SWOLE_SHUCKLE_DNA))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "shuckle_axe_smithing"));
+
+        LegacySmithingRecipeJsonBuilder.create(Ingredient.ofItems(ModItems.SHOVEL_TEMPLATE),
+                        Ingredient.ofItems(ModItems.SWOLE_SHUCKLE_DNA),
+                        RecipeCategory.MISC, ModItems.SHUCKLE_SHOVEL)
+                .criterion(hasItem(ModItems.SWOLE_SHUCKLE_DNA),
+                        conditionsFromItem(ModItems.SWOLE_SHUCKLE_DNA))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "shuckle_shovel_smithing"));
+
+        LegacySmithingRecipeJsonBuilder.create(Ingredient.ofItems(ModItems.HOE_TEMPLATE),
+                        Ingredient.ofItems(ModItems.SWOLE_SHUCKLE_DNA),
+                        RecipeCategory.MISC, ModItems.SHUCKLE_HOE)
+                .criterion(hasItem(ModItems.SWOLE_SHUCKLE_DNA),
+                        conditionsFromItem(ModItems.SWOLE_SHUCKLE_DNA))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "shuckle_hoe_smithing"));
         //endregion
         //region Flowerbeds
         //pink petals

@@ -10,6 +10,16 @@
   "item.shuckle_qol.dull_shuckle_gem": "Dull Gem",
   "item.shuckle_qol.shuckle_gem": "Magnificent Gem",
 
+  "item.shuckle_qol.pickaxe_template": "Toolsmithing Template",
+  "item.shuckle_qol.axe_template": "Toolsmithing Template",
+  "item.shuckle_qol.shovel_template": "Toolsmithing Template",
+  "item.shuckle_qol.hoe_template": "Toolsmithing Template",
+
+  "item.shuckle_qol.shuckle_pickaxe": "Shuckle's Pickaxe",
+  "item.shuckle_qol.shuckle_axe": "Shuckle's Axe",
+  "item.shuckle_qol.shuckle_shovel": "Shuckle's Shovel",
+  "item.shuckle_qol.shuckle_hoe": "Shuckle's Hoe",
+
   "tooltip.shuckle_qol.dull_shuckle_gem.line1": "A dull gem, showing little of its former splendor.",
   "tooltip.shuckle_qol.dull_shuckle_gem.line2": "Can be polished by a Villager at a §ccertain§r §6workstation§r...",
 
@@ -268,6 +278,41 @@
 
   "block.shuckle_qol.chiseled_tuff": "Chiseled Tuff",
   "block.shuckle_qol.chiseled_tuff_bricks": "Chiseled Tuff Bricks",
+
+  "block.shuckle_qol.cinnabar": "Cinnabar",
+  "block.shuckle_qol.cinnabar_slab": "Cinnabar Slab",
+  "block.shuckle_qol.cinnabar_stairs": "Cinnabar Stairs",
+  "block.shuckle_qol.cinnabar_wall": "Cinnabar Wall",
+
+  "block.shuckle_qol.polished_cinnabar": "Polished Cinnabar",
+  "block.shuckle_qol.polished_cinnabar_slab": "Polished Cinnabar Slab",
+  "block.shuckle_qol.polished_cinnabar_stairs": "Polished Cinnabar Stairs",
+  "block.shuckle_qol.polished_cinnabar_wall": "Polished Cinnabar Wall",
+
+  "block.shuckle_qol.cinnabar_bricks": "Cinnabar Bricks",
+  "block.shuckle_qol.cinnabar_brick_slab": "Cinnabar Brick Slab",
+  "block.shuckle_qol.cinnabar_brick_stairs": "Cinnabar Brick Stairs",
+  "block.shuckle_qol.cinnabar_brick_wall": "Cinnabar Brick Wall",
+
+  "block.shuckle_qol.chiseled_cinnabar": "Chiseled Cinnabar",
+
+  "block.shuckle_qol.sulfur": "Sulfur",
+  "block.shuckle_qol.sulfur_slab": "Sulfur Slab",
+  "block.shuckle_qol.sulfur_stairs": "Sulfur Stairs",
+  "block.shuckle_qol.sulfur_wall": "Sulfur Wall",
+
+  "block.shuckle_qol.polished_sulfur": "Polished Sulfur",
+  "block.shuckle_qol.polished_sulfur_slab": "Polished Sulfur Slab",
+  "block.shuckle_qol.polished_sulfur_stairs": "Polished Sulfur Stairs",
+  "block.shuckle_qol.polished_sulfur_wall": "Polished Sulfur Wall",
+
+  "block.shuckle_qol.sulfur_bricks": "Sulfur Bricks",
+  "block.shuckle_qol.sulfur_brick_slab": "Sulfur Brick Slab",
+  "block.shuckle_qol.sulfur_brick_stairs": "Sulfur Brick Stairs",
+  "block.shuckle_qol.sulfur_brick_wall": "Sulfur Brick Wall",
+
+  "block.shuckle_qol.chiseled_sulfur": "Chiseled Sulfur",
+  "block.shuckle_qol.potent_sulfur": "Potent Sulfur",
 
   "item.shuckle_qol.invisible_catalyst": "Invisibility Catalyst",
   "block.shuckle_qol.invisible_lightning_rod": "Invisible Lightning Rod",

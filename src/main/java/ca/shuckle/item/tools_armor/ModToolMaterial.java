@@ -1,5 +1,6 @@
 package ca.shuckle.item.tools_armor;
 
+import ca.shuckle.item.ModItems;
 import net.fabricmc.yarn.constants.MiningLevels;
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
@@ -9,12 +10,10 @@ import java.util.function.Supplier;
 
 public enum ModToolMaterial implements ToolMaterial {
     COPPER(MiningLevels.STONE, 190, 5.0F, 1.0F, 13,
-            () -> Ingredient.ofItems(Items.COPPER_INGOT));
+            () -> Ingredient.ofItems(Items.COPPER_INGOT)),
 
-    /** Netherite values for future reference
-    public static final ToolMaterial NETHERITE = new ToolMaterial(MiningLevels.Netherite, 2031, 9.0F, 4.0F, 15,
-     () -> Ingredient.ofItems(Items.Netherite_INGOT));
-    **/
+    SHUCKLE(MiningLevels.NETHERITE, 213, 39.0F, 4.0F, 25,
+            () -> Ingredient.ofItems(ModItems.SHUCKLE_GEM));
 
     private final int miningLevel;
     private final int itemDurability;

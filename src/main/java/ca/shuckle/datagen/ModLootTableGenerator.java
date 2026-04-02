@@ -219,6 +219,43 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBackportBlocks.CHISELED_TUFF);
         addDrop(ModBackportBlocks.CHISELED_TUFF_BRICKS);
         //endregion
+        //region Cinnabar
+        addDrop(ModBackportBlocks.CINNABAR);
+        addDrop(ModBackportBlocks.CINNABAR_SLAB, slabDrops(ModBackportBlocks.CINNABAR_SLAB));
+        addDrop(ModBackportBlocks.CINNABAR_STAIRS);
+        addDrop(ModBackportBlocks.CINNABAR_WALL);
+
+        addDrop(ModBackportBlocks.POLISHED_CINNABAR);
+        addDrop(ModBackportBlocks.POLISHED_CINNABAR_SLAB, slabDrops(ModBackportBlocks.POLISHED_CINNABAR_SLAB));
+        addDrop(ModBackportBlocks.POLISHED_CINNABAR_STAIRS);
+        addDrop(ModBackportBlocks.POLISHED_CINNABAR_WALL);
+
+        addDrop(ModBackportBlocks.CINNABAR_BRICKS);
+        addDrop(ModBackportBlocks.CINNABAR_BRICK_SLAB, slabDrops(ModBackportBlocks.CINNABAR_BRICK_SLAB));
+        addDrop(ModBackportBlocks.CINNABAR_BRICK_STAIRS);
+        addDrop(ModBackportBlocks.CINNABAR_BRICK_WALL);
+
+        addDrop(ModBackportBlocks.CHISELED_CINNABAR);
+        //endregion
+        //region Sulfur
+        addDrop(ModBackportBlocks.SULFUR);
+        addDrop(ModBackportBlocks.SULFUR_SLAB, slabDrops(ModBackportBlocks.SULFUR_SLAB));
+        addDrop(ModBackportBlocks.SULFUR_STAIRS);
+        addDrop(ModBackportBlocks.SULFUR_WALL);
+
+        addDrop(ModBackportBlocks.POLISHED_SULFUR);
+        addDrop(ModBackportBlocks.POLISHED_SULFUR_SLAB, slabDrops(ModBackportBlocks.POLISHED_SULFUR_SLAB));
+        addDrop(ModBackportBlocks.POLISHED_SULFUR_STAIRS);
+        addDrop(ModBackportBlocks.POLISHED_SULFUR_WALL);
+
+        addDrop(ModBackportBlocks.SULFUR_BRICKS);
+        addDrop(ModBackportBlocks.SULFUR_BRICK_SLAB, slabDrops(ModBackportBlocks.SULFUR_BRICK_SLAB));
+        addDrop(ModBackportBlocks.SULFUR_BRICK_STAIRS);
+        addDrop(ModBackportBlocks.SULFUR_BRICK_WALL);
+
+        addDrop(ModBackportBlocks.CHISELED_SULFUR);
+        addDrop(ModBackportBlocks.POTENT_SULFUR);
+        //endregion
         addDrop(ModBackportBlocks.WILDFLOWERS, flowerbedDrops(ModBackportBlocks.WILDFLOWERS));
         addDrop(ModBackportBlocks.LEAF_LITTER, flowerbedDrops(ModBackportBlocks.LEAF_LITTER));
 

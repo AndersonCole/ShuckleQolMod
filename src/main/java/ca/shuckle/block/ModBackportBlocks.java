@@ -705,6 +705,70 @@ public class ModBackportBlocks {
     public static final Block CHISELED_TUFF_BRICKS = registerBlock("chiseled_tuff_bricks",
             new Block(FabricBlockSettings.copyOf(TUFF_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
     //endregion
+    //region Cinnabar
+    public static final Block CINNABAR = registerBlock("cinnabar",
+            new Block(FabricBlockSettings.copyOf(Blocks.TUFF)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block CINNABAR_SLAB = registerBlock("cinnabar_slab",
+            new SlabBlock(FabricBlockSettings.copyOf(CINNABAR)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block CINNABAR_STAIRS = registerBlock("cinnabar_stairs",
+            new StairsBlock(CINNABAR.getDefaultState(), FabricBlockSettings.copyOf(CINNABAR)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block CINNABAR_WALL = registerBlock("cinnabar_wall",
+            new WallBlock(FabricBlockSettings.copyOf(CINNABAR)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block POLISHED_CINNABAR = registerBlock("polished_cinnabar",
+            new Block(FabricBlockSettings.copyOf(CINNABAR).sounds(ModSounds.POLISHED_TUFF)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block POLISHED_CINNABAR_SLAB = registerBlock("polished_cinnabar_slab",
+            new SlabBlock(FabricBlockSettings.copyOf(POLISHED_CINNABAR)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block POLISHED_CINNABAR_STAIRS = registerBlock("polished_cinnabar_stairs",
+            new StairsBlock(POLISHED_CINNABAR.getDefaultState(), FabricBlockSettings.copyOf(POLISHED_CINNABAR)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block POLISHED_CINNABAR_WALL = registerBlock("polished_cinnabar_wall",
+            new WallBlock(FabricBlockSettings.copyOf(POLISHED_CINNABAR)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block CINNABAR_BRICKS = registerBlock("cinnabar_bricks",
+            new Block(FabricBlockSettings.copyOf(CINNABAR).sounds(ModSounds.TUFF_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block CINNABAR_BRICK_SLAB = registerBlock("cinnabar_brick_slab",
+            new SlabBlock(FabricBlockSettings.copyOf(CINNABAR_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block CINNABAR_BRICK_STAIRS = registerBlock("cinnabar_brick_stairs",
+            new StairsBlock(CINNABAR_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(CINNABAR_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block CINNABAR_BRICK_WALL = registerBlock("cinnabar_brick_wall",
+            new WallBlock(FabricBlockSettings.copyOf(CINNABAR_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block CHISELED_CINNABAR = registerBlock("chiseled_cinnabar",
+            new Block(FabricBlockSettings.copyOf(CINNABAR).sounds(ModSounds.TUFF_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    //endregion
+    //region Sulfur
+    public static final Block SULFUR = registerBlock("sulfur",
+            new Block(FabricBlockSettings.copyOf(Blocks.TUFF)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block SULFUR_SLAB = registerBlock("sulfur_slab",
+            new SlabBlock(FabricBlockSettings.copyOf(SULFUR)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block SULFUR_STAIRS = registerBlock("sulfur_stairs",
+            new StairsBlock(SULFUR.getDefaultState(), FabricBlockSettings.copyOf(SULFUR)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block SULFUR_WALL = registerBlock("sulfur_wall",
+            new WallBlock(FabricBlockSettings.copyOf(SULFUR)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block POLISHED_SULFUR = registerBlock("polished_sulfur",
+            new Block(FabricBlockSettings.copyOf(SULFUR).sounds(ModSounds.POLISHED_TUFF)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block POLISHED_SULFUR_SLAB = registerBlock("polished_sulfur_slab",
+            new SlabBlock(FabricBlockSettings.copyOf(POLISHED_SULFUR)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block POLISHED_SULFUR_STAIRS = registerBlock("polished_sulfur_stairs",
+            new StairsBlock(POLISHED_SULFUR.getDefaultState(), FabricBlockSettings.copyOf(POLISHED_SULFUR)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block POLISHED_SULFUR_WALL = registerBlock("polished_sulfur_wall",
+            new WallBlock(FabricBlockSettings.copyOf(POLISHED_SULFUR)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block SULFUR_BRICKS = registerBlock("sulfur_bricks",
+            new Block(FabricBlockSettings.copyOf(SULFUR).sounds(ModSounds.TUFF_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block SULFUR_BRICK_SLAB = registerBlock("sulfur_brick_slab",
+            new SlabBlock(FabricBlockSettings.copyOf(SULFUR_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block SULFUR_BRICK_STAIRS = registerBlock("sulfur_brick_stairs",
+            new StairsBlock(SULFUR_BRICKS.getDefaultState(), FabricBlockSettings.copyOf(SULFUR_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block SULFUR_BRICK_WALL = registerBlock("sulfur_brick_wall",
+            new WallBlock(FabricBlockSettings.copyOf(SULFUR_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block CHISELED_SULFUR = registerBlock("chiseled_sulfur",
+            new Block(FabricBlockSettings.copyOf(SULFUR).sounds(ModSounds.TUFF_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block POTENT_SULFUR = registerBlock("potent_sulfur",
+            new Block(FabricBlockSettings.copyOf(SULFUR)), ModItemGroup.SHUCKLE_BACKPORT);
+    //endregion
     public static final Block WILDFLOWERS = registerBlock("wildflowers",
             new FlowerbedBlock(FabricBlockSettings.of(Material.PLANT, MapColor.YELLOW)
                     .sounds(BlockSoundGroup.GRASS).noCollision().nonOpaque()), ModItemGroup.SHUCKLE_BACKPORT);
