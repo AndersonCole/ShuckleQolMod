@@ -46,6 +46,8 @@ public class ModTags {
                 createTag("convertible_dirt");
         public static final TagKey<Item> RAW_ORES =
                 createTag("raw_ores");
+        public static final TagKey<Item> METAL_NUGGETS =
+                createTag("metal_nuggets");
         public static final TagKey<Item> FOSSIL_LOGS =
                 createTag("fossil_logs");
         //region Universal Dyeing

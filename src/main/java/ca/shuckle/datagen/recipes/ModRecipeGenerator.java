@@ -50,6 +50,14 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(hasItem(Items.LEATHER),
                         conditionsFromItem(Items.LEATHER)).offerTo(exporter);
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        Items.NAME_TAG,1)
+                .pattern(" #")
+                .pattern("P ")
+                .input('#', TagKey.of(RegistryKeys.ITEM, new Identifier(ShuckleQOL.MOD_ID, "metal_nuggets")))
+                .input('P', Items.PAPER)
+                .criterion(hasItem(Items.PAPER),
+                        conditionsFromItem(Items.PAPER)).offerTo(exporter);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
                         Items.LODESTONE,1)
                 .pattern("###")
                 .pattern("#I#")
@@ -766,6 +774,22 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .criterion(hasItem(ModBackportBlocks.SULFUR),
                         conditionsFromItem(ModBackportBlocks.SULFUR)).offerTo(exporter);
 
+        //sulfur spike
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.SULFUR_SPIKE, 4)
+                .input(ModBackportBlocks.SULFUR)
+                .criterion(hasItem(ModBackportBlocks.SULFUR),
+                        conditionsFromItem(ModBackportBlocks.SULFUR)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.SULFUR, 1)
+                .pattern("##")
+                .pattern("##")
+                .input('#', ModBackportBlocks.SULFUR_SPIKE)
+                .criterion(hasItem(ModBackportBlocks.SULFUR_SPIKE),
+                        conditionsFromItem(ModBackportBlocks.SULFUR_SPIKE))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "sulfur_from_sulfur_spike"));
+
         //stonecutter recipes
         //from sulfur
         SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(ModBackportBlocks.SULFUR),
@@ -824,7 +848,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .pattern("C#C")
                 .pattern(" C ")
                 .input('#', ModItems.INVIS_CATALYST)
-                .input('C', TagKey.of(RegistryKeys.ITEM, new Identifier("minecraft", "carpets")))
+                .input('C', TagKey.of(RegistryKeys.ITEM, new Identifier("minecraft", "wool_carpets")))
                 .criterion(hasItem(ModItems.INVIS_CATALYST),
                         conditionsFromItem(ModItems.INVIS_CATALYST))
                 .offerTo(exporter);
@@ -839,11 +863,12 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         conditionsFromItem(ModItems.INVIS_CATALYST)).offerTo(exporter);
         //invis item frame
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModItems.INVIS_ITEM_FRAME, 4)
-                .pattern("SSS")
-                .pattern("S#S")
-                .pattern("SSS")
+                .pattern("SLS")
+                .pattern("L#L")
+                .pattern("SLS")
                 .input('#', ModItems.INVIS_CATALYST)
                 .input('S', Items.STICK)
+                .input('L', Items.LEATHER)
                 .criterion(hasItem(ModItems.INVIS_CATALYST),
                         conditionsFromItem(ModItems.INVIS_CATALYST)).offerTo(exporter);
         //invis glow item frame

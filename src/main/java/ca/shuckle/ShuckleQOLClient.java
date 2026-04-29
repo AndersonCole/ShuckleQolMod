@@ -54,6 +54,8 @@ public class ShuckleQOLClient implements ClientModInitializer {
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.RESIN_CLUMP, RenderLayer.getCutout());
 
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.SULFUR_SPIKE, RenderLayer.getCutout());
+
         getCopperBlockCutouts("copper_grate");
         getCopperBlockCutouts("copper_door");
         getCopperBlockCutouts("copper_trapdoor");

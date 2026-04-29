@@ -255,6 +255,7 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
 
         addDrop(ModBackportBlocks.CHISELED_SULFUR);
         addDrop(ModBackportBlocks.POTENT_SULFUR);
+        addDrop(ModBackportBlocks.SULFUR_SPIKE);
         //endregion
         addDrop(ModBackportBlocks.WILDFLOWERS, flowerbedDrops(ModBackportBlocks.WILDFLOWERS));
         addDrop(ModBackportBlocks.LEAF_LITTER, flowerbedDrops(ModBackportBlocks.LEAF_LITTER));

@@ -190,6 +190,10 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         getOrCreateTagBuilder(ModTags.Items.LEAF_LITTER)
                 .add(ModBackportBlocks.LEAF_LITTER.asItem())
                 .add(ModBlocks.LEAF_LITTER_OAK.asItem());
+        getOrCreateTagBuilder(ModTags.Items.METAL_NUGGETS)
+                .add(Items.GOLD_NUGGET)
+                .add(Items.IRON_NUGGET)
+                .add(ModItems.COPPER_NUGGET);
         //endregion
         //region Shuckle
         getOrCreateTagBuilder(ModTags.Items.CONVERTIBLE_DIRT)

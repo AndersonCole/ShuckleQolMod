@@ -10,8 +10,10 @@ import ca.shuckle.util.ModOxidizationHelpers;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.ConnectingBlock;
 import net.minecraft.block.LanternBlock;
+import net.minecraft.block.enums.Thickness;
 import net.minecraft.data.client.*;
 import net.minecraft.data.family.BlockFamilies;
 import net.minecraft.item.ArmorItem;
@@ -211,6 +213,7 @@ public class ModModelProvider extends FabricModelProvider {
 
         blockStateModelGenerator.registerSimpleCubeAll(ModBackportBlocks.CHISELED_SULFUR);
         blockStateModelGenerator.registerSimpleCubeAll(ModBackportBlocks.POTENT_SULFUR);
+        registerPointedSpikeBlock("sulfur_spike", blockStateModelGenerator);
         //endregion
         blockStateModelGenerator.registerFlowerbed(ModBackportBlocks.PINK_PETALS);
         blockStateModelGenerator.registerFlowerbed(ModBackportBlocks.WILDFLOWERS);
@@ -221,7 +224,6 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerTintableCross(ModBackportBlocks.TALL_DRY_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
         blockStateModelGenerator.registerTintableCross(ModBackportBlocks.CACTUS_FLOWER, BlockStateModelGenerator.TintType.NOT_TINTED);
         //endregion
-
         //region Shuckle Blocks
         registerConnectedGlassPaneBlock("tinted_glass", blockStateModelGenerator);
 
@@ -280,6 +282,8 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RESIN_BRICK, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.COPPER_NUGGET, Models.GENERATED);
+
+        itemModelGenerator.register(ModBackportBlocks.SULFUR_SPIKE.asItem(), Models.GENERATED);
 
         //region hanging signs
         itemModelGenerator.register(ModItems.OAK_HANGING_SIGN, Models.GENERATED);
@@ -1052,6 +1056,52 @@ public class ModModelProvider extends FabricModelProvider {
                         .put(TextureKey.PARTICLE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/all")),
                 gen.modelCollector
         );
+    }
+
+    private void registerPointedSpikeBlock(String baseBlockId, BlockStateModelGenerator gen) {
+        Identifier upBaseModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_up_base");
+        Identifier downBaseModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_down_base");
+        Identifier upFrustumModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_up_frustum");
+        Identifier downFrustumModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_down_frustum");
+        Identifier upMiddleModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_up_middle");
+        Identifier downMiddleModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_down_middle");
+        Identifier upTipModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_up_tip");
+        Identifier downTipModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_down_tip");
+        Identifier upTipMergeModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_up_tip_merge");
+        Identifier downTipMergeModel = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_down_tip_merge");
+
+        gen.blockStateCollector.accept(
+                VariantsBlockStateSupplier.create(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, baseBlockId)))
+                        .coordinate(BlockStateVariantMap.create(
+                                Properties.VERTICAL_DIRECTION,
+                                Properties.THICKNESS)
+                                .register(Direction.UP, Thickness.BASE, BlockStateVariant.create().put(VariantSettings.MODEL, upBaseModel))
+                                .register(Direction.DOWN, Thickness.BASE,  BlockStateVariant.create().put(VariantSettings.MODEL, downBaseModel))
+                                .register(Direction.UP, Thickness.FRUSTUM, BlockStateVariant.create().put(VariantSettings.MODEL, upFrustumModel))
+                                .register(Direction.DOWN, Thickness.FRUSTUM,  BlockStateVariant.create().put(VariantSettings.MODEL, downFrustumModel))
+                                .register(Direction.UP, Thickness.MIDDLE, BlockStateVariant.create().put(VariantSettings.MODEL, upMiddleModel))
+                                .register(Direction.DOWN, Thickness.MIDDLE,  BlockStateVariant.create().put(VariantSettings.MODEL, downMiddleModel))
+                                .register(Direction.UP, Thickness.TIP, BlockStateVariant.create().put(VariantSettings.MODEL, upTipModel))
+                                .register(Direction.DOWN, Thickness.TIP,  BlockStateVariant.create().put(VariantSettings.MODEL, downTipModel))
+                                .register(Direction.UP, Thickness.TIP_MERGE, BlockStateVariant.create().put(VariantSettings.MODEL, upTipMergeModel))
+                                .register(Direction.DOWN, Thickness.TIP_MERGE,  BlockStateVariant.create().put(VariantSettings.MODEL, downTipMergeModel))
+                        )
+        );
+
+        for (String direction : new String[]{"up", "down"}) {
+            for (String thickness : new String[]{"base", "frustum", "middle", "tip", "tip_merge"}) {
+                new Model(
+                        Optional.of(new Identifier("minecraft", "block/pointed_dripstone")),
+                        Optional.empty(),
+                        TextureKey.CROSS
+                ).upload(
+                        new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_" + direction + "_" + thickness),
+                        new TextureMap()
+                                .put(TextureKey.CROSS, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_" + direction + "_" + thickness)),
+                        gen.modelCollector
+                );
+            }
+        }
     }
 
     private void createOxidizableModelSet(String baseBlockId,
