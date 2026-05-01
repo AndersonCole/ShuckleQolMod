@@ -829,6 +829,16 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 ModBackportBlocks.SULFUR_BRICK_SLAB, ModBackportBlocks.SULFUR_BRICK_STAIRS,
                 ModBackportBlocks.SULFUR_BRICK_WALL);
         //endregion
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, ModBackportBlocks.CRAFTER, 1)
+                .pattern("###")
+                .pattern("#C#")
+                .pattern("RDR")
+                .input('#', Items.IRON_INGOT)
+                .input('C', Items.CRAFTING_TABLE)
+                .input('D', Items.DROPPER)
+                .input('R', Items.REDSTONE)
+                .criterion(hasItem(Items.CRAFTING_TABLE),
+                        conditionsFromItem(Items.CRAFTING_TABLE)).offerTo(exporter);
         //endregion
         //region Shuckle
         //region Invisible Blocks
@@ -1155,26 +1165,11 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 "minecraft", "packed_mud",
                 ModBackportBlocks.PACKED_MUD_SLAB, ModBackportBlocks.PACKED_MUD_STAIRS,
                 ModBackportBlocks.PACKED_MUD_WALL, true);
-        //shapeless glowstone
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.GLOWSTONE, 1)
-                .input(Items.GLOWSTONE_DUST)
-                .input(Items.GLOWSTONE_DUST)
-                .input(Items.GLOWSTONE_DUST)
-                .input(Items.GLOWSTONE_DUST)
-                .criterion(hasItem(Items.GLOWSTONE_DUST),
-                        conditionsFromItem(Items.GLOWSTONE_DUST)).offerTo(exporter);
+        //glowstone decraft
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.GLOWSTONE_DUST, 4)
                 .input(Items.GLOWSTONE)
                 .criterion(hasItem(Items.GLOWSTONE),
                         conditionsFromItem(Items.GLOWSTONE)).offerTo(exporter);
-        //shapeless honey
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.HONEY_BLOCK, 1)
-                .input(Items.HONEY_BOTTLE)
-                .input(Items.HONEY_BOTTLE)
-                .input(Items.HONEY_BOTTLE)
-                .input(Items.HONEY_BOTTLE)
-                .criterion(hasItem(Items.HONEY_BOTTLE),
-                        conditionsFromItem(Items.HONEY_BOTTLE)).offerTo(exporter);
         //endregion
         //endregion
         //region Other Mods

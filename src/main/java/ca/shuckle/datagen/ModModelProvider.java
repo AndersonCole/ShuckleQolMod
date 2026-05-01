@@ -4,24 +4,28 @@ import ca.shuckle.ShuckleQOL;
 import ca.shuckle.block.ModBackportBlocks;
 import ca.shuckle.block.ModBlocks;
 import ca.shuckle.block.custom.ConnectedGlassPaneBlock;
+import ca.shuckle.block.custom.CrafterBlock;
 import ca.shuckle.block.custom.copper.BulbBlock;
 import ca.shuckle.item.ModItems;
 import ca.shuckle.util.ModOxidizationHelpers;
+import com.google.gson.JsonObject;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.ConnectingBlock;
 import net.minecraft.block.LanternBlock;
+import net.minecraft.block.enums.JigsawOrientation;
 import net.minecraft.block.enums.Thickness;
 import net.minecraft.data.client.*;
 import net.minecraft.data.family.BlockFamilies;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.registry.Registries;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
+import org.w3c.dom.Text;
 
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -223,6 +227,8 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerTintableCross(ModBackportBlocks.SHORT_DRY_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
         blockStateModelGenerator.registerTintableCross(ModBackportBlocks.TALL_DRY_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
         blockStateModelGenerator.registerTintableCross(ModBackportBlocks.CACTUS_FLOWER, BlockStateModelGenerator.TintType.NOT_TINTED);
+
+        registerCrafterBlock("crafter", blockStateModelGenerator);
         //endregion
         //region Shuckle Blocks
         registerConnectedGlassPaneBlock("tinted_glass", blockStateModelGenerator);
@@ -1054,6 +1060,249 @@ public class ModModelProvider extends FabricModelProvider {
                         .put(TextureKey.EDGE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/blank"))
                         .put(TextureKey.PANE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/left"))
                         .put(TextureKey.PARTICLE, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/all")),
+                gen.modelCollector
+        );
+    }
+
+    private void registerCrafterBlock(String baseBlockId, BlockStateModelGenerator gen) {
+        Identifier model = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId);
+        Identifier modelTriggered = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_triggered");
+        Identifier modelCrafting = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_crafter");
+        Identifier modelCraftingTriggered = new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_crafter_triggered");
+
+        gen.blockStateCollector.accept(
+                VariantsBlockStateSupplier.create(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, baseBlockId)))
+                        .coordinate(BlockStateVariantMap.create(
+                                CrafterBlock.CRAFTING,
+                                Properties.ORIENTATION,
+                                Properties.TRIGGERED)
+                                .register(false, JigsawOrientation.DOWN_EAST, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, model)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                                .register(false, JigsawOrientation.DOWN_EAST, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelTriggered)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                                .register(false, JigsawOrientation.DOWN_NORTH, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, model)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90))
+                                .register(false, JigsawOrientation.DOWN_NORTH, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelTriggered)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90))
+                                .register(false, JigsawOrientation.DOWN_SOUTH, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, model)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                                .register(false, JigsawOrientation.DOWN_SOUTH, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelTriggered)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                                .register(false, JigsawOrientation.DOWN_WEST, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, model)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+                                .register(false, JigsawOrientation.DOWN_WEST, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelTriggered)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+
+                                .register(false, JigsawOrientation.EAST_UP, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, model)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                                .register(false, JigsawOrientation.EAST_UP, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelTriggered)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                                .register(false, JigsawOrientation.NORTH_UP, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, model))
+                                .register(false, JigsawOrientation.NORTH_UP, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelTriggered))
+                                .register(false, JigsawOrientation.SOUTH_UP, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, model)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                                .register(false, JigsawOrientation.SOUTH_UP, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelTriggered)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                                .register(false, JigsawOrientation.WEST_UP, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, model)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+                                .register(false, JigsawOrientation.WEST_UP, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelTriggered)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+
+                                .register(false, JigsawOrientation.UP_EAST, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, model)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+                                .register(false, JigsawOrientation.UP_EAST, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelTriggered)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+                                .register(false, JigsawOrientation.UP_NORTH, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, model)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                                .register(false, JigsawOrientation.UP_NORTH, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelTriggered)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                                .register(false, JigsawOrientation.UP_SOUTH, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, model)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R270))
+                                .register(false, JigsawOrientation.UP_SOUTH, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelTriggered)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R270))
+                                .register(false, JigsawOrientation.UP_WEST, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, model)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                                .register(false, JigsawOrientation.UP_WEST, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelTriggered)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                                //crafting
+                                .register(true, JigsawOrientation.DOWN_EAST, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCrafting)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                                .register(true, JigsawOrientation.DOWN_EAST, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCraftingTriggered)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                                .register(true, JigsawOrientation.DOWN_NORTH, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCrafting)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90))
+                                .register(true, JigsawOrientation.DOWN_NORTH, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCraftingTriggered)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90))
+                                .register(true, JigsawOrientation.DOWN_SOUTH, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCrafting)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                                .register(true, JigsawOrientation.DOWN_SOUTH, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCraftingTriggered)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                                .register(true, JigsawOrientation.DOWN_WEST, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCrafting)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+                                .register(true, JigsawOrientation.DOWN_WEST, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCraftingTriggered)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+
+                                .register(true, JigsawOrientation.EAST_UP, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCrafting)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                                .register(true, JigsawOrientation.EAST_UP, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCraftingTriggered)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                                .register(true, JigsawOrientation.NORTH_UP, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCrafting))
+                                .register(true, JigsawOrientation.NORTH_UP, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCraftingTriggered))
+                                .register(true, JigsawOrientation.SOUTH_UP, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, model)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                                .register(true, JigsawOrientation.SOUTH_UP, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCraftingTriggered)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                                .register(true, JigsawOrientation.WEST_UP, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCrafting)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+                                .register(true, JigsawOrientation.WEST_UP, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCraftingTriggered)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+
+                                .register(true, JigsawOrientation.UP_EAST, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCrafting)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+                                .register(true, JigsawOrientation.UP_EAST, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCraftingTriggered)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R270))
+                                .register(true, JigsawOrientation.UP_NORTH, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCrafting)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                                .register(true, JigsawOrientation.UP_NORTH, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCraftingTriggered)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                                .register(true, JigsawOrientation.UP_SOUTH, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCrafting)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R270))
+                                .register(true, JigsawOrientation.UP_SOUTH, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCraftingTriggered)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R270))
+                                .register(true, JigsawOrientation.UP_WEST, false, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCrafting)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                                .register(true, JigsawOrientation.UP_WEST, true, BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelCraftingTriggered)
+                                        .put(VariantSettings.X, VariantSettings.Rotation.R270)
+                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        )
+        );
+
+        //base
+        new Model(
+                Optional.of(new Identifier(ShuckleQOL.MOD_ID, "block/template_orientable_block")),
+                Optional.empty(),
+                TextureKey.BOTTOM, TextureKey.TOP, TextureKey.NORTH, TextureKey.SOUTH, TextureKey.WEST, TextureKey.EAST
+        ).upload(
+                model,
+                new TextureMap()
+                        .put(TextureKey.BOTTOM, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_bottom"))
+                        .put(TextureKey.TOP, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_top"))
+                        .put(TextureKey.NORTH, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_north"))
+                        .put(TextureKey.SOUTH, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_south"))
+                        .put(TextureKey.WEST, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_west"))
+                        .put(TextureKey.EAST, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_east")),
+                gen.modelCollector
+        );
+        gen.registerParentedItemModel(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, baseBlockId)), model);
+
+        //triggered
+        new Model(
+                Optional.of(model),
+                Optional.empty(),
+                TextureKey.TOP, TextureKey.SOUTH, TextureKey.WEST, TextureKey.EAST
+        ).upload(
+                modelTriggered,
+                new TextureMap()
+                        .put(TextureKey.TOP, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_top_triggered"))
+                        .put(TextureKey.SOUTH, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_south_triggered"))
+                        .put(TextureKey.WEST, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_west_triggered"))
+                        .put(TextureKey.EAST, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_east_triggered")),
+                gen.modelCollector
+        );
+
+        //crafting
+        new Model(
+                Optional.of(modelTriggered),
+                Optional.empty(),
+                TextureKey.TOP, TextureKey.NORTH, TextureKey.WEST, TextureKey.EAST
+        ).upload(
+                modelCrafting,
+                new TextureMap()
+                        .put(TextureKey.TOP, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_top_crafting"))
+                        .put(TextureKey.NORTH, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_north_crafting"))
+                        .put(TextureKey.WEST, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_west_crafting"))
+                        .put(TextureKey.EAST, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "_east_crafting")),
+                gen.modelCollector
+        );
+
+        //crafting triggered
+        new Model(
+                Optional.of(modelCrafting),
+                Optional.empty()
+        ).upload(
+                modelCraftingTriggered,
+                new TextureMap(),
                 gen.modelCollector
         );
     }

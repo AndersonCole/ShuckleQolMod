@@ -798,6 +798,9 @@ public class ModBackportBlocks {
     public static final Block CACTUS_FLOWER = registerBlock("cactus_flower",
             new CactusFlowerBlock(FabricBlockSettings.copy(Blocks.PEONY).sounds(BlockSoundGroup.AZALEA)), ModItemGroup.SHUCKLE_BACKPORT);
 
+    public static final Block CRAFTER = registerBlock("crafter",
+            new CrafterBlock(FabricBlockSettings.copy(Blocks.STONE)), ModItemGroup.SHUCKLE_BACKPORT);
+
     public static void registerModBlocks() {
         //called so the class loads
     }

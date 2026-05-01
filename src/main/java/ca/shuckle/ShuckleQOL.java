@@ -1,9 +1,12 @@
 package ca.shuckle;
 
 import ca.shuckle.block.ModBlocks;
+import ca.shuckle.block.entity.ModBlockEntities;
 import ca.shuckle.item.ModItemGroup;
 import ca.shuckle.item.ModItems;
+import ca.shuckle.networking.ModMessages;
 import ca.shuckle.particle.ModParticles;
+import ca.shuckle.screen.ModScreenHandlers;
 import ca.shuckle.util.ModPointsOfInterest;
 import ca.shuckle.util.ModRegistries;
 import ca.shuckle.util.ModSounds;
@@ -21,18 +24,21 @@ public class ShuckleQOL implements ModInitializer {
 	public void onInitialize() {
 		//Middle Clicking and CRTL+H'ing on functions/properties
 		//is a very good to see and copy vanilla source code
-		ModItemGroup.registerItemGroup();
+        ModScreenHandlers.registerScreenHandlers();
+        ModItemGroup.registerItemGroup();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
+        ModBlockEntities.registerBlockEntities();
 
 		ModRegistries.registerModStuff();
 		ModSounds.registerSounds();
         ModParticles.registerParticles();
-
+        
         ModPointsOfInterest.registerModPOIs();
         ModVillagers.registerVillagers();
 
 		ModWorldGen.generateModWorldGen();
+        ModMessages.registerC2SMessages();
 
 		//ModEnchantments.registerModEnchantments();
 	}

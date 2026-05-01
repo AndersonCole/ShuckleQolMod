@@ -6,11 +6,14 @@ import ca.shuckle.entity.ModEntities;
 import ca.shuckle.entity.client.InvisibleItemFrameRenderer;
 import ca.shuckle.particle.ModParticles;
 import ca.shuckle.particle.custom.CopperFireFlame;
+import ca.shuckle.screen.ModScreenHandlers;
+import ca.shuckle.screen.custom.CrafterScreen;
 import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.util.SpriteIdentifier;
@@ -20,6 +23,8 @@ import net.minecraft.util.Identifier;
 public class ShuckleQOLClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        HandledScreens.register(ModScreenHandlers.CRAFTER_3X3, CrafterScreen::new);
+
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.CHERRY_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.POTTED_CHERRY_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.CHERRY_LEAVES, RenderLayer.getCutout());

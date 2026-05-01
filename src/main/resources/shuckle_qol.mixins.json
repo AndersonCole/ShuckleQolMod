@@ -6,9 +6,13 @@
   "mixins": [
     "ServerWorldMixin",
     "OxidizableBlockFamilyMixin",
-    "AnvilScreenHandlerMixin"
+    "AnvilScreenHandlerMixin",
+    "ItemScattererMixin",
+    "CraftingInventoryMixin"
   ],
-  "client": [],
+  "client": [
+    "HandledScreenMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

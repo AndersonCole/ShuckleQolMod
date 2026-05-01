@@ -315,6 +315,10 @@
   "block.shuckle_qol.potent_sulfur": "Potent Sulfur",
   "block.shuckle_qol.sulfur_spike": "Sulfur Spike",
 
+  "block.shuckle_qol.crafter": "Crafter",
+  "container.crafter": "Crafter",
+  "crafter.gui.toggleable_slot": "Click to disable slot",
+
   "item.shuckle_qol.invisible_catalyst": "Invisibility Catalyst",
   "block.shuckle_qol.invisible_lightning_rod": "Invisible Lightning Rod",
   "block.shuckle_qol.invisible_carpet": "Invisible Carpet",

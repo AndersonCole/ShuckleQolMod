@@ -266,6 +266,8 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
 
         addDrop(ModBackportBlocks.SHORT_DRY_GRASS, dropsWithShears(ModBackportBlocks.SHORT_DRY_GRASS));
         addDrop(ModBackportBlocks.TALL_DRY_GRASS, dropsWithShears(ModBackportBlocks.SHORT_DRY_GRASS));
+
+        addDrop(ModBackportBlocks.CRAFTER);
         //endregion
         //region Shuckle Blocks
         addDrop(ModBlocks.SHUCKLE_ORE, oreDrops(ModBlocks.SHUCKLE_ORE, ModItems.DULL_SHUCKLE_GEM));

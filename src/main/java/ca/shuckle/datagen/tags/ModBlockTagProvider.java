@@ -212,7 +212,8 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.BLACK_CUT_SANDSTONE_STAIRS)
                 .add(ModBlocks.BLACK_CUT_SANDSTONE_WALL)
                 .add(ModBlocks.INVIS_LIGHTNING_ROD)
-                .add(ModBlocks.SHUCKLE_MYSTERY_BLOCK);
+                .add(ModBlocks.SHUCKLE_MYSTERY_BLOCK)
+                .add(ModBackportBlocks.CRAFTER);
         //axe
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
                 .addTag(ModTags.Blocks.CEILING_HANGING_SIGNS)
@@ -235,6 +236,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBackportBlocks.PALE_OAK_LEAVES)
                 .add(ModBackportBlocks.PALE_MOSS_BLOCK)
                 .add(ModBackportBlocks.PALE_MOSS_CARPET);
+        //needs stone tool
+        getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL)
+                .add(ModBackportBlocks.CRAFTER);
         //needs diamond tool
         getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(ModBlocks.SHUCKLE_ORE);
