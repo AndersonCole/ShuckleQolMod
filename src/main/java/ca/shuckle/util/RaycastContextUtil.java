@@ -28,14 +28,36 @@ public class RaycastContextUtil {
             ShapeContext shapeContext) {
         try {
             RaycastContext ctx = (RaycastContext) UNSAFE.allocateInstance(RaycastContext.class);
-            setField(ctx, "start", start);
-            setField(ctx, "end", end);
-            setField(ctx, "shapeType", shapeType);
-            setField(ctx, "fluid", fluidHandling);
-            setField(ctx, "entityPosition", shapeContext);
+
+            Field[] fields = RaycastContext.class.getDeclaredFields();
+            Field startField = null, endField = null, shapeTypeField = null,
+                    fluidField = null, shapeContextField = null;
+
+            for (Field field : fields) {
+                field.setAccessible(true);
+                Class<?> type = field.getType();
+                if (type == Vec3d.class) {
+                    if (startField == null) {
+                        startField = field;
+                    } else { endField = field; }
+                } else if (type == RaycastContext.ShapeType.class) {
+                    shapeTypeField = field;
+                } else if (type == RaycastContext.FluidHandling.class) {
+                    fluidField = field;
+                } else if (type == ShapeContext.class) {
+                    shapeContextField = field;
+                }
+            }
+
+            startField.set(ctx, start);
+            endField.set(ctx, end);
+            shapeTypeField.set(ctx, shapeType);
+            fluidField.set(ctx, fluidHandling);
+            shapeContextField.set(ctx, shapeContext);
+
             return ctx;
         } catch (Exception e) {
-            throw new RuntimeException("Failed to set entityPosition on RaycastContext", e);
+            throw new RuntimeException("Failed to override RaycastContext", e);
         }
     }
 
