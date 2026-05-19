@@ -767,7 +767,7 @@ public class ModBackportBlocks {
     public static final Block CHISELED_SULFUR = registerBlock("chiseled_sulfur",
             new Block(FabricBlockSettings.copyOf(SULFUR).sounds(ModSounds.TUFF_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
     public static final Block POTENT_SULFUR = registerBlock("potent_sulfur",
-            new Block(FabricBlockSettings.copyOf(SULFUR)), ModItemGroup.SHUCKLE_BACKPORT);
+            new PotentSulfurBlock(FabricBlockSettings.copyOf(SULFUR)), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block SULFUR_SPIKE = registerBlock("sulfur_spike",
             new SulfurSpikeBlock(FabricBlockSettings.copyOf(Blocks.POINTED_DRIPSTONE)), ModItemGroup.SHUCKLE_BACKPORT);

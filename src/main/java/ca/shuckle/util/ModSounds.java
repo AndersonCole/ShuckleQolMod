@@ -41,6 +41,15 @@ public class ModSounds {
     public static final SoundEvent BLOCK_COPPER_TRAPDOOR_CLOSE = register("block.copper_trapdoor.close");
     public static final SoundEvent BLOCK_COPPER_TRAPDOOR_OPEN = register("block.copper_trapdoor.open");
 
+    public static final SoundEvent NOXIOUS_GAS = register("block.potent_sulfur.noxious_gas");
+    public static final SoundEvent GEYSER_ERUPTION_START = register("block.potent_sulfur.geyser_eruption");
+    public static final SoundEvent GEYSER_ERUPTION_ACTIVE = register("block.potent_sulfur.geyser_eruption_active");
+    public static final SoundEvent GEYSER_CONTINUOUS_START = register("block.potent_sulfur.geyser_continuous_eruption");
+    public static final SoundEvent GEYSER_CONTINUOUS_ACTIVE = register("block.potent_sulfur.geyser_continuous_eruption_active");
+
+    public static final SoundEvent CRAFTER_CRAFT = register("block.crafter.craft");
+    public static final SoundEvent CRAFTER_FAIL = register("block.crafter.fail");
+
     public static final SoundEvent SHUCKLE_CRY = register("entity.villager.work_shuckle");
 
     public static final BlockSoundGroup TUFF_BRICKS = new BlockSoundGroup(1.0F, 1.0F,

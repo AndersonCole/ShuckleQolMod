@@ -66,6 +66,18 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .input('I', Items.IRON_INGOT)
                 .criterion(hasItem(Items.CHISELED_STONE_BRICKS),
                         conditionsFromItem(Items.CHISELED_STONE_BRICKS)).offerTo(exporter);
+
+        //stone and deepslate to cobbled
+        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Items.STONE),
+                        RecipeCategory.MISC, Items.COBBLESTONE, 1)
+                .criterion(hasItem(Items.STONE),
+                        conditionsFromItem(Items.STONE))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "cobblestone_from_stone_stonecutting"));
+        SingleItemRecipeJsonBuilder.createStonecutting(Ingredient.ofItems(Items.DEEPSLATE),
+                        RecipeCategory.MISC, Items.COBBLED_DEEPSLATE, 1)
+                .criterion(hasItem(Items.DEEPSLATE),
+                        conditionsFromItem(Items.DEEPSLATE))
+                .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "cobbled_deepslate_from_deepslate_stonecutting"));
         //hanging signs
         createHangingSignRecipe(exporter, "minecraft", "stripped_oak_log", "oak_hanging_sign");
         createHangingSignRecipe(exporter, "minecraft", "stripped_spruce_log", "spruce_hanging_sign");

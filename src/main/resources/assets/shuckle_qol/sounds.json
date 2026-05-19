@@ -359,5 +359,151 @@
         "volume": 0.4
       }
     ]
+  },
+  "block.potent_sulfur.noxious_gas": {
+    "sounds": [
+      "shuckle_qol:potent_sulfur/noxious_gas/ambient1",
+      "shuckle_qol:potent_sulfur/noxious_gas/ambient2",
+      "shuckle_qol:potent_sulfur/noxious_gas/ambient3",
+      "shuckle_qol:potent_sulfur/noxious_gas/ambient4",
+      "shuckle_qol:potent_sulfur/noxious_gas/ambient5",
+      "shuckle_qol:potent_sulfur/noxious_gas/ambient6",
+      "shuckle_qol:potent_sulfur/noxious_gas/ambient7",
+      "shuckle_qol:potent_sulfur/noxious_gas/ambient8",
+      "shuckle_qol:potent_sulfur/noxious_gas/ambient9",
+      "shuckle_qol:potent_sulfur/noxious_gas/ambient10",
+      "shuckle_qol:potent_sulfur/noxious_gas/ambient11",
+      "shuckle_qol:potent_sulfur/noxious_gas/ambient12",
+      "shuckle_qol:potent_sulfur/noxious_gas/ambient13",
+      "shuckle_qol:potent_sulfur/noxious_gas/ambient14"
+    ]
+  },
+  "block.potent_sulfur.geyser_eruption": {
+    "sounds": [
+      "shuckle_qol:potent_sulfur/geyser/intermittent/eruption1",
+      "shuckle_qol:potent_sulfur/geyser/intermittent/eruption2",
+      "shuckle_qol:potent_sulfur/geyser/intermittent/eruption3",
+      "shuckle_qol:potent_sulfur/geyser/intermittent/eruption4",
+      "shuckle_qol:potent_sulfur/geyser/intermittent/eruption5",
+      "shuckle_qol:potent_sulfur/geyser/intermittent/eruption6",
+      "shuckle_qol:potent_sulfur/geyser/intermittent/eruption7",
+      "shuckle_qol:potent_sulfur/geyser/intermittent/eruption8"
+    ]
+  },
+  "block.potent_sulfur.geyser_eruption_active": {
+    "sounds": [
+      {
+        "name": "shuckle_qol:potent_sulfur/geyser/intermittent/eruption_active1",
+        "volume": 2.0
+      },
+      {
+        "name": "shuckle_qol:potent_sulfur/geyser/intermittent/eruption_active2",
+        "volume": 2.0
+      },
+      {
+        "name": "shuckle_qol:potent_sulfur/geyser/intermittent/eruption_active3",
+        "volume": 2.0
+      },
+      {
+        "name": "shuckle_qol:potent_sulfur/geyser/intermittent/eruption_active4",
+        "volume": 2.0
+      },
+      {
+        "name": "shuckle_qol:potent_sulfur/geyser/intermittent/eruption_active5",
+        "volume": 2.0
+      },
+      {
+        "name": "shuckle_qol:potent_sulfur/geyser/intermittent/eruption_active6",
+        "volume": 2.0
+      },
+      {
+        "name": "shuckle_qol:potent_sulfur/geyser/intermittent/eruption_active7",
+        "volume": 2.0
+      },
+      {
+        "name": "shuckle_qol:potent_sulfur/geyser/intermittent/eruption_active8",
+        "volume": 2.0
+      }
+    ]
+  },
+  "block.potent_sulfur.geyser_continuous_eruption": {
+    "sounds": [
+      "shuckle_qol:potent_sulfur/geyser/continuous/eruption1",
+      "shuckle_qol:potent_sulfur/geyser/continuous/eruption2",
+      "shuckle_qol:potent_sulfur/geyser/continuous/eruption3",
+      "shuckle_qol:potent_sulfur/geyser/continuous/eruption4",
+      "shuckle_qol:potent_sulfur/geyser/continuous/eruption5",
+      "shuckle_qol:potent_sulfur/geyser/continuous/eruption6"
+    ]
+  },
+  "block.potent_sulfur.geyser_continuous_eruption_active": {
+    "sounds": [
+      {
+        "name": "shuckle_qol:potent_sulfur/geyser/continuous/eruption_active1",
+        "volume": 2.0
+      },
+      {
+        "name": "shuckle_qol:potent_sulfur/geyser/continuous/eruption_active2",
+        "volume": 2.0
+      },
+      {
+        "name": "shuckle_qol:potent_sulfur/geyser/continuous/eruption_active3",
+        "volume": 2.0
+      },
+      {
+        "name": "shuckle_qol:potent_sulfur/geyser/continuous/eruption_active4",
+        "volume": 2.0
+      },
+      {
+        "name": "shuckle_qol:potent_sulfur/geyser/continuous/eruption_active5",
+        "volume": 2.0
+      },
+      {
+        "name": "shuckle_qol:potent_sulfur/geyser/continuous/eruption_active6",
+        "volume": 2.0
+      },
+      {
+        "name": "shuckle_qol:potent_sulfur/geyser/continuous/eruption_active7",
+        "volume": 2.0
+      }
+    ]
+  },
+  "block.crafter.craft": {
+    "sounds": [
+      {
+        "attenuation_distance": 5,
+        "name": "shuckle_qol:crafter/craft"
+      },
+      {
+        "attenuation_distance": 5,
+        "name": "shuckle_qol:crafter/craft",
+        "pitch": 0.96
+      },
+      {
+        "attenuation_distance": 5,
+        "name": "shuckle_qol:crafter/craft",
+        "pitch": 1.04
+      }
+    ],
+    "subtitle": "subtitles.block.crafter.craft"
+  },
+  "block.crafter.fail": {
+    "sounds": [
+      {
+        "attenuation_distance": 3,
+        "name": "shuckle_qol:crafter/fail"
+      },
+      {
+        "attenuation_distance": 3,
+        "name": "shuckle_qol:crafter/fail",
+        "pitch": 0.96
+      },
+      {
+        "attenuation_distance": 3,
+        "name": "shuckle_qol:crafter/fail",
+        "pitch": 1.04
+      }
+    ],
+    "subtitle": "subtitles.block.crafter.fail"
   }
 }

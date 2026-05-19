@@ -3,6 +3,7 @@ package ca.shuckle.block.custom;
 import ca.shuckle.block.entity.ModBlockEntities;
 import ca.shuckle.block.entity.custom.CrafterBlockEntity;
 import ca.shuckle.util.ItemScattererAccessor;
+import ca.shuckle.util.ModSounds;
 import ca.shuckle.util.RecipeCache;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
@@ -19,6 +20,7 @@ import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
@@ -154,7 +156,14 @@ public class CrafterBlock extends BlockWithEntity {
 
         Optional<CraftingRecipe> optional = getCraftingRecipe(world, crafterBlockEntity.getCraftingInventory());
         if (optional.isEmpty()) {
-            //world.syncWorldEvent(WorldEvents.DISPENSER_FAILS, pos, 0);
+            world.playSound(
+                    null,
+                    pos,
+                    ModSounds.CRAFTER_FAIL,
+                    SoundCategory.BLOCKS,
+                    1.0F,
+                    1.0F
+            );
         } else {
             crafterBlockEntity.setCraftingTicksRemaining(6);
             world.setBlockState(pos, state.with(CRAFTING, true), 2);
@@ -203,7 +212,14 @@ public class CrafterBlock extends BlockWithEntity {
         if (!itemStack.isEmpty()) {
             Vec3d vec3d = Vec3d.ofCenter(pos).offset(direction, 0.7);
             ItemDispenserBehavior.spawnItem(world, itemStack, 6, direction, vec3d);
-            world.syncWorldEvent(WorldEvents.DISPENSER_DISPENSES, pos, 0);
+            world.playSound(
+                    null,
+                    pos,
+                    ModSounds.CRAFTER_CRAFT,
+                    SoundCategory.BLOCKS,
+                    1.0F,
+                    1.0F
+            );
         }
 
     }

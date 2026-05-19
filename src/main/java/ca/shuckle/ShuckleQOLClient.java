@@ -6,6 +6,11 @@ import ca.shuckle.entity.ModEntities;
 import ca.shuckle.entity.client.InvisibleItemFrameRenderer;
 import ca.shuckle.particle.ModParticles;
 import ca.shuckle.particle.custom.CopperFireFlame;
+import ca.shuckle.particle.custom.GeyserBaseParticle;
+import ca.shuckle.particle.custom.GeyserEruptionParticle;
+import ca.shuckle.particle.custom.GeyserPlumeParticle;
+import ca.shuckle.particle.effect.GeyserBaseParticleEffect;
+import ca.shuckle.particle.effect.GeyserParticleEffect;
 import ca.shuckle.screen.ModScreenHandlers;
 import ca.shuckle.screen.custom.CrafterScreen;
 import com.terraformersmc.terraform.sign.SpriteIdentifierRegistry;
@@ -121,6 +126,10 @@ public class ShuckleQOLClient implements ClientModInitializer {
                 new Identifier(ShuckleQOL.MOD_ID, "entity/signs/invisible")));
 
         ParticleFactoryRegistry.getInstance().register(ModParticles.COPPER_FIRE_FLAME_PARTICLE, CopperFireFlame.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(ModParticles.GEYSER, GeyserEruptionParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(ModParticles.GEYSER_PLUME, GeyserPlumeParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(ModParticles.GEYSER_BASE, GeyserBaseParticle.Factory::new);
+        ParticleFactoryRegistry.getInstance().register(ModParticles.GEYSER_POOF, GeyserBaseParticle.Factory::new);
     }
 
     private void getCopperBlockCutouts(String baseBlockId){

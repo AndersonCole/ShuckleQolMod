@@ -25,6 +25,10 @@ public class ModTags {
                 createTag("wildflowers");
         public static final TagKey<Block> LEAF_LITTER =
                 createTag("leaf_litter");
+        public static final TagKey<Block> CAUSES_CONTINUOUS_GEYSER_ERUPTIONS =
+                createTag("causes_continuous_geyser_eruptions");
+        public static final TagKey<Block> CAUSES_PERIODIC_GEYSER_ERUPTIONS =
+                createTag("causes_periodic_geyser_eruptions");
 
         private static TagKey<Block> createTag(String name){
             return TagKey.of(RegistryKeys.BLOCK, new Identifier(ShuckleQOL.MOD_ID, name));

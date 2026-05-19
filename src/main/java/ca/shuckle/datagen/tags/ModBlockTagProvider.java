@@ -7,6 +7,7 @@ import ca.shuckle.util.ModTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
@@ -473,5 +474,9 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBackportBlocks.LEAF_LITTER)
                 .add(ModBlocks.LEAF_LITTER_OAK);
         //endregion
+        getOrCreateTagBuilder(ModTags.Blocks.CAUSES_CONTINUOUS_GEYSER_ERUPTIONS)
+                .add(Blocks.LAVA);
+        getOrCreateTagBuilder(ModTags.Blocks.CAUSES_PERIODIC_GEYSER_ERUPTIONS)
+                .add(Blocks.MAGMA_BLOCK);
     }
 }
