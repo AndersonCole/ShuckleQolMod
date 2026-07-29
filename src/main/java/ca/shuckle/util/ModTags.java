@@ -15,6 +15,8 @@ public class ModTags {
                 createTag("bamboo_blocks");
         public static final TagKey<Block> PALE_OAK_LOGS =
                 createTag("pale_oak_logs");
+        public static final TagKey<Block> POPLAR_LOGS =
+                createTag("poplar_logs");
         public static final TagKey<Block> CEILING_HANGING_SIGNS =
                 createTag("ceiling_hanging_signs");
         public static final TagKey<Block> WALL_HANGING_SIGNS =
@@ -42,6 +44,8 @@ public class ModTags {
                 createTag("bamboo_blocks");
         public static final TagKey<Item> PALE_OAK_LOGS =
                 createTag("pale_oak_logs");
+        public static final TagKey<Item> POPLAR_LOGS =
+                createTag("poplar_logs");
         public static final TagKey<Item> WILDFLOWERS =
                 createTag("wildflowers");
         public static final TagKey<Item> LEAF_LITTER =
@@ -75,6 +79,10 @@ public class ModTags {
                 createTag("dyeable_glazed_terracotta");
         public static final TagKey<Item> DYEABLE_WOOL =
                 createTag("dyeable_wool");
+        public static final TagKey<Item> DYEABLE_WOOL_SLABS =
+                createTag("dyeable_wool_slabs");
+        public static final TagKey<Item> DYEABLE_WOOL_STAIRS =
+                createTag("dyeable_wool_stairs");
         //endregion
 
         private static TagKey<Item> createTag(String name){

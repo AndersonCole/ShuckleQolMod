@@ -16,26 +16,33 @@ public class GeyserParticleEffect implements ParticleEffect {
                                                  StringReader reader) throws CommandSyntaxException {
                     reader.expect(' ');
                     int waterBlocks = reader.readInt();
-                    return new GeyserParticleEffect(type, waterBlocks);
+                    boolean isLava = reader.readBoolean();
+                    return new GeyserParticleEffect(type, waterBlocks, isLava);
                 }
 
                 @Override
                 public GeyserParticleEffect read(ParticleType<GeyserParticleEffect> type,
                                                  PacketByteBuf buf) {
-                    return new GeyserParticleEffect(type, buf.readInt());
+                    return new GeyserParticleEffect(type, buf.readInt(), buf.readBoolean());
                 }
             };
 
     private final ParticleType<GeyserParticleEffect> type;
     private final int waterBlocks;
+    private final boolean isLava;
 
-    public GeyserParticleEffect(ParticleType<GeyserParticleEffect> type, int waterBlocks) {
+    public GeyserParticleEffect(ParticleType<GeyserParticleEffect> type, int waterBlocks, boolean isLava) {
         this.type = type;
         this.waterBlocks = waterBlocks;
+        this.isLava = isLava;
     }
 
     public int getWaterBlocks() {
         return this.waterBlocks;
+    }
+
+    public boolean isLava() {
+        return this.isLava;
     }
 
     @Override
@@ -46,10 +53,11 @@ public class GeyserParticleEffect implements ParticleEffect {
     @Override
     public void write(PacketByteBuf buf) {
         buf.writeInt(this.waterBlocks);
+        buf.writeBoolean(this.isLava);
     }
 
     @Override
     public String asString() {
-        return Registries.PARTICLE_TYPE.getId(this.type) + " " + this.waterBlocks;
+        return Registries.PARTICLE_TYPE.getId(this.type) + " " + this.waterBlocks + " " + this.isLava;
     }
 }

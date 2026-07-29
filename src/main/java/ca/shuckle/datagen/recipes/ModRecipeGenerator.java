@@ -248,6 +248,16 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                         conditionsFromItem(ModBackportBlocks.RESIN_BRICKS))
                 .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "chiseled_resin_bricks_stonecutting"));
         //endregion
+        //poplar wood set
+        createWoodItemSetRecipes(exporter, "poplar", ModTags.Items.POPLAR_LOGS,
+                ModBackportBlocks.POPLAR_LOG, ModBackportBlocks.POPLAR_WOOD,
+                ModBackportBlocks.STRIPPED_POPLAR_LOG, ModBackportBlocks.STRIPPED_POPLAR_WOOD,
+                ModBackportBlocks.POPLAR_PLANKS, 4,
+                ModBackportBlocks.POPLAR_SLAB, ModBackportBlocks.POPLAR_STAIRS,
+                ModBackportBlocks.POPLAR_DOOR, ModBackportBlocks.POPLAR_TRAPDOOR,
+                ModBackportBlocks.POPLAR_FENCE, ModBackportBlocks.POPLAR_FENCE_GATE,
+                ModBackportBlocks.POPLAR_BUTTON, ModBackportBlocks.POPLAR_PRESSURE_PLATE,
+                ModBackportBlocks.POPLAR_SHELF, ModItems.POPLAR_SIGN, ModItems.POPLAR_HANGING_SIGN);
         //region Copper
         //nuggets
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
@@ -684,6 +694,15 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .pattern("#")
                 .pattern("#")
                 .input('#', ModBackportBlocks.CINNABAR_SLAB)
+                .criterion(hasItem(ModBackportBlocks.CINNABAR),
+                        conditionsFromItem(ModBackportBlocks.CINNABAR)).offerTo(exporter);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                        ModBackportBlocks.POTENT_CINNABAR, 1)
+                .pattern("###")
+                .pattern("###")
+                .pattern("###")
+                .input('#', ModBackportBlocks.CINNABAR)
                 .criterion(hasItem(ModBackportBlocks.CINNABAR),
                         conditionsFromItem(ModBackportBlocks.CINNABAR)).offerTo(exporter);
 
@@ -1342,12 +1361,19 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "tarred_dirt"));
         //endregion
         //endregion
+        createWoolSlabStairsRecipes(exporter);
         //region Universal Dyeing
         createShapedDyableItemSetRecipes(exporter,
                 "minecraft", "candle", ModTags.Items.DYEABLE_CANDLES,
                 null, true);
         createShapedDyableItemSetRecipes(exporter,
                 "minecraft", "wool", ModTags.Items.DYEABLE_WOOL,
+                null, false);
+        createShapedDyableItemSetRecipes(exporter,
+                ShuckleQOL.MOD_ID, "wool_slab", ModTags.Items.DYEABLE_WOOL_SLABS,
+                null, false);
+        createShapedDyableItemSetRecipes(exporter,
+                ShuckleQOL.MOD_ID, "wool_stairs", ModTags.Items.DYEABLE_WOOL_STAIRS,
                 null, false);
         createShapedDyableItemSetRecipes(exporter,
                 "minecraft", "carpet", ModTags.Items.DYEABLE_CARPETS,
@@ -1703,6 +1729,32 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
         }
     }
 
+    private void createWoolSlabStairsRecipes(Consumer<RecipeJsonProvider> exporter) {
+        List<DyeColor> dyeColours = List.of(DyeColor.values());
+
+        for(DyeColor dyeColour : dyeColours) {
+            Item baseItem = Registries.ITEM.get(new Identifier("minecraft", dyeColour.getName() + "_wool"));
+
+            ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                            Registries.ITEM.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_wool_slab")), 6)
+                    .pattern("###")
+                    .input('#', baseItem)
+                    .criterion(hasItem(baseItem),
+                            conditionsFromItem(baseItem))
+                    .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_wool_slab"));
+
+            ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
+                            Registries.ITEM.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_wool_stairs")), 4)
+                    .pattern("#  ")
+                    .pattern("## ")
+                    .pattern("###")
+                    .input('#', baseItem)
+                    .criterion(hasItem(baseItem),
+                            conditionsFromItem(baseItem))
+                    .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_wool_stairs"));
+        }
+    }
+
     private void createShapedDyableItemSetRecipes(Consumer<RecipeJsonProvider> exporter,
                                                   String namespace,
                                                   String dyedBaseItemId,
@@ -1734,7 +1786,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                     .input('D', Ingredient.fromJson(JsonHelper.deserialize("{\"item\":\"minecraft:" + dyeColour.getName() + "_dye\"}")))
                     .criterion("has_dyable_items",
                             conditionsFromTag(dyeableItemsTag))
-                    .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_" + dyedBaseItemId));
+                    .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_" + dyedBaseItemId + "_universal"));
         }
     }
 
@@ -1763,7 +1815,7 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                     .input(Ingredient.fromJson(JsonHelper.deserialize("{\"item\":\"minecraft:" + dyeColour.getName() + "_dye\"}")))
                             .criterion("has_dyable_items",
                             conditionsFromTag(dyeableItemsTag))
-                    .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_" + dyedBaseItemId));
+                    .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_" + dyedBaseItemId + "_universal"));
         }
     }
 }

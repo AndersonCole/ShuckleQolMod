@@ -10,7 +10,7 @@ public class GeyserBaseParticle extends AscendingParticle {
 
     private GeyserBaseParticle(ClientWorld world, double x, double y, double z,
                                double xd, double yd, double zd, int waterBlocks,
-                               float burstImpulseBase, SpriteProvider sprites) {
+                               boolean isLava, float burstImpulseBase, SpriteProvider sprites) {
         super(world, x, y, z,
                 burstImpulseBase + 0.25f * waterBlocks,
                 burstImpulseBase + 0.25f * waterBlocks,
@@ -18,9 +18,19 @@ public class GeyserBaseParticle extends AscendingParticle {
                 xd, yd, zd, 2.0f + 0.125f + waterBlocks, sprites,
                 0.0f, 0, 0.0f, true);
         this.velocityMultiplier = 0.725f;
-        this.red = 1.0f;
-        this.blue = 1.0f;
-        this.green = 1.0f;
+        if (isLava){
+            if (random.nextFloat() < 0.08F) {
+                this.setColor(
+                        0.34F + random.nextFloat() * 0.08F,
+                        0.28F + random.nextFloat() * 0.05F,
+                        0.22F + random.nextFloat() * 0.04F);
+            } else {
+                float smoke = 0.12F + random.nextFloat() * 0.18F;
+                this.setColor(smoke, smoke, smoke);
+            }
+        }else{
+            this.setColor(1.0f, 1.0f, 1.0f);
+        }
         this.velocityY = Math.abs(this.velocityY);
         this.maxAge = (int)(25.0f * (0.8f + 0.2f * world.random.nextFloat()));
     }
@@ -40,7 +50,7 @@ public class GeyserBaseParticle extends AscendingParticle {
             double ry = y + (world.random.nextFloat() - 0.5f) * 0.5f + 0.2f;
             double rz = z + (world.random.nextFloat() - 0.5f) * 0.5f;
             return new GeyserBaseParticle(world, rx, ry, rz, velocityX, velocityY, velocityZ,
-                    effect.getWaterBlocks(), effect.getBurstImpluseBase(), sprites);
+                    effect.getWaterBlocks(), effect.isLava(), effect.getBurstImpluseBase(), sprites);
         }
     }
 }

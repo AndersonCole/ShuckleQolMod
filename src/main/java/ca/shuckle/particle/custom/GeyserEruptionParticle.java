@@ -1,5 +1,6 @@
 package ca.shuckle.particle.custom;
 
+import ca.shuckle.ShuckleQOL;
 import ca.shuckle.particle.ModParticles;
 import ca.shuckle.particle.effect.GeyserBaseParticleEffect;
 import ca.shuckle.particle.effect.GeyserParticleEffect;
@@ -10,28 +11,43 @@ import net.minecraft.block.entity.CampfireBlockEntity;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.render.block.entity.CampfireBlockEntityRenderer;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.util.math.BlockPos;
 
 public class GeyserEruptionParticle extends NoRenderParticle {
     private final int waterBlocks;
+    private boolean isLava;
     private final double xd, yd, zd;
     private final GeyserParticleEffect plumeParticle;
     private final GeyserBaseParticleEffect baseParticle;
     private final GeyserBaseParticleEffect poofParticle;
 
-    protected GeyserEruptionParticle (ClientWorld clientWorld, double x, double y, double z,
+    protected GeyserEruptionParticle (ClientWorld world, double x, double y, double z,
         double xd, double yd, double zd, GeyserParticleEffect options) {
-        super(clientWorld, x, y, z, xd, yd, zd);
+        super(world, x, y, z, xd, yd, zd);
         this.xd = xd;
         this.yd = yd;
         this.zd = zd;
         this.waterBlocks = options.getWaterBlocks();
+        this.isLava = options.isLava();
         this.maxAge = 20;
         this.velocityX = 0.0f;
         this.velocityY = 0.0f;
         this.velocityZ = 0.0f;
-        this.plumeParticle = new GeyserParticleEffect(ModParticles.GEYSER_PLUME, this.waterBlocks);
-        this.baseParticle = new GeyserBaseParticleEffect(ModParticles.GEYSER_BASE, this.waterBlocks, 1.5f);
-        this.poofParticle = new GeyserBaseParticleEffect(ModParticles.GEYSER_POOF, this.waterBlocks, 2.0f);
+        this.plumeParticle = new GeyserParticleEffect(ModParticles.GEYSER_PLUME, this.waterBlocks, this.isLava);
+        this.baseParticle = new GeyserBaseParticleEffect(ModParticles.GEYSER_BASE, this.waterBlocks, this.isLava,1.5f);
+        this.poofParticle = new GeyserBaseParticleEffect(ModParticles.GEYSER_POOF, this.waterBlocks, this.isLava, 2.0f);
+        if (this.isLava){
+            if (random.nextFloat() < 0.08F) {
+                this.setColor(
+                        0.34F + random.nextFloat() * 0.08F,
+                        0.28F + random.nextFloat() * 0.05F,
+                        0.22F + random.nextFloat() * 0.04F);
+            } else {
+                float smoke = 0.12F + random.nextFloat() * 0.18F;
+                this.setColor(smoke, smoke, smoke);
+            }
+        }
     }
 
     @Override

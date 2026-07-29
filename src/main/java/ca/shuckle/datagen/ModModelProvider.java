@@ -22,11 +22,12 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.registry.Registries;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
-import org.w3c.dom.Text;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
@@ -50,6 +51,7 @@ public class ModModelProvider extends FabricModelProvider {
         registerShelfBlock("minecraft", "crimson", "_stem", blockStateModelGenerator);
         registerShelfBlock("minecraft", "warped", "_stem", blockStateModelGenerator);
         //endregion
+        registerWoolSlabStairs(blockStateModelGenerator);
         //region Cherry blocks
         blockStateModelGenerator.registerTintableCross(ModBackportBlocks.CHERRY_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
         blockStateModelGenerator.registerSimpleCubeAll(ModBackportBlocks.CHERRY_LEAVES);
@@ -130,6 +132,29 @@ public class ModModelProvider extends FabricModelProvider {
         resinBrickPool.wall(ModBackportBlocks.RESIN_BRICK_WALL);
         blockStateModelGenerator.registerSimpleCubeAll(ModBackportBlocks.CHISELED_RESIN_BRICKS);
         //endregion
+        //region Poplar
+        blockStateModelGenerator.registerTintableCross(ModBackportBlocks.POPLAR_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBackportBlocks.RED_POPLAR_LEAVES);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBackportBlocks.ORANGE_POPLAR_LEAVES);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBackportBlocks.YELLOW_POPLAR_LEAVES);
+
+        blockStateModelGenerator.registerLog(ModBackportBlocks.POPLAR_LOG).log(ModBackportBlocks.POPLAR_LOG).wood(ModBackportBlocks.POPLAR_WOOD);
+        blockStateModelGenerator.registerLog(ModBackportBlocks.STRIPPED_POPLAR_LOG).log(ModBackportBlocks.STRIPPED_POPLAR_LOG).wood(ModBackportBlocks.STRIPPED_POPLAR_WOOD);
+
+        BlockStateModelGenerator.BlockTexturePool poplarPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBackportBlocks.POPLAR_PLANKS);
+        poplarPool.slab(ModBackportBlocks.POPLAR_SLAB);
+        poplarPool.stairs(ModBackportBlocks.POPLAR_STAIRS);
+        blockStateModelGenerator.registerDoor(ModBackportBlocks.POPLAR_DOOR);
+        blockStateModelGenerator.registerTrapdoor(ModBackportBlocks.POPLAR_TRAPDOOR);
+        poplarPool.fence(ModBackportBlocks.POPLAR_FENCE);
+        poplarPool.fenceGate(ModBackportBlocks.POPLAR_FENCE_GATE);
+        poplarPool.button(ModBackportBlocks.POPLAR_BUTTON);
+        poplarPool.pressurePlate(ModBackportBlocks.POPLAR_PRESSURE_PLATE);
+        poplarPool.family(BlockFamilies.register(ModBackportBlocks.POPLAR_PLANKS)
+                .sign(ModBackportBlocks.POPLAR_SIGN, ModBackportBlocks.POPLAR_WALL_SIGN)
+                .group("wooden").unlockCriterionName("has_planks").build());
+        registerShelfBlock(ShuckleQOL.MOD_ID, "poplar", "_log", blockStateModelGenerator);
+        //endregion
         //region Copper
         createOxidizableModelSet("chiseled_copper",
                 blockStateModelGenerator::registerSimpleCubeAll,
@@ -198,6 +223,7 @@ public class ModModelProvider extends FabricModelProvider {
         cinnabarBricksPool.wall(ModBackportBlocks.CINNABAR_BRICK_WALL);
 
         blockStateModelGenerator.registerSimpleCubeAll(ModBackportBlocks.CHISELED_CINNABAR);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBackportBlocks.POTENT_CINNABAR);
         //endregion
         //region Sulfur
         BlockStateModelGenerator.BlockTexturePool sulfurPool = blockStateModelGenerator.registerCubeAllModelTexturePool(ModBackportBlocks.SULFUR);
@@ -223,6 +249,7 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerFlowerbed(ModBackportBlocks.WILDFLOWERS);
         registerFlatFlowerbed(blockStateModelGenerator, ModBackportBlocks.LEAF_LITTER);
         blockStateModelGenerator.registerTintableCross(ModBackportBlocks.BUSH, BlockStateModelGenerator.TintType.NOT_TINTED);
+        blockStateModelGenerator.registerTintableCross(ModBackportBlocks.RED_SHRUB, BlockStateModelGenerator.TintType.NOT_TINTED);
         blockStateModelGenerator.registerTintableCross(ModBackportBlocks.FIREFLY_BUSH, BlockStateModelGenerator.TintType.NOT_TINTED);
         blockStateModelGenerator.registerTintableCross(ModBackportBlocks.SHORT_DRY_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
         blockStateModelGenerator.registerTintableCross(ModBackportBlocks.TALL_DRY_GRASS, BlockStateModelGenerator.TintType.NOT_TINTED);
@@ -302,6 +329,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.CHERRY_HANGING_SIGN, Models.GENERATED);
         itemModelGenerator.register(ModItems.BAMBOO_HANGING_SIGN, Models.GENERATED);
         itemModelGenerator.register(ModItems.PALE_OAK_HANGING_SIGN, Models.GENERATED);
+        itemModelGenerator.register(ModItems.POPLAR_HANGING_SIGN, Models.GENERATED);
         itemModelGenerator.register(ModItems.CRIMSON_HANGING_SIGN, Models.GENERATED);
         itemModelGenerator.register(ModItems.WARPED_HANGING_SIGN, Models.GENERATED);
         //endregion
@@ -317,6 +345,7 @@ public class ModModelProvider extends FabricModelProvider {
         registerShelfItem(ShuckleQOL.MOD_ID, "cherry", "_log", itemModelGenerator);
         registerShelfItem(ShuckleQOL.MOD_ID, "bamboo", "_block", itemModelGenerator);
         registerShelfItem(ShuckleQOL.MOD_ID, "pale_oak", "_log", itemModelGenerator);
+        registerShelfItem(ShuckleQOL.MOD_ID, "poplar", "_log", itemModelGenerator);
         registerShelfItem("minecraft", "crimson", "_stem", itemModelGenerator);
         registerShelfItem("minecraft", "warped", "_stem", itemModelGenerator);
         //endregion
@@ -1799,5 +1828,18 @@ public class ModModelProvider extends FabricModelProvider {
                         .put(TextureKey.LAYER0, new Identifier(ShuckleQOL.MOD_ID, "block/" + baseBlockId + "/all")),
                 gen.writer
         );
+    }
+
+    private void registerWoolSlabStairs(BlockStateModelGenerator gen) {
+        List<DyeColor> dyeColours = List.of(DyeColor.values());
+
+        for(DyeColor dyeColour : dyeColours) {
+            registerExternalSlabTexture(gen,
+                    "minecraft", dyeColour.getName() + "_wool", null, null, null,
+                    Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_wool_slab")));
+            registerExternalStairsTexture(gen,
+                    "minecraft",  dyeColour.getName() + "_wool", null, null,
+                    Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_wool_stairs")));
+        }
     }
 }

@@ -8,6 +8,7 @@ import ca.shuckle.particle.ModParticles;
 import ca.shuckle.util.ModSounds;
 import ca.shuckle.world.feature.tree.CherrySaplingGenerator;
 import ca.shuckle.world.feature.tree.PaleOakSaplingGenerator;
+import ca.shuckle.world.feature.tree.PoplarSaplingGenerator;
 import com.terraformersmc.terraform.sign.block.TerraformHangingSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallHangingSignBlock;
@@ -146,6 +147,103 @@ public class ModBackportBlocks {
             new ShelfBlock(FabricBlockSettings.copy(Blocks.CRIMSON_PLANKS)), ModItemGroup.SHUCKLE_BACKPORT);
     public static final Block WARPED_SHELF = registerBlock("warped_shelf",
             new ShelfBlock(FabricBlockSettings.copy(Blocks.WARPED_PLANKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    //endregion
+    //region Wool
+    public static final Block WHITE_WOOL_SLAB = registerBlock("white_wool_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.WHITE_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block WHITE_WOOL_STAIRS = registerBlock("white_wool_stairs",
+            new StairsBlock(Blocks.WHITE_WOOL.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.WHITE_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block LIGHT_GRAY_WOOL_SLAB = registerBlock("light_gray_wool_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.LIGHT_GRAY_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block LIGHT_GRAY_WOOL_STAIRS = registerBlock("light_gray_wool_stairs",
+            new StairsBlock(Blocks.LIGHT_GRAY_WOOL.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.LIGHT_GRAY_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block GRAY_WOOL_SLAB = registerBlock("gray_wool_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.GRAY_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block GRAY_WOOL_STAIRS = registerBlock("gray_wool_stairs",
+            new StairsBlock(Blocks.GRAY_WOOL.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.GRAY_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block BLACK_WOOL_SLAB = registerBlock("black_wool_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.BLACK_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block BLACK_WOOL_STAIRS = registerBlock("black_wool_stairs",
+            new StairsBlock(Blocks.BLACK_WOOL.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.BLACK_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block BROWN_WOOL_SLAB = registerBlock("brown_wool_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.BROWN_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block BROWN_WOOL_STAIRS = registerBlock("brown_wool_stairs",
+            new StairsBlock(Blocks.BROWN_WOOL.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.BROWN_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block RED_WOOL_SLAB = registerBlock("red_wool_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.RED_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block RED_WOOL_STAIRS = registerBlock("red_wool_stairs",
+            new StairsBlock(Blocks.RED_WOOL.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.RED_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block ORANGE_WOOL_SLAB = registerBlock("orange_wool_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.ORANGE_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block ORANGE_WOOL_STAIRS = registerBlock("orange_wool_stairs",
+            new StairsBlock(Blocks.ORANGE_WOOL.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.ORANGE_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block YELLOW_WOOL_SLAB = registerBlock("yellow_wool_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.YELLOW_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block YELLOW_WOOL_STAIRS = registerBlock("yellow_wool_stairs",
+            new StairsBlock(Blocks.YELLOW_WOOL.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.YELLOW_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block LIME_WOOL_SLAB = registerBlock("lime_wool_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.LIME_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block LIME_WOOL_STAIRS = registerBlock("lime_wool_stairs",
+            new StairsBlock(Blocks.LIME_WOOL.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.LIME_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block GREEN_WOOL_SLAB = registerBlock("green_wool_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.GREEN_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block GREEN_WOOL_STAIRS = registerBlock("green_wool_stairs",
+            new StairsBlock(Blocks.GREEN_WOOL.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.GREEN_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block CYAN_WOOL_SLAB = registerBlock("cyan_wool_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.CYAN_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block CYAN_WOOL_STAIRS = registerBlock("cyan_wool_stairs",
+            new StairsBlock(Blocks.CYAN_WOOL.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.CYAN_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block LIGHT_BLUE_WOOL_SLAB = registerBlock("light_blue_wool_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.LIGHT_BLUE_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block LIGHT_BLUE_WOOL_STAIRS = registerBlock("light_blue_wool_stairs",
+            new StairsBlock(Blocks.LIGHT_BLUE_WOOL.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.LIGHT_BLUE_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block BLUE_WOOL_SLAB = registerBlock("blue_wool_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.BLUE_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block BLUE_WOOL_STAIRS = registerBlock("blue_wool_stairs",
+            new StairsBlock(Blocks.BLUE_WOOL.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.BLUE_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block PURPLE_WOOL_SLAB = registerBlock("purple_wool_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.PURPLE_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block PURPLE_WOOL_STAIRS = registerBlock("purple_wool_stairs",
+            new StairsBlock(Blocks.PURPLE_WOOL.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.PURPLE_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block MAGENTA_WOOL_SLAB = registerBlock("magenta_wool_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.MAGENTA_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block MAGENTA_WOOL_STAIRS = registerBlock("magenta_wool_stairs",
+            new StairsBlock(Blocks.MAGENTA_WOOL.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.MAGENTA_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block PINK_WOOL_SLAB = registerBlock("pink_wool_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.PINK_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block PINK_WOOL_STAIRS = registerBlock("pink_wool_stairs",
+            new StairsBlock(Blocks.PINK_WOOL.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.PINK_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
     //endregion
     //region Biome Sets
     //region Cherry
@@ -417,6 +515,86 @@ public class ModBackportBlocks {
 
     public static final Block RESIN_BRICK_WALL = registerBlock("resin_brick_wall",
             new WallBlock(FabricBlockSettings.copy(ModBackportBlocks.RESIN_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    //endregion
+    //region Poplar
+    public static final Block POPLAR_SAPLING = registerBlock("poplar_sapling",
+            new SaplingBlock(new PoplarSaplingGenerator(),
+                    FabricBlockSettings.copy(Blocks.OAK_SAPLING)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block POTTED_POPLAR_SAPLING = registerBlockWithoutBlockItem("potted_poplar_sapling",
+            new FlowerPotBlock(ModBackportBlocks.POPLAR_SAPLING,
+                    FabricBlockSettings.copy(Blocks.POTTED_OAK_SAPLING)));
+
+    public static final Block RED_POPLAR_LEAVES = registerBlock("red_poplar_leaves",
+            new LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES).nonOpaque()), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block ORANGE_POPLAR_LEAVES = registerBlock("orange_poplar_leaves",
+            new LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES).nonOpaque()), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block YELLOW_POPLAR_LEAVES = registerBlock("yellow_poplar_leaves",
+            new LeavesBlock(FabricBlockSettings.copy(Blocks.OAK_LEAVES).nonOpaque()), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block POPLAR_LOG = registerBlock("poplar_log",
+            new PillarBlock(FabricBlockSettings.copy(Blocks.OAK_LOG)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block POPLAR_WOOD = registerBlock("poplar_wood",
+            new PillarBlock(FabricBlockSettings.copy(Blocks.OAK_WOOD)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block STRIPPED_POPLAR_LOG = registerBlock("stripped_poplar_log",
+            new PillarBlock(FabricBlockSettings.copy(Blocks.STRIPPED_OAK_LOG)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block STRIPPED_POPLAR_WOOD = registerBlock("stripped_poplar_wood",
+            new PillarBlock(FabricBlockSettings.copy(Blocks.STRIPPED_OAK_WOOD)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block POPLAR_PLANKS = registerBlock("poplar_planks",
+            new Block(FabricBlockSettings.copy(Blocks.OAK_PLANKS)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block POPLAR_SLAB = registerBlock("poplar_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.OAK_SLAB)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block POPLAR_STAIRS = registerBlock("poplar_stairs",
+            new StairsBlock(ModBackportBlocks.POPLAR_PLANKS.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.OAK_STAIRS)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block POPLAR_DOOR = registerBlock("poplar_door",
+            new DoorBlock(FabricBlockSettings.copy(Blocks.OAK_DOOR), BlockSetType.OAK), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block POPLAR_TRAPDOOR = registerBlock("poplar_trapdoor",
+            new TrapdoorBlock(FabricBlockSettings.copy(Blocks.OAK_TRAPDOOR), BlockSetType.OAK), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block POPLAR_FENCE = registerBlock("poplar_fence",
+            new FenceBlock(FabricBlockSettings.copy(Blocks.OAK_FENCE)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block POPLAR_FENCE_GATE = registerBlock("poplar_fence_gate",
+            new FenceGateBlock(FabricBlockSettings.copy(Blocks.OAK_FENCE_GATE), WoodType.OAK), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block POPLAR_BUTTON = registerBlock("poplar_button",
+            new ButtonBlock(FabricBlockSettings.copy(Blocks.OAK_BUTTON).noCollision(),
+                    BlockSetType.OAK, 30, true), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block POPLAR_PRESSURE_PLATE = registerBlock("poplar_pressure_plate",
+            new PressurePlateBlock(PressurePlateBlock.ActivationRule.EVERYTHING,
+                    FabricBlockSettings.copy(Blocks.OAK_PRESSURE_PLATE).nonOpaque(), BlockSetType.OAK), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block POPLAR_SHELF = registerBlock("poplar_shelf",
+            new ShelfBlock(FabricBlockSettings.copy(ModBackportBlocks.POPLAR_PLANKS)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block POPLAR_SIGN = registerBlockWithoutBlockItem("poplar_sign",
+            new TerraformSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/poplar"),
+                    FabricBlockSettings.copy(Blocks.OAK_SIGN)));
+
+    public static final Block POPLAR_WALL_SIGN = registerBlockWithoutBlockItem("poplar_wall_sign",
+            new TerraformWallSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/poplar"),
+                    FabricBlockSettings.copy(Blocks.OAK_WALL_SIGN)
+                            .dropsLike(POPLAR_SIGN)));
+
+    public static final Block POPLAR_HANGING_SIGN = registerBlockWithoutBlockItem("poplar_hanging_sign",
+            new TerraformHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/poplar"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/poplar"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.OAK_HANGING_SIGN)));
+    public static final Block POPLAR_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("poplar_wall_hanging_sign",
+            new TerraformWallHangingSignBlock(new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/poplar"),
+                    new Identifier(ShuckleQOL.MOD_ID, "textures/gui/hanging_signs/poplar"),
+                    FabricBlockSettings.copyOf(ModBackportBlocks.POPLAR_HANGING_SIGN)
+                            .dropsLike(ModBackportBlocks.POPLAR_HANGING_SIGN)));
     //endregion
     //endregion
     //region Copper
@@ -735,6 +913,8 @@ public class ModBackportBlocks {
 
     public static final Block CHISELED_CINNABAR = registerBlock("chiseled_cinnabar",
             new Block(FabricBlockSettings.copyOf(CINNABAR).sounds(ModSounds.TUFF_BRICKS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block POTENT_CINNABAR = registerBlock("potent_cinnabar",
+            new PotentCinnabarBlock(FabricBlockSettings.copyOf(CINNABAR)), ModItemGroup.SHUCKLE_BACKPORT);
     //endregion
     //region Sulfur
     public static final Block SULFUR = registerBlock("sulfur",
@@ -781,6 +961,8 @@ public class ModBackportBlocks {
                     .sounds(BlockSoundGroup.AZALEA_LEAVES).noCollision().nonOpaque()), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block BUSH = registerBlock("bush",
+            new ForestFernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block RED_SHRUB = registerBlock("red_shrub",
             new ForestFernBlock(FabricBlockSettings.copyOf(Blocks.GRASS)), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Block FIREFLY_BUSH = registerBlock("firefly_bush",

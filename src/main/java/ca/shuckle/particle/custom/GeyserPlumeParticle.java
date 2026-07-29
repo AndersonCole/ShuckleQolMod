@@ -5,10 +5,13 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.util.math.BlockPos;
 
 public class GeyserPlumeParticle extends SpriteBillboardParticle {
     private final SpriteProvider sprites;
+    private final boolean isLava;
     private final double startY;
     private final double maxY;
     private final float initialPropulsion;
@@ -32,12 +35,24 @@ public class GeyserPlumeParticle extends SpriteBillboardParticle {
         this.velocityMultiplier = 1.0f;
         this.initialPropulsion = (options.getWaterBlocks() == 1 ? 1.5f : 1.0f) * plumeHeight * 1.45f;
         this.gravityStrength = -this.initialPropulsion;
+        this.isLava = options.isLava();
         float initialSize = this.scale * 0.75f;
         this.minSize = initialSize * (2.0f + plumeHeight / 8.0f);
         this.maxSize = initialSize * (3.0f + plumeHeight / 8.0f);
         this.scale = this.minSize;
         this.sprites = sprites;
         this.setSpriteForAge(sprites);
+        if (this.isLava){
+            if (random.nextFloat() < 0.08F) {
+                this.setColor(
+                        0.34F + random.nextFloat() * 0.08F,
+                        0.28F + random.nextFloat() * 0.05F,
+                        0.22F + random.nextFloat() * 0.04F);
+            } else {
+                float smoke = 0.12F + random.nextFloat() * 0.18F;
+                this.setColor(smoke, smoke, smoke);
+            }
+        }
     }
 
     @Override

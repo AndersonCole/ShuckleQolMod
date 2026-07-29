@@ -34,68 +34,84 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
         //logs
         getOrCreateTagBuilder(ItemTags.LOGS)
                 .addTag(ModTags.Items.CHERRY_LOGS)
-                .addTag(ModTags.Items.PALE_OAK_LOGS);
+                .addTag(ModTags.Items.PALE_OAK_LOGS)
+                .addTag(ModTags.Items.POPLAR_LOGS);
         getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN)
                 .addTag(ModTags.Items.CHERRY_LOGS)
-                .addTag(ModTags.Items.PALE_OAK_LOGS);
+                .addTag(ModTags.Items.PALE_OAK_LOGS)
+                .addTag(ModTags.Items.POPLAR_LOGS);
         //leaves
         getOrCreateTagBuilder(ItemTags.LEAVES)
                 .add(ModBackportBlocks.CHERRY_LEAVES.asItem())
-                .add(ModBackportBlocks.PALE_OAK_LEAVES.asItem());
+                .add(ModBackportBlocks.PALE_OAK_LEAVES.asItem())
+                .add(ModBackportBlocks.RED_POPLAR_LEAVES.asItem())
+                .add(ModBackportBlocks.ORANGE_POPLAR_LEAVES.asItem())
+                .add(ModBackportBlocks.YELLOW_POPLAR_LEAVES.asItem());
         //saplings
         getOrCreateTagBuilder(ItemTags.SAPLINGS)
                 .add(ModBackportBlocks.CHERRY_SAPLING.asItem())
-                .add(ModBackportBlocks.PALE_OAK_SAPLING.asItem());
+                .add(ModBackportBlocks.PALE_OAK_SAPLING.asItem())
+                .add(ModBackportBlocks.POPLAR_SAPLING.asItem());
         //planks
         getOrCreateTagBuilder(ItemTags.PLANKS)
                 .add(ModBackportBlocks.CHERRY_PLANKS.asItem())
                 .add(ModBackportBlocks.BAMBOO_PLANKS.asItem())
-                .add(ModBackportBlocks.PALE_OAK_PLANKS.asItem());
+                .add(ModBackportBlocks.PALE_OAK_PLANKS.asItem())
+                .add(ModBackportBlocks.POPLAR_PLANKS.asItem());
         //wood slabs
         getOrCreateTagBuilder(ItemTags.WOODEN_SLABS)
                 .add(ModBackportBlocks.CHERRY_SLAB.asItem())
                 .add(ModBackportBlocks.BAMBOO_SLAB.asItem())
-                .add(ModBackportBlocks.PALE_OAK_SLAB.asItem());
+                .add(ModBackportBlocks.PALE_OAK_SLAB.asItem())
+                .add(ModBackportBlocks.POPLAR_SLAB.asItem());
         //wood stairs
         getOrCreateTagBuilder(ItemTags.WOODEN_STAIRS)
                 .add(ModBackportBlocks.CHERRY_STAIRS.asItem())
                 .add(ModBackportBlocks.BAMBOO_STAIRS.asItem())
-                .add(ModBackportBlocks.PALE_OAK_STAIRS.asItem());
+                .add(ModBackportBlocks.PALE_OAK_STAIRS.asItem())
+                .add(ModBackportBlocks.POPLAR_STAIRS.asItem());
         //wood doors
         getOrCreateTagBuilder(ItemTags.WOODEN_DOORS)
                 .add(ModBackportBlocks.CHERRY_DOOR.asItem())
                 .add(ModBackportBlocks.BAMBOO_DOOR.asItem())
-                .add(ModBackportBlocks.PALE_OAK_DOOR.asItem());
+                .add(ModBackportBlocks.PALE_OAK_DOOR.asItem())
+                .add(ModBackportBlocks.POPLAR_DOOR.asItem());
         //wood trapdoors
         getOrCreateTagBuilder(ItemTags.WOODEN_TRAPDOORS)
                 .add(ModBackportBlocks.CHERRY_TRAPDOOR.asItem())
                 .add(ModBackportBlocks.BAMBOO_TRAPDOOR.asItem())
-                .add(ModBackportBlocks.PALE_OAK_TRAPDOOR.asItem());
+                .add(ModBackportBlocks.PALE_OAK_TRAPDOOR.asItem())
+                .add(ModBackportBlocks.POPLAR_TRAPDOOR.asItem());
         //fences
         getOrCreateTagBuilder(ItemTags.WOODEN_FENCES)
                 .add(ModBackportBlocks.CHERRY_FENCE.asItem())
                 .add(ModBackportBlocks.BAMBOO_FENCE.asItem())
-                .add(ModBackportBlocks.PALE_OAK_FENCE.asItem());
+                .add(ModBackportBlocks.PALE_OAK_FENCE.asItem())
+                .add(ModBackportBlocks.POPLAR_FENCE.asItem());
         //fence gates
         getOrCreateTagBuilder(ItemTags.FENCE_GATES)
                 .add(ModBackportBlocks.CHERRY_FENCE_GATE.asItem())
                 .add(ModBackportBlocks.BAMBOO_FENCE_GATE.asItem())
-                .add(ModBackportBlocks.PALE_OAK_FENCE_GATE.asItem());
+                .add(ModBackportBlocks.PALE_OAK_FENCE_GATE.asItem())
+                .add(ModBackportBlocks.POPLAR_FENCE_GATE.asItem());
         //wooden buttons
         getOrCreateTagBuilder(ItemTags.WOODEN_BUTTONS)
                 .add(ModBackportBlocks.CHERRY_BUTTON.asItem())
                 .add(ModBackportBlocks.BAMBOO_BUTTON.asItem())
-                .add(ModBackportBlocks.PALE_OAK_BUTTON.asItem());
+                .add(ModBackportBlocks.PALE_OAK_BUTTON.asItem())
+                .add(ModBackportBlocks.POPLAR_BUTTON.asItem());
         //wooden pressure plates
         getOrCreateTagBuilder(ItemTags.WOODEN_PRESSURE_PLATES)
                 .add(ModBackportBlocks.CHERRY_PRESSURE_PLATE.asItem())
                 .add(ModBackportBlocks.BAMBOO_PRESSURE_PLATE.asItem())
-                .add(ModBackportBlocks.PALE_OAK_PRESSURE_PLATE.asItem());
+                .add(ModBackportBlocks.PALE_OAK_PRESSURE_PLATE.asItem())
+                .add(ModBackportBlocks.POPLAR_PRESSURE_PLATE.asItem());
         //signs
         getOrCreateTagBuilder(ItemTags.SIGNS)
                 .add(ModItems.CHERRY_SIGN)
                 .add(ModItems.BAMBOO_SIGN)
                 .add(ModItems.PALE_OAK_SIGN)
+                .add(ModItems.POPLAR_SIGN)
                 .add(ModItems.INVIS_SIGN);
         //hanging signs
         getOrCreateTagBuilder(ItemTags.HANGING_SIGNS)
@@ -109,6 +125,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.CHERRY_HANGING_SIGN)
                 .add(ModItems.BAMBOO_HANGING_SIGN)
                 .add(ModItems.PALE_OAK_HANGING_SIGN)
+                .add(ModItems.POPLAR_HANGING_SIGN)
                 .add(ModItems.CRIMSON_HANGING_SIGN)
                 .add(ModItems.WARPED_HANGING_SIGN);
         //endregion
@@ -130,7 +147,23 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModBlocks.ANCIENT_STONE_SLAB.asItem())
                 .add(ModBlocks.BLACK_SANDSTONE_SLAB.asItem())
                 .add(ModBlocks.BLACK_CUT_SANDSTONE_SLAB.asItem())
-                .add(ModBlocks.BLACK_SMOOTH_SANDSTONE_SLAB.asItem());
+                .add(ModBlocks.BLACK_SMOOTH_SANDSTONE_SLAB.asItem())
+                .add(ModBackportBlocks.WHITE_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.LIGHT_GRAY_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.GRAY_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.BLACK_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.BROWN_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.RED_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.ORANGE_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.YELLOW_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.LIME_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.GREEN_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.CYAN_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.LIGHT_BLUE_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.BLUE_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.PURPLE_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.MAGENTA_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.PINK_WOOL_SLAB.asItem());
         //stairs
         getOrCreateTagBuilder(ItemTags.STAIRS)
                 .add(ModBackportBlocks.PACKED_MUD_STAIRS.asItem())
@@ -139,7 +172,23 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModBlocks.ANCIENT_STONE_STAIRS.asItem())
                 .add(ModBlocks.BLACK_SANDSTONE_STAIRS.asItem())
                 .add(ModBlocks.BLACK_CUT_SANDSTONE_STAIRS.asItem())
-                .add(ModBlocks.BLACK_SMOOTH_SANDSTONE_STAIRS.asItem());
+                .add(ModBlocks.BLACK_SMOOTH_SANDSTONE_STAIRS.asItem())
+                .add(ModBackportBlocks.WHITE_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.LIGHT_GRAY_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.GRAY_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.BLACK_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.BROWN_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.RED_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.ORANGE_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.YELLOW_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.LIME_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.GREEN_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.CYAN_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.LIGHT_BLUE_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.BLUE_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.PURPLE_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.MAGENTA_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.PINK_WOOL_STAIRS.asItem());
         //walls
         getOrCreateTagBuilder(ItemTags.WALLS)
                 .add(ModBackportBlocks.PACKED_MUD_WALL.asItem())
@@ -184,6 +233,11 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModBackportBlocks.STRIPPED_PALE_OAK_LOG.asItem())
                 .add(ModBackportBlocks.PALE_OAK_WOOD.asItem())
                 .add(ModBackportBlocks.STRIPPED_PALE_OAK_WOOD.asItem());
+        getOrCreateTagBuilder(ModTags.Items.POPLAR_LOGS)
+                .add(ModBackportBlocks.POPLAR_LOG.asItem())
+                .add(ModBackportBlocks.STRIPPED_POPLAR_LOG.asItem())
+                .add(ModBackportBlocks.POPLAR_WOOD.asItem())
+                .add(ModBackportBlocks.STRIPPED_POPLAR_WOOD.asItem());
         getOrCreateTagBuilder(ModTags.Items.WILDFLOWERS)
                 .add(ModBackportBlocks.WILDFLOWERS.asItem())
                 .add(ModBlocks.WILDFLOWERS_RED_BLUE.asItem());
@@ -393,6 +447,40 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(Items.RED_WOOL)
                 .add(Items.WHITE_WOOL)
                 .add(Items.YELLOW_WOOL);
+        getOrCreateTagBuilder(ModTags.Items.DYEABLE_WOOL_SLABS)
+                .add(ModBackportBlocks.WHITE_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.LIGHT_GRAY_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.GRAY_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.BLACK_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.BROWN_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.RED_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.ORANGE_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.YELLOW_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.LIME_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.GREEN_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.CYAN_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.LIGHT_BLUE_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.BLUE_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.PURPLE_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.MAGENTA_WOOL_SLAB.asItem())
+                .add(ModBackportBlocks.PINK_WOOL_SLAB.asItem());
+        getOrCreateTagBuilder(ModTags.Items.DYEABLE_WOOL_STAIRS)
+                .add(ModBackportBlocks.WHITE_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.LIGHT_GRAY_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.GRAY_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.BLACK_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.BROWN_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.RED_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.ORANGE_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.YELLOW_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.LIME_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.GREEN_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.CYAN_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.LIGHT_BLUE_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.BLUE_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.PURPLE_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.MAGENTA_WOOL_STAIRS.asItem())
+                .add(ModBackportBlocks.PINK_WOOL_STAIRS.asItem());
         //endregion
         //endregion
     }

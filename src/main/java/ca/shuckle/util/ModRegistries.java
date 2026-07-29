@@ -104,6 +104,24 @@ public class ModRegistries {
         registry.add(ModItems.PALE_OAK_HANGING_SIGN, getSmeltTime(4));
         registry.add(ModBackportBlocks.PALE_OAK_SHELF, getSmeltTime(1.5));
 
+        registry.add(ModBackportBlocks.POPLAR_SAPLING, getSmeltTime(0.5));
+        registry.add(ModBackportBlocks.POPLAR_LOG, getSmeltTime(1.5));
+        registry.add(ModBackportBlocks.POPLAR_WOOD, getSmeltTime(1.5));
+        registry.add(ModBackportBlocks.STRIPPED_POPLAR_LOG, getSmeltTime(1.5));
+        registry.add(ModBackportBlocks.STRIPPED_POPLAR_WOOD, getSmeltTime(1.5));
+        registry.add(ModBackportBlocks.POPLAR_PLANKS, getSmeltTime(1.5));
+        registry.add(ModBackportBlocks.POPLAR_SLAB, getSmeltTime(0.75));
+        registry.add(ModBackportBlocks.POPLAR_STAIRS, getSmeltTime(1.5));
+        registry.add(ModBackportBlocks.POPLAR_DOOR, getSmeltTime(1));
+        registry.add(ModBackportBlocks.POPLAR_TRAPDOOR, getSmeltTime(1.5));
+        registry.add(ModBackportBlocks.POPLAR_FENCE, getSmeltTime(1.5));
+        registry.add(ModBackportBlocks.POPLAR_FENCE_GATE, getSmeltTime(1.5));
+        registry.add(ModBackportBlocks.POPLAR_BUTTON, getSmeltTime(0.5));
+        registry.add(ModBackportBlocks.POPLAR_PRESSURE_PLATE, getSmeltTime(1.5));
+        registry.add(ModItems.POPLAR_SIGN, getSmeltTime(1));
+        registry.add(ModItems.POPLAR_HANGING_SIGN, getSmeltTime(4));
+        registry.add(ModBackportBlocks.POPLAR_SHELF, getSmeltTime(1.5));
+
         registry.add(ModBackportBlocks.LEAF_LITTER, getSmeltTime(0.5));
         registry.add(ModBlocks.LEAF_LITTER_OAK, getSmeltTime(0.5));
     }
@@ -116,6 +134,9 @@ public class ModRegistries {
 
         StrippableBlockRegistry.register(ModBackportBlocks.PALE_OAK_LOG, ModBackportBlocks.STRIPPED_PALE_OAK_LOG);
         StrippableBlockRegistry.register(ModBackportBlocks.PALE_OAK_WOOD, ModBackportBlocks.STRIPPED_PALE_OAK_WOOD);
+
+        StrippableBlockRegistry.register(ModBackportBlocks.POPLAR_LOG, ModBackportBlocks.STRIPPED_POPLAR_LOG);
+        StrippableBlockRegistry.register(ModBackportBlocks.POPLAR_WOOD, ModBackportBlocks.STRIPPED_POPLAR_WOOD);
     }
 
     private static void registerOxidizables(){
@@ -133,10 +154,16 @@ public class ModRegistries {
     private static void registerCompostables(){
         CompostingChanceRegistry registry = CompostingChanceRegistry.INSTANCE;
 
+        registry.add(ModBackportBlocks.CHERRY_SAPLING, 0.3f);
         registry.add(ModBackportBlocks.CHERRY_LEAVES, 0.3f);
 
         registry.add(ModBackportBlocks.PALE_OAK_SAPLING, 0.3f);
         registry.add(ModBackportBlocks.PALE_OAK_LEAVES, 0.3f);
+
+        registry.add(ModBackportBlocks.POPLAR_SAPLING, 0.3f);
+        registry.add(ModBackportBlocks.RED_POPLAR_LEAVES, 0.3f);
+        registry.add(ModBackportBlocks.ORANGE_POPLAR_LEAVES, 0.3f);
+        registry.add(ModBackportBlocks.YELLOW_POPLAR_LEAVES, 0.3f);
 
         registry.add(ModBackportBlocks.PALE_MOSS_BLOCK, 0.65f);
         registry.add(ModBackportBlocks.PALE_MOSS_CARPET, 0.3f);
@@ -198,11 +225,59 @@ public class ModRegistries {
         instance.add(ModBackportBlocks.PALE_OAK_FENCE_GATE, 5, 20);
         instance.add(ModBackportBlocks.PALE_OAK_SHELF, 30, 20);
 
+        instance.add(ModBackportBlocks.WHITE_WOOL_SLAB, 30, 30);
+        instance.add(ModBackportBlocks.WHITE_WOOL_STAIRS, 30, 30);
+        instance.add(ModBackportBlocks.LIGHT_GRAY_WOOL_SLAB, 30, 30);
+        instance.add(ModBackportBlocks.LIGHT_GRAY_WOOL_STAIRS, 30, 30);
+        instance.add(ModBackportBlocks.GRAY_WOOL_SLAB, 30, 30);
+        instance.add(ModBackportBlocks.GRAY_WOOL_STAIRS, 30, 30);
+        instance.add(ModBackportBlocks.BLACK_WOOL_SLAB, 30, 30);
+        instance.add(ModBackportBlocks.BLACK_WOOL_STAIRS, 30, 30);
+        instance.add(ModBackportBlocks.BROWN_WOOL_SLAB, 30, 30);
+        instance.add(ModBackportBlocks.BROWN_WOOL_STAIRS, 30, 30);
+        instance.add(ModBackportBlocks.RED_WOOL_SLAB, 30, 30);
+        instance.add(ModBackportBlocks.RED_WOOL_STAIRS, 30, 30);
+        instance.add(ModBackportBlocks.ORANGE_WOOL_SLAB, 30, 30);
+        instance.add(ModBackportBlocks.ORANGE_WOOL_STAIRS, 30, 30);
+        instance.add(ModBackportBlocks.YELLOW_WOOL_SLAB, 30, 30);
+        instance.add(ModBackportBlocks.YELLOW_WOOL_STAIRS, 30, 30);
+        instance.add(ModBackportBlocks.LIME_WOOL_SLAB, 30, 30);
+        instance.add(ModBackportBlocks.LIME_WOOL_STAIRS, 30, 30);
+        instance.add(ModBackportBlocks.GREEN_WOOL_SLAB, 30, 30);
+        instance.add(ModBackportBlocks.GREEN_WOOL_STAIRS, 30, 30);
+        instance.add(ModBackportBlocks.CYAN_WOOL_SLAB, 30, 30);
+        instance.add(ModBackportBlocks.CYAN_WOOL_STAIRS, 30, 30);
+        instance.add(ModBackportBlocks.LIGHT_BLUE_WOOL_SLAB, 30, 30);
+        instance.add(ModBackportBlocks.LIGHT_BLUE_WOOL_STAIRS, 30, 30);
+        instance.add(ModBackportBlocks.BLUE_WOOL_SLAB, 30, 30);
+        instance.add(ModBackportBlocks.BLUE_WOOL_STAIRS, 30, 30);
+        instance.add(ModBackportBlocks.PURPLE_WOOL_SLAB, 30, 30);
+        instance.add(ModBackportBlocks.PURPLE_WOOL_STAIRS, 30, 30);
+        instance.add(ModBackportBlocks.MAGENTA_WOOL_SLAB, 30, 30);
+        instance.add(ModBackportBlocks.MAGENTA_WOOL_STAIRS, 30, 30);
+        instance.add(ModBackportBlocks.PINK_WOOL_SLAB, 30, 30);
+        instance.add(ModBackportBlocks.PINK_WOOL_STAIRS, 30, 30);
+
+        instance.add(ModBackportBlocks.RED_POPLAR_LEAVES, 30, 60);
+        instance.add(ModBackportBlocks.ORANGE_POPLAR_LEAVES, 30, 60);
+        instance.add(ModBackportBlocks.YELLOW_POPLAR_LEAVES, 30, 60);
+        instance.add(ModBackportBlocks.POPLAR_LOG, 5, 5);
+        instance.add(ModBackportBlocks.POPLAR_WOOD, 5, 5);
+        instance.add(ModBackportBlocks.STRIPPED_POPLAR_LOG, 5, 5);
+        instance.add(ModBackportBlocks.STRIPPED_POPLAR_WOOD, 5, 5);
+        instance.add(ModBackportBlocks.POPLAR_PLANKS, 5, 20);
+        instance.add(ModBackportBlocks.POPLAR_SLAB, 5, 20);
+        instance.add(ModBackportBlocks.POPLAR_STAIRS, 5, 20);
+        instance.add(ModBackportBlocks.POPLAR_FENCE, 5, 20);
+        instance.add(ModBackportBlocks.POPLAR_FENCE_GATE, 5, 20);
+        instance.add(ModBackportBlocks.POPLAR_SHELF, 30, 20);
+
         instance.add(ModBackportBlocks.PINK_PETALS, 30, 60);
         instance.add(ModBackportBlocks.WILDFLOWERS, 30, 60);
         instance.add(ModBlocks.WILDFLOWERS_RED_BLUE, 30, 60);
 
         instance.add(ModBackportBlocks.BUSH, 60, 100);
+        instance.add(ModBackportBlocks.RED_SHRUB, 60, 100);
         instance.add(ModBackportBlocks.FIREFLY_BUSH, 60, 100);
         instance.add(ModBackportBlocks.LIT_FIREFLY_BUSH, 60, 100);
 

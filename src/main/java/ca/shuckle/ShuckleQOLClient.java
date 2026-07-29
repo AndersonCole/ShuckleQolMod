@@ -43,6 +43,14 @@ public class ShuckleQOLClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.POTTED_PALE_OAK_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.PALE_OAK_LEAVES, RenderLayer.getCutout());
 
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.POPLAR_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.POTTED_POPLAR_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.RED_POPLAR_LEAVES, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.ORANGE_POPLAR_LEAVES, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.YELLOW_POPLAR_LEAVES, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.POPLAR_DOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.POPLAR_TRAPDOOR, RenderLayer.getCutout());
+
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.PALE_HANGING_MOSS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.PALE_GRASS, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.PALE_TALL_GRASS, RenderLayer.getCutout());
@@ -55,6 +63,7 @@ public class ShuckleQOLClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.LEAF_LITTER_OAK, RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.BUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.RED_SHRUB, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.FIREFLY_BUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBackportBlocks.LIT_FIREFLY_BUSH, RenderLayer.getCutout());
 
@@ -112,6 +121,8 @@ public class ShuckleQOLClient implements ClientModInitializer {
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
                 new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/pale_oak")));
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
+                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/poplar")));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
                 new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/crimson")));
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
                 new Identifier(ShuckleQOL.MOD_ID, "entity/signs/hanging/warped")));
@@ -122,6 +133,8 @@ public class ShuckleQOLClient implements ClientModInitializer {
                 new Identifier(ShuckleQOL.MOD_ID, "entity/signs/bamboo")));
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
                 new Identifier(ShuckleQOL.MOD_ID, "entity/signs/pale_oak")));
+        SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
+                new Identifier(ShuckleQOL.MOD_ID, "entity/signs/poplar")));
         SpriteIdentifierRegistry.INSTANCE.addIdentifier(new SpriteIdentifier(TexturedRenderLayers.SIGNS_ATLAS_TEXTURE,
                 new Identifier(ShuckleQOL.MOD_ID, "entity/signs/invisible")));
 

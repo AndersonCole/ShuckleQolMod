@@ -2,6 +2,7 @@ package ca.shuckle.block.entity;
 
 import ca.shuckle.block.ModBackportBlocks;
 import ca.shuckle.block.entity.custom.CrafterBlockEntity;
+import ca.shuckle.block.entity.custom.PotentCinnabarBlockEntity;
 import ca.shuckle.block.entity.custom.PotentSulfurBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntityType;
@@ -19,6 +20,11 @@ public class ModBlockEntities {
             Registries.BLOCK_ENTITY_TYPE,
             new Identifier("potent_sulfur"),
             FabricBlockEntityTypeBuilder.create(PotentSulfurBlockEntity::new, ModBackportBlocks.POTENT_SULFUR).build()
+    );
+    public static final BlockEntityType<PotentCinnabarBlockEntity> POTENT_CINNABAR = Registry.register(
+            Registries.BLOCK_ENTITY_TYPE,
+            new Identifier("potent_cinnabar"),
+            FabricBlockEntityTypeBuilder.create(PotentCinnabarBlockEntity::new, ModBackportBlocks.POTENT_CINNABAR).build()
     );
 
     public static void registerBlockEntities() {}

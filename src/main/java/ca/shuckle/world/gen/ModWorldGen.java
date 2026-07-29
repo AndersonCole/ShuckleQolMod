@@ -18,6 +18,15 @@ public class ModWorldGen {
                 BiomeSelectors.includeByKey(BiomeKeys.DARK_FOREST),
                 GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.PALE_OAK_TREE_PLACED_KEY);
 
+        BiomeModifications.addFeature(
+                BiomeSelectors.includeByKey(BiomeKeys.BIRCH_FOREST),
+                GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.RED_POPLAR_TREE_PLACED_KEY);
+        BiomeModifications.addFeature(
+                BiomeSelectors.includeByKey(BiomeKeys.BIRCH_FOREST),
+                GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.ORANGE_POPLAR_TREE_PLACED_KEY);
+        BiomeModifications.addFeature(
+                BiomeSelectors.includeByKey(BiomeKeys.BIRCH_FOREST),
+                GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.YELLOW_POPLAR_TREE_PLACED_KEY);
         //misc vegatation
         BiomeModifications.addFeature(
                 BiomeSelectors.includeByKey(BiomeKeys.DARK_FOREST),
@@ -26,6 +35,10 @@ public class ModWorldGen {
         BiomeModifications.addFeature(
                 BiomeSelectors.includeByKey(BiomeKeys.FOREST),
                 GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.BUSH_PLACED_KEY);
+
+        BiomeModifications.addFeature(
+                BiomeSelectors.includeByKey(BiomeKeys.BIRCH_FOREST),
+                GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.RED_SHRUB_PLACED_KEY);
 
         BiomeModifications.addFeature(
                 BiomeSelectors.includeByKey(BiomeKeys.DESERT),

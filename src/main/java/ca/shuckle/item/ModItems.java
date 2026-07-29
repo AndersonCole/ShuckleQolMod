@@ -70,6 +70,10 @@ public class ModItems {
             new HangingSignItem(ModBackportBlocks.PALE_OAK_HANGING_SIGN, ModBackportBlocks.PALE_OAK_WALL_HANGING_SIGN,
                     new FabricItemSettings().maxCount(16)), ModItemGroup.SHUCKLE_BACKPORT);
 
+    public static final Item POPLAR_HANGING_SIGN = registerItemInGroup("poplar_hanging_sign",
+            new HangingSignItem(ModBackportBlocks.POPLAR_HANGING_SIGN, ModBackportBlocks.POPLAR_WALL_HANGING_SIGN,
+                    new FabricItemSettings().maxCount(16)), ModItemGroup.SHUCKLE_BACKPORT);
+
     public static final Item CRIMSON_HANGING_SIGN = registerItemInGroup("crimson_hanging_sign",
             new HangingSignItem(ModBackportBlocks.CRIMSON_HANGING_SIGN, ModBackportBlocks.CRIMSON_WALL_HANGING_SIGN,
                     new FabricItemSettings().maxCount(16)), ModItemGroup.SHUCKLE_BACKPORT);
@@ -89,6 +93,10 @@ public class ModItems {
     public static final Item PALE_OAK_SIGN = registerItemInGroup("pale_oak_sign",
             new SignItem(new FabricItemSettings().maxCount(16),
                     ModBackportBlocks.PALE_OAK_SIGN, ModBackportBlocks.PALE_OAK_WALL_SIGN), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Item POPLAR_SIGN = registerItemInGroup("poplar_sign",
+            new SignItem(new FabricItemSettings().maxCount(16),
+                    ModBackportBlocks.POPLAR_SIGN, ModBackportBlocks.POPLAR_WALL_SIGN), ModItemGroup.SHUCKLE_BACKPORT);
 
     public static final Item COPPER_TORCH = registerItemInGroup("copper_torch",
             new VerticallyAttachableBlockItem(ModBackportBlocks.COPPER_TORCH, ModBackportBlocks.COPPER_WALL_TORCH,
@@ -285,6 +293,7 @@ public class ModItems {
         registerItemInGroup(CHERRY_SIGN, ModItemGroup.SHUCKLE_BACKPORT);
         registerItemInGroup(BAMBOO_SIGN, ModItemGroup.SHUCKLE_BACKPORT);
         registerItemInGroup(PALE_OAK_SIGN, ModItemGroup.SHUCKLE_BACKPORT);
+        registerItemInGroup(POPLAR_SIGN, ModItemGroup.SHUCKLE_BACKPORT);
         registerItemInGroup(INVIS_SIGN, ModItemGroup.SHUCKLE);
     }
 }

@@ -1,11 +1,17 @@
 package ca.shuckle.datagen;
 
+import ca.shuckle.ShuckleQOL;
 import ca.shuckle.block.ModBackportBlocks;
 import ca.shuckle.block.ModBlocks;
 import ca.shuckle.item.ModItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.loot.entry.LootPoolEntry;
+import net.minecraft.registry.Registries;
+import net.minecraft.util.DyeColor;
+import net.minecraft.util.Identifier;
+
+import java.util.List;
 
 public class ModLootTableGenerator extends FabricBlockLootTableProvider {
     public ModLootTableGenerator(FabricDataOutput dataOutput) {
@@ -37,6 +43,7 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBackportBlocks.CRIMSON_SHELF);
         addDrop(ModBackportBlocks.WARPED_SHELF);
         //endregion
+        addWoolDrops();
         //region Cherry
         addDrop(ModBackportBlocks.CHERRY_SAPLING);
         addDrop(ModBackportBlocks.POTTED_CHERRY_SAPLING, pottedPlantDrops(ModBackportBlocks.CHERRY_SAPLING));
@@ -117,6 +124,28 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBackportBlocks.RESIN_BRICK_STAIRS);
         addDrop(ModBackportBlocks.RESIN_BRICK_WALL);
         addDrop(ModBackportBlocks.CHISELED_RESIN_BRICKS);
+        //endregion
+        //region Poplar
+        addDrop(ModBackportBlocks.POPLAR_SAPLING);
+        addDrop(ModBackportBlocks.POTTED_POPLAR_SAPLING, pottedPlantDrops(ModBackportBlocks.POPLAR_SAPLING));
+
+        addDrop(ModBackportBlocks.POPLAR_LOG);
+        addDrop(ModBackportBlocks.POPLAR_WOOD);
+        addDrop(ModBackportBlocks.STRIPPED_POPLAR_LOG);
+        addDrop(ModBackportBlocks.STRIPPED_POPLAR_WOOD);
+
+        addDrop(ModBackportBlocks.POPLAR_PLANKS);
+        addDrop(ModBackportBlocks.POPLAR_SLAB, slabDrops(ModBackportBlocks.POPLAR_SLAB));
+        addDrop(ModBackportBlocks.POPLAR_STAIRS);
+        addDrop(ModBackportBlocks.POPLAR_DOOR, doorDrops(ModBackportBlocks.POPLAR_DOOR));
+        addDrop(ModBackportBlocks.POPLAR_TRAPDOOR);
+        addDrop(ModBackportBlocks.POPLAR_FENCE);
+        addDrop(ModBackportBlocks.POPLAR_FENCE_GATE);
+        addDrop(ModBackportBlocks.POPLAR_BUTTON);
+        addDrop(ModBackportBlocks.POPLAR_PRESSURE_PLATE);
+        addDrop(ModBackportBlocks.POPLAR_SHELF);
+        addDrop(ModBackportBlocks.POPLAR_SIGN);
+        addDrop(ModBackportBlocks.POPLAR_HANGING_SIGN);
         //endregion
         //region Copper
         addDrop(ModBackportBlocks.CHISELED_COPPER);
@@ -236,6 +265,7 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBackportBlocks.CINNABAR_BRICK_WALL);
 
         addDrop(ModBackportBlocks.CHISELED_CINNABAR);
+        addDrop(ModBackportBlocks.POTENT_CINNABAR);
         //endregion
         //region Sulfur
         addDrop(ModBackportBlocks.SULFUR);
@@ -261,6 +291,7 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBackportBlocks.LEAF_LITTER, flowerbedDrops(ModBackportBlocks.LEAF_LITTER));
 
         addDrop(ModBackportBlocks.BUSH, dropsWithShears(ModBackportBlocks.BUSH));
+        addDrop(ModBackportBlocks.RED_SHRUB, dropsWithShears(ModBackportBlocks.RED_SHRUB));
         addDrop(ModBackportBlocks.FIREFLY_BUSH, dropsWithShears(ModBackportBlocks.FIREFLY_BUSH));
         addDrop(ModBackportBlocks.LIT_FIREFLY_BUSH, dropsWithShears(ModBackportBlocks.LIT_FIREFLY_BUSH));
 
@@ -312,5 +343,15 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.ANCIENT_STONE_WALL);
         //endregion
         //endregion
+    }
+
+    private void addWoolDrops() {
+        List<DyeColor> dyeColours = List.of(DyeColor.values());
+
+        for(DyeColor dyeColour : dyeColours) {
+            addDrop(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_wool_slab")),
+                    slabDrops(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_wool_slab"))));
+            addDrop(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_wool_stairs")));
+        }
     }
 }

@@ -5,7 +5,6 @@ import ca.shuckle.block.ModBackportBlocks;
 import ca.shuckle.block.ModBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.PropaguleBlock;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -15,28 +14,22 @@ import net.minecraft.structure.rule.RuleTest;
 import net.minecraft.structure.rule.TagMatchRuleTest;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DataPool;
-import net.minecraft.util.collection.Pool;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.VerticalSurfaceType;
 import net.minecraft.util.math.intprovider.*;
-import net.minecraft.world.gen.blockpredicate.BlockPredicate;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.ThreeLayersFeatureSize;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.CherryFoliagePlacer;
 import net.minecraft.world.gen.foliage.DarkOakFoliagePlacer;
-import net.minecraft.world.gen.foliage.JungleFoliagePlacer;
-import net.minecraft.world.gen.placementmodifier.BlockFilterPlacementModifier;
+import net.minecraft.world.gen.foliage.LargeOakFoliagePlacer;
 import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
-import net.minecraft.world.gen.stateprovider.RandomizedIntBlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.treedecorator.AttachedToLeavesTreeDecorator;
-import net.minecraft.world.gen.treedecorator.LeavesVineTreeDecorator;
 import net.minecraft.world.gen.trunk.CherryTrunkPlacer;
 import net.minecraft.world.gen.trunk.DarkOakTrunkPlacer;
-import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
+import net.minecraft.world.gen.trunk.LargeOakTrunkPlacer;
 
 import java.util.List;
 import java.util.OptionalInt;
@@ -44,11 +37,16 @@ import java.util.OptionalInt;
 public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?,?>> CHERRY_TREE_KEY = registerKey("cherry_tree");
     public static final RegistryKey<ConfiguredFeature<?,?>> PALE_OAK_TREE_KEY = registerKey("pale_oak_tree");
+    public static final RegistryKey<ConfiguredFeature<?,?>> RED_POPLAR_TREE_KEY = registerKey("red_poplar_tree");
+    public static final RegistryKey<ConfiguredFeature<?,?>> ORANGE_POPLAR_TREE_KEY = registerKey("orange_poplar_tree");
+    public static final RegistryKey<ConfiguredFeature<?,?>> YELLOW_POPLAR_TREE_KEY = registerKey("yellow_poplar_tree");
     public static final RegistryKey<ConfiguredFeature<?,?>> PALE_MOSS_VEGETATION_KEY = registerKey("pale_moss_vegetation");
     public static final RegistryKey<ConfiguredFeature<?,?>> PALE_MOSS_PATCH_KEY = registerKey("pale_moss_patch");
     public static final RegistryKey<ConfiguredFeature<?,?>> PALE_MOSS_BONEMEAL_KEY = registerKey("pale_moss_bonemeal");
     public static final RegistryKey<ConfiguredFeature<?,?>> BUSH_VEGETATION_KEY = registerKey("bush_vegetation");
     public static final RegistryKey<ConfiguredFeature<?,?>> BUSH_PATCH_KEY = registerKey("bush_patch");
+    public static final RegistryKey<ConfiguredFeature<?,?>> RED_SHRUB_VEGETATION_KEY = registerKey("red_shrub_vegetation");
+    public static final RegistryKey<ConfiguredFeature<?,?>> RED_SHRUB_PATCH_KEY = registerKey("red_shrub_patch");
     public static final RegistryKey<ConfiguredFeature<?,?>> DRY_GRASS_VEGETATION_KEY = registerKey("dry_grass_vegetation");
     public static final RegistryKey<ConfiguredFeature<?,?>> DRY_GRASS_PATCH_KEY = registerKey("dry_grass_patch");
 
@@ -76,6 +74,28 @@ public class ModConfiguredFeatures {
                 .decorators(List.of(new AttachedToLeavesTreeDecorator(0.14f, 1, 0,
                                 BlockStateProvider.of((BlockState)ModBackportBlocks.PALE_HANGING_MOSS.getDefaultState()),
                                 2, List.of(Direction.DOWN)))).ignoreVines().build());
+
+        register(context, RED_POPLAR_TREE_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
+                BlockStateProvider.of(ModBackportBlocks.POPLAR_LOG),
+                new LargeOakTrunkPlacer(3, 11, 0),
+                BlockStateProvider.of(ModBackportBlocks.RED_POPLAR_LEAVES),
+                new LargeOakFoliagePlacer(ConstantIntProvider.create(2),
+                        ConstantIntProvider.create(4), 4),
+                new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))).ignoreVines().build());
+        register(context, ORANGE_POPLAR_TREE_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
+                BlockStateProvider.of(ModBackportBlocks.POPLAR_LOG),
+                new LargeOakTrunkPlacer(3, 11, 0),
+                BlockStateProvider.of(ModBackportBlocks.ORANGE_POPLAR_LEAVES),
+                new LargeOakFoliagePlacer(ConstantIntProvider.create(2),
+                        ConstantIntProvider.create(4), 4),
+                new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))).ignoreVines().build());
+        register(context, YELLOW_POPLAR_TREE_KEY, Feature.TREE, new TreeFeatureConfig.Builder(
+                BlockStateProvider.of(ModBackportBlocks.POPLAR_LOG),
+                new LargeOakTrunkPlacer(3, 11, 0),
+                BlockStateProvider.of(ModBackportBlocks.YELLOW_POPLAR_LEAVES),
+                new LargeOakFoliagePlacer(ConstantIntProvider.create(2),
+                        ConstantIntProvider.create(4), 4),
+                new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))).ignoreVines().build());
 
         register(context, PALE_MOSS_VEGETATION_KEY, Feature.SIMPLE_BLOCK,
                 new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(
@@ -116,6 +136,27 @@ public class ModConfiguredFeatures {
                 new VegetationPatchFeatureConfig(BlockTags.MOSS_REPLACEABLE,
                         BlockStateProvider.of(Blocks.GRASS_BLOCK),
                         PlacedFeatures.createEntry(configuredFeatureRegistryEntryLookup.getOrThrow(BUSH_VEGETATION_KEY),
+                                new PlacementModifier[0]), VerticalSurfaceType.FLOOR,
+                        ConstantIntProvider.create(1), 0.0f, 2, 0.8f,
+                        UniformIntProvider.create(2, 5), 0.3f));
+
+        register(context, RED_SHRUB_VEGETATION_KEY, Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(
+                        DataPool.<BlockState>builder()
+                                .add(Blocks.AIR.getDefaultState(), 25)
+                                .add(Blocks.GRASS.getDefaultState(), 25)
+                                .add(ModBackportBlocks.RED_SHRUB.getDefaultState(), 20)
+                                .add(ModBackportBlocks.FIREFLY_BUSH.getDefaultState(), 10)
+                                .add(ModBackportBlocks.LIT_FIREFLY_BUSH.getDefaultState(), 5)
+                                .add(ModBackportBlocks.LEAF_LITTER.getDefaultState().with(Properties.FLOWER_AMOUNT, 1), 5)
+                                .add(ModBackportBlocks.LEAF_LITTER.getDefaultState().with(Properties.FLOWER_AMOUNT, 2), 10)
+                                .add(ModBackportBlocks.LEAF_LITTER.getDefaultState().with(Properties.FLOWER_AMOUNT, 3), 10)
+                                .add(ModBackportBlocks.LEAF_LITTER.getDefaultState().with(Properties.FLOWER_AMOUNT, 4), 5))));
+
+        register(context, RED_SHRUB_PATCH_KEY, Feature.VEGETATION_PATCH,
+                new VegetationPatchFeatureConfig(BlockTags.MOSS_REPLACEABLE,
+                        BlockStateProvider.of(Blocks.GRASS_BLOCK),
+                        PlacedFeatures.createEntry(configuredFeatureRegistryEntryLookup.getOrThrow(RED_SHRUB_VEGETATION_KEY),
                                 new PlacementModifier[0]), VerticalSurfaceType.FLOOR,
                         ConstantIntProvider.create(1), 0.0f, 2, 0.8f,
                         UniformIntProvider.create(2, 5), 0.3f));

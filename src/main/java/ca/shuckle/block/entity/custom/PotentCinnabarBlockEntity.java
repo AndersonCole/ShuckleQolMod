@@ -1,6 +1,6 @@
 package ca.shuckle.block.entity.custom;
 
-import ca.shuckle.block.custom.PotentSulfurBlock;
+import ca.shuckle.block.custom.PotentCinnabarBlock;
 import ca.shuckle.block.entity.ModBlockEntities;
 import ca.shuckle.particle.ModParticles;
 import ca.shuckle.particle.effect.GeyserParticleEffect;
@@ -38,7 +38,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.function.Predicate;
-public class PotentSulfurBlockEntity extends BlockEntity {
+public class PotentCinnabarBlockEntity extends BlockEntity {
     private static final int EFFECT_APPLICATION_FREQUENCY_TICKS = 10;
     private static final float EFFECT_DURATION_IN_SECONDS = 4.0F;
     private static final int EFFECT_DURATION_IN_TICKS = 80;
@@ -51,12 +51,12 @@ public class PotentSulfurBlockEntity extends BlockEntity {
     public int waitingCountdown = -1;
     public long eruptionTick = -1L;
 
-    public static void serverNauseaEffectTick(World world, BlockPos pos, BlockState state, PotentSulfurBlockEntity be) {
+    public static void serverNauseaEffectTick(World world, BlockPos pos, BlockState state, PotentCinnabarBlockEntity be) {
         if (world.getTime() % 10L == 0L) {
-            BlockPos sourceBlock = findNoxiousGasSourceBlock(world, pos);
+            BlockPos sourceBlock = findFireParticleSourceBlock(world, pos);
             if (sourceBlock != null) {
                 for (LivingEntity entity : getNearbyLivingEntities(world, sourceBlock)) {
-                    if (canBeReachedByNoxiousGas(world, sourceBlock, entity.getEyePos())) {
+                    if (canBeReachedByFireParticle(world, sourceBlock, entity.getEyePos())) {
                         applyNauseaEffect(entity);
                     }
                 }
@@ -64,17 +64,17 @@ public class PotentSulfurBlockEntity extends BlockEntity {
         }
     }
 
-    public static void clientNoxiousGasTick(World world, BlockPos pos, BlockState state, PotentSulfurBlockEntity be) {
+    public static void clientFireParticleTick(World world, BlockPos pos, BlockState state, PotentCinnabarBlockEntity be) {
         if (world.getTime() % 20L == 0L) {
-            BlockPos sourceBlock = findNoxiousGasSourceBlock(world, pos);
+            BlockPos sourceBlock = findFireParticleSourceBlock(world, pos);
             if (sourceBlock != null) {
-                spawnNoxiousGasCloudParticle(world, Vec3d.ofCenter(sourceBlock));
+                spawnSmallFireParticle(world, Vec3d.ofCenter(sourceBlock));
             }
         }
     }
 
-    public static void clientGeyserPlumeTick (World world, BlockPos pos, BlockState state, PotentSulfurBlockEntity be) {
-        BlockPos sourceBlock = findNoxiousGasSourceBlock(world, pos);
+    public static void clientGeyserPlumeTick (World world, BlockPos pos, BlockState state, PotentCinnabarBlockEntity be) {
+        BlockPos sourceBlock = findFireParticleSourceBlock(world, pos);
         if (sourceBlock != null) {
             long eruptionTime = world.getTime() - be.eruptionTick;
             if (eruptionTime % 20L == 0L) {
@@ -82,7 +82,7 @@ public class PotentSulfurBlockEntity extends BlockEntity {
             }
 
             SoundEvent soundEvent;
-            if (state.get(PotentSulfurBlock.CONTINUOUS).booleanValue()) {
+            if (state.get(PotentCinnabarBlock.CONTINUOUS).booleanValue()) {
                 soundEvent = ModSounds.GEYSER_CONTINUOUS_ACTIVE;
             } else {
                 soundEvent = ModSounds.GEYSER_ERUPTION_ACTIVE;
@@ -95,18 +95,18 @@ public class PotentSulfurBlockEntity extends BlockEntity {
         }
     }
 
-    public static void serverWaitingCountdownTick(World world, BlockPos pos, BlockState state, PotentSulfurBlockEntity be) {
+    public static void serverWaitingCountdownTick(World world, BlockPos pos, BlockState state, PotentCinnabarBlockEntity be) {
         if (world.getTime() % 20L == 0L) {
-            BlockPos sourceBlock = findNoxiousGasSourceBlock(world, pos);
+            BlockPos sourceBlock = findFireParticleSourceBlock(world, pos);
             if (sourceBlock != null) {
                 if (be.waitingCountdown <= 0) {
-                    int waterBlocks = sourceBlock.getY() - pos.getY() - 1;
+                    int lavaBlocks = sourceBlock.getY() - pos.getY() - 1;
                     Random geyserPositional = geyserPositional((ServerWorld)world, pos);
-                    if (state.get(PotentSulfurBlock.DORMANT).booleanValue()) {
-                        be.waitingCountdown = 10 * (waterBlocks - 1) + geyserPositional.nextBetween(15, 30);
+                    if (state.get(PotentCinnabarBlock.DORMANT).booleanValue()) {
+                        be.waitingCountdown = 10 * (lavaBlocks - 1) + geyserPositional.nextBetween(15, 30);
                     } else {
                         geyserPositional.nextInt();
-                        be.waitingCountdown = waterBlocks - 1 + geyserPositional.nextBetween(1, 2);
+                        be.waitingCountdown = lavaBlocks - 1 + geyserPositional.nextBetween(1, 2);
                     }
                 }
 
@@ -115,20 +115,20 @@ public class PotentSulfurBlockEntity extends BlockEntity {
                 }
 
                 if (be.waitingCountdown == 0) {
-                    if (state.get(PotentSulfurBlock.DORMANT).booleanValue()) {
+                    if (state.get(PotentCinnabarBlock.DORMANT).booleanValue()) {
                         world.setBlockState(pos, (BlockState)((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)
-                                state.with(PotentSulfurBlock.DRY, false))
-                                .with(PotentSulfurBlock.WET, false))
-                                .with(PotentSulfurBlock.DORMANT, false))
-                                .with(PotentSulfurBlock.ERUPTING, true))
-                                .with(PotentSulfurBlock.CONTINUOUS, false)), 3);
+                                state.with(PotentCinnabarBlock.DRY, false))
+                                .with(PotentCinnabarBlock.WET, false))
+                                .with(PotentCinnabarBlock.DORMANT, false))
+                                .with(PotentCinnabarBlock.ERUPTING, true))
+                                .with(PotentCinnabarBlock.CONTINUOUS, false)), 3);
                     } else {
                         world.setBlockState(pos, (BlockState)((BlockState)((BlockState)((BlockState)((BlockState)((BlockState)
-                                state.with(PotentSulfurBlock.DRY, false))
-                                .with(PotentSulfurBlock.WET, false))
-                                .with(PotentSulfurBlock.DORMANT, true))
-                                .with(PotentSulfurBlock.ERUPTING, false))
-                                .with(PotentSulfurBlock.CONTINUOUS, false)), 3);
+                                state.with(PotentCinnabarBlock.DRY, false))
+                                .with(PotentCinnabarBlock.WET, false))
+                                .with(PotentCinnabarBlock.DORMANT, true))
+                                .with(PotentCinnabarBlock.ERUPTING, false))
+                                .with(PotentCinnabarBlock.CONTINUOUS, false)), 3);
                         world.emitGameEvent(GameEvent.BLOCK_DEACTIVATE, pos, GameEvent.Emitter.of(state));
                     }
                 }
@@ -136,11 +136,11 @@ public class PotentSulfurBlockEntity extends BlockEntity {
         }
     }
 
-    public static void serverLaunchEntityTick(World world, BlockPos pos, BlockState state, PotentSulfurBlockEntity be) {
-        BlockPos sourceBlock = findNoxiousGasSourceBlock(world, pos);
+    public static void serverLaunchEntityTick(World world, BlockPos pos, BlockState state, PotentCinnabarBlockEntity be) {
+        BlockPos sourceBlock = findFireParticleSourceBlock(world, pos);
         if (sourceBlock != null) {
-            int waterBlocks = sourceBlock.getY() - pos.getY() - 1;
-            int geyserForceHeight = getUnobstructedBlockCount(world, pos.up(), waterBlocks);
+            int lavaBlocks = sourceBlock.getY() - pos.getY() - 1;
+            int geyserForceHeight = getUnobstructedBlockCount(world, pos.up(), lavaBlocks);
             Box box = new Box(pos.up()).stretch(0.0, geyserForceHeight - 1, 0.0);
 
             for (Entity entityToBeLaunched : world.getEntitiesByClass(Entity.class, box, EFFECT_PREDICATE)) {
@@ -154,7 +154,7 @@ public class PotentSulfurBlockEntity extends BlockEntity {
                         }
                     }
 
-                    if (!(entityToBeLaunched.getVehicle() != null) && entityVelocity.y < 0.3F + waterBlocks * 0.1) {
+                    if (!(entityToBeLaunched.getVehicle() != null) && entityVelocity.y < 0.3F + lavaBlocks * 0.1) {
                         entityToBeLaunched.addVelocity(new Vec3d(0.0, 0.2F, 0.0));
                         entityToBeLaunched.velocityModified = true;
                         entityToBeLaunched.velocityDirty = true;
@@ -182,18 +182,18 @@ public class PotentSulfurBlockEntity extends BlockEntity {
         return passenger != null && isClientAuthoritative(passenger);
     }
 
-    public static void serverDormantTick(World world, BlockPos pos, BlockState state, PotentSulfurBlockEntity be) {
+    public static void serverDormantTick(World world, BlockPos pos, BlockState state, PotentCinnabarBlockEntity be) {
         serverWaitingCountdownTick(world, pos, state, be);
         serverNauseaEffectTick(world, pos, state, be);
     }
 
-    public static void serverEruptingTick(World world, BlockPos pos, BlockState state, PotentSulfurBlockEntity be) {
+    public static void serverEruptingTick(World world, BlockPos pos, BlockState state, PotentCinnabarBlockEntity be) {
         serverLaunchEntityTick(world, pos, state, be);
         serverWaitingCountdownTick(world, pos, state, be);
     }
 
-    public PotentSulfurBlockEntity(final BlockPos worldPosition, final BlockState blockState) {
-        super(ModBlockEntities.POTENT_SULFUR, worldPosition, blockState);
+    public PotentCinnabarBlockEntity(final BlockPos worldPosition, final BlockState blockState) {
+        super(ModBlockEntities.POTENT_CINNABAR, worldPosition, blockState);
     }
 
     @Override
@@ -235,21 +235,20 @@ public class PotentSulfurBlockEntity extends BlockEntity {
         return new Xoroshiro128PlusPlusRandom(world.getSeed() ^ -904011478L).nextSplitter().split(pos);
     }
 
-    private static void spawnGeyserParticle(final World world, final BlockPos sulfurPos, final BlockPos sourcePos) {
-        int waterBlocks = sourcePos.getY() - sulfurPos.getY() - 1;
+    private static void spawnGeyserParticle(final World world, final BlockPos cinnabarPos, final BlockPos sourcePos) {
+        int lavaBlocks = sourcePos.getY() - cinnabarPos.getY() - 1;
         world.addParticle(
-                new GeyserParticleEffect(ModParticles.GEYSER, waterBlocks, false),
+                new GeyserParticleEffect(ModParticles.GEYSER, lavaBlocks, true),
                 sourcePos.getX() + 0.5, sourcePos.getY(), sourcePos.getZ() + 0.5, 0.0, 0.0, 0.0
         );
     }
 
-    private static void spawnNoxiousGasCloudParticle(final World world, final Vec3d pos) {
-        world.addParticle(ParticleTypes.BUBBLE, pos.x, pos.y, pos.z, 0.0, 0.0, 0.0);
-        //ParticleTypes.NOXIOUS_GAS_CLOUD
+    private static void spawnSmallFireParticle(final World world, final Vec3d pos) {
+        world.addParticle(ParticleTypes.SMALL_FLAME, pos.x, pos.y, pos.z, 0.0, 0.0, 0.0);
     }
 
-    private static int getUnobstructedBlockCount(final World world, final BlockPos pos, final int waterBlocks) {
-        int geyserForceHeight = 6 * waterBlocks;
+    private static int getUnobstructedBlockCount(final World world, final BlockPos pos, final int lavaBlocks) {
+        int geyserForceHeight = 6 * lavaBlocks;
 
         ShapeContext geyserPositionContext = new PositionShapeContext(pos.down().getY());
 
@@ -265,19 +264,18 @@ public class PotentSulfurBlockEntity extends BlockEntity {
     }
 
     private static boolean isGeyserPassableBlock(final BlockState state, final World world, final BlockPos pos, final ShapeContext context) {
-        return !state.isAir() && !state.isOf(Blocks.WATER) ? state.getCollisionShape(world, pos, context).isEmpty() : true;
+        return !state.isAir() && !state.isOf(Blocks.LAVA) ? state.getCollisionShape(world, pos, context).isEmpty() : true;
     }
 
     @Nullable
-    private static BlockPos findNoxiousGasSourceBlock(final World world, final BlockPos origin) {
+    private static BlockPos findFireParticleSourceBlock(final World world, final BlockPos origin) {
         int maxY = origin.getY() + 4 + 1;
         ShapeContext geyserPositionContext = new PositionShapeContext(origin.getY());
         BlockPos.Mutable pos = origin.up(1).mutableCopy();
 
         while (pos.getY() <= maxY) {
             BlockState state = world.getBlockState(pos);
-            boolean isWaterLogged = world.getFluidState(pos).isOf(Fluids.WATER);
-            if (!isWaterLogged || !state.isOf(Blocks.WATER) && !isGeyserPassableBlock(state, world, pos, geyserPositionContext)) {
+            if (!state.isOf(Blocks.LAVA)) {
                 if (state.isAir() || isGeyserPassableBlock(state, world, pos, geyserPositionContext)) {
                     return pos.toImmutable();
                 }
@@ -290,7 +288,7 @@ public class PotentSulfurBlockEntity extends BlockEntity {
         return null;
     }
 
-    public static boolean canBeReachedByNoxiousGas(final World world, final BlockPos sourceBlock, final Vec3d pos) {
+    public static boolean canBeReachedByFireParticle(final World world, final BlockPos sourceBlock, final Vec3d pos) {
         BlockPos blockPos = BlockPos.ofFloored(pos);
         ShapeContext geyserPositionContext = new PositionShapeContext(blockPos.down().getY());
         if (!isGeyserPassableBlock(world.getBlockState(blockPos), world, blockPos, geyserPositionContext)) {
@@ -300,12 +298,12 @@ public class PotentSulfurBlockEntity extends BlockEntity {
         } else {
             Vec3d belowSource = Vec3d.ofCenter(sourceBlock.down());
             Vec3d belowPos = pos.withAxis(Direction.Axis.Y, pos.y - 1.0);
-            return isWater(world, belowPos) && haveLineOfSight(world, belowSource, belowPos);
+            return isLava(world, belowPos) && haveLineOfSight(world, belowSource, belowPos);
         }
     }
 
-    private static boolean isWater(final World world, final Vec3d pos) {
-        return world.getFluidState(BlockPos.ofFloored(pos)).isOf(Fluids.WATER);
+    private static boolean isLava(final World world, final Vec3d pos) {
+        return world.getFluidState(BlockPos.ofFloored(pos)).isOf(Fluids.LAVA);
     }
 
     private static boolean haveLineOfSight(final World world, final Vec3d a, final Vec3d b) {
@@ -314,3 +312,4 @@ public class PotentSulfurBlockEntity extends BlockEntity {
         return hitResult.getType() != HitResult.Type.BLOCK;
     }
 }
+

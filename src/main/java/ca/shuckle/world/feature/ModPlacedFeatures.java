@@ -17,8 +17,12 @@ import java.util.List;
 public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> CHERRY_TREE_PLACED_KEY = registerKey("cherry_tree_placed");
     public static final RegistryKey<PlacedFeature> PALE_OAK_TREE_PLACED_KEY = registerKey("pale_oak_tree_placed");
+    public static final RegistryKey<PlacedFeature> RED_POPLAR_TREE_PLACED_KEY = registerKey("red_poplar_tree_placed");
+    public static final RegistryKey<PlacedFeature> ORANGE_POPLAR_TREE_PLACED_KEY = registerKey("orange_poplar_tree_placed");
+    public static final RegistryKey<PlacedFeature> YELLOW_POPLAR_TREE_PLACED_KEY = registerKey("yellow_poplar_tree_placed");
     public static final RegistryKey<PlacedFeature> PALE_MOSS_PLACED_KEY = registerKey("pale_moss_placed");
     public static final RegistryKey<PlacedFeature> BUSH_PLACED_KEY = registerKey("bush_placed");
+    public static final RegistryKey<PlacedFeature> RED_SHRUB_PLACED_KEY = registerKey("red_shrub_placed");
     public static final RegistryKey<PlacedFeature> DRY_GRASS_PLACED_KEY = registerKey("dry_grass_placed");
 
     public static final RegistryKey<PlacedFeature> SHUCKLE_ORE_PLACED_KEY = registerKey("shuckle_ore_placed");
@@ -34,10 +38,23 @@ public class ModPlacedFeatures {
                 VegetationPlacedFeatures.treeModifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(1, 0.2f, 1),
                         ModBackportBlocks.PALE_OAK_SAPLING));
 
+        register(context, RED_POPLAR_TREE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.RED_POPLAR_TREE_KEY),
+                VegetationPlacedFeatures.treeModifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(0, 0.1f, 1),
+                        ModBackportBlocks.POPLAR_SAPLING));
+        register(context, ORANGE_POPLAR_TREE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.ORANGE_POPLAR_TREE_KEY),
+                VegetationPlacedFeatures.treeModifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(0, 0.1f, 1),
+                        ModBackportBlocks.POPLAR_SAPLING));
+        register(context, YELLOW_POPLAR_TREE_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.YELLOW_POPLAR_TREE_KEY),
+                VegetationPlacedFeatures.treeModifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(0, 0.1f, 1),
+                        ModBackportBlocks.POPLAR_SAPLING));
+
         register(context, PALE_MOSS_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.PALE_MOSS_PATCH_KEY),
                 VegetationPlacedFeatures.treeModifiers(PlacedFeatures.createCountExtraModifier(1, 0.05f, 2)));
 
         register(context, BUSH_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.BUSH_PATCH_KEY),
+                VegetationPlacedFeatures.treeModifiers(PlacedFeatures.createCountExtraModifier(0, 0.2f, 1)));
+
+        register(context, RED_SHRUB_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.RED_SHRUB_PATCH_KEY),
                 VegetationPlacedFeatures.treeModifiers(PlacedFeatures.createCountExtraModifier(0, 0.2f, 1)));
 
         register(context, DRY_GRASS_PLACED_KEY, configuredFeatureRegistryEntryLookup.getOrThrow(ModConfiguredFeatures.DRY_GRASS_PATCH_KEY),
