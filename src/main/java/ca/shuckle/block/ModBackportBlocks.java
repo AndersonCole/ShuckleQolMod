@@ -148,6 +148,7 @@ public class ModBackportBlocks {
     public static final Block WARPED_SHELF = registerBlock("warped_shelf",
             new ShelfBlock(FabricBlockSettings.copy(Blocks.WARPED_PLANKS)), ModItemGroup.SHUCKLE_BACKPORT);
     //endregion
+    //region Dyed Blocks
     //region Wool
     public static final Block WHITE_WOOL_SLAB = registerBlock("white_wool_slab",
             new SlabBlock(FabricBlockSettings.copy(Blocks.WHITE_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
@@ -244,6 +245,104 @@ public class ModBackportBlocks {
     public static final Block PINK_WOOL_STAIRS = registerBlock("pink_wool_stairs",
             new StairsBlock(Blocks.PINK_WOOL.getDefaultState(),
                     FabricBlockSettings.copy(Blocks.PINK_WOOL)), ModItemGroup.SHUCKLE_BACKPORT);
+    //endregion
+    //region Concrete
+    public static final Block WHITE_CONCRETE_SLAB = registerBlock("white_concrete_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.WHITE_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block WHITE_CONCRETE_STAIRS = registerBlock("white_concrete_stairs",
+            new StairsBlock(Blocks.WHITE_CONCRETE.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.WHITE_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block LIGHT_GRAY_CONCRETE_SLAB = registerBlock("light_gray_concrete_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.LIGHT_GRAY_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block LIGHT_GRAY_CONCRETE_STAIRS = registerBlock("light_gray_concrete_stairs",
+            new StairsBlock(Blocks.LIGHT_GRAY_CONCRETE.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.LIGHT_GRAY_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block GRAY_CONCRETE_SLAB = registerBlock("gray_concrete_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.GRAY_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block GRAY_CONCRETE_STAIRS = registerBlock("gray_concrete_stairs",
+            new StairsBlock(Blocks.GRAY_CONCRETE.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.GRAY_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block BLACK_CONCRETE_SLAB = registerBlock("black_concrete_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.BLACK_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block BLACK_CONCRETE_STAIRS = registerBlock("black_concrete_stairs",
+            new StairsBlock(Blocks.BLACK_CONCRETE.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.BLACK_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block BROWN_CONCRETE_SLAB = registerBlock("brown_concrete_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.BROWN_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block BROWN_CONCRETE_STAIRS = registerBlock("brown_concrete_stairs",
+            new StairsBlock(Blocks.BROWN_CONCRETE.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.BROWN_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block RED_CONCRETE_SLAB = registerBlock("red_concrete_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.RED_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block RED_CONCRETE_STAIRS = registerBlock("red_concrete_stairs",
+            new StairsBlock(Blocks.RED_CONCRETE.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.RED_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block ORANGE_CONCRETE_SLAB = registerBlock("orange_concrete_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.ORANGE_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block ORANGE_CONCRETE_STAIRS = registerBlock("orange_concrete_stairs",
+            new StairsBlock(Blocks.ORANGE_CONCRETE.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.ORANGE_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block YELLOW_CONCRETE_SLAB = registerBlock("yellow_concrete_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.YELLOW_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block YELLOW_CONCRETE_STAIRS = registerBlock("yellow_concrete_stairs",
+            new StairsBlock(Blocks.YELLOW_CONCRETE.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.YELLOW_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block LIME_CONCRETE_SLAB = registerBlock("lime_concrete_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.LIME_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block LIME_CONCRETE_STAIRS = registerBlock("lime_concrete_stairs",
+            new StairsBlock(Blocks.LIME_CONCRETE.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.LIME_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block GREEN_CONCRETE_SLAB = registerBlock("green_concrete_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.GREEN_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block GREEN_CONCRETE_STAIRS = registerBlock("green_concrete_stairs",
+            new StairsBlock(Blocks.GREEN_CONCRETE.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.GREEN_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block CYAN_CONCRETE_SLAB = registerBlock("cyan_concrete_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.CYAN_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block CYAN_CONCRETE_STAIRS = registerBlock("cyan_concrete_stairs",
+            new StairsBlock(Blocks.CYAN_CONCRETE.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.CYAN_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block LIGHT_BLUE_CONCRETE_SLAB = registerBlock("light_blue_concrete_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.LIGHT_BLUE_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block LIGHT_BLUE_CONCRETE_STAIRS = registerBlock("light_blue_concrete_stairs",
+            new StairsBlock(Blocks.LIGHT_BLUE_CONCRETE.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.LIGHT_BLUE_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block BLUE_CONCRETE_SLAB = registerBlock("blue_concrete_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.BLUE_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block BLUE_CONCRETE_STAIRS = registerBlock("blue_concrete_stairs",
+            new StairsBlock(Blocks.BLUE_CONCRETE.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.BLUE_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block PURPLE_CONCRETE_SLAB = registerBlock("purple_concrete_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.PURPLE_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block PURPLE_CONCRETE_STAIRS = registerBlock("purple_concrete_stairs",
+            new StairsBlock(Blocks.PURPLE_CONCRETE.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.PURPLE_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block MAGENTA_CONCRETE_SLAB = registerBlock("magenta_concrete_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.MAGENTA_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block MAGENTA_CONCRETE_STAIRS = registerBlock("magenta_concrete_stairs",
+            new StairsBlock(Blocks.MAGENTA_CONCRETE.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.MAGENTA_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+
+    public static final Block PINK_CONCRETE_SLAB = registerBlock("pink_concrete_slab",
+            new SlabBlock(FabricBlockSettings.copy(Blocks.PINK_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+    public static final Block PINK_CONCRETE_STAIRS = registerBlock("pink_concrete_stairs",
+            new StairsBlock(Blocks.PINK_CONCRETE.getDefaultState(),
+                    FabricBlockSettings.copy(Blocks.PINK_CONCRETE)), ModItemGroup.SHUCKLE_BACKPORT);
+    //endregion
     //endregion
     //region Biome Sets
     //region Cherry

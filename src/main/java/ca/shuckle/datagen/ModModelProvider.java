@@ -51,7 +51,8 @@ public class ModModelProvider extends FabricModelProvider {
         registerShelfBlock("minecraft", "crimson", "_stem", blockStateModelGenerator);
         registerShelfBlock("minecraft", "warped", "_stem", blockStateModelGenerator);
         //endregion
-        registerWoolSlabStairs(blockStateModelGenerator);
+        registerDyeableSlabStairs(blockStateModelGenerator, "wool");
+        registerDyeableSlabStairs(blockStateModelGenerator, "concrete");
         //region Cherry blocks
         blockStateModelGenerator.registerTintableCross(ModBackportBlocks.CHERRY_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
         blockStateModelGenerator.registerSimpleCubeAll(ModBackportBlocks.CHERRY_LEAVES);
@@ -1830,16 +1831,16 @@ public class ModModelProvider extends FabricModelProvider {
         );
     }
 
-    private void registerWoolSlabStairs(BlockStateModelGenerator gen) {
+    private void registerDyeableSlabStairs(BlockStateModelGenerator gen, String baseItemName) {
         List<DyeColor> dyeColours = List.of(DyeColor.values());
 
         for(DyeColor dyeColour : dyeColours) {
             registerExternalSlabTexture(gen,
-                    "minecraft", dyeColour.getName() + "_wool", null, null, null,
-                    Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_wool_slab")));
+                    "minecraft", dyeColour.getName() + "_" + baseItemName, null, null, null,
+                    Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_" + baseItemName + "_slab")));
             registerExternalStairsTexture(gen,
-                    "minecraft",  dyeColour.getName() + "_wool", null, null,
-                    Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_wool_stairs")));
+                    "minecraft",  dyeColour.getName() + "_" + baseItemName, null, null,
+                    Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_" + baseItemName + "_stairs")));
         }
     }
 }

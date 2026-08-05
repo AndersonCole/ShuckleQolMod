@@ -27,6 +27,14 @@ public class ModTags {
                 createTag("wildflowers");
         public static final TagKey<Block> LEAF_LITTER =
                 createTag("leaf_litter");
+        public static final TagKey<Block> WOOL_SLABS =
+                createTag("wool_slabs");
+        public static final TagKey<Block> WOOL_STAIRS =
+                createTag("wool_stairs");
+        public static final TagKey<Block> CONCRETE_SLABS =
+                createTag("concrete_slabs");
+        public static final TagKey<Block> CONCRETE_STAIRS =
+                createTag("concrete_stairs");
         public static final TagKey<Block> CAUSES_CONTINUOUS_GEYSER_ERUPTIONS =
                 createTag("causes_continuous_geyser_eruptions");
         public static final TagKey<Block> CAUSES_PERIODIC_GEYSER_ERUPTIONS =
@@ -83,6 +91,10 @@ public class ModTags {
                 createTag("dyeable_wool_slabs");
         public static final TagKey<Item> DYEABLE_WOOL_STAIRS =
                 createTag("dyeable_wool_stairs");
+        public static final TagKey<Item> DYEABLE_CONCRETE_SLABS =
+                createTag("dyeable_concrete_slabs");
+        public static final TagKey<Item> DYEABLE_CONCRETE_STAIRS =
+                createTag("dyeable_concrete_stairs");
         //endregion
 
         private static TagKey<Item> createTag(String name){

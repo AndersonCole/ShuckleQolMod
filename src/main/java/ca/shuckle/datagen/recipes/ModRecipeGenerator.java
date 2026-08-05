@@ -1361,7 +1361,8 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, "tarred_dirt"));
         //endregion
         //endregion
-        createWoolSlabStairsRecipes(exporter);
+        createDyeableSlabStairsRecipes(exporter, "wool", false);
+        createDyeableSlabStairsRecipes(exporter, "concrete", true);
         //region Universal Dyeing
         createShapedDyableItemSetRecipes(exporter,
                 "minecraft", "candle", ModTags.Items.DYEABLE_CANDLES,
@@ -1395,6 +1396,12 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
                 null, false);
         createShapedDyableItemSetRecipes(exporter,
                 "minecraft", "concrete", ModTags.Items.DYEABLE_CONCRETE,
+                null, false);
+        createShapedDyableItemSetRecipes(exporter,
+                ShuckleQOL.MOD_ID, "concrete_slab", ModTags.Items.DYEABLE_CONCRETE_SLABS,
+                null, false);
+        createShapedDyableItemSetRecipes(exporter,
+                ShuckleQOL.MOD_ID, "concrete_stairs", ModTags.Items.DYEABLE_CONCRETE_STAIRS,
                 null, false);
         createShapedDyableItemSetRecipes(exporter,
                 "minecraft", "concrete_powder", ModTags.Items.DYEABLE_CONCRETE_POWDER,
@@ -1729,29 +1736,46 @@ public class ModRecipeGenerator extends FabricRecipeProvider {
         }
     }
 
-    private void createWoolSlabStairsRecipes(Consumer<RecipeJsonProvider> exporter) {
+    private void createDyeableSlabStairsRecipes(Consumer<RecipeJsonProvider> exporter, String baseItemName, boolean addStonecutting) {
         List<DyeColor> dyeColours = List.of(DyeColor.values());
 
         for(DyeColor dyeColour : dyeColours) {
-            Item baseItem = Registries.ITEM.get(new Identifier("minecraft", dyeColour.getName() + "_wool"));
+            Item baseItem = Registries.ITEM.get(new Identifier("minecraft", dyeColour.getName() + "_" + baseItemName));
+            Item slabItem = Registries.ITEM.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_" + baseItemName + "_slab"));
+            Item stairsItem = Registries.ITEM.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_" + baseItemName + "_stairs"));
 
-            ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
-                            Registries.ITEM.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_wool_slab")), 6)
+            ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, slabItem, 6)
                     .pattern("###")
                     .input('#', baseItem)
                     .criterion(hasItem(baseItem),
                             conditionsFromItem(baseItem))
-                    .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_wool_slab"));
+                    .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_" + baseItemName + "_slab"));
 
-            ShapedRecipeJsonBuilder.create(RecipeCategory.MISC,
-                            Registries.ITEM.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_wool_stairs")), 4)
+            ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, stairsItem, 4)
                     .pattern("#  ")
                     .pattern("## ")
                     .pattern("###")
                     .input('#', baseItem)
                     .criterion(hasItem(baseItem),
                             conditionsFromItem(baseItem))
-                    .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_wool_stairs"));
+                    .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_" + baseItemName + "_stairs"));
+
+            if (addStonecutting) {
+                //slab stonecutting
+                IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(Registries.ITEM.getId(baseItem),
+                                RecipeCategory.MISC, Registries.ITEM.getId(slabItem), 2)
+                        .criterion(hasItem(baseItem),
+                                conditionsFromItem(baseItem))
+                        .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID,
+                                dyeColour.getName() + "_" + baseItemName + "_slab_stonecutting"));
+                //stairs stonecutting
+                IdentifiersSingleItemRecipeJsonBuilder.createStonecuttingFromItem(Registries.ITEM.getId(baseItem),
+                                RecipeCategory.MISC, Registries.ITEM.getId(stairsItem), 1)
+                        .criterion(hasItem(baseItem),
+                                conditionsFromItem(baseItem))
+                        .offerTo(exporter, new Identifier(ShuckleQOL.MOD_ID,
+                                dyeColour.getName() + "_" + baseItemName + "_stairs_stonecutting"));
+            }
         }
     }
 

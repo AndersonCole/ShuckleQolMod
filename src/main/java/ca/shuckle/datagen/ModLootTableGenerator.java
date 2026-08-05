@@ -43,7 +43,8 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
         addDrop(ModBackportBlocks.CRIMSON_SHELF);
         addDrop(ModBackportBlocks.WARPED_SHELF);
         //endregion
-        addWoolDrops();
+        addDyeableItemDrops("wool");
+        addDyeableItemDrops("concrete");
         //region Cherry
         addDrop(ModBackportBlocks.CHERRY_SAPLING);
         addDrop(ModBackportBlocks.POTTED_CHERRY_SAPLING, pottedPlantDrops(ModBackportBlocks.CHERRY_SAPLING));
@@ -345,13 +346,13 @@ public class ModLootTableGenerator extends FabricBlockLootTableProvider {
         //endregion
     }
 
-    private void addWoolDrops() {
+    private void addDyeableItemDrops(String baseItemName) {
         List<DyeColor> dyeColours = List.of(DyeColor.values());
 
         for(DyeColor dyeColour : dyeColours) {
-            addDrop(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_wool_slab")),
-                    slabDrops(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_wool_slab"))));
-            addDrop(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_wool_stairs")));
+            addDrop(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_" + baseItemName + "_slab")),
+                    slabDrops(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_" + baseItemName + "_slab"))));
+            addDrop(Registries.BLOCK.get(new Identifier(ShuckleQOL.MOD_ID, dyeColour.getName() + "_" + baseItemName + "_stairs")));
         }
     }
 }
